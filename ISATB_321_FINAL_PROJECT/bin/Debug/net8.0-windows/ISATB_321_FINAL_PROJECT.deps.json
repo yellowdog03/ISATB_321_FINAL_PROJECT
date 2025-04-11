@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "ISATB_321_FINAL_PROJECT/1.0.0": {
+        "runtime": {
+          "ISATB_321_FINAL_PROJECT.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ISATB_321_FINAL_PROJECT/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
