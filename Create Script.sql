@@ -38,7 +38,7 @@ CREATE TABLE Students (
     StudentFName VARCHAR(25),
     StudentLName VARCHAR(50),
     AdvisorID INT,
-    Year INT,
+    [Year] CHAR(4),
 
     FOREIGN KEY (AdvisorID) REFERENCES Advisors(AdvisorID)
 )
@@ -66,13 +66,16 @@ GO
 CREATE TABLE Availability (
     AvailabilityID INT IDENTITY(1,1) PRIMARY KEY,
     AdvisorID INT,
-    Date DATE,
-    TimeID INT,
+    [Date] DATE,
+    StartTimeID INT,
+    EndTimeID INT,
     LocationID INT,
     IsTaken BIT,
+    IsOnline BIT
 
     FOREIGN KEY (AdvisorID) REFERENCES Advisors(AdvisorID),
-    FOREIGN KEY (TimeID) REFERENCES Times(TimeID),
+    FOREIGN KEY (StartTimeID) REFERENCES Times(TimeID),
+    FOREIGN KEY (EndTimeID) REFERENCES Times(TimeID),
     FOREIGN KEY (LocationID) REFERENCES Locations(LocationID)
 )
 GO
