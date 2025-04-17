@@ -110,7 +110,7 @@ SET IDENTITY_INSERT Students OFF
 GO
 
 
-
+/*
 SET IDENTITY_INSERT Professors ON
 GO
 
@@ -128,7 +128,7 @@ GO
 
 SET IDENTITY_INSERT Professors OFF
 GO
-
+*/
 
 
 SET IDENTITY_INSERT Locations ON
