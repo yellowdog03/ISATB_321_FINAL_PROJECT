@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace ISATB_321_FINAL_PROJECT
 {
-    internal class clsDBUtil
+    internal class clsEmrysDBUtil
     {
 
         public static string getConnectionString()
