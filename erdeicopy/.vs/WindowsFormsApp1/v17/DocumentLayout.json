@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\keepi\\OneDrive\\Documents\\GitHub\\ISATB_321_FINAL_PROJECT\\erdeicopy\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|c:\\users\\keepi\\onedrive\\documents\\github\\isatb_321_final_project\\erdeicopy\\clsdbutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|solutionrelative:clsdbutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "clsDBUtil.cs",
+              "DocumentMoniker": "C:\\Users\\keepi\\OneDrive\\Documents\\GitHub\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsDBUtil.cs",
+              "RelativeDocumentMoniker": "clsDBUtil.cs",
+              "ToolTip": "C:\\Users\\keepi\\OneDrive\\Documents\\GitHub\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsDBUtil.cs",
+              "RelativeToolTip": "clsDBUtil.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-18T16:38:26.745Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

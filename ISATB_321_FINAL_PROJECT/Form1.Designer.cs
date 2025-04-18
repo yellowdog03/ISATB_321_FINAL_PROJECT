@@ -28,29 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
-            monthCalendar1 = new MonthCalendar();
+            textBox1 = new TextBox();
+            label1 = new Label();
             SuspendLayout();
             // 
-            // monthCalendar1
+            // textBox1
             // 
-            monthCalendar1.Location = new Point(492, 39);
-            monthCalendar1.Name = "monthCalendar1";
-            monthCalendar1.TabIndex = 0;
+            textBox1.Location = new Point(189, 59);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(125, 27);
+            textBox1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(38, 52);
+            label1.Name = "label1";
+            label1.Size = new Size(50, 20);
+            label1.TabIndex = 1;
+            label1.Text = "label1";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(monthCalendar1);
+            Controls.Add(label1);
+            Controls.Add(textBox1);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private MonthCalendar monthCalendar1;
+        private TextBox textBox1;
+        private Label label1;
     }
 }

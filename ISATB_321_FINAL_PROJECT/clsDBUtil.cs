@@ -14,7 +14,7 @@ namespace ISATB_321_FINAL_PROJECT
             builder.DataSource = "<< database server location here >>";
             builder.InitialCatalog = "ISATB_320_Quick_Emrys";
             builder.UserID = "B321_S25_APP";
-            builder.Password = "<<password here>>";
+            builder.Password = "<<B33pB00p>>";
             builder.Encrypt = false;
 
             return builder.ConnectionString.ToString();
