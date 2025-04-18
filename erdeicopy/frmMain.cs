@@ -32,9 +32,9 @@ namespace WindowsFormsApp1
             petInformation_Update_ClearTextboxes();
         }
 
-        private void populatePetDictionary (ref Dictionary<int, clsAdvisors> dctAdvisors)
+        private void populatePetDictionary(ref Dictionary<int, clsAdvisors> dctAdvisors)
         {
-            
+
             string myConnectionString = clsDBUtil.getConnectionString();
 
             using (SqlConnection conn = new SqlConnection(myConnectionString))
@@ -54,8 +54,8 @@ namespace WindowsFormsApp1
                             currentAdvisor.AdvisorID = (int)rdr["AdvisorID"];
                             currentAdvisor.AdvisorFName = clsDBUtil.convertFromDBType_VarcharToString(rdr["AdvisorFName"]);
                             currentAdvisor.AdvisorLName = clsDBUtil.convertFromDBType_VarcharToString(rdr["AdvisorLName"]);
-                            currentAdvisor.AdvisorEmail = clsDBUtil.convertFromDBType_VarcharToString (rdr["AdvisorEmail"]);
-                            
+                            currentAdvisor.AdvisorEmail = clsDBUtil.convertFromDBType_VarcharToString(rdr["AdvisorEmail"]);
+
 
                             dctAdvisors.Add(currentAdvisor.AdvisorID, currentAdvisor);
                         }
@@ -67,7 +67,7 @@ namespace WindowsFormsApp1
                 {
                     messageBoxOK(ex.Message);
                 }
-                finally 
+                finally
                 {
                     conn.Close();
                 }
@@ -75,7 +75,7 @@ namespace WindowsFormsApp1
 
         }
 
-        private bool updatePet (clsAdvisors currentAdvisor)
+        private bool updatePet(clsAdvisors currentAdvisor)
         {
             string myConnectionString = clsDBUtil.getConnectionString();
 
@@ -90,7 +90,7 @@ namespace WindowsFormsApp1
                     cmd.Parameters.AddWithValue("@AdvisorFName", currentAdvisor.AdvisorFName);
                     cmd.Parameters.AddWithValue("@AdvisorLName", currentAdvisor.AdvisorLName);
                     cmd.Parameters.AddWithValue("@AdvisorEmail", currentAdvisor.AdvisorEmail);
-                    
+
 
                     cmd.ExecuteNonQuery();
                     return true;
@@ -109,7 +109,7 @@ namespace WindowsFormsApp1
 
         }
 
-        private void refreshPetsListview () 
+        private void refreshPetsListview()
         {
             // REMEMBER: the View property of the listview must be set to 'List'
             lvwAdvisors.Clear();
@@ -123,11 +123,11 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void lvwPets_Update_SelectedIndexChanged(object sender, EventArgs e) 
-        { 
-        
+        private void lvwPets_Update_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
             ListView.SelectedListViewItemCollection itemIsSelected = lvwAdvisors.SelectedItems;
-            foreach (ListViewItem item in itemIsSelected) 
+            foreach (ListViewItem item in itemIsSelected)
             {
                 clsAdvisors currentAdvisor = (clsAdvisors)item.Tag;
                 displayPetInformation_update(currentAdvisor);
@@ -140,11 +140,11 @@ namespace WindowsFormsApp1
             txtAdvisorFName.Text = currentAdvisor.AdvisorFName;
             txtAdvisorLName.Text = currentAdvisor.AdvisorLName;
             txtAdvisorEmail.Text = currentAdvisor.AdvisorEmail;    //.ToString();
-            
+
         }
 
         private void petInformation_Update_ClearTextboxes()
-        { 
+        {
             txtAdvisorID.Clear();
             txtAdvisorID.ReadOnly = true;
 
@@ -164,8 +164,10 @@ namespace WindowsFormsApp1
             */
 
             btnEditAdvisorInfo.Visible = true;
-            btnUpdatePetInfo.Visible = false; 
-            
+            btnUpdateAdvisorInfo.Visible = false;
+            btnDeleteAdvisorInfo.Visible = false;
+            btnInsertAdvisorInfo.Visible = true;
+
 
         }
 
@@ -197,7 +199,8 @@ namespace WindowsFormsApp1
             txtWeight.ReadOnly = false;
 
             btnEditAdvisorInfo.Visible = false;
-            btnUpdatePetInfo.Visible = true;
+            btnUpdateAdvisorInfo.Visible = true;
+            btnDeleteAdvisorInfo.Visible = true;
         }
 
         private void btnUpdatePetInfo_Click(object sender, EventArgs e)
@@ -210,8 +213,8 @@ namespace WindowsFormsApp1
             {
                 currentAdvisor.AdvisorID = AdvisorID;
             }
-            else 
-            { 
+            else
+            {
                 messageBoxOK("Invalid Advisor ID.");
                 txtAdvisorID.Focus();
             }
@@ -255,10 +258,10 @@ namespace WindowsFormsApp1
 
             if (updatePet(currentAdvisor) == true)
             {
-               
+
                 populatePetDictionary(ref dctAdvisors);
                 refreshPetsListview();
-             
+
 
 
                 messageBoxOK("The advisor (ID: " + currentAdvisor.AdvisorID.ToString() + ") successfully updated.");
@@ -276,9 +279,207 @@ namespace WindowsFormsApp1
 
         }
 
+
+
+
+
+
+        private bool deleteAdvisor(clsAdvisors currentAdvisor)
+        {
+            string myConnectionString = clsDBUtil.getConnectionString();
+
+            using (SqlConnection conn = new SqlConnection(myConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("sp_DeleteAdvisor", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@AdvisorID", currentAdvisor.AdvisorID);
+                    /*
+                    cmd.Parameters.AddWithValue("@AdvisorFName", currentAdvisor.AdvisorFName);
+                    cmd.Parameters.AddWithValue("@AdvisorLName", currentAdvisor.AdvisorLName);
+                    cmd.Parameters.AddWithValue("@AdvisorEmail", currentAdvisor.AdvisorEmail);
+                    */
+
+                    cmd.ExecuteNonQuery();
+                    return true;
+
+                }
+                catch (Exception ex)
+                {
+                    messageBoxOK(ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+
+
+
+
+
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
 
+
+            /*
+            if (txtAdvisorID.Text == "")
+            {
+                return;
+            }
+            string query = "Delete from Advisors where AdvisorID= '" + txtAdvisorID.Text + "'";
+            */
+
+
+            clsAdvisors currentAdvisor = new clsAdvisors();
+
+
+
+            if (int.TryParse(txtAdvisorID.Text, out int AdvisorID))
+            {
+                currentAdvisor.AdvisorID = AdvisorID;
+            }
+            else
+            {
+                messageBoxOK("Invalid Advisor ID.");
+                txtAdvisorID.Focus();
+            }
+
+            currentAdvisor.AdvisorFName = txtAdvisorFName.Text;
+            currentAdvisor.AdvisorLName = txtAdvisorLName.Text;
+            currentAdvisor.AdvisorEmail = txtAdvisorEmail.Text;
+
+
+
+
+            if (deleteAdvisor(currentAdvisor) == true)
+            {
+
+                populatePetDictionary(ref dctAdvisors);
+                refreshPetsListview();
+
+
+
+                messageBoxOK("The advisor (ID: " + currentAdvisor.AdvisorID.ToString() + ") successfully deleted.");
+                petInformation_Update_ClearTextboxes();
+
+
+
+            }
+            else
+            {
+                messageBoxOK("delete Failed for advisor (ID: " + currentAdvisor.AdvisorID.ToString() + ").");
+            }
+            ;
         }
+
+
+        private bool InsertAdvisor(clsAdvisors currentAdvisor)
+        {
+            string myConnectionString = clsDBUtil.getConnectionString();
+
+            using (SqlConnection conn = new SqlConnection(myConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("sp_InsertAdvisor", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    //cmd.Parameters.AddWithValue("@AdvisorID", currentAdvisor.AdvisorID);
+
+                    cmd.Parameters.AddWithValue("@AdvisorFName", currentAdvisor.AdvisorFName);
+                    cmd.Parameters.AddWithValue("@AdvisorLName", currentAdvisor.AdvisorLName);
+                    cmd.Parameters.AddWithValue("@AdvisorEmail", currentAdvisor.AdvisorEmail);
+
+
+                    cmd.ExecuteNonQuery();
+                    return true;
+
+                }
+                catch (Exception ex)
+                {
+                    messageBoxOK(ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+        private void btnInsertAdvisorInfo_Click(object sender, EventArgs e)
+        {
+
+
+            clsAdvisors currentAdvisor = new clsAdvisors();
+
+            
+
+            if (int.TryParse(txtAdvisorID.Text, out int AdvisorID))
+            {
+                currentAdvisor.AdvisorID = AdvisorID;
+            }
+            else
+            {
+                messageBoxOK("Invalid Advisor ID.");
+                txtAdvisorID.Focus();
+            }
+
+            currentAdvisor.AdvisorFName = txtAdvisorFName.Text;
+            currentAdvisor.AdvisorLName = txtAdvisorLName.Text;
+            currentAdvisor.AdvisorEmail = txtAdvisorEmail.Text;
+
+
+
+
+            if (updatePet(currentAdvisor) == true)
+            {
+
+                populatePetDictionary(ref dctAdvisors);
+                refreshPetsListview();
+
+
+
+                messageBoxOK("The advisor (ID: " + currentAdvisor.AdvisorID.ToString() + ") successfully updated.");
+                petInformation_Update_ClearTextboxes();
+
+
+
+            }
+            else
+            {
+                messageBoxOK("Update Failed for advisor (ID: " + currentAdvisor.AdvisorID.ToString() + ").");
+            }
+            ;
+        }
+
+
+
+
+
+
+
+
+
+        
     }
+
 }

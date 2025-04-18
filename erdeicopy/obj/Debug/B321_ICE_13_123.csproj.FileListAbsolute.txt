@@ -28,13 +28,3 @@ C:\Users\jeplant\Desktop\erdeicopy\obj\Debug\B321_ICE_13_123.csproj.GenerateReso
 C:\Users\jeplant\Desktop\erdeicopy\obj\Debug\B321_ICE_13_123.csproj.CoreCompileInputs.cache
 C:\Users\jeplant\Desktop\erdeicopy\obj\Debug\WindowsFormsApp1.exe
 C:\Users\jeplant\Desktop\erdeicopy\obj\Debug\WindowsFormsApp1.pdb
-C:\Users\keepi\OneDrive\Documents\GitHub\ISATB_321_FINAL_PROJECT\erdeicopy\bin\Debug\WindowsFormsApp1.exe.config
-C:\Users\keepi\OneDrive\Documents\GitHub\ISATB_321_FINAL_PROJECT\erdeicopy\bin\Debug\WindowsFormsApp1.exe
-C:\Users\keepi\OneDrive\Documents\GitHub\ISATB_321_FINAL_PROJECT\erdeicopy\bin\Debug\WindowsFormsApp1.pdb
-C:\Users\keepi\OneDrive\Documents\GitHub\ISATB_321_FINAL_PROJECT\erdeicopy\obj\Debug\B321_ICE_13_123.csproj.AssemblyReference.cache
-C:\Users\keepi\OneDrive\Documents\GitHub\ISATB_321_FINAL_PROJECT\erdeicopy\obj\Debug\WindowsFormsApp1.frmMain.resources
-C:\Users\keepi\OneDrive\Documents\GitHub\ISATB_321_FINAL_PROJECT\erdeicopy\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
-C:\Users\keepi\OneDrive\Documents\GitHub\ISATB_321_FINAL_PROJECT\erdeicopy\obj\Debug\B321_ICE_13_123.csproj.GenerateResource.cache
-C:\Users\keepi\OneDrive\Documents\GitHub\ISATB_321_FINAL_PROJECT\erdeicopy\obj\Debug\B321_ICE_13_123.csproj.CoreCompileInputs.cache
-C:\Users\keepi\OneDrive\Documents\GitHub\ISATB_321_FINAL_PROJECT\erdeicopy\obj\Debug\WindowsFormsApp1.exe
-C:\Users\keepi\OneDrive\Documents\GitHub\ISATB_321_FINAL_PROJECT\erdeicopy\obj\Debug\WindowsFormsApp1.pdb

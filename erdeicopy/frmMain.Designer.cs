@@ -31,8 +31,8 @@
             this.btnGetPet = new System.Windows.Forms.Button();
             this.tabAdvisors = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnDeletePetInfo = new System.Windows.Forms.Button();
-            this.btnUpdatePetInfo = new System.Windows.Forms.Button();
+            this.btnDeleteAdvisorInfo = new System.Windows.Forms.Button();
+            this.btnUpdateAdvisorInfo = new System.Windows.Forms.Button();
             this.btnEditAdvisorInfo = new System.Windows.Forms.Button();
             this.txtWeight = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -47,6 +47,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtAdvisorID = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnInsertAdvisorInfo = new System.Windows.Forms.Button();
             this.tabAdvisors.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -70,8 +71,9 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.btnDeletePetInfo);
-            this.tabPage1.Controls.Add(this.btnUpdatePetInfo);
+            this.tabPage1.Controls.Add(this.btnInsertAdvisorInfo);
+            this.tabPage1.Controls.Add(this.btnDeleteAdvisorInfo);
+            this.tabPage1.Controls.Add(this.btnUpdateAdvisorInfo);
             this.tabPage1.Controls.Add(this.btnEditAdvisorInfo);
             this.tabPage1.Controls.Add(this.txtWeight);
             this.tabPage1.Controls.Add(this.label6);
@@ -93,27 +95,27 @@
             this.tabPage1.Text = "Current Advisors";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // btnDeletePetInfo
+            // btnDeleteAdvisorInfo
             // 
-            this.btnDeletePetInfo.Location = new System.Drawing.Point(615, 343);
-            this.btnDeletePetInfo.Name = "btnDeletePetInfo";
-            this.btnDeletePetInfo.Size = new System.Drawing.Size(136, 44);
-            this.btnDeletePetInfo.TabIndex = 19;
-            this.btnDeletePetInfo.Text = "Delete";
-            this.btnDeletePetInfo.UseVisualStyleBackColor = true;
-            this.btnDeletePetInfo.Visible = false;
-            this.btnDeletePetInfo.Click += new System.EventHandler(this.btnDelete_Click);
+            this.btnDeleteAdvisorInfo.Location = new System.Drawing.Point(615, 343);
+            this.btnDeleteAdvisorInfo.Name = "btnDeleteAdvisorInfo";
+            this.btnDeleteAdvisorInfo.Size = new System.Drawing.Size(136, 44);
+            this.btnDeleteAdvisorInfo.TabIndex = 19;
+            this.btnDeleteAdvisorInfo.Text = "Delete";
+            this.btnDeleteAdvisorInfo.UseVisualStyleBackColor = true;
+            this.btnDeleteAdvisorInfo.Visible = false;
+            this.btnDeleteAdvisorInfo.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // btnUpdatePetInfo
+            // btnUpdateAdvisorInfo
             // 
-            this.btnUpdatePetInfo.Location = new System.Drawing.Point(615, 293);
-            this.btnUpdatePetInfo.Name = "btnUpdatePetInfo";
-            this.btnUpdatePetInfo.Size = new System.Drawing.Size(136, 44);
-            this.btnUpdatePetInfo.TabIndex = 18;
-            this.btnUpdatePetInfo.Text = "Update";
-            this.btnUpdatePetInfo.UseVisualStyleBackColor = true;
-            this.btnUpdatePetInfo.Visible = false;
-            this.btnUpdatePetInfo.Click += new System.EventHandler(this.btnUpdatePetInfo_Click);
+            this.btnUpdateAdvisorInfo.Location = new System.Drawing.Point(615, 293);
+            this.btnUpdateAdvisorInfo.Name = "btnUpdateAdvisorInfo";
+            this.btnUpdateAdvisorInfo.Size = new System.Drawing.Size(136, 44);
+            this.btnUpdateAdvisorInfo.TabIndex = 18;
+            this.btnUpdateAdvisorInfo.Text = "Update";
+            this.btnUpdateAdvisorInfo.UseVisualStyleBackColor = true;
+            this.btnUpdateAdvisorInfo.Visible = false;
+            this.btnUpdateAdvisorInfo.Click += new System.EventHandler(this.btnUpdatePetInfo_Click);
             // 
             // btnEditAdvisorInfo
             // 
@@ -239,6 +241,17 @@
             this.tabPage2.Text = "Insert New Advisor";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // btnInsertAdvisorInfo
+            // 
+            this.btnInsertAdvisorInfo.Location = new System.Drawing.Point(473, 343);
+            this.btnInsertAdvisorInfo.Name = "btnInsertAdvisorInfo";
+            this.btnInsertAdvisorInfo.Size = new System.Drawing.Size(136, 44);
+            this.btnInsertAdvisorInfo.TabIndex = 20;
+            this.btnInsertAdvisorInfo.Text = "Insert";
+            this.btnInsertAdvisorInfo.UseVisualStyleBackColor = true;
+            this.btnInsertAdvisorInfo.Visible = false;
+            this.btnInsertAdvisorInfo.Click += new System.EventHandler(this.btnInsertAdvisorInfo_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -278,8 +291,9 @@
         private System.Windows.Forms.TextBox txtWeight;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnEditAdvisorInfo;
-        private System.Windows.Forms.Button btnUpdatePetInfo;
-        private System.Windows.Forms.Button btnDeletePetInfo;
+        private System.Windows.Forms.Button btnUpdateAdvisorInfo;
+        private System.Windows.Forms.Button btnDeleteAdvisorInfo;
+        private System.Windows.Forms.Button btnInsertAdvisorInfo;
     }
 }
 
