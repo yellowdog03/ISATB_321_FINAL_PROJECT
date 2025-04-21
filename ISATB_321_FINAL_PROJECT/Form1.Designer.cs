@@ -59,18 +59,64 @@
             textBox4 = new TextBox();
             label6 = new Label();
             tabPage3 = new TabPage();
-            tabPage4 = new TabPage();
             listBox1 = new ListBox();
+            tabPage4 = new TabPage();
+            tabPage5 = new TabPage();
+            listBox2 = new ListBox();
+            btnMakeAppt = new Button();
+            btnClearAppt = new Button();
+            listBox3 = new ListBox();
+            btnStudentAdvisorSelect = new Label();
+            radStudent = new RadioButton();
+            radAdvisor = new RadioButton();
+            lblCurrentInfo = new Label();
+            txtFirstName = new TextBox();
+            label7 = new Label();
+            lblLastName = new Label();
+            txtLastName = new TextBox();
+            lblNewInfo = new Label();
+            lblNewFirstName = new Label();
+            lblNewLastName = new Label();
+            lblNewYear = new Label();
+            txtNewFirstName = new TextBox();
+            txtNewLastName = new TextBox();
+            txtNewYear = new TextBox();
+            btnSubmitChanges = new Button();
+            btnClearForm = new Button();
+            label8 = new Label();
+            lblNewEmail = new Label();
+            txtNewEmail = new TextBox();
+            tabPage6 = new TabPage();
+            lblLeaveBlank = new Label();
+            txtLastNameNew = new TextBox();
+            lblLastNameNew = new Label();
+            lblFirstNameNew = new Label();
+            txtFirstNameNew = new TextBox();
+            lblInfo = new Label();
+            radAdvisorNew = new RadioButton();
+            radStudentNew = new RadioButton();
+            lblStudentAdvisor = new Label();
+            txtEmailYear = new TextBox();
+            lblEmailNew = new Label();
+            txtYearNew = new TextBox();
+            lblYearNew = new Label();
+            btnSubmitNew = new Button();
+            btnClearFormAdd = new Button();
             tabControlMain.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage3.SuspendLayout();
+            tabPage4.SuspendLayout();
+            tabPage5.SuspendLayout();
+            tabPage6.SuspendLayout();
             SuspendLayout();
             // 
             // tabControlMain
             // 
             tabControlMain.Controls.Add(tabPage1);
             tabControlMain.Controls.Add(tabPage2);
+            tabControlMain.Controls.Add(tabPage6);
+            tabControlMain.Controls.Add(tabPage5);
             tabControlMain.Controls.Add(tabPage3);
             tabControlMain.Controls.Add(tabPage4);
             tabControlMain.Location = new Point(12, 12);
@@ -81,6 +127,8 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(btnClearAppt);
+            tabPage1.Controls.Add(btnMakeAppt);
             tabPage1.Controls.Add(monthCalendar1);
             tabPage1.Controls.Add(txtProfLName);
             tabPage1.Controls.Add(txtProfFName);
@@ -355,15 +403,6 @@
             tabPage3.Text = "View Advisors";
             tabPage3.UseVisualStyleBackColor = true;
             // 
-            // tabPage4
-            // 
-            tabPage4.Location = new Point(4, 29);
-            tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(768, 393);
-            tabPage4.TabIndex = 3;
-            tabPage4.Text = "View Students";
-            tabPage4.UseVisualStyleBackColor = true;
-            // 
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
@@ -371,6 +410,408 @@
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(762, 384);
             listBox1.TabIndex = 0;
+            // 
+            // tabPage4
+            // 
+            tabPage4.Controls.Add(listBox2);
+            tabPage4.Location = new Point(4, 29);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Size = new Size(768, 393);
+            tabPage4.TabIndex = 3;
+            tabPage4.Text = "View Students";
+            tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // tabPage5
+            // 
+            tabPage5.Controls.Add(txtNewEmail);
+            tabPage5.Controls.Add(lblNewEmail);
+            tabPage5.Controls.Add(label8);
+            tabPage5.Controls.Add(btnClearForm);
+            tabPage5.Controls.Add(btnSubmitChanges);
+            tabPage5.Controls.Add(txtNewYear);
+            tabPage5.Controls.Add(txtNewLastName);
+            tabPage5.Controls.Add(txtNewFirstName);
+            tabPage5.Controls.Add(lblNewYear);
+            tabPage5.Controls.Add(lblNewLastName);
+            tabPage5.Controls.Add(lblNewFirstName);
+            tabPage5.Controls.Add(lblNewInfo);
+            tabPage5.Controls.Add(txtLastName);
+            tabPage5.Controls.Add(lblLastName);
+            tabPage5.Controls.Add(label7);
+            tabPage5.Controls.Add(txtFirstName);
+            tabPage5.Controls.Add(lblCurrentInfo);
+            tabPage5.Controls.Add(radAdvisor);
+            tabPage5.Controls.Add(radStudent);
+            tabPage5.Controls.Add(btnStudentAdvisorSelect);
+            tabPage5.Controls.Add(listBox3);
+            tabPage5.Location = new Point(4, 29);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Size = new Size(768, 393);
+            tabPage5.TabIndex = 4;
+            tabPage5.Text = "Change Person";
+            tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // listBox2
+            // 
+            listBox2.FormattingEnabled = true;
+            listBox2.Location = new Point(3, 3);
+            listBox2.Name = "listBox2";
+            listBox2.Size = new Size(762, 384);
+            listBox2.TabIndex = 0;
+            // 
+            // btnMakeAppt
+            // 
+            btnMakeAppt.Location = new Point(494, 231);
+            btnMakeAppt.Name = "btnMakeAppt";
+            btnMakeAppt.Size = new Size(120, 73);
+            btnMakeAppt.TabIndex = 11;
+            btnMakeAppt.Text = "Make Appointment";
+            btnMakeAppt.UseVisualStyleBackColor = true;
+            // 
+            // btnClearAppt
+            // 
+            btnClearAppt.Location = new Point(645, 231);
+            btnClearAppt.Name = "btnClearAppt";
+            btnClearAppt.Size = new Size(111, 73);
+            btnClearAppt.TabIndex = 12;
+            btnClearAppt.Text = "Clear Form";
+            btnClearAppt.UseVisualStyleBackColor = true;
+            // 
+            // listBox3
+            // 
+            listBox3.FormattingEnabled = true;
+            listBox3.Location = new Point(424, 3);
+            listBox3.Name = "listBox3";
+            listBox3.Size = new Size(341, 304);
+            listBox3.TabIndex = 0;
+            // 
+            // btnStudentAdvisorSelect
+            // 
+            btnStudentAdvisorSelect.AutoSize = true;
+            btnStudentAdvisorSelect.Location = new Point(3, 0);
+            btnStudentAdvisorSelect.Name = "btnStudentAdvisorSelect";
+            btnStudentAdvisorSelect.Size = new Size(139, 20);
+            btnStudentAdvisorSelect.TabIndex = 1;
+            btnStudentAdvisorSelect.Text = "Student or Advisor?";
+            // 
+            // radStudent
+            // 
+            radStudent.AutoSize = true;
+            radStudent.Location = new Point(23, 23);
+            radStudent.Name = "radStudent";
+            radStudent.Size = new Size(81, 24);
+            radStudent.TabIndex = 2;
+            radStudent.TabStop = true;
+            radStudent.Text = "Student";
+            radStudent.UseVisualStyleBackColor = true;
+            // 
+            // radAdvisor
+            // 
+            radAdvisor.AutoSize = true;
+            radAdvisor.Location = new Point(110, 23);
+            radAdvisor.Name = "radAdvisor";
+            radAdvisor.Size = new Size(80, 24);
+            radAdvisor.TabIndex = 3;
+            radAdvisor.TabStop = true;
+            radAdvisor.Text = "Advisor";
+            radAdvisor.UseVisualStyleBackColor = true;
+            // 
+            // lblCurrentInfo
+            // 
+            lblCurrentInfo.AutoSize = true;
+            lblCurrentInfo.Location = new Point(3, 60);
+            lblCurrentInfo.Name = "lblCurrentInfo";
+            lblCurrentInfo.Size = new Size(139, 20);
+            lblCurrentInfo.TabIndex = 4;
+            lblCurrentInfo.Text = "Current Information";
+            // 
+            // txtFirstName
+            // 
+            txtFirstName.Location = new Point(112, 93);
+            txtFirstName.Name = "txtFirstName";
+            txtFirstName.Size = new Size(125, 27);
+            txtFirstName.TabIndex = 5;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(23, 96);
+            label7.Name = "label7";
+            label7.Size = new Size(83, 20);
+            label7.TabIndex = 6;
+            label7.Text = "First Name:";
+            // 
+            // lblLastName
+            // 
+            lblLastName.AutoSize = true;
+            lblLastName.Location = new Point(23, 125);
+            lblLastName.Name = "lblLastName";
+            lblLastName.Size = new Size(82, 20);
+            lblLastName.TabIndex = 7;
+            lblLastName.Text = "Last Name:";
+            // 
+            // txtLastName
+            // 
+            txtLastName.Location = new Point(112, 126);
+            txtLastName.Name = "txtLastName";
+            txtLastName.Size = new Size(125, 27);
+            txtLastName.TabIndex = 8;
+            // 
+            // lblNewInfo
+            // 
+            lblNewInfo.AutoSize = true;
+            lblNewInfo.Location = new Point(3, 170);
+            lblNewInfo.Name = "lblNewInfo";
+            lblNewInfo.Size = new Size(121, 20);
+            lblNewInfo.TabIndex = 9;
+            lblNewInfo.Text = "New Information";
+            // 
+            // lblNewFirstName
+            // 
+            lblNewFirstName.AutoSize = true;
+            lblNewFirstName.Location = new Point(23, 222);
+            lblNewFirstName.Name = "lblNewFirstName";
+            lblNewFirstName.Size = new Size(83, 20);
+            lblNewFirstName.TabIndex = 10;
+            lblNewFirstName.Text = "First Name:";
+            // 
+            // lblNewLastName
+            // 
+            lblNewLastName.AutoSize = true;
+            lblNewLastName.Location = new Point(23, 255);
+            lblNewLastName.Name = "lblNewLastName";
+            lblNewLastName.Size = new Size(86, 20);
+            lblNewLastName.TabIndex = 11;
+            lblNewLastName.Text = "Last Name: ";
+            // 
+            // lblNewYear
+            // 
+            lblNewYear.AutoSize = true;
+            lblNewYear.Location = new Point(43, 288);
+            lblNewYear.Name = "lblNewYear";
+            lblNewYear.Size = new Size(44, 20);
+            lblNewYear.TabIndex = 12;
+            lblNewYear.Text = "Year: ";
+            // 
+            // txtNewFirstName
+            // 
+            txtNewFirstName.Location = new Point(112, 219);
+            txtNewFirstName.Name = "txtNewFirstName";
+            txtNewFirstName.Size = new Size(125, 27);
+            txtNewFirstName.TabIndex = 13;
+            // 
+            // txtNewLastName
+            // 
+            txtNewLastName.Location = new Point(112, 252);
+            txtNewLastName.Name = "txtNewLastName";
+            txtNewLastName.Size = new Size(125, 27);
+            txtNewLastName.TabIndex = 14;
+            // 
+            // txtNewYear
+            // 
+            txtNewYear.Location = new Point(112, 288);
+            txtNewYear.Name = "txtNewYear";
+            txtNewYear.Size = new Size(125, 27);
+            txtNewYear.TabIndex = 15;
+            // 
+            // btnSubmitChanges
+            // 
+            btnSubmitChanges.Location = new Point(424, 313);
+            btnSubmitChanges.Name = "btnSubmitChanges";
+            btnSubmitChanges.Size = new Size(116, 57);
+            btnSubmitChanges.TabIndex = 16;
+            btnSubmitChanges.Text = "Submit Changes";
+            btnSubmitChanges.UseVisualStyleBackColor = true;
+            // 
+            // btnClearForm
+            // 
+            btnClearForm.Location = new Point(662, 313);
+            btnClearForm.Name = "btnClearForm";
+            btnClearForm.Size = new Size(103, 57);
+            btnClearForm.TabIndex = 17;
+            btnClearForm.Text = "Clear Form";
+            btnClearForm.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(12, 190);
+            label8.Name = "label8";
+            label8.Size = new Size(363, 20);
+            label8.TabIndex = 18;
+            label8.Text = "Leave the box blank if not changing or not applicable";
+            // 
+            // lblNewEmail
+            // 
+            lblNewEmail.AutoSize = true;
+            lblNewEmail.Location = new Point(38, 325);
+            lblNewEmail.Name = "lblNewEmail";
+            lblNewEmail.Size = new Size(49, 20);
+            lblNewEmail.TabIndex = 19;
+            lblNewEmail.Text = "Email:";
+            // 
+            // txtNewEmail
+            // 
+            txtNewEmail.Location = new Point(112, 322);
+            txtNewEmail.Name = "txtNewEmail";
+            txtNewEmail.Size = new Size(125, 27);
+            txtNewEmail.TabIndex = 20;
+            // 
+            // tabPage6
+            // 
+            tabPage6.Controls.Add(btnClearFormAdd);
+            tabPage6.Controls.Add(btnSubmitNew);
+            tabPage6.Controls.Add(txtEmailYear);
+            tabPage6.Controls.Add(lblEmailNew);
+            tabPage6.Controls.Add(txtYearNew);
+            tabPage6.Controls.Add(lblYearNew);
+            tabPage6.Controls.Add(lblLeaveBlank);
+            tabPage6.Controls.Add(txtLastNameNew);
+            tabPage6.Controls.Add(lblLastNameNew);
+            tabPage6.Controls.Add(lblFirstNameNew);
+            tabPage6.Controls.Add(txtFirstNameNew);
+            tabPage6.Controls.Add(lblInfo);
+            tabPage6.Controls.Add(radAdvisorNew);
+            tabPage6.Controls.Add(radStudentNew);
+            tabPage6.Controls.Add(lblStudentAdvisor);
+            tabPage6.Location = new Point(4, 29);
+            tabPage6.Name = "tabPage6";
+            tabPage6.Size = new Size(768, 393);
+            tabPage6.TabIndex = 5;
+            tabPage6.Text = "Add Person";
+            tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // lblLeaveBlank
+            // 
+            lblLeaveBlank.AutoSize = true;
+            lblLeaveBlank.Location = new Point(21, 80);
+            lblLeaveBlank.Name = "lblLeaveBlank";
+            lblLeaveBlank.Size = new Size(363, 20);
+            lblLeaveBlank.TabIndex = 36;
+            lblLeaveBlank.Text = "Leave the box blank if not changing or not applicable";
+            // 
+            // txtLastNameNew
+            // 
+            txtLastNameNew.Location = new Point(112, 143);
+            txtLastNameNew.Name = "txtLastNameNew";
+            txtLastNameNew.Size = new Size(125, 27);
+            txtLastNameNew.TabIndex = 28;
+            // 
+            // lblLastNameNew
+            // 
+            lblLastNameNew.AutoSize = true;
+            lblLastNameNew.Location = new Point(24, 146);
+            lblLastNameNew.Name = "lblLastNameNew";
+            lblLastNameNew.Size = new Size(82, 20);
+            lblLastNameNew.TabIndex = 27;
+            lblLastNameNew.Text = "Last Name:";
+            // 
+            // lblFirstNameNew
+            // 
+            lblFirstNameNew.AutoSize = true;
+            lblFirstNameNew.Location = new Point(23, 113);
+            lblFirstNameNew.Name = "lblFirstNameNew";
+            lblFirstNameNew.Size = new Size(83, 20);
+            lblFirstNameNew.TabIndex = 26;
+            lblFirstNameNew.Text = "First Name:";
+            // 
+            // txtFirstNameNew
+            // 
+            txtFirstNameNew.Location = new Point(112, 110);
+            txtFirstNameNew.Name = "txtFirstNameNew";
+            txtFirstNameNew.Size = new Size(125, 27);
+            txtFirstNameNew.TabIndex = 25;
+            // 
+            // lblInfo
+            // 
+            lblInfo.AutoSize = true;
+            lblInfo.Location = new Point(3, 60);
+            lblInfo.Name = "lblInfo";
+            lblInfo.Size = new Size(87, 20);
+            lblInfo.TabIndex = 24;
+            lblInfo.Text = "Information";
+            // 
+            // radAdvisorNew
+            // 
+            radAdvisorNew.AutoSize = true;
+            radAdvisorNew.Location = new Point(110, 23);
+            radAdvisorNew.Name = "radAdvisorNew";
+            radAdvisorNew.Size = new Size(80, 24);
+            radAdvisorNew.TabIndex = 23;
+            radAdvisorNew.TabStop = true;
+            radAdvisorNew.Text = "Advisor";
+            radAdvisorNew.UseVisualStyleBackColor = true;
+            // 
+            // radStudentNew
+            // 
+            radStudentNew.AutoSize = true;
+            radStudentNew.Location = new Point(23, 23);
+            radStudentNew.Name = "radStudentNew";
+            radStudentNew.Size = new Size(81, 24);
+            radStudentNew.TabIndex = 22;
+            radStudentNew.TabStop = true;
+            radStudentNew.Text = "Student";
+            radStudentNew.UseVisualStyleBackColor = true;
+            // 
+            // lblStudentAdvisor
+            // 
+            lblStudentAdvisor.AutoSize = true;
+            lblStudentAdvisor.Location = new Point(3, 0);
+            lblStudentAdvisor.Name = "lblStudentAdvisor";
+            lblStudentAdvisor.Size = new Size(139, 20);
+            lblStudentAdvisor.TabIndex = 21;
+            lblStudentAdvisor.Text = "Student or Advisor?";
+            // 
+            // txtEmailYear
+            // 
+            txtEmailYear.Location = new Point(112, 209);
+            txtEmailYear.Name = "txtEmailYear";
+            txtEmailYear.Size = new Size(125, 27);
+            txtEmailYear.TabIndex = 40;
+            // 
+            // lblEmailNew
+            // 
+            lblEmailNew.AutoSize = true;
+            lblEmailNew.Location = new Point(41, 212);
+            lblEmailNew.Name = "lblEmailNew";
+            lblEmailNew.Size = new Size(49, 20);
+            lblEmailNew.TabIndex = 39;
+            lblEmailNew.Text = "Email:";
+            lblEmailNew.Click += lblEmailNew_Click;
+            // 
+            // txtYearNew
+            // 
+            txtYearNew.Location = new Point(112, 176);
+            txtYearNew.Name = "txtYearNew";
+            txtYearNew.Size = new Size(125, 27);
+            txtYearNew.TabIndex = 38;
+            // 
+            // lblYearNew
+            // 
+            lblYearNew.AutoSize = true;
+            lblYearNew.Location = new Point(46, 179);
+            lblYearNew.Name = "lblYearNew";
+            lblYearNew.Size = new Size(44, 20);
+            lblYearNew.TabIndex = 37;
+            lblYearNew.Text = "Year: ";
+            // 
+            // btnSubmitNew
+            // 
+            btnSubmitNew.Location = new Point(21, 330);
+            btnSubmitNew.Name = "btnSubmitNew";
+            btnSubmitNew.Size = new Size(159, 42);
+            btnSubmitNew.TabIndex = 41;
+            btnSubmitNew.Text = "Submit New Person";
+            btnSubmitNew.UseVisualStyleBackColor = true;
+            // 
+            // btnClearFormAdd
+            // 
+            btnClearFormAdd.Location = new Point(207, 330);
+            btnClearFormAdd.Name = "btnClearFormAdd";
+            btnClearFormAdd.Size = new Size(141, 42);
+            btnClearFormAdd.TabIndex = 42;
+            btnClearFormAdd.Text = "Clear Form";
+            btnClearFormAdd.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -387,6 +828,11 @@
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
             tabPage3.ResumeLayout(false);
+            tabPage4.ResumeLayout(false);
+            tabPage5.ResumeLayout(false);
+            tabPage5.PerformLayout();
+            tabPage6.ResumeLayout(false);
+            tabPage6.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -424,5 +870,46 @@
         private Label lblAppointment;
         private Button btnDelete;
         private ListBox listBox1;
+        private TabPage tabPage5;
+        private Button btnClearAppt;
+        private Button btnMakeAppt;
+        private ListBox listBox2;
+        private RadioButton radAdvisor;
+        private RadioButton radStudent;
+        private Label btnStudentAdvisorSelect;
+        private ListBox listBox3;
+        private Label lblNewFirstName;
+        private Label lblNewInfo;
+        private TextBox txtLastName;
+        private Label lblLastName;
+        private Label label7;
+        private TextBox txtFirstName;
+        private Label lblCurrentInfo;
+        private Label lblNewLastName;
+        private Button btnClearForm;
+        private Button btnSubmitChanges;
+        private TextBox txtNewYear;
+        private TextBox txtNewLastName;
+        private TextBox txtNewFirstName;
+        private Label lblNewYear;
+        private TextBox txtNewEmail;
+        private Label lblNewEmail;
+        private Label label8;
+        private TabPage tabPage6;
+        private TextBox txtEmailYear;
+        private Label lblEmailNew;
+        private TextBox txtYearNew;
+        private Label lblYearNew;
+        private Label lblLeaveBlank;
+        private TextBox txtLastNameNew;
+        private Label lblLastNameNew;
+        private Label lblFirstNameNew;
+        private TextBox txtFirstNameNew;
+        private Label lblInfo;
+        private RadioButton radAdvisorNew;
+        private RadioButton radStudentNew;
+        private Label lblStudentAdvisor;
+        private Button btnClearFormAdd;
+        private Button btnSubmitNew;
     }
 }

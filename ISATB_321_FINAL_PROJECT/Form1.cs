@@ -18,7 +18,10 @@ namespace ISATB_321_FINAL_PROJECT
 
         }
 
+        private void lblEmailNew_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 
 }
