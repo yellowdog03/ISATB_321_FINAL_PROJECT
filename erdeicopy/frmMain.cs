@@ -196,7 +196,7 @@ namespace WindowsFormsApp1
             txtAdvisorFName.ReadOnly = false;
             txtAdvisorLName.ReadOnly = false;
             txtAdvisorEmail.ReadOnly = false;
-            txtWeight.ReadOnly = false;
+            //txtWeight.ReadOnly = false;
 
             btnEditAdvisorInfo.Visible = false;
             btnUpdateAdvisorInfo.Visible = true;
@@ -419,12 +419,6 @@ namespace WindowsFormsApp1
 
 
 
-
-
-
-
-
-
         private void btnInsertAdvisorInfo_Click(object sender, EventArgs e)
         {
 
@@ -443,14 +437,14 @@ namespace WindowsFormsApp1
                 txtAdvisorID.Focus();
             }
 
-            currentAdvisor.AdvisorFName = txtAdvisorFName.Text;
-            currentAdvisor.AdvisorLName = txtAdvisorLName.Text;
-            currentAdvisor.AdvisorEmail = txtAdvisorEmail.Text;
+            currentAdvisor.AdvisorFName = txtAdvisorFNameInsert.Text;
+            currentAdvisor.AdvisorLName = txtAdvisorLNameInsert.Text;
+            currentAdvisor.AdvisorEmail = txtAdvisorEmailInsert.Text;
 
 
 
 
-            if (updatePet(currentAdvisor) == true)
+            if (InsertAdvisor(currentAdvisor) == true)
             {
 
                 populatePetDictionary(ref dctAdvisors);
@@ -471,6 +465,72 @@ namespace WindowsFormsApp1
             ;
         }
 
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnInsertAdvisorInfo_Click_1(object sender, EventArgs e)
+        {
+
+
+
+
+
+
+            clsAdvisors currentAdvisor = new clsAdvisors();
+
+
+            /*
+            if (int.TryParse(txtAdvisorID.Text, out int AdvisorID))
+            {
+                currentAdvisor.AdvisorID = AdvisorID;
+            }
+            else
+            {
+                messageBoxOK("Invalid Advisor ID.");
+                txtAdvisorID.Focus();
+            }
+            */
+
+            currentAdvisor.AdvisorFName = txtAdvisorFNameInsert.Text;
+            currentAdvisor.AdvisorLName = txtAdvisorLNameInsert.Text;
+            currentAdvisor.AdvisorEmail = txtAdvisorEmailInsert.Text;
+
+
+
+
+            if (InsertAdvisor(currentAdvisor) == true)
+            {
+
+                populatePetDictionary(ref dctAdvisors);
+                refreshPetsListview();
+
+
+
+                messageBoxOK("The advisor (ID: " + currentAdvisor.AdvisorID.ToString() + ") successfully updated.");
+                petInformation_Update_ClearTextboxes();
+
+
+
+            }
+            
+            else
+            {
+                messageBoxOK("Update Failed for advisor (ID: " + currentAdvisor.AdvisorID.ToString() + ").");
+            }
+            ;
+            
 
 
 
@@ -479,7 +539,14 @@ namespace WindowsFormsApp1
 
 
 
-        
+
+
+
+
+        }
+
+
+
     }
 
 }
