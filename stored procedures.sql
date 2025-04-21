@@ -7,8 +7,8 @@ USE b320
 GO
 
 
--------------------------------------------- Get (i.e., SELECT) SProc
 
+-------------------------------------------- Get (i.e., SELECT) SProc
 
 DROP PROCEDURE IF EXISTS sp_GetAdvisor;
 GO
@@ -18,7 +18,7 @@ CREATE PROCEDURE sp_GetAdvisor
 AS
 BEGIN
 	IF (@AdvisorID IS NULL)
-		SELECT AdvisorID, AdvisorFName, AdvisorLName, AdvisorEmail
+		SELECT *
 		FROM Advisors;
 	ELSE
 		SELECT AdvisorID, AdvisorFName, AdvisorLName, AdvisorEmail
@@ -26,12 +26,6 @@ BEGIN
 		WHERE AdvisorID = @AdvisorID;
 END
 GO
-
-
-EXEC sp_GetAdvisor;
-
-
-
 
 -------------------------------------------- Insert SProc
 
@@ -51,21 +45,12 @@ BEGIN
 END
 GO
 
-
--- Test insert SProc
-
-EXEC sp_InsertAdvisor @AdvisorFName='Archer', @AdvisorLName = 'Cat'
-
-EXEC sp_GetAdvisor
-
-EXEC sp_GetAdvisor @AdvisorID=@@IDENTITY
-
 -------------------------------------------- Update SProc
 
 DROP PROCEDURE IF EXISTS sp_UpdateAdvisor;
 GO
 
-CREATE PROCEDURE sp_UpdateAdvisor
+CREATE PROCEDURE sp_UpdatePet
 	@AdvisorID INT,
 	@AdvisorFName VARCHAR(25),
 	@AdvisorLName VARCHAR(40) = NULL,
@@ -80,19 +65,12 @@ BEGIN
 END
 GO
 
--- Test update SProc
-
---EXEC sp_UpdateAdvisor @AdvisorID = 1004, @AdvisorName='Chewbacca (aka Chewy)', @Species = 'Cat', @BirthDate = '03-15-2023', @Weight = 8.4
-
-EXEC sp_GetAdvisor @AdvisorID = 1
-
-
 -------------------------------------------- Delete SProc
 
-DROP PROCEDURE IF EXISTS sp_DeleteAdvisor
+DROP PROCEDURE IF EXISTS sp_DeleteAdvisor;
 GO
 
-CREATE PROCEDURE sp_DeleteAdvisor
+CREATE PROCEDURE sp_DeletePet
 	@AdvisorID INT
 AS
 BEGIN
@@ -102,12 +80,7 @@ BEGIN
 END
 GO
 
--- Test delete SProc
-EXEC sp_DeleteAdvisor @AdvisorID = 1
 
---EXEC sp_GetAdvisor @AdvisorID = 1002
-
---EXEC sp_GetAdvisor
 
 
 
@@ -125,9 +98,12 @@ CREATE PROCEDURE sp_GetStudent
 AS
 BEGIN
     IF @StudentID IS NULL
-        SELECT * FROM Students
+        SELECT *
+            FROM Students
     ELSE
-        SELECT * FROM Students WHERE StudentID = @StudentID
+        SELECT *
+            FROM Students
+            WHERE StudentID = @StudentID
 END
 GO
 
@@ -174,7 +150,8 @@ CREATE PROCEDURE sp_DeleteStudent
     @StudentID INT
 AS
 BEGIN
-    DELETE FROM Students WHERE StudentID = @StudentID
+    DELETE FROM Students
+        WHERE StudentID = @StudentID
 END
 GO
 

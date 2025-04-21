@@ -9,8 +9,7 @@ GO
 
 -------------------------------------------- Get (i.e., SELECT) SProc
 
-
-DROP PROCEDURE IF EXISTS sp_GetPet;
+DROP PROCEDURE IF EXISTS sp_GetAdvisor;
 GO
 
 CREATE PROCEDURE sp_GetAdvisor
@@ -18,7 +17,7 @@ CREATE PROCEDURE sp_GetAdvisor
 AS
 BEGIN
 	IF (@AdvisorID IS NULL)
-		SELECT AdvisorID, AdvisorFName, AdvisorLName, AdvisorEmail
+		SELECT *
 		FROM Advisors;
 	ELSE
 		SELECT AdvisorID, AdvisorFName, AdvisorLName, AdvisorEmail
@@ -26,12 +25,6 @@ BEGIN
 		WHERE AdvisorID = @AdvisorID;
 END
 GO
-
-
-EXEC sp_GetAdvisor;
-
-
-
 
 -------------------------------------------- Insert SProc
 
@@ -50,15 +43,6 @@ BEGIN
 	(@AdvisorFName, @AdvisorLName, @AdvisorEmail)
 END
 GO
-
-
--- Test insert SProc
-
-EXEC sp_InsertAdvisor @AdvisorFName='Archer', @AdvisorLName = 'Cat'
-
-EXEC sp_GetAdvisor
-
-EXEC sp_GetAdvisor @AdvisorID=@@IDENTITY
 
 -------------------------------------------- Update SProc
 
@@ -80,13 +64,6 @@ BEGIN
 END
 GO
 
--- Test update SProc
-
---EXEC sp_UpdatePet @PetID = 1004, @PetName='Chewbacca (aka Chewy)', @Species = 'Cat', @BirthDate = '03-15-2023', @Weight = 8.4
-
-EXEC sp_GetPet @AdvisorID = 1
-
-
 -------------------------------------------- Delete SProc
 
 DROP PROCEDURE IF EXISTS sp_DeleteAdvisor;
@@ -102,9 +79,3 @@ BEGIN
 END
 GO
 
--- Test delete SProc
-EXEC sp_DeleteAdvisor @AdvisorID = 1
-
---EXEC sp_GetPet @PetID = 1002
-
---EXEC sp_GetPet
