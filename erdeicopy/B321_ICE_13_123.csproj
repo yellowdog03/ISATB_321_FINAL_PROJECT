@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="clsDBUtil.cs" />
     <Compile Include="clsAdvisors.cs" />
+    <Compile Include="clsStudents.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>

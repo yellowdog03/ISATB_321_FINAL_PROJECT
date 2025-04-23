@@ -20,18 +20,28 @@ namespace WindowsFormsApp1
     {
         private Dictionary<int, clsAdvisors> dctAdvisors = new Dictionary<int, clsAdvisors>();
 
+        private Dictionary<int, clsStudents> dctStudents = new Dictionary<int, clsStudents>();
+
+       
         public frmMain()
         {
             InitializeComponent();
         }
-
+        
         private void frmMain_Load(object sender, EventArgs e)
         {
             populatePetDictionary(ref dctAdvisors);
             refreshPetsListview();
             petInformation_Update_ClearTextboxes();
-        }
 
+            populateStudentDictionary(ref dctStudents);
+            refreshStudentsListview();
+            studentInformation_Update_ClearTextboxes();
+
+
+
+        }
+        
         private void populatePetDictionary(ref Dictionary<int, clsAdvisors> dctAdvisors)
         {
 
@@ -74,7 +84,7 @@ namespace WindowsFormsApp1
             }
 
         }
-
+        
         private bool updatePet(clsAdvisors currentAdvisor)
         {
             string myConnectionString = clsDBUtil.getConnectionString();
@@ -108,7 +118,7 @@ namespace WindowsFormsApp1
             }
 
         }
-
+        
         private void refreshPetsListview()
         {
             // REMEMBER: the View property of the listview must be set to 'List'
@@ -122,7 +132,7 @@ namespace WindowsFormsApp1
                 lvwAdvisors.Items.Add(item);
             }
         }
-
+        
         private void lvwPets_Update_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -133,7 +143,7 @@ namespace WindowsFormsApp1
                 displayPetInformation_update(currentAdvisor);
             }
         }
-
+        
         private void displayPetInformation_update(clsAdvisors currentAdvisor)
         {
             txtAdvisorID.Text = currentAdvisor.AdvisorID.ToString();
@@ -142,7 +152,8 @@ namespace WindowsFormsApp1
             txtAdvisorEmail.Text = currentAdvisor.AdvisorEmail;    //.ToString();
 
         }
-
+        
+        
         private void petInformation_Update_ClearTextboxes()
         {
             txtAdvisorID.Clear();
@@ -158,10 +169,7 @@ namespace WindowsFormsApp1
             txtAdvisorEmail.ReadOnly = true;
 
 
-            /*
-            txtWeight.Clear();
-            txtWeight.ReadOnly = true;
-            */
+            
 
             btnEditAdvisorInfo.Visible = true;
             btnUpdateAdvisorInfo.Visible = false;
@@ -170,6 +178,7 @@ namespace WindowsFormsApp1
 
 
         }
+        
 
 
         #region Private Helper Methods: general purpose
@@ -196,13 +205,20 @@ namespace WindowsFormsApp1
             txtAdvisorFName.ReadOnly = false;
             txtAdvisorLName.ReadOnly = false;
             txtAdvisorEmail.ReadOnly = false;
-            //txtWeight.ReadOnly = false;
+            
 
             btnEditAdvisorInfo.Visible = false;
             btnUpdateAdvisorInfo.Visible = true;
             btnDeleteAdvisorInfo.Visible = true;
         }
 
+
+
+        
+
+        #region edit test
+
+        
         private void btnUpdatePetInfo_Click(object sender, EventArgs e)
         {
             clsAdvisors currentAdvisor = new clsAdvisors();
@@ -524,29 +540,274 @@ namespace WindowsFormsApp1
 
 
             }
-            
+
             else
             {
                 messageBoxOK("Update Failed for advisor (ID: " + currentAdvisor.AdvisorID.ToString() + ").");
             }
             ;
-            
+        }
+        #endregion
+
+
+
+
+        //STUDENTS*****************************************************************************************************************************************
 
 
 
 
 
 
+        private void populateStudentDictionary(ref Dictionary<int, clsStudents> dctStudents)
+        {
+
+            string myConnectionString = clsDBUtil.getConnectionString();
+
+            using (SqlConnection conn = new SqlConnection(myConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("sp_GetStudent", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataReader rdr = cmd.ExecuteReader())
+                    {
+                        dctStudents.Clear();
+
+                        while (rdr.Read() == true)
+                        {
+                            clsStudents currentStudent = new clsStudents();
+                            currentStudent.StudentID = (int)rdr["StudentID"];
+                            currentStudent.StudentFName = clsDBUtil.convertFromDBType_VarcharToString(rdr["StudentFName"]);
+                            currentStudent.StudentLName = clsDBUtil.convertFromDBType_VarcharToString(rdr["StudentLName"]);
+                            currentStudent.AdvisorID = (int)rdr["StudentID"];
+                            currentStudent.Year = (int)rdr["Year"];
+
+
+                            dctStudents.Add(currentStudent.StudentID, currentStudent);
+                        }
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    messageBoxOK(ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+
+
+        private bool updateStudent(clsStudents currentStudent)
+        {
+            string myConnectionString = clsDBUtil.getConnectionString();
+
+            using (SqlConnection conn = new SqlConnection(myConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("sp_UpdateStudent", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@StudentID", currentStudent.StudentID);
+                    cmd.Parameters.AddWithValue("@StudentFName", currentStudent.StudentFName);
+                    cmd.Parameters.AddWithValue("@StudentLName", currentStudent.StudentLName);
+                    cmd.Parameters.AddWithValue("@AdvisorID", currentStudent.AdvisorID);
+                    cmd.Parameters.AddWithValue("@Year", currentStudent.Year);
+
+
+                    cmd.ExecuteNonQuery();
+                    return true;
+
+                }
+                catch (Exception ex)
+                {
+                    messageBoxOK(ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+
+
+        private void refreshStudentsListview()
+        {
+            // REMEMBER: the View property of the listview must be set to 'List'
+            lvwStudents.Clear();
+            clsStudents currentStudent = new clsStudents();
+            foreach (KeyValuePair<int, clsStudents> kvp in dctStudents)
+            {
+                currentStudent = kvp.Value;
+                ListViewItem item = new ListViewItem(currentStudent.StudentLName);
+                item.Tag = currentStudent;
+                lvwStudents.Items.Add(item);
+            }
+        }
 
 
 
 
+        private void lvwStudents_Update_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            ListView.SelectedListViewItemCollection itemIsSelected = lvwStudents.SelectedItems;
+            foreach (ListViewItem item in itemIsSelected)
+            {
+                clsStudents currentStudent = (clsStudents)item.Tag;
+                displayStudentInformation_update(currentStudent);
+            }
+        }
+
+        private void displayStudentInformation_update(clsStudents currentStudent)
+        {
+            txtStudentID.Text = currentStudent.StudentID.ToString();
+            txtStudentFName.Text = currentStudent.StudentFName;
+            txtStudentLName.Text = currentStudent.StudentLName;
+            txtStudentAdvisorID.Text = currentStudent.AdvisorID.ToString();
+            txtYear.Text = currentStudent.Year.ToString();
+
+        }
+
+        private void studentInformation_Update_ClearTextboxes()
+        {
+            txtStudentID.Clear();
+            txtStudentID.ReadOnly = true;
+
+            txtStudentFName.Clear();
+            txtStudentFName.ReadOnly = true;
+
+            txtStudentLName.Clear();
+            txtStudentLName.ReadOnly = true;
+
+            txtStudentAdvisorID.Clear();
+            txtStudentAdvisorID.ReadOnly = true;
+
+            txtYear.Clear();
+            txtYear.ReadOnly = true;
+
+
+            /*
+            txtWeight.Clear();
+            txtWeight.ReadOnly = true;
+            */
+
+            btnStudentEdit.Visible = true;
+            btnStudentUpdate.Visible = false;
+            btnStudentDelete.Visible = false;
+            //btnInsertAdvisorInfo.Visible = true;
 
 
         }
 
 
 
+        private void btnStudentEdit_Click(object sender, EventArgs e)
+        {
+            if (txtStudentID.Text == "")
+            {
+                return;
+            }
+
+            txtStudentFName.ReadOnly = false;
+            txtStudentLName.ReadOnly = false;
+            txtStudentAdvisorID.ReadOnly = false;
+            txtYear.ReadOnly = false;
+
+            btnStudentEdit.Visible = false;
+            btnStudentUpdate.Visible = true;
+            btnStudentDelete.Visible = true;
+
+        }
+
+        private void btnStudentUpdate_Click(object sender, EventArgs e)
+        {
+            clsStudents currentStudent = new clsStudents();
+
+            #region Validate user input & assigning to Pet properties
+
+            if (int.TryParse(txtStudentID.Text, out int StudentID))
+            {
+                currentStudent.StudentID = StudentID;
+            }
+            else
+            {
+                messageBoxOK("Invalid Student ID.");
+                txtAdvisorID.Focus();
+            }
+
+
+
+
+
+            currentStudent.StudentFName = txtStudentFName.Text;
+            currentStudent.StudentLName = txtStudentLName.Text;
+
+
+
+            if (int.TryParse(txtStudentAdvisorID.Text, out int advisorID))
+            {
+                currentStudent.AdvisorID = advisorID;
+            }
+            else
+            {
+                messageBoxOK("Invalid Advisor ID.");
+                txtStudentAdvisorID.Focus();
+                return;
+            }
+
+            if (int.TryParse(txtYear.Text, out int Year))
+            {
+                currentStudent.Year = Year;
+            }
+            else
+            {
+                messageBoxOK("Invalid Year.");
+                txtYear.Focus();
+                return;
+            }
+
+
+
+
+            #endregion
+
+
+
+            if (updateStudent(currentStudent) == true)
+            {
+
+                populateStudentDictionary(ref dctStudents);
+                refreshStudentsListview();
+
+
+
+                messageBoxOK("The student (ID: " + currentStudent.StudentID.ToString() + ") successfully updated.");
+                studentInformation_Update_ClearTextboxes();
+
+
+
+            }
+            else
+            {
+                messageBoxOK("Update Failed for student (ID: " + currentStudent.StudentID.ToString() + ").");
+            }
+            ;
+
+
+
+        }
     }
 
 }
