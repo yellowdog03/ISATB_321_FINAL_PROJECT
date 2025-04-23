@@ -111,30 +111,10 @@ GO
 
 
 
-SET IDENTITY_INSERT Professors ON
+/* SET IDENTITY_INSERT Locations ON
 GO
 
-    INSERT INTO [Professors] (ProfessorID, ProfessorFName, ProfessorLName, ProfEmail, AdvisorID)
-    VALUES
-        (1,N'Ronald',N'Erdei',N'erdei@uscb.edu',4),
-        (2,N'Brian',N'Canada',N'bcanada@uscb.edu',5),
-        (3,N'Paul',N'Comitz',N'pcomitz@uscb.edu',6),
-        (4,N'John',N'Thrasher',N'thrashw@uscb.edu',7),
-        (5,N'Xuwei',N'Liang',N'xliang@uscb.edu',8),
-        (6,N'Xiaomei',N'Zhang',N'xiaomei@uscb.edu',9),
-        (7,N'Manuel',N'Sanders',N'mjsander@uscb.edu',10),
-        (8,N'Davide',N'Fusi',N'dfusi@uscb.edu',11)
-    GO
-
-SET IDENTITY_INSERT Professors OFF
-GO
-
-
-
-SET IDENTITY_INSERT Locations ON
-GO
-
-    INSERT INTO [Locations] (LocationID, Building, Room)
+    INSERT INTO [Locations] (LocationID, Description)
         VALUES 
             (1,N'LIBR',N'241'),
             (2,N'SCITECH',N'145'),
@@ -149,11 +129,11 @@ GO
         GO
 
 SET IDENTITY_INSERT Locations OFF
-GO
+GO */
 
 
 
-SET IDENTITY_INSERT [Times] ON
+/* SET IDENTITY_INSERT [Times] ON
 GO
 
     INSERT INTO [Times] (TimeID, StartTime, EndTime)
@@ -238,7 +218,7 @@ GO
 
 SET IDENTITY_INSERT [Availability] OFF
 GO
-
+ */
 
 
 

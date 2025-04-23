@@ -99,9 +99,11 @@
             btnStudentAdvisorSelect = new Label();
             listBox3 = new ListBox();
             tabPage3 = new TabPage();
+            btnAdvisorRefresh = new Button();
             listBox1 = new ListBox();
             tabPage4 = new TabPage();
-            listBox2 = new ListBox();
+            lstStudentView = new ListBox();
+            btnViewStudents = new Button();
             tabControlMain.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -468,7 +470,6 @@
             lblEmailNew.Size = new Size(49, 20);
             lblEmailNew.TabIndex = 39;
             lblEmailNew.Text = "Email:";
-            lblEmailNew.Click += lblEmailNew_Click;
             // 
             // txtYearNew
             // 
@@ -779,6 +780,7 @@
             // 
             // tabPage3
             // 
+            tabPage3.Controls.Add(btnAdvisorRefresh);
             tabPage3.Controls.Add(listBox1);
             tabPage3.Location = new Point(4, 29);
             tabPage3.Name = "tabPage3";
@@ -787,17 +789,28 @@
             tabPage3.Text = "View Advisors";
             tabPage3.UseVisualStyleBackColor = true;
             // 
+            // btnAdvisorRefresh
+            // 
+            btnAdvisorRefresh.Location = new Point(3, 326);
+            btnAdvisorRefresh.Name = "btnAdvisorRefresh";
+            btnAdvisorRefresh.Size = new Size(104, 50);
+            btnAdvisorRefresh.TabIndex = 1;
+            btnAdvisorRefresh.Text = "Refresh";
+            btnAdvisorRefresh.UseVisualStyleBackColor = true;
+            btnAdvisorRefresh.Click += btnRefresh_Click;
+            // 
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
             listBox1.Location = new Point(3, 3);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(762, 384);
+            listBox1.Size = new Size(762, 304);
             listBox1.TabIndex = 0;
             // 
             // tabPage4
             // 
-            tabPage4.Controls.Add(listBox2);
+            tabPage4.Controls.Add(btnViewStudents);
+            tabPage4.Controls.Add(lstStudentView);
             tabPage4.Location = new Point(4, 29);
             tabPage4.Name = "tabPage4";
             tabPage4.Size = new Size(768, 393);
@@ -805,13 +818,23 @@
             tabPage4.Text = "View Students";
             tabPage4.UseVisualStyleBackColor = true;
             // 
-            // listBox2
+            // lstStudentView
             // 
-            listBox2.FormattingEnabled = true;
-            listBox2.Location = new Point(3, 3);
-            listBox2.Name = "listBox2";
-            listBox2.Size = new Size(762, 384);
-            listBox2.TabIndex = 0;
+            lstStudentView.FormattingEnabled = true;
+            lstStudentView.Location = new Point(3, 3);
+            lstStudentView.Name = "lstStudentView";
+            lstStudentView.Size = new Size(751, 324);
+            lstStudentView.TabIndex = 0;
+            // 
+            // btnViewStudents
+            // 
+            btnViewStudents.Location = new Point(3, 333);
+            btnViewStudents.Name = "btnViewStudents";
+            btnViewStudents.Size = new Size(112, 47);
+            btnViewStudents.TabIndex = 1;
+            btnViewStudents.Text = "Refresh";
+            btnViewStudents.UseVisualStyleBackColor = true;
+            btnViewStudents.Click += btnViewStudents_Click;
             // 
             // frmMain
             // 
@@ -873,7 +896,7 @@
         private TabPage tabPage5;
         private Button btnClearAppt;
         private Button btnMakeAppt;
-        private ListBox listBox2;
+        private ListBox lstStudentView;
         private RadioButton radAdvisor;
         private RadioButton radStudent;
         private Label btnStudentAdvisorSelect;
@@ -911,5 +934,7 @@
         private Label lblStudentAdvisor;
         private Button btnClearFormAdd;
         private Button btnSubmitNew;
+        private Button btnAdvisorRefresh;
+        private Button btnViewStudents;
     }
 }
