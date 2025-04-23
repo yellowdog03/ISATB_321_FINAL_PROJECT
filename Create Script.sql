@@ -38,7 +38,7 @@ CREATE TABLE Students (
     StudentFName VARCHAR(25),
     StudentLName VARCHAR(50),
     AdvisorID INT,
-    [Year] CHAR(4),
+    Year INT,
 
     FOREIGN KEY (AdvisorID) REFERENCES Advisors(AdvisorID)
 )
