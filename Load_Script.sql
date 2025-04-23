@@ -28,7 +28,7 @@ GO
 SET IDENTITY_INSERT Students ON
 GO
 
-    INSERT INTO [Students] (StudentID, StudentFName, StudentLName, AdvisorID, [Year])
+    INSERT INTO [Students] (StudentID, StudentFName, StudentLName, AdvisorID, Year)
         VALUES
         (1,N'Alex',N'Robertson',4,0),
         (2,N'Corey',N'Gray',5,0),
