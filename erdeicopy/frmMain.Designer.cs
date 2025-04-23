@@ -53,15 +53,35 @@
             this.txtAdvisorLNameInsert = new System.Windows.Forms.TextBox();
             this.txtAdvisorIDInsert = new System.Windows.Forms.TextBox();
             this.btnInsertAdvisorInfo = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.txtYear = new System.Windows.Forms.TextBox();
+            this.lblYear = new System.Windows.Forms.Label();
+            this.btnStudentDelete = new System.Windows.Forms.Button();
+            this.btnStudentUpdate = new System.Windows.Forms.Button();
+            this.btnStudentEdit = new System.Windows.Forms.Button();
+            this.txtStudentAdvisorID = new System.Windows.Forms.TextBox();
+            this.lblStudentAdvisorID = new System.Windows.Forms.Label();
+            this.lblStudentLName = new System.Windows.Forms.Label();
+            this.txtStudentLName = new System.Windows.Forms.TextBox();
+            this.lblStudents = new System.Windows.Forms.Label();
+            this.lvwStudents = new System.Windows.Forms.ListView();
+            this.txtStudentFName = new System.Windows.Forms.TextBox();
+            this.lblStudentFName = new System.Windows.Forms.Label();
+            this.lblStudentID = new System.Windows.Forms.Label();
+            this.txtStudentID = new System.Windows.Forms.TextBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabAdvisors.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabAdvisors
             // 
             this.tabAdvisors.Controls.Add(this.tabPage1);
             this.tabAdvisors.Controls.Add(this.tabPage2);
+            this.tabAdvisors.Controls.Add(this.tabPage3);
+            this.tabAdvisors.Controls.Add(this.tabPage4);
             this.tabAdvisors.Location = new System.Drawing.Point(21, 45);
             this.tabAdvisors.Name = "tabAdvisors";
             this.tabAdvisors.SelectedIndex = 0;
@@ -307,6 +327,175 @@
             this.btnInsertAdvisorInfo.UseVisualStyleBackColor = true;
             this.btnInsertAdvisorInfo.Click += new System.EventHandler(this.btnInsertAdvisorInfo_Click_1);
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.txtYear);
+            this.tabPage3.Controls.Add(this.lblYear);
+            this.tabPage3.Controls.Add(this.btnStudentDelete);
+            this.tabPage3.Controls.Add(this.btnStudentUpdate);
+            this.tabPage3.Controls.Add(this.btnStudentEdit);
+            this.tabPage3.Controls.Add(this.txtStudentAdvisorID);
+            this.tabPage3.Controls.Add(this.lblStudentAdvisorID);
+            this.tabPage3.Controls.Add(this.lblStudentLName);
+            this.tabPage3.Controls.Add(this.txtStudentLName);
+            this.tabPage3.Controls.Add(this.lblStudents);
+            this.tabPage3.Controls.Add(this.lvwStudents);
+            this.tabPage3.Controls.Add(this.txtStudentFName);
+            this.tabPage3.Controls.Add(this.lblStudentFName);
+            this.tabPage3.Controls.Add(this.lblStudentID);
+            this.tabPage3.Controls.Add(this.txtStudentID);
+            this.tabPage3.Location = new System.Drawing.Point(4, 29);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(895, 480);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Current Students";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // txtYear
+            // 
+            this.txtYear.Location = new System.Drawing.Point(530, 262);
+            this.txtYear.Name = "txtYear";
+            this.txtYear.ReadOnly = true;
+            this.txtYear.Size = new System.Drawing.Size(243, 26);
+            this.txtYear.TabIndex = 34;
+            // 
+            // lblYear
+            // 
+            this.lblYear.AutoSize = true;
+            this.lblYear.Location = new System.Drawing.Point(421, 265);
+            this.lblYear.Name = "lblYear";
+            this.lblYear.Size = new System.Drawing.Size(47, 20);
+            this.lblYear.TabIndex = 33;
+            this.lblYear.Text = "Year:";
+            // 
+            // btnStudentDelete
+            // 
+            this.btnStudentDelete.Location = new System.Drawing.Point(672, 360);
+            this.btnStudentDelete.Name = "btnStudentDelete";
+            this.btnStudentDelete.Size = new System.Drawing.Size(136, 44);
+            this.btnStudentDelete.TabIndex = 32;
+            this.btnStudentDelete.Text = "Delete";
+            this.btnStudentDelete.UseVisualStyleBackColor = true;
+            this.btnStudentDelete.Visible = false;
+            // 
+            // btnStudentUpdate
+            // 
+            this.btnStudentUpdate.Location = new System.Drawing.Point(672, 310);
+            this.btnStudentUpdate.Name = "btnStudentUpdate";
+            this.btnStudentUpdate.Size = new System.Drawing.Size(136, 44);
+            this.btnStudentUpdate.TabIndex = 31;
+            this.btnStudentUpdate.Text = "Update";
+            this.btnStudentUpdate.UseVisualStyleBackColor = true;
+            this.btnStudentUpdate.Visible = false;
+            this.btnStudentUpdate.Click += new System.EventHandler(this.btnStudentUpdate_Click);
+            // 
+            // btnStudentEdit
+            // 
+            this.btnStudentEdit.Location = new System.Drawing.Point(530, 310);
+            this.btnStudentEdit.Name = "btnStudentEdit";
+            this.btnStudentEdit.Size = new System.Drawing.Size(136, 44);
+            this.btnStudentEdit.TabIndex = 30;
+            this.btnStudentEdit.Text = "Edit";
+            this.btnStudentEdit.UseVisualStyleBackColor = true;
+            this.btnStudentEdit.Click += new System.EventHandler(this.btnStudentEdit_Click);
+            // 
+            // txtStudentAdvisorID
+            // 
+            this.txtStudentAdvisorID.Location = new System.Drawing.Point(530, 225);
+            this.txtStudentAdvisorID.Name = "txtStudentAdvisorID";
+            this.txtStudentAdvisorID.ReadOnly = true;
+            this.txtStudentAdvisorID.Size = new System.Drawing.Size(243, 26);
+            this.txtStudentAdvisorID.TabIndex = 29;
+            // 
+            // lblStudentAdvisorID
+            // 
+            this.lblStudentAdvisorID.AutoSize = true;
+            this.lblStudentAdvisorID.Location = new System.Drawing.Point(421, 228);
+            this.lblStudentAdvisorID.Name = "lblStudentAdvisorID";
+            this.lblStudentAdvisorID.Size = new System.Drawing.Size(82, 20);
+            this.lblStudentAdvisorID.TabIndex = 28;
+            this.lblStudentAdvisorID.Text = "AdvisorID:";
+            // 
+            // lblStudentLName
+            // 
+            this.lblStudentLName.AutoSize = true;
+            this.lblStudentLName.Location = new System.Drawing.Point(421, 192);
+            this.lblStudentLName.Name = "lblStudentLName";
+            this.lblStudentLName.Size = new System.Drawing.Size(90, 20);
+            this.lblStudentLName.TabIndex = 27;
+            this.lblStudentLName.Text = "Last Name:";
+            // 
+            // txtStudentLName
+            // 
+            this.txtStudentLName.Location = new System.Drawing.Point(530, 189);
+            this.txtStudentLName.Name = "txtStudentLName";
+            this.txtStudentLName.ReadOnly = true;
+            this.txtStudentLName.Size = new System.Drawing.Size(243, 26);
+            this.txtStudentLName.TabIndex = 26;
+            // 
+            // lblStudents
+            // 
+            this.lblStudents.AutoSize = true;
+            this.lblStudents.Location = new System.Drawing.Point(86, 38);
+            this.lblStudents.Name = "lblStudents";
+            this.lblStudents.Size = new System.Drawing.Size(78, 20);
+            this.lblStudents.TabIndex = 25;
+            this.lblStudents.Text = "Students:";
+            // 
+            // lvwStudents
+            // 
+            this.lvwStudents.HideSelection = false;
+            this.lvwStudents.Location = new System.Drawing.Point(91, 66);
+            this.lvwStudents.Name = "lvwStudents";
+            this.lvwStudents.Size = new System.Drawing.Size(227, 377);
+            this.lvwStudents.TabIndex = 20;
+            this.lvwStudents.UseCompatibleStateImageBehavior = false;
+            this.lvwStudents.View = System.Windows.Forms.View.List;
+            this.lvwAdvisors.SelectedIndexChanged += new System.EventHandler(this.lvwStudents_Update_SelectedIndexChanged);//PIN********************
+
+            // 
+            // txtStudentFName
+            // 
+            this.txtStudentFName.Location = new System.Drawing.Point(530, 153);
+            this.txtStudentFName.Name = "txtStudentFName";
+            this.txtStudentFName.ReadOnly = true;
+            this.txtStudentFName.Size = new System.Drawing.Size(243, 26);
+            this.txtStudentFName.TabIndex = 24;
+            // 
+            // lblStudentFName
+            // 
+            this.lblStudentFName.AutoSize = true;
+            this.lblStudentFName.Location = new System.Drawing.Point(421, 156);
+            this.lblStudentFName.Name = "lblStudentFName";
+            this.lblStudentFName.Size = new System.Drawing.Size(90, 20);
+            this.lblStudentFName.TabIndex = 23;
+            this.lblStudentFName.Text = "First Name:";
+            // 
+            // lblStudentID
+            // 
+            this.lblStudentID.AutoSize = true;
+            this.lblStudentID.Location = new System.Drawing.Point(421, 120);
+            this.lblStudentID.Name = "lblStudentID";
+            this.lblStudentID.Size = new System.Drawing.Size(30, 20);
+            this.lblStudentID.TabIndex = 22;
+            this.lblStudentID.Text = "ID:";
+            // 
+            // txtStudentID
+            // 
+            this.txtStudentID.Location = new System.Drawing.Point(530, 117);
+            this.txtStudentID.Name = "txtStudentID";
+            this.txtStudentID.Size = new System.Drawing.Size(243, 26);
+            this.txtStudentID.TabIndex = 21;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 29);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(895, 480);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Insert New Student";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -325,6 +514,8 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -355,6 +546,23 @@
         private System.Windows.Forms.TextBox txtAdvisorFNameInsert;
         private System.Windows.Forms.TextBox txtAdvisorLNameInsert;
         private System.Windows.Forms.TextBox txtAdvisorIDInsert;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button btnStudentDelete;
+        private System.Windows.Forms.Button btnStudentUpdate;
+        private System.Windows.Forms.Button btnStudentEdit;
+        private System.Windows.Forms.TextBox txtStudentAdvisorID;
+        private System.Windows.Forms.Label lblStudentAdvisorID;
+        private System.Windows.Forms.Label lblStudentLName;
+        private System.Windows.Forms.TextBox txtStudentLName;
+        private System.Windows.Forms.Label lblStudents;
+        private System.Windows.Forms.ListView lvwStudents;
+        private System.Windows.Forms.TextBox txtStudentFName;
+        private System.Windows.Forms.Label lblStudentFName;
+        private System.Windows.Forms.Label lblStudentID;
+        private System.Windows.Forms.TextBox txtStudentID;
+        private System.Windows.Forms.TextBox txtYear;
+        private System.Windows.Forms.Label lblYear;
     }
 }
 
