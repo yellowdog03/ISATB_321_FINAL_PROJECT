@@ -216,7 +216,7 @@ namespace WindowsFormsApp1
 
         
 
-        #region edit test
+        #region edit delete insert
 
         
         private void btnUpdatePetInfo_Click(object sender, EventArgs e)
@@ -581,7 +581,6 @@ namespace WindowsFormsApp1
                             currentStudent.StudentID = (int)rdr["StudentID"];
                             currentStudent.StudentFName = clsDBUtil.convertFromDBType_VarcharToString(rdr["StudentFName"]);
                             currentStudent.StudentLName = clsDBUtil.convertFromDBType_VarcharToString(rdr["StudentLName"]);
-                            currentStudent.AdvisorID = (int)rdr["StudentID"];
                             currentStudent.Year = (int)rdr["Year"];
 
 
@@ -619,7 +618,6 @@ namespace WindowsFormsApp1
                     cmd.Parameters.AddWithValue("@StudentID", currentStudent.StudentID);
                     cmd.Parameters.AddWithValue("@StudentFName", currentStudent.StudentFName);
                     cmd.Parameters.AddWithValue("@StudentLName", currentStudent.StudentLName);
-                    cmd.Parameters.AddWithValue("@AdvisorID", currentStudent.AdvisorID);
                     cmd.Parameters.AddWithValue("@Year", currentStudent.Year);
 
 
@@ -675,7 +673,6 @@ namespace WindowsFormsApp1
             txtStudentID.Text = currentStudent.StudentID.ToString();
             txtStudentFName.Text = currentStudent.StudentFName;
             txtStudentLName.Text = currentStudent.StudentLName;
-            txtStudentAdvisorID.Text = currentStudent.AdvisorID.ToString();
             txtYear.Text = currentStudent.Year.ToString();
 
         }
@@ -690,9 +687,6 @@ namespace WindowsFormsApp1
 
             txtStudentLName.Clear();
             txtStudentLName.ReadOnly = true;
-
-            txtStudentAdvisorID.Clear();
-            txtStudentAdvisorID.ReadOnly = true;
 
             txtYear.Clear();
             txtYear.ReadOnly = true;
@@ -722,7 +716,6 @@ namespace WindowsFormsApp1
 
             txtStudentFName.ReadOnly = false;
             txtStudentLName.ReadOnly = false;
-            txtStudentAdvisorID.ReadOnly = false;
             txtYear.ReadOnly = false;
 
             btnStudentEdit.Visible = false;
@@ -756,16 +749,6 @@ namespace WindowsFormsApp1
 
 
 
-            if (int.TryParse(txtStudentAdvisorID.Text, out int advisorID))
-            {
-                currentStudent.AdvisorID = advisorID;
-            }
-            else
-            {
-                messageBoxOK("Invalid Advisor ID.");
-                txtStudentAdvisorID.Focus();
-                return;
-            }
 
             if (int.TryParse(txtYear.Text, out int Year))
             {
@@ -805,8 +788,200 @@ namespace WindowsFormsApp1
             }
             ;
 
+        }
 
 
+
+        private bool deleteStudent(clsStudents currentStudent)
+        {
+            string myConnectionString = clsDBUtil.getConnectionString();
+
+            using (SqlConnection conn = new SqlConnection(myConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("sp_DeleteStudent", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@StudentID", currentStudent.StudentID);
+                    /*
+                    cmd.Parameters.AddWithValue("@AdvisorFName", currentAdvisor.AdvisorFName);
+                    cmd.Parameters.AddWithValue("@AdvisorLName", currentAdvisor.AdvisorLName);
+                    cmd.Parameters.AddWithValue("@AdvisorEmail", currentAdvisor.AdvisorEmail);
+                    */
+
+                    cmd.ExecuteNonQuery();
+                    return true;
+
+                }
+                catch (Exception ex)
+                {
+                    messageBoxOK(ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+        private bool InsertStudent(clsStudents currentStudent)
+        {
+            string myConnectionString = clsDBUtil.getConnectionString();
+
+            using (SqlConnection conn = new SqlConnection(myConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("sp_InsertStudent", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    //cmd.Parameters.AddWithValue("@AdvisorID", currentAdvisor.AdvisorID);
+
+                    cmd.Parameters.AddWithValue("@StudentFName", currentStudent.StudentFName);
+                    cmd.Parameters.AddWithValue("@StudentLName", currentStudent.StudentLName);
+                    cmd.Parameters.AddWithValue("@Year", currentStudent.Year);
+
+
+                    cmd.ExecuteNonQuery();
+                    return true;
+
+                }
+                catch (Exception ex)
+                {
+                    messageBoxOK(ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+
+
+
+        private void btnInsertStudentInfo_Click_1(object sender, EventArgs e)
+        {
+
+            clsStudents currentStudent = new clsStudents();
+
+
+          
+            currentStudent.StudentFName = txtStudentFNameInsert.Text;
+            currentStudent.StudentLName = txtStudentLNameInsert.Text;
+
+
+
+           
+
+
+            if (int.TryParse(txtYearInsert.Text, out int year) && year >= 0 && year <= 4)
+            {
+                currentStudent.Year = year;
+            }
+            else
+            {
+                messageBoxOK("Invalid Year. Please enter a number between 0 and 4.");
+                txtYear.Focus();
+                return;
+            }
+
+
+
+
+            if (InsertStudent(currentStudent) == true)
+            {
+
+                populateStudentDictionary(ref dctStudents);
+                refreshStudentsListview();
+
+
+
+                messageBoxOK("The student (ID: " + currentStudent.StudentID.ToString() + ") successfully updated.");
+                studentInformation_Update_ClearTextboxes();
+
+
+
+            }
+            else
+            {
+                messageBoxOK("Update Failed for student (ID: " + currentStudent.StudentID.ToString() + ").");
+            }
+            ;
+
+
+        }
+
+        private void btnStudentDelete_Click(object sender, EventArgs e)
+        {
+
+            clsStudents currentStudent = new clsStudents();
+
+
+
+            if (int.TryParse(txtStudentID.Text, out int StudentID))
+            {
+                currentStudent.StudentID = StudentID;
+            }
+            else
+            {
+                messageBoxOK("Invalid Student ID.");
+                txtStudentID.Focus();
+            }
+
+            currentStudent.StudentFName = txtStudentFName.Text;
+            currentStudent.StudentLName = txtStudentLName.Text;
+
+
+            if (int.TryParse(txtYear.Text, out int Year))
+            {
+                currentStudent.Year = Year;
+            }
+            else
+            {
+                messageBoxOK("Invalid Year.");
+                txtYear.Focus();
+                return;
+            }
+            //currentStudent.Year = txtYear.Text;
+
+            // currentStudent.AdvisorEmail = txtAdvisorEmail.Text;
+
+
+
+
+            if (deleteStudent(currentStudent) == true)
+            {
+
+                populateStudentDictionary(ref dctStudents);
+                refreshStudentsListview();
+
+
+
+                messageBoxOK("The advisor (ID: " + currentStudent.StudentID.ToString() + ") successfully deleted.");
+                studentInformation_Update_ClearTextboxes();
+
+
+
+            }
+            else
+            {
+                messageBoxOK("delete Failed for student (ID: " + currentStudent.StudentID.ToString() + ").");
+            }
+            ;
         }
     }
 

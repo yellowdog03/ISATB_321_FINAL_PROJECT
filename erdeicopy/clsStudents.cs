@@ -33,12 +33,7 @@ namespace WindowsFormsApp1
             get { return mStudentLName; }
             set { mStudentLName = value; }
         }
-
-        public int AdvisorID
-        {
-            get { return mAdvisorID; }
-            set { mAdvisorID = value; }
-        }
+       
 
 
         public int Year
