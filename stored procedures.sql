@@ -113,7 +113,6 @@ GO
 CREATE PROCEDURE sp_InsertStudent
     @StudentFName VARCHAR(25),
     @StudentLName VARCHAR(50),
-    @AdvisorID INT,
     @Year INT
 AS
 BEGIN
@@ -130,14 +129,12 @@ CREATE PROCEDURE sp_UpdateStudent
     @StudentID INT,
     @StudentFName VARCHAR(25),
     @StudentLName VARCHAR(50),
-    @AdvisorID INT,
     @Year INT
 AS
 BEGIN
     UPDATE Students
     SET StudentFName = @StudentFName,
         StudentLName = @StudentLName,
-        AdvisorID = @AdvisorID,
         Year = @Year
     WHERE StudentID = @StudentID
 END
