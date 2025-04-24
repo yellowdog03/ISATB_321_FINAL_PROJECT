@@ -116,8 +116,8 @@ CREATE PROCEDURE sp_InsertStudent
     @Year INT
 AS
 BEGIN
-    INSERT INTO Students (StudentFName, StudentLName, AdvisorID, Year)
-    VALUES (@StudentFName, @StudentLName, @AdvisorID, @Year);
+    INSERT INTO Students (StudentFName, StudentLName, Year)
+    VALUES (@StudentFName, @StudentLName, @Year);
     SELECT SCOPE_IDENTITY() AS NewStudentID
 END
 GO
