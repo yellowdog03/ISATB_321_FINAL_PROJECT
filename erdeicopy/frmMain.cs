@@ -30,9 +30,9 @@ namespace WindowsFormsApp1
         
         private void frmMain_Load(object sender, EventArgs e)
         {
-            populatePetDictionary(ref dctAdvisors);
-            refreshPetsListview();
-            petInformation_Update_ClearTextboxes();
+            populateAdvisorDictionary(ref dctAdvisors);
+            refreshAdvisorsListview();
+            advisorInformation_Update_ClearTextboxes();
 
             populateStudentDictionary(ref dctStudents);
             refreshStudentsListview();
@@ -42,7 +42,7 @@ namespace WindowsFormsApp1
 
         }
         
-        private void populatePetDictionary(ref Dictionary<int, clsAdvisors> dctAdvisors)
+        private void populateAdvisorDictionary(ref Dictionary<int, clsAdvisors> dctAdvisors)
         {
 
             string myConnectionString = clsDBUtil.getConnectionString();
@@ -85,7 +85,7 @@ namespace WindowsFormsApp1
 
         }
         
-        private bool updatePet(clsAdvisors currentAdvisor)
+        private bool updateAdvisor(clsAdvisors currentAdvisor)
         {
             string myConnectionString = clsDBUtil.getConnectionString();
 
@@ -119,7 +119,7 @@ namespace WindowsFormsApp1
 
         }
         
-        private void refreshPetsListview()
+        private void refreshAdvisorsListview()
         {
             // REMEMBER: the View property of the listview must be set to 'List'
             lvwAdvisors.Clear();
@@ -133,18 +133,18 @@ namespace WindowsFormsApp1
             }
         }
         
-        private void lvwPets_Update_SelectedIndexChanged(object sender, EventArgs e)
+        private void lvwAdvisors_Update_SelectedIndexChanged(object sender, EventArgs e)
         {
 
             ListView.SelectedListViewItemCollection itemIsSelected = lvwAdvisors.SelectedItems;
             foreach (ListViewItem item in itemIsSelected)
             {
                 clsAdvisors currentAdvisor = (clsAdvisors)item.Tag;
-                displayPetInformation_update(currentAdvisor);
+                displayAdvisorInformation_update(currentAdvisor);
             }
         }
         
-        private void displayPetInformation_update(clsAdvisors currentAdvisor)
+        private void displayAdvisorInformation_update(clsAdvisors currentAdvisor)
         {
             txtAdvisorID.Text = currentAdvisor.AdvisorID.ToString();
             txtAdvisorFName.Text = currentAdvisor.AdvisorFName;
@@ -154,7 +154,7 @@ namespace WindowsFormsApp1
         }
         
         
-        private void petInformation_Update_ClearTextboxes()
+        private void advisorInformation_Update_ClearTextboxes()
         {
             txtAdvisorID.Clear();
             txtAdvisorID.ReadOnly = true;
@@ -169,7 +169,19 @@ namespace WindowsFormsApp1
             txtAdvisorEmail.ReadOnly = true;
 
 
-            
+            txtAdvisorIDInsert.Clear();
+
+            txtAdvisorFNameInsert.Clear();
+
+            txtAdvisorLNameInsert.Clear();
+
+            txtAdvisorEmailInsert.Clear();
+
+
+
+
+
+
 
             btnEditAdvisorInfo.Visible = true;
             btnUpdateAdvisorInfo.Visible = false;
@@ -195,7 +207,7 @@ namespace WindowsFormsApp1
 
         #endregion
 
-        private void btnEditPetInfo_Click(object sender, EventArgs e)
+        private void btnEditAdvisorInfo_Click(object sender, EventArgs e)
         {
             if (txtAdvisorID.Text == "")
             {
@@ -219,11 +231,11 @@ namespace WindowsFormsApp1
         #region edit delete insert
 
         
-        private void btnUpdatePetInfo_Click(object sender, EventArgs e)
+        private void btnUpdateAdvisorInfo_Click(object sender, EventArgs e)
         {
             clsAdvisors currentAdvisor = new clsAdvisors();
 
-            #region Validate user input & assigning to Pet properties
+            #region Validate user input & assigning to Advisor properties
 
             if (int.TryParse(txtAdvisorID.Text, out int AdvisorID))
             {
@@ -272,16 +284,16 @@ namespace WindowsFormsApp1
 
 
 
-            if (updatePet(currentAdvisor) == true)
+            if (updateAdvisor(currentAdvisor) == true)
             {
 
-                populatePetDictionary(ref dctAdvisors);
-                refreshPetsListview();
+                populateAdvisorDictionary(ref dctAdvisors);
+                refreshAdvisorsListview();
 
 
 
                 messageBoxOK("The advisor (ID: " + currentAdvisor.AdvisorID.ToString() + ") successfully updated.");
-                petInformation_Update_ClearTextboxes();
+                advisorInformation_Update_ClearTextboxes();
 
 
 
@@ -378,13 +390,13 @@ namespace WindowsFormsApp1
             if (deleteAdvisor(currentAdvisor) == true)
             {
 
-                populatePetDictionary(ref dctAdvisors);
-                refreshPetsListview();
+                populateAdvisorDictionary(ref dctAdvisors);
+                refreshAdvisorsListview();
 
 
 
                 messageBoxOK("The advisor (ID: " + currentAdvisor.AdvisorID.ToString() + ") successfully deleted.");
-                petInformation_Update_ClearTextboxes();
+                advisorInformation_Update_ClearTextboxes();
 
 
 
@@ -463,13 +475,13 @@ namespace WindowsFormsApp1
             if (InsertAdvisor(currentAdvisor) == true)
             {
 
-                populatePetDictionary(ref dctAdvisors);
-                refreshPetsListview();
+                populateAdvisorDictionary(ref dctAdvisors);
+                refreshAdvisorsListview();
 
 
 
                 messageBoxOK("The advisor (ID: " + currentAdvisor.AdvisorID.ToString() + ") successfully updated.");
-                petInformation_Update_ClearTextboxes();
+                advisorInformation_Update_ClearTextboxes();
 
 
 
@@ -529,13 +541,13 @@ namespace WindowsFormsApp1
             if (InsertAdvisor(currentAdvisor) == true)
             {
 
-                populatePetDictionary(ref dctAdvisors);
-                refreshPetsListview();
+                populateAdvisorDictionary(ref dctAdvisors);
+                refreshAdvisorsListview();
 
 
 
                 messageBoxOK("The advisor (ID: " + currentAdvisor.AdvisorID.ToString() + ") successfully updated.");
-                petInformation_Update_ClearTextboxes();
+                advisorInformation_Update_ClearTextboxes();
 
 
 
@@ -691,6 +703,20 @@ namespace WindowsFormsApp1
             txtYear.Clear();
             txtYear.ReadOnly = true;
 
+            txtStudentIDInsert.Clear();
+            
+
+            txtStudentFNameInsert.Clear();
+            
+
+            txtStudentLNameInsert.Clear();
+            
+
+            txtYearInsert.Clear();
+           
+
+
+
 
             /*
             txtWeight.Clear();
@@ -728,7 +754,7 @@ namespace WindowsFormsApp1
         {
             clsStudents currentStudent = new clsStudents();
 
-            #region Validate user input & assigning to Pet properties
+            #region Validate user input & assigning to Advisor properties
 
             if (int.TryParse(txtStudentID.Text, out int StudentID))
             {
@@ -861,6 +887,7 @@ namespace WindowsFormsApp1
                 {
                     messageBoxOK(ex.Message);
                     return false;
+                
                 }
                 finally
                 {

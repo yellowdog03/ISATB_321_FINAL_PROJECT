@@ -140,7 +140,7 @@
             this.btnUpdateAdvisorInfo.Text = "Update";
             this.btnUpdateAdvisorInfo.UseVisualStyleBackColor = true;
             this.btnUpdateAdvisorInfo.Visible = false;
-            this.btnUpdateAdvisorInfo.Click += new System.EventHandler(this.btnUpdatePetInfo_Click);
+            this.btnUpdateAdvisorInfo.Click += new System.EventHandler(this.btnUpdateAdvisorInfo_Click);
             // 
             // btnEditAdvisorInfo
             // 
@@ -150,7 +150,7 @@
             this.btnEditAdvisorInfo.TabIndex = 17;
             this.btnEditAdvisorInfo.Text = "Edit";
             this.btnEditAdvisorInfo.UseVisualStyleBackColor = true;
-            this.btnEditAdvisorInfo.Click += new System.EventHandler(this.btnEditPetInfo_Click);
+            this.btnEditAdvisorInfo.Click += new System.EventHandler(this.btnEditAdvisorInfo_Click);
             // 
             // txtAdvisorEmail
             // 
@@ -205,7 +205,7 @@
             this.lvwAdvisors.TileSize = new System.Drawing.Size(268, 30);
             this.lvwAdvisors.UseCompatibleStateImageBehavior = false;
             this.lvwAdvisors.View = System.Windows.Forms.View.Tile;
-            this.lvwAdvisors.SelectedIndexChanged += new System.EventHandler(this.lvwPets_Update_SelectedIndexChanged);
+            this.lvwAdvisors.SelectedIndexChanged += new System.EventHandler(this.lvwAdvisors_Update_SelectedIndexChanged);
             // 
             // txtAdvisorFName
             // 
