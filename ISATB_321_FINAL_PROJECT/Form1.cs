@@ -3,6 +3,9 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Text;
 
 namespace ISATB_321_FINAL_PROJECT
 {
@@ -16,16 +19,23 @@ namespace ISATB_321_FINAL_PROJECT
             InitializeComponent();
         }
 
+        private DateTimePicker timePicker;
+
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            timePicker = new DateTimePicker();
+            timePicker.Format = DateTimePickerFormat.Time;
+            timePicker.ShowUpDown = true;
+            timePicker.Location = new Point(25, 129);
+            timePicker.Width = 284;
+            Controls.Add(timePicker);
 
 
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            
+
 
         }
 
@@ -58,7 +68,7 @@ namespace ISATB_321_FINAL_PROJECT
                             //                  currentAdvisor.AdvisorLName = clsEmrysDBUtil.convertFromDBType_VarcharToString(rdr["AdvisorLName"]);
                             //                  currentAdvisor.AdvisorEmail = clsEmrysDBUtil.convertFromDBType_VarcharToString(rdr["AdvisorEmail"]);
 
-                                
+
                             //                  dctAdvisors.Add(currentAdvisor.AdvisorID, currentAdvisor);
 
                             lstStudentView.Items.Add(rdr["StudentFName, StudentLName, Year, AdvisorID"]);
@@ -79,5 +89,12 @@ namespace ISATB_321_FINAL_PROJECT
                 }
             }
         }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

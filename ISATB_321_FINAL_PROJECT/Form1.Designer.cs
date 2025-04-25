@@ -30,14 +30,14 @@
         {
             tabControlMain = new TabControl();
             tabPage1 = new TabPage();
+            dateTimePicker1 = new DateTimePicker();
             btnClearAppt = new Button();
             btnMakeAppt = new Button();
-            monthCalendar1 = new MonthCalendar();
             txtProfLName = new TextBox();
             txtProfFName = new TextBox();
             lblProfLName = new Label();
             lblProfFName = new Label();
-            lblProfessor = new Label();
+            lblAdvisor = new Label();
             txtStudentLName = new TextBox();
             lblStudentLName = new Label();
             lblStudent = new Label();
@@ -102,8 +102,10 @@
             btnAdvisorRefresh = new Button();
             listBox1 = new ListBox();
             tabPage4 = new TabPage();
-            lstStudentView = new ListBox();
             btnViewStudents = new Button();
+            lstStudentView = new ListBox();
+            tabPage7 = new TabPage();
+            dateTimePicker2 = new DateTimePicker();
             tabControlMain.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -119,24 +121,26 @@
             tabControlMain.Controls.Add(tabPage2);
             tabControlMain.Controls.Add(tabPage6);
             tabControlMain.Controls.Add(tabPage5);
+            tabControlMain.Controls.Add(tabPage7);
             tabControlMain.Controls.Add(tabPage3);
             tabControlMain.Controls.Add(tabPage4);
             tabControlMain.Location = new Point(12, 12);
             tabControlMain.Name = "tabControlMain";
             tabControlMain.SelectedIndex = 0;
-            tabControlMain.Size = new Size(776, 426);
+            tabControlMain.Size = new Size(898, 426);
             tabControlMain.TabIndex = 2;
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(dateTimePicker2);
+            tabPage1.Controls.Add(dateTimePicker1);
             tabPage1.Controls.Add(btnClearAppt);
             tabPage1.Controls.Add(btnMakeAppt);
-            tabPage1.Controls.Add(monthCalendar1);
             tabPage1.Controls.Add(txtProfLName);
             tabPage1.Controls.Add(txtProfFName);
             tabPage1.Controls.Add(lblProfLName);
             tabPage1.Controls.Add(lblProfFName);
-            tabPage1.Controls.Add(lblProfessor);
+            tabPage1.Controls.Add(lblAdvisor);
             tabPage1.Controls.Add(txtStudentLName);
             tabPage1.Controls.Add(lblStudentLName);
             tabPage1.Controls.Add(lblStudent);
@@ -145,14 +149,21 @@
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(768, 393);
+            tabPage1.Size = new Size(890, 393);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Schedule Appointment";
             tabPage1.UseVisualStyleBackColor = true;
             // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(42, 163);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(250, 27);
+            dateTimePicker1.TabIndex = 13;
+            // 
             // btnClearAppt
             // 
-            btnClearAppt.Location = new Point(645, 231);
+            btnClearAppt.Location = new Point(750, 117);
             btnClearAppt.Name = "btnClearAppt";
             btnClearAppt.Size = new Size(111, 73);
             btnClearAppt.TabIndex = 12;
@@ -161,29 +172,23 @@
             // 
             // btnMakeAppt
             // 
-            btnMakeAppt.Location = new Point(494, 231);
+            btnMakeAppt.Location = new Point(750, 21);
             btnMakeAppt.Name = "btnMakeAppt";
-            btnMakeAppt.Size = new Size(120, 73);
+            btnMakeAppt.Size = new Size(111, 73);
             btnMakeAppt.TabIndex = 11;
             btnMakeAppt.Text = "Make Appointment";
             btnMakeAppt.UseVisualStyleBackColor = true;
             // 
-            // monthCalendar1
-            // 
-            monthCalendar1.Location = new Point(494, 12);
-            monthCalendar1.Name = "monthCalendar1";
-            monthCalendar1.TabIndex = 10;
-            // 
             // txtProfLName
             // 
-            txtProfLName.Location = new Point(141, 226);
+            txtProfLName.Location = new Point(468, 82);
             txtProfLName.Name = "txtProfLName";
             txtProfLName.Size = new Size(125, 27);
             txtProfLName.TabIndex = 9;
             // 
             // txtProfFName
             // 
-            txtProfFName.Location = new Point(141, 188);
+            txtProfFName.Location = new Point(468, 44);
             txtProfFName.Name = "txtProfFName";
             txtProfFName.Size = new Size(125, 27);
             txtProfFName.TabIndex = 8;
@@ -191,7 +196,7 @@
             // lblProfLName
             // 
             lblProfLName.AutoSize = true;
-            lblProfLName.Location = new Point(53, 229);
+            lblProfLName.Location = new Point(380, 85);
             lblProfLName.Name = "lblProfLName";
             lblProfLName.Size = new Size(82, 20);
             lblProfLName.TabIndex = 7;
@@ -200,24 +205,24 @@
             // lblProfFName
             // 
             lblProfFName.AutoSize = true;
-            lblProfFName.Location = new Point(53, 188);
+            lblProfFName.Location = new Point(380, 44);
             lblProfFName.Name = "lblProfFName";
             lblProfFName.Size = new Size(83, 20);
             lblProfFName.TabIndex = 6;
             lblProfFName.Text = "First Name:";
             // 
-            // lblProfessor
+            // lblAdvisor
             // 
-            lblProfessor.AutoSize = true;
-            lblProfessor.Location = new Point(30, 147);
-            lblProfessor.Name = "lblProfessor";
-            lblProfessor.Size = new Size(70, 20);
-            lblProfessor.TabIndex = 5;
-            lblProfessor.Text = "Professor";
+            lblAdvisor.AutoSize = true;
+            lblAdvisor.Location = new Point(358, 15);
+            lblAdvisor.Name = "lblAdvisor";
+            lblAdvisor.Size = new Size(59, 20);
+            lblAdvisor.TabIndex = 5;
+            lblAdvisor.Text = "Advisor";
             // 
             // txtStudentLName
             // 
-            txtStudentLName.Location = new Point(141, 80);
+            txtStudentLName.Location = new Point(153, 83);
             txtStudentLName.Name = "txtStudentLName";
             txtStudentLName.Size = new Size(131, 27);
             txtStudentLName.TabIndex = 4;
@@ -225,7 +230,7 @@
             // lblStudentLName
             // 
             lblStudentLName.AutoSize = true;
-            lblStudentLName.Location = new Point(53, 83);
+            lblStudentLName.Location = new Point(65, 86);
             lblStudentLName.Name = "lblStudentLName";
             lblStudentLName.Size = new Size(82, 20);
             lblStudentLName.TabIndex = 3;
@@ -234,7 +239,7 @@
             // lblStudent
             // 
             lblStudent.AutoSize = true;
-            lblStudent.Location = new Point(30, 12);
+            lblStudent.Location = new Point(42, 15);
             lblStudent.Name = "lblStudent";
             lblStudent.Size = new Size(60, 20);
             lblStudent.TabIndex = 2;
@@ -242,7 +247,7 @@
             // 
             // txtStudentFName
             // 
-            txtStudentFName.Location = new Point(142, 38);
+            txtStudentFName.Location = new Point(154, 41);
             txtStudentFName.Name = "txtStudentFName";
             txtStudentFName.Size = new Size(130, 27);
             txtStudentFName.TabIndex = 1;
@@ -250,7 +255,7 @@
             // lblStudentFName
             // 
             lblStudentFName.AutoSize = true;
-            lblStudentFName.Location = new Point(53, 41);
+            lblStudentFName.Location = new Point(65, 44);
             lblStudentFName.Name = "lblStudentFName";
             lblStudentFName.Size = new Size(83, 20);
             lblStudentFName.TabIndex = 0;
@@ -277,7 +282,7 @@
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(768, 393);
+            tabPage2.Size = new Size(1010, 393);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Change Appointment";
             tabPage2.UseVisualStyleBackColor = true;
@@ -432,7 +437,7 @@
             tabPage6.Controls.Add(lblStudentAdvisor);
             tabPage6.Location = new Point(4, 29);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(768, 393);
+            tabPage6.Size = new Size(1010, 393);
             tabPage6.TabIndex = 5;
             tabPage6.Text = "Add Person";
             tabPage6.UseVisualStyleBackColor = true;
@@ -593,7 +598,7 @@
             tabPage5.Controls.Add(listBox3);
             tabPage5.Location = new Point(4, 29);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(768, 393);
+            tabPage5.Size = new Size(1010, 393);
             tabPage5.TabIndex = 4;
             tabPage5.Text = "Change Person";
             tabPage5.UseVisualStyleBackColor = true;
@@ -784,7 +789,7 @@
             tabPage3.Controls.Add(listBox1);
             tabPage3.Location = new Point(4, 29);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(768, 393);
+            tabPage3.Size = new Size(1010, 393);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "View Advisors";
             tabPage3.UseVisualStyleBackColor = true;
@@ -813,18 +818,10 @@
             tabPage4.Controls.Add(lstStudentView);
             tabPage4.Location = new Point(4, 29);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(768, 393);
+            tabPage4.Size = new Size(1010, 393);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "View Students";
             tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // lstStudentView
-            // 
-            lstStudentView.FormattingEnabled = true;
-            lstStudentView.Location = new Point(3, 3);
-            lstStudentView.Name = "lstStudentView";
-            lstStudentView.Size = new Size(751, 324);
-            lstStudentView.TabIndex = 0;
             // 
             // btnViewStudents
             // 
@@ -836,11 +833,36 @@
             btnViewStudents.UseVisualStyleBackColor = true;
             btnViewStudents.Click += btnViewStudents_Click;
             // 
+            // lstStudentView
+            // 
+            lstStudentView.FormattingEnabled = true;
+            lstStudentView.Location = new Point(3, 3);
+            lstStudentView.Name = "lstStudentView";
+            lstStudentView.Size = new Size(751, 324);
+            lstStudentView.TabIndex = 0;
+            // 
+            // tabPage7
+            // 
+            tabPage7.Location = new Point(4, 29);
+            tabPage7.Name = "tabPage7";
+            tabPage7.Size = new Size(1010, 393);
+            tabPage7.TabIndex = 6;
+            tabPage7.Text = "Change Availability";
+            tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // dateTimePicker2
+            // 
+            dateTimePicker2.Format = DateTimePickerFormat.Time;
+            dateTimePicker2.Location = new Point(358, 163);
+            dateTimePicker2.Name = "dateTimePicker2";
+            dateTimePicker2.Size = new Size(250, 27);
+            dateTimePicker2.TabIndex = 14;
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(922, 450);
             Controls.Add(tabControlMain);
             Name = "frmMain";
             Text = "Appointments";
@@ -872,8 +894,7 @@
         private Label lblStudent;
         private Label lblProfLName;
         private Label lblProfFName;
-        private Label lblProfessor;
-        private MonthCalendar monthCalendar1;
+        private Label lblAdvisor;
         private TextBox txtProfLName;
         private TextBox txtProfFName;
         private MonthCalendar monthCalendar2;
@@ -936,5 +957,8 @@
         private Button btnSubmitNew;
         private Button btnAdvisorRefresh;
         private Button btnViewStudents;
+        private DateTimePicker dateTimePicker1;
+        private TabPage tabPage7;
+        private DateTimePicker dateTimePicker2;
     }
 }
