@@ -38,3 +38,13 @@ C:\Users\james\Desktop\erdeicopy\obj\Debug\B321_ICE_13_123.csproj.GenerateResour
 C:\Users\james\Desktop\erdeicopy\obj\Debug\B321_ICE_13_123.csproj.CoreCompileInputs.cache
 C:\Users\james\Desktop\erdeicopy\obj\Debug\WindowsFormsApp1.exe
 C:\Users\james\Desktop\erdeicopy\obj\Debug\WindowsFormsApp1.pdb
+C:\Users\keepi\OneDrive\Desktop\DB App Dev\Final Project\ISATB_321_FINAL_PROJECT\erdeicopy\bin\Debug\WindowsFormsApp1.exe.config
+C:\Users\keepi\OneDrive\Desktop\DB App Dev\Final Project\ISATB_321_FINAL_PROJECT\erdeicopy\bin\Debug\WindowsFormsApp1.exe
+C:\Users\keepi\OneDrive\Desktop\DB App Dev\Final Project\ISATB_321_FINAL_PROJECT\erdeicopy\bin\Debug\WindowsFormsApp1.pdb
+C:\Users\keepi\OneDrive\Desktop\DB App Dev\Final Project\ISATB_321_FINAL_PROJECT\erdeicopy\obj\Debug\B321_ICE_13_123.csproj.AssemblyReference.cache
+C:\Users\keepi\OneDrive\Desktop\DB App Dev\Final Project\ISATB_321_FINAL_PROJECT\erdeicopy\obj\Debug\WindowsFormsApp1.frmMain.resources
+C:\Users\keepi\OneDrive\Desktop\DB App Dev\Final Project\ISATB_321_FINAL_PROJECT\erdeicopy\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\keepi\OneDrive\Desktop\DB App Dev\Final Project\ISATB_321_FINAL_PROJECT\erdeicopy\obj\Debug\B321_ICE_13_123.csproj.GenerateResource.cache
+C:\Users\keepi\OneDrive\Desktop\DB App Dev\Final Project\ISATB_321_FINAL_PROJECT\erdeicopy\obj\Debug\B321_ICE_13_123.csproj.CoreCompileInputs.cache
+C:\Users\keepi\OneDrive\Desktop\DB App Dev\Final Project\ISATB_321_FINAL_PROJECT\erdeicopy\obj\Debug\WindowsFormsApp1.exe
+C:\Users\keepi\OneDrive\Desktop\DB App Dev\Final Project\ISATB_321_FINAL_PROJECT\erdeicopy\obj\Debug\WindowsFormsApp1.pdb
