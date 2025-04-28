@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
@@ -10,6 +11,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp1;
+
+/*
+    TODO:
+        - Emrys: Resolve bug where inserting a new person does not display correct ID
+        - James: Add Availability functionality
+        - James: Availability time implementation
+            - James: 15 minute intervals, Availability table lists each interval as it's own entry,
+              Meetings table will have several entries with the same StudentID but diff AvailabilityID             
+        - James: Add front-end to Manage Availability
+
+    DONE:
+        - Emrys: Add ListView to Add Person, Change Person, and Delete Person
+            - Emrys: Remove View Advisors and View Students once done
+ */
 
 namespace ISATB_321_FINAL_PROJECT
 {
@@ -29,7 +44,7 @@ namespace ISATB_321_FINAL_PROJECT
         {
             InitializeComponent();
 
-            tabMain.SelectedIndexChanged += new EventHandler(tabMain_SelectedIndexChanged);
+            // tabMain.SelectedIndexChanged += new EventHandler(tabMain_SelectedIndexChanged);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -56,28 +71,7 @@ namespace ISATB_321_FINAL_PROJECT
 
 
 
-        // Event Handler(s)
-        private void tabMain_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            if (tabMain.SelectedIndex == 3)
-            {
-
-                refreshAdvisorsListview();
-
-            }
-            else if (tabMain.SelectedIndex == 4)
-            {
-
-                refreshStudentsListview();
-
-            }
-
-        }
-
-
-
-        // Functions for loading and refreshing the the Advisors and Students dictionaries
+        // Functions for loading and refreshing the Advisors and Students dictionaries
         private void populateAdvisorDictionary(ref Dictionary<int, clsAdvisors> dctAdvisors)
         {
 
@@ -166,32 +160,165 @@ namespace ISATB_321_FINAL_PROJECT
 
         private void refreshAdvisorsListview()
         {
-            // REMEMBER: the View property of the listview must be set to 'List'
-            lsvAdvisorsView.Clear();
-            clsAdvisors currentAdvisor = new clsAdvisors();
-            foreach (KeyValuePair<int, clsAdvisors> kvp in dctAdvisors)
+
+            switch (tabMain.SelectedTab.Name)
             {
-                currentAdvisor = kvp.Value;
-                ListViewItem item = new ListViewItem(currentAdvisor.AdvisorLName);
-                item.Tag = currentAdvisor;
-                lsvAdvisorsView.Items.Add(item);
+                case "tabPage6":
+                    lsvAddPerson.Clear();
+                    clsAdvisors newCurrentAdvisor = new clsAdvisors();
+                    foreach (KeyValuePair<int, clsAdvisors> kvp in dctAdvisors)
+                    {
+                        newCurrentAdvisor = kvp.Value;
+                        ListViewItem item = new ListViewItem(newCurrentAdvisor.AdvisorLName);
+                        item.Tag = newCurrentAdvisor;
+                        lsvAddPerson.Items.Add(item);
+                    }
+                    break;
+                case "tabPage5":
+                    lsvChangePerson.Clear();
+                    clsAdvisors changeCurrentAdvisor = new clsAdvisors();
+                    foreach (KeyValuePair<int, clsAdvisors> kvp in dctAdvisors)
+                    {
+                        changeCurrentAdvisor = kvp.Value;
+                        ListViewItem item = new ListViewItem(changeCurrentAdvisor.AdvisorLName);
+                        item.Tag = changeCurrentAdvisor;
+                        lsvChangePerson.Items.Add(item);
+                    }
+                    break;
+                case "tabPage8":
+                    lsvDeletePerson.Clear();
+                    clsAdvisors deleteCurrentAdvisor = new clsAdvisors();
+                    foreach (KeyValuePair<int, clsAdvisors> kvp in dctAdvisors)
+                    {
+                        deleteCurrentAdvisor = kvp.Value;
+                        ListViewItem item = new ListViewItem(deleteCurrentAdvisor.AdvisorLName);
+                        item.Tag = deleteCurrentAdvisor;
+                        lsvDeletePerson.Items.Add(item);
+                    }
+                    break;
+
             }
+
         }
 
         private void refreshStudentsListview()
         {
-            // REMEMBER: the View property of the listview must be set to 'List'
-            lsvStudentsView.Clear();
-            clsStudents currentStudent = new clsStudents();
-            foreach (KeyValuePair<int, clsStudents> kvp in dctStudents)
+
+            switch (tabMain.SelectedTab.Name)
             {
-                currentStudent = kvp.Value;
-                ListViewItem item = new ListViewItem(currentStudent.StudentLName);
-                item.Tag = currentStudent;
-                lsvStudentsView.Items.Add(item);
+                case "tabPage6":
+                    lsvAddPerson.Clear();
+                    clsStudents newCurrentStudent = new clsStudents();
+                    foreach (KeyValuePair<int, clsStudents> kvp in dctStudents)
+                    {
+                        newCurrentStudent = kvp.Value;
+                        ListViewItem item = new ListViewItem(newCurrentStudent.StudentLName);
+                        item.Tag = newCurrentStudent;
+                        lsvAddPerson.Items.Add(item);
+                    }
+                    break;
+                case "tabPage5":
+                    lsvChangePerson.Clear();
+                    clsStudents changeCurrentStudent = new clsStudents();
+                    foreach (KeyValuePair<int, clsStudents> kvp in dctStudents)
+                    {
+                        changeCurrentStudent = kvp.Value;
+                        ListViewItem item = new ListViewItem(changeCurrentStudent.StudentLName);
+                        item.Tag = changeCurrentStudent;
+                        lsvChangePerson.Items.Add(item);
+                    }
+                    break;
+                case "tabPage8":
+                    lsvDeletePerson.Clear();
+                    clsStudents deleteCurrentStudent = new clsStudents();
+                    foreach (KeyValuePair<int, clsStudents> kvp in dctStudents)
+                    {
+                        deleteCurrentStudent = kvp.Value;
+                        ListViewItem item = new ListViewItem(deleteCurrentStudent.StudentLName);
+                        item.Tag = deleteCurrentStudent;
+                        lsvDeletePerson.Items.Add(item);
+                    }
+                    break;
             }
+
         }
 
+
+
+        // Updating the ListViews for Advisors and Students on Add Person, Change Person, and Delete Person
+        // Insert Person
+        private void radStudentNew_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radStudentNew.Checked == true)
+            {
+
+                refreshStudentsListview();
+
+            }
+
+        }
+
+        private void radAdvisorNew_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (radAdvisorNew.Checked == true)
+            {
+
+                refreshAdvisorsListview();
+
+            }
+
+        }
+
+        // Update Person
+        private void radChangeStudent_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (radChangeStudent.Checked == true)
+            {
+
+                refreshStudentsListview();
+
+            }
+
+        }
+
+        private void radChangeAdvisor_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (radChangeAdvisor.Checked == true)
+            {
+
+                refreshAdvisorsListview();
+
+            }
+
+        }
+
+        // Delete Person
+        private void radDeleteStudent_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (radDeleteStudent.Checked == true)
+            {
+
+                refreshStudentsListview();
+
+            }
+
+        }
+
+        private void radDeleteAdvisor_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (radDeleteAdvisor.Checked == true)
+            {
+
+                refreshAdvisorsListview();
+
+            }
+
+        }
 
 
         // Functions for adding people
@@ -278,21 +405,14 @@ namespace ISATB_321_FINAL_PROJECT
                 currentAdvisor.AdvisorLName = txtLNameNew.Text;
                 currentAdvisor.AdvisorEmail = txtEmailNew.Text;
 
-
-
-
                 if (InsertAdvisor(currentAdvisor) == true)
                 {
 
                     populateAdvisorDictionary(ref dctAdvisors);
                     refreshAdvisorsListview();
 
-
-
                     messageBoxOK("The advisor (ID: " + currentAdvisor.AdvisorID.ToString() + ") successfully added.");
                     personInformation_ClearTextboxes();
-
-
 
                 }
                 else
@@ -308,13 +428,8 @@ namespace ISATB_321_FINAL_PROJECT
                 clsStudents currentStudent = new clsStudents();
 
 
-
                 currentStudent.StudentFName = txtFNameNew.Text;
                 currentStudent.StudentLName = txtLNameNew.Text;
-
-
-
-
 
 
                 if (int.TryParse(txtYearNew.Text, out int year) && year >= 0 && year <= 4)
@@ -328,16 +443,11 @@ namespace ISATB_321_FINAL_PROJECT
                     return;
                 }
 
-
-
-
                 if (InsertStudent(currentStudent) == true)
                 {
 
                     populateStudentDictionary(ref dctStudents);
                     refreshStudentsListview();
-
-
 
                     messageBoxOK("The student (ID: " + currentStudent.StudentID.ToString() + ") successfully added.");
                     personInformation_ClearTextboxes();
@@ -829,6 +939,13 @@ namespace ISATB_321_FINAL_PROJECT
         private DialogResult messageBoxYesNo(string msg)
         {
             return MessageBox.Show(msg, Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        }
+
+        private void tabPage6_Click(object sender, EventArgs e)
+        {
+
+            messageBoxOK("The current tab is " + tabMain.SelectedTab + ".");
+
         }
 
 
