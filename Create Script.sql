@@ -64,17 +64,13 @@ GO
 CREATE TABLE Availability (
     AvailabilityID INT IDENTITY(1,1) PRIMARY KEY,
     AdvisorID INT,
-    [Date] DATE,
-    --StartTimeID INT,
-    --EndTimeID INT,
+    Date DATE,
     TimeID INT,
     LocationID INT,
     IsTaken BIT,
-    --IsOnline BIT
+
 
     FOREIGN KEY (AdvisorID) REFERENCES Advisors(AdvisorID),
-    --FOREIGN KEY (StartTimeID) REFERENCES Times(TimeID),
-   -- FOREIGN KEY (EndTimeID) REFERENCES Times(TimeID),
     FOREIGN KEY (TimeID) REFERENCES Times(TimeID),
     FOREIGN KEY (LocationID) REFERENCES Locations(LocationID)
 )

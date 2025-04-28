@@ -46,9 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsAvailability.cs" />
     <Compile Include="clsDBUtil.cs" />
     <Compile Include="clsAdvisors.cs" />
+    <Compile Include="clsMeetings.cs" />
     <Compile Include="clsStudents.cs" />
+    <Compile Include="clsTimes.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
