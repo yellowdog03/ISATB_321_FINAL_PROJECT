@@ -109,7 +109,7 @@ GO
 
 
 
-/* SET IDENTITY_INSERT Locations ON
+SET IDENTITY_INSERT Locations ON
 GO
 
     INSERT INTO [Locations] (LocationID, Description)
@@ -127,11 +127,11 @@ GO
         GO
 
 SET IDENTITY_INSERT Locations OFF
-GO */
+GO 
 
 
 
-/* SET IDENTITY_INSERT [Times] ON
+SET IDENTITY_INSERT Times ON
 GO
 
     INSERT INTO [Times] (TimeID, StartTime, EndTime)
@@ -182,7 +182,7 @@ GO
         (44,N'6:45PM',N'7:00PM' )
     GO
 
-SET IDENTITY_INSERT [Times] OFF
+SET IDENTITY_INSERT Times OFF
 
 
 
@@ -216,7 +216,8 @@ GO
 
 SET IDENTITY_INSERT [Availability] OFF
 GO
- */
+ 
 
 
 
+ 

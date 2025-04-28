@@ -66,3 +66,15 @@ Go
 
 GRANT EXECUTE ON sp_DeleteStudent to B321_S25_APP
 Go
+
+GRANT EXECUTE ON sp_InsertAvailability to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_UpdateAvailability to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_DeleteAvailability to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_GetAvailability to B321_S25_APP
+Go

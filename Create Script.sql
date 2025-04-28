@@ -64,11 +64,11 @@ GO
 CREATE TABLE Availability (
     AvailabilityID INT IDENTITY(1,1) PRIMARY KEY,
     AdvisorID INT,
-    Date DATE,
+    Date DATETIME,
     TimeID INT,
     LocationID INT,
     IsTaken BIT,
-
+	--Date was DATE and not DATETIME but was changed bc of C#
 
     FOREIGN KEY (AdvisorID) REFERENCES Advisors(AdvisorID),
     FOREIGN KEY (TimeID) REFERENCES Times(TimeID),

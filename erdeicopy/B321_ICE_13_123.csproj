@@ -49,6 +49,7 @@
     <Compile Include="clsAvailability.cs" />
     <Compile Include="clsDBUtil.cs" />
     <Compile Include="clsAdvisors.cs" />
+    <Compile Include="clsLocations.cs" />
     <Compile Include="clsMeetings.cs" />
     <Compile Include="clsStudents.cs" />
     <Compile Include="clsTimes.cs" />

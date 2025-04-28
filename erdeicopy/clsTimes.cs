@@ -13,27 +13,28 @@ namespace WindowsFormsApp1
         private TimeSpan mStartTime;
         private TimeSpan mEndTime;
 
+        public int TimeID
+        {
+            get { return mTimeID; }
+            set { mTimeID = value; }
+        }
+
+        public TimeSpan StartTime
+        {
+            get { return mStartTime; }
+            set { mStartTime = value; }
+        }
+
+        public TimeSpan EndTime
+        {
+            get { return mEndTime; }
+            set { mEndTime = value; }
+        }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        public clsTimes() { }
 
 
     }

@@ -10,8 +10,9 @@ namespace WindowsFormsApp1
     {
         private int mAvailabilityID;
         private int mAdvisorID;
+        //private DateTime mDate;
         private DateTime mDate;
-        private TimeSpan mTime;
+        private int mTime;
         private int mLocationID;
         private bool mIsTaken;
 
@@ -31,6 +32,13 @@ namespace WindowsFormsApp1
             get { return mAdvisorID; }
             set { mAdvisorID = value; }
         }
+        /*
+        public DateTime Date
+        {
+            get { return mDate; }
+            set { mDate = value; }
+        }
+        */
 
         public DateTime Date
         {
@@ -38,7 +46,7 @@ namespace WindowsFormsApp1
             set { mDate = value; }
         }
 
-        public TimeSpan Time
+        public int TimeID
         {
             get { return mTime; }
             set { mTime = value; }
@@ -58,6 +66,7 @@ namespace WindowsFormsApp1
 
 
 
+        //public DateTime Date { get; }
 
 
 
