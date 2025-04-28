@@ -80,8 +80,23 @@ BEGIN
 END
 GO
 
+-------------------------------------------- Get AdvisorID SProc
 
+DROP PROCEDURE IF EXISTS sp_GetAdvisorID
+GO
 
+CREATE Procedure sp_GetAdvisorID
+	@AdvisorFName VARCHAR(25),
+	@AdvisorLName VARCHAR(40)
+AS
+	BEGIN
+		SELECT AdvisorID
+			FROM Advisors
+			WHERE AdvisorFName = @AdvisorFName
+				AND
+				  AdvisorLName = @AdvisorLName
+	END
+GO
 
 
 ----------------------------------------------------------------------------------
