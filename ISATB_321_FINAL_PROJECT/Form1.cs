@@ -396,70 +396,94 @@ namespace ISATB_321_FINAL_PROJECT
         private void btnSubmitNew_Click(object sender, EventArgs e)
         {
 
-            if (radAdvisorNew.Checked)
+            string myConnectionString = clsDBUtil.getConnectionString();
+
+            using (SqlConnection conn = new SqlConnection(myConnectionString))
             {
-
-                clsAdvisors currentAdvisor = new clsAdvisors();
-
-                currentAdvisor.AdvisorFName = txtFNameNew.Text;
-                currentAdvisor.AdvisorLName = txtLNameNew.Text;
-                currentAdvisor.AdvisorEmail = txtEmailNew.Text;
-
-                if (InsertAdvisor(currentAdvisor) == true)
+                try
                 {
 
-                    populateAdvisorDictionary(ref dctAdvisors);
-                    refreshAdvisorsListview();
+                    if (radAdvisorNew.Checked)
+                    {
 
-                    messageBoxOK("The advisor (ID: " + currentAdvisor.AdvisorID.ToString() + ") successfully added.");
-                    personInformation_ClearTextboxes();
+                        clsAdvisors currentAdvisor = new clsAdvisors();
 
-                }
-                else
-                {
-                    messageBoxOK("Creation failed for advisor (ID: " + currentAdvisor.AdvisorID.ToString() + ").");
-                }
+                        conn.Open();
+                        SqlCommand cmd = new SqlCommand("sp_GetAdvisor", conn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.ExecuteNonQuery();
+
+                        currentAdvisor.AdvisorFName = txtFNameNew.Text;
+                        currentAdvisor.AdvisorLName = txtLNameNew.Text;
+                        currentAdvisor.AdvisorEmail = txtEmailNew.Text;
+
+                        if (InsertAdvisor(currentAdvisor) == true)
+                        {
+
+                            populateAdvisorDictionary(ref dctAdvisors);
+                            refreshAdvisorsListview();
+
+                            messageBoxOK("The advisor (ID: " + currentAdvisor.AdvisorID.ToString() + ") successfully added.");
+                            personInformation_ClearTextboxes();
+
+                        }
+                        else
+                        {
+                            messageBoxOK("Creation failed for advisor (ID: " + currentAdvisor.AdvisorID.ToString() + ").");
+                        }
             ;
 
-            }
-            else if (radStudentNew.Checked)
-            {
+                    }
+                    else if (radStudentNew.Checked)
+                    {
 
-                clsStudents currentStudent = new clsStudents();
-
-
-                currentStudent.StudentFName = txtFNameNew.Text;
-                currentStudent.StudentLName = txtLNameNew.Text;
+                        clsStudents currentStudent = new clsStudents();
 
 
-                if (int.TryParse(txtYearNew.Text, out int year) && year >= 0 && year <= 4)
-                {
-                    currentStudent.Year = year;
+                        currentStudent.StudentFName = txtFNameNew.Text;
+                        currentStudent.StudentLName = txtLNameNew.Text;
+
+
+                        if (int.TryParse(txtYearNew.Text, out int year) && year >= 0 && year <= 4)
+                        {
+                            currentStudent.Year = year;
+                        }
+                        else
+                        {
+                            messageBoxOK("Invalid Year. Please enter a number between 0 and 4.");
+                            txtYearNew.Focus();
+                            return;
+                        }
+
+                        if (InsertStudent(currentStudent) == true)
+                        {
+
+                            populateStudentDictionary(ref dctStudents);
+                            refreshStudentsListview();
+
+                            messageBoxOK("The student (ID: " + currentStudent.StudentID.ToString() + ") successfully added.");
+                            personInformation_ClearTextboxes();
+
+                        }
+                        else
+                        {
+
+                            messageBoxOK("Creation failed for student (ID: " + currentStudent.StudentID.ToString() + ").");
+
+                        }
+                    ;
+                    }
+
                 }
-                else
+                catch (Exception ex)
                 {
-                    messageBoxOK("Invalid Year. Please enter a number between 0 and 4.");
-                    txtYearNew.Focus();
-                    return;
+                    messageBoxOK(ex.Message);
                 }
-
-                if (InsertStudent(currentStudent) == true)
+                finally
                 {
-
-                    populateStudentDictionary(ref dctStudents);
-                    refreshStudentsListview();
-
-                    messageBoxOK("The student (ID: " + currentStudent.StudentID.ToString() + ") successfully added.");
-                    personInformation_ClearTextboxes();
-
+                    conn.Close();
                 }
-                else
-                {
-
-                    messageBoxOK("Creation failed for student (ID: " + currentStudent.StudentID.ToString() + ").");
-
-                }
-            ;
 
             }
 
@@ -744,19 +768,6 @@ namespace ISATB_321_FINAL_PROJECT
                 if (deleteAdvisor(currentAdvisor) == true)
                 {
 
-                    populateAdvisorDictionary(ref dctAdvisors);
-                    lsvAdvisorsView.Clear();
-                    clsAdvisors delCurrentAdvisor = new clsAdvisors();
-                    foreach (KeyValuePair<int, clsAdvisors> kvp in dctAdvisors)
-                    {
-                        delCurrentAdvisor = kvp.Value;
-                        ListViewItem item = new ListViewItem(delCurrentAdvisor.AdvisorLName);
-                        item.Tag = delCurrentAdvisor;
-                        lsvAdvisorsView.Items.Add(item);
-                    }
-
-
-
                     messageBoxOK("The advisor (ID: " + currentAdvisor.AdvisorID.ToString() + ") successfully deleted.");
 
                     txtDeleteFName.Clear();
@@ -767,12 +778,12 @@ namespace ISATB_321_FINAL_PROJECT
 
                     txtPersonID.Clear();
 
-
-
                 }
                 else
                 {
+
                     messageBoxOK("delete Failed for advisor (ID: " + currentAdvisor.AdvisorID.ToString() + ").");
+
                 }
 
             }
