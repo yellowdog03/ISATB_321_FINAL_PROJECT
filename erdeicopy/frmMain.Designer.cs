@@ -77,6 +77,8 @@
             this.txtStudentLNameInsert = new System.Windows.Forms.TextBox();
             this.txtStudentIDInsert = new System.Windows.Forms.TextBox();
             this.btnInsertStudentInfo = new System.Windows.Forms.Button();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabAdvisors.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -90,6 +92,8 @@
             this.tabAdvisors.Controls.Add(this.tabPage2);
             this.tabAdvisors.Controls.Add(this.tabPage3);
             this.tabAdvisors.Controls.Add(this.tabPage4);
+            this.tabAdvisors.Controls.Add(this.tabPage5);
+            this.tabAdvisors.Controls.Add(this.tabPage6);
             this.tabAdvisors.Location = new System.Drawing.Point(21, 45);
             this.tabAdvisors.Name = "tabAdvisors";
             this.tabAdvisors.SelectedIndex = 0;
@@ -571,6 +575,24 @@
             this.btnInsertStudentInfo.UseVisualStyleBackColor = true;
             this.btnInsertStudentInfo.Click += new System.EventHandler(this.btnInsertStudentInfo_Click_1);
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Location = new System.Drawing.Point(4, 29);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(895, 480);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Create Availability";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Location = new System.Drawing.Point(4, 29);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Size = new System.Drawing.Size(895, 480);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "Schedule Meeting";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -647,6 +669,8 @@
         private System.Windows.Forms.TextBox txtStudentLNameInsert;
         private System.Windows.Forms.TextBox txtStudentIDInsert;
         private System.Windows.Forms.Button btnInsertStudentInfo;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TabPage tabPage6;
     }
 }
 

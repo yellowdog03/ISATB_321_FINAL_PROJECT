@@ -1,5 +1,5 @@
-﻿// Developer:       Erdei, Ronald
-// Last Updated:    2025.04.16
+﻿// Developer:       Plant, James
+// Last Updated:    2025.04.20
 
 
 using System;
@@ -41,6 +41,11 @@ namespace WindowsFormsApp1
 
 
         }
+
+
+        //ADVISORS*******************************************************************************************************************************************
+
+
         
         private void populateAdvisorDictionary(ref Dictionary<int, clsAdvisors> dctAdvisors)
         {
@@ -1013,3 +1018,11 @@ namespace WindowsFormsApp1
     }
 
 }
+
+
+
+
+//MEETINGS******************************************************************************************************
+
+
+
