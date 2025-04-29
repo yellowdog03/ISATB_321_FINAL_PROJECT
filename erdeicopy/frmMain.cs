@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace WindowsFormsApp1
 {
@@ -28,7 +29,7 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
         }
-        
+
         private void frmMain_Load(object sender, EventArgs e)
         {
             populateAdvisorDictionary(ref dctAdvisors);
@@ -49,7 +50,7 @@ namespace WindowsFormsApp1
         //ADVISORS*******************************************************************************************************************************************
 
 
-        
+
         private void populateAdvisorDictionary(ref Dictionary<int, clsAdvisors> dctAdvisors)
         {
 
@@ -92,7 +93,7 @@ namespace WindowsFormsApp1
             }
 
         }
-        
+
         private bool updateAdvisor(clsAdvisors currentAdvisor)
         {
             string myConnectionString = clsDBUtil.getConnectionString();
@@ -126,7 +127,7 @@ namespace WindowsFormsApp1
             }
 
         }
-        
+
         private void refreshAdvisorsListview()
         {
             // REMEMBER: the View property of the listview must be set to 'List'
@@ -140,7 +141,7 @@ namespace WindowsFormsApp1
                 lvwAdvisors.Items.Add(item);
             }
         }
-        
+
         private void lvwAdvisors_Update_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -151,7 +152,7 @@ namespace WindowsFormsApp1
                 displayAdvisorInformation_update(currentAdvisor);
             }
         }
-        
+
         private void displayAdvisorInformation_update(clsAdvisors currentAdvisor)
         {
             txtAdvisorID.Text = currentAdvisor.AdvisorID.ToString();
@@ -160,8 +161,8 @@ namespace WindowsFormsApp1
             txtAdvisorEmail.Text = currentAdvisor.AdvisorEmail;    //.ToString();
 
         }
-        
-        
+
+
         private void advisorInformation_Update_ClearTextboxes()
         {
             txtAdvisorID.Clear();
@@ -198,7 +199,7 @@ namespace WindowsFormsApp1
 
 
         }
-        
+
 
 
         #region Private Helper Methods: general purpose
@@ -225,7 +226,7 @@ namespace WindowsFormsApp1
             txtAdvisorFName.ReadOnly = false;
             txtAdvisorLName.ReadOnly = false;
             txtAdvisorEmail.ReadOnly = false;
-            
+
 
             btnEditAdvisorInfo.Visible = false;
             btnUpdateAdvisorInfo.Visible = true;
@@ -234,11 +235,11 @@ namespace WindowsFormsApp1
 
 
 
-        
+
 
         #region edit delete insert
 
-        
+
         private void btnUpdateAdvisorInfo_Click(object sender, EventArgs e)
         {
             clsAdvisors currentAdvisor = new clsAdvisors();
@@ -386,6 +387,7 @@ namespace WindowsFormsApp1
             {
                 messageBoxOK("Invalid Advisor ID.");
                 txtAdvisorID.Focus();
+                return;
             }
 
             currentAdvisor.AdvisorFName = txtAdvisorFName.Text;
@@ -461,7 +463,7 @@ namespace WindowsFormsApp1
 
             clsAdvisors currentAdvisor = new clsAdvisors();
 
-            
+
 
             if (int.TryParse(txtAdvisorID.Text, out int AdvisorID))
             {
@@ -712,16 +714,16 @@ namespace WindowsFormsApp1
             txtYear.ReadOnly = true;
 
             txtStudentIDInsert.Clear();
-            
+
 
             txtStudentFNameInsert.Clear();
-            
+
 
             txtStudentLNameInsert.Clear();
-            
+
 
             txtYearInsert.Clear();
-           
+
 
 
 
@@ -772,6 +774,7 @@ namespace WindowsFormsApp1
             {
                 messageBoxOK("Invalid Student ID.");
                 txtAdvisorID.Focus();
+                return;
             }
 
 
@@ -895,7 +898,7 @@ namespace WindowsFormsApp1
                 {
                     messageBoxOK(ex.Message);
                     return false;
-                
+
                 }
                 finally
                 {
@@ -914,13 +917,13 @@ namespace WindowsFormsApp1
             clsStudents currentStudent = new clsStudents();
 
 
-          
+
             currentStudent.StudentFName = txtStudentFNameInsert.Text;
             currentStudent.StudentLName = txtStudentLNameInsert.Text;
 
 
 
-           
+
 
 
             if (int.TryParse(txtYearInsert.Text, out int year) && year >= 0 && year <= 4)
@@ -975,6 +978,7 @@ namespace WindowsFormsApp1
             {
                 messageBoxOK("Invalid Student ID.");
                 txtStudentID.Focus();
+                return;
             }
 
             currentStudent.StudentFName = txtStudentFName.Text;
@@ -1019,18 +1023,18 @@ namespace WindowsFormsApp1
             ;
         }
 
-    
-
-
-
-    //Availability*****************************************************************************************************
 
 
 
 
+        //Availability*****************************************************************************************************
 
 
-            private void populateAvailabilityDictionary(ref Dictionary<int, clsAvailability> dctAvailability)
+
+
+
+
+        private void populateAvailabilityDictionary(ref Dictionary<int, clsAvailability> dctAvailability)
         {
 
             string myConnectionString = clsDBUtil.getConnectionString();
@@ -1058,6 +1062,23 @@ namespace WindowsFormsApp1
                             currentAvailability.TimeID = (int)rdr["TimeID"];
                             currentAvailability.LocationID = (int)rdr["LocationID"];
                             currentAvailability.IsTaken = (bool)rdr["IsTaken"];
+
+
+
+
+                            //took this away and things started working lmfao
+                            /*
+                            if (currentAvailability.IsTaken = (bool)rdr["IsTaken"])
+                            {
+                                chkIsTaken.Checked = rdr.GetBoolean(0);
+
+                            }
+                            else
+                            {
+                                chkIsTaken.Checked = false;
+                            }
+                            */
+
 
 
                             dctAvailability.Add(currentAvailability.AvailabilityID, currentAvailability);
@@ -1134,8 +1155,6 @@ namespace WindowsFormsApp1
 
 
 
-       
-
 
         private void displayAvailabilityInformation_update(clsAvailability currentAvailability)
         {
@@ -1144,8 +1163,11 @@ namespace WindowsFormsApp1
             txtDate.Text = currentAvailability.Date.ToString();
             txtTimeID.Text = currentAvailability.TimeID.ToString();
             txtLocationID.Text = currentAvailability.LocationID.ToString();
-            
 
+            //IsTaken
+
+            //first instance of the checkbox behaving
+            chkIsTaken.Checked = currentAvailability.IsTaken;
 
         }
 
@@ -1166,6 +1188,11 @@ namespace WindowsFormsApp1
             txtLocationID.Clear();
             txtLocationID.ReadOnly = true;
 
+            //checkbox
+            
+            chkIsTaken.Checked = false;
+            chkIsTaken.Visible = false;
+            
 
 
 
@@ -1183,8 +1210,8 @@ namespace WindowsFormsApp1
 
             txtLocationIDInsert.Clear();
 
-
-
+            //checkbox
+            chkIsTakenInsert.Checked = false;
 
 
 
@@ -1203,7 +1230,7 @@ namespace WindowsFormsApp1
 
 
 
-        
+
 
 
 
@@ -1219,7 +1246,7 @@ namespace WindowsFormsApp1
                     SqlCommand cmd = new SqlCommand("sp_DeleteAvailability", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@AvailabilityID", currentAvailability.AvailabilityID);
-                    
+
                     cmd.ExecuteNonQuery();
                     return true;
 
@@ -1236,10 +1263,6 @@ namespace WindowsFormsApp1
             }
 
         }
-
-
-
-
 
 
 
@@ -1262,6 +1285,12 @@ namespace WindowsFormsApp1
                     cmd.Parameters.AddWithValue("@Date", currentAvailability.Date);
                     cmd.Parameters.AddWithValue("@TimeID", currentAvailability.TimeID);
                     cmd.Parameters.AddWithValue("@LocationID", currentAvailability.LocationID);
+
+                    //checkbox
+
+                    cmd.Parameters.AddWithValue("@IsTaken", currentAvailability.IsTaken);
+
+
 
 
 
@@ -1289,7 +1318,7 @@ namespace WindowsFormsApp1
 
 
 
-            if (int.TryParse(txtAvailAdvisorID.Text, out int AdvisorID))
+            if (int.TryParse(txtAvailAdvisorIDInsert.Text, out int AdvisorID))
             {
                 currentAvailability.AdvisorID = AdvisorID;
             }
@@ -1297,7 +1326,7 @@ namespace WindowsFormsApp1
             {
                 messageBoxOK("Invalid AdvisorID.");
                 txtAvailAdvisorID.Focus();
-
+                return;
             }
 
 
@@ -1305,38 +1334,54 @@ namespace WindowsFormsApp1
             //currentAvailability.Date = txtDate.Text;
 
 
-            if (DateTime.TryParse(txtDate.Text, out DateTime parsedDate))
+            if (DateTime.TryParse(txtDateInsert.Text, out DateTime parsedDate))
             {
                 currentAvailability.Date = parsedDate;
             }
             else
             {
-                MessageBox.Show("Invalid Date.");
+                messageBoxOK("Invalid Date.");
                 txtDate.Focus();
-
+                return;
             }
 
 
-            if (int.TryParse(txtTimeID.Text, out int TimeID))
+            if (int.TryParse(txtTimeIDInsert.Text, out int TimeID))
             {
                 currentAvailability.TimeID = TimeID;
             }
             else
             {
-                messageBoxOK("Invalid TimeID ID.");
+                messageBoxOK("Invalid TimeID .");
                 txtTimeID.Focus();
+                return;
             }
 
-            if (int.TryParse(txtLocationID.Text, out int LocationID))
+            if (int.TryParse(txtLocationIDInsert.Text, out int LocationID))
             {
                 currentAvailability.LocationID = LocationID;
             }
             else
             {
-                messageBoxOK("Invalid TimeID ID.");
+                messageBoxOK("Invalid locationID .");
                 txtLocationID.Focus();
+                return;
             }
 
+
+            if (chkIsTakenInsert.Checked)
+            {
+
+
+
+                currentAvailability.IsTaken = chkIsTaken.Checked;
+
+            }
+            else
+            {
+                //messageBoxOK("ISTAKEN ERROR REFER BACK TO INSERT CLICK EVENT.");
+                chkIsTakenInsert.Focus();
+            }
 
 
 
@@ -1372,7 +1417,7 @@ namespace WindowsFormsApp1
             txtDate.ReadOnly = false;
             txtTimeID.ReadOnly = false;
             txtLocationID.ReadOnly = false;
-
+            chkIsTaken.Visible = true;
 
             btnEditAvailability.Visible = false;
             btnUpdateAvailability.Visible = true;
@@ -1393,11 +1438,8 @@ namespace WindowsFormsApp1
             {
                 messageBoxOK("Invalid Availability ID.");
                 txtAvailabilityID.Focus();
+                return;
             }
-
-
-
-
 
             //  currentAvailability.StudentFName = txtStudentFName.Text;
             // currentAvailability.StudentLName = txtStudentLName.Text;
@@ -1412,7 +1454,7 @@ namespace WindowsFormsApp1
             {
                 messageBoxOK("Invalid AdvisorID.");
                 txtAvailAdvisorID.Focus();
-
+                return;
             }
 
 
@@ -1426,9 +1468,9 @@ namespace WindowsFormsApp1
             }
             else
             {
-                MessageBox.Show("Invalid Date.");
+                messageBoxOK("Invalid Date.");
                 txtDate.Focus();
-
+                return;
             }
 
 
@@ -1440,6 +1482,7 @@ namespace WindowsFormsApp1
             {
                 messageBoxOK("Invalid TimeID ID.");
                 txtTimeID.Focus();
+                return;
             }
 
             if (int.TryParse(txtLocationID.Text, out int LocationID))
@@ -1450,9 +1493,20 @@ namespace WindowsFormsApp1
             {
                 messageBoxOK("Invalid TimeID ID.");
                 txtLocationID.Focus();
+                return;
             }
 
+            //checkbox
 
+            if (chkIsTaken.Checked)
+            {
+                currentAvailability.IsTaken = true;
+            }
+            else
+            {
+                currentAvailability.IsTaken = false;
+                
+            }
 
 
 
@@ -1491,6 +1545,19 @@ namespace WindowsFormsApp1
 
 
 
+
+            if (int.TryParse(txtAvailabilityID.Text, out int AvailabilityID))
+            {
+                currentAvailability.AvailabilityID = AvailabilityID;
+            }
+            else
+            {
+                messageBoxOK("Invalid AvailabilityID.");
+                txtAvailabilityID.Focus();
+                return;
+            }
+
+
             if (int.TryParse(txtAvailAdvisorID.Text, out int AdvisorID))
             {
                 currentAvailability.AdvisorID = AdvisorID;
@@ -1499,10 +1566,8 @@ namespace WindowsFormsApp1
             {
                 messageBoxOK("Invalid AdvisorID.");
                 txtAvailAdvisorID.Focus();
-
+                return;
             }
-
-
 
             //currentAvailability.Date = txtDate.Text;
 
@@ -1513,9 +1578,9 @@ namespace WindowsFormsApp1
             }
             else
             {
-                MessageBox.Show("Invalid Date.");
+                messageBoxOK("Invalid Date.");
                 txtDate.Focus();
-
+                return;
             }
 
 
@@ -1527,6 +1592,7 @@ namespace WindowsFormsApp1
             {
                 messageBoxOK("Invalid TimeID ID.");
                 txtTimeID.Focus();
+                return;
             }
 
             if (int.TryParse(txtLocationID.Text, out int LocationID))
@@ -1535,11 +1601,24 @@ namespace WindowsFormsApp1
             }
             else
             {
-                messageBoxOK("Invalid TimeID ID.");
+                messageBoxOK("Invalid LocationID ID.");
                 txtLocationID.Focus();
+                return;
             }
 
 
+            //checkbox
+            if (chkIsTaken.Checked)
+            {
+                currentAvailability.IsTaken = true;
+            }
+            else
+            {
+                currentAvailability.IsTaken = false;
+
+            }
+
+            currentAvailability.AvailabilityID = currentAvailability.AvailabilityID;
 
 
             if (deleteAvailability(currentAvailability) == true)
@@ -1572,55 +1651,17 @@ namespace WindowsFormsApp1
                 displayAvailabilityInformation_update(currentAvailability);
             }
         }
+
+        private void chkIsTaken_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+     
+
+
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 

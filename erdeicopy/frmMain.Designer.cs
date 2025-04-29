@@ -78,6 +78,7 @@
             this.txtStudentIDInsert = new System.Windows.Forms.TextBox();
             this.btnInsertStudentInfo = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.chkIsTaken = new System.Windows.Forms.CheckBox();
             this.txtLocationID = new System.Windows.Forms.TextBox();
             this.lblLocationID = new System.Windows.Forms.Label();
             this.lblTimeID = new System.Windows.Forms.Label();
@@ -95,6 +96,7 @@
             this.lblAvailID = new System.Windows.Forms.Label();
             this.txtAvailabilityID = new System.Windows.Forms.TextBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.chkIsTakenInsert = new System.Windows.Forms.CheckBox();
             this.txtLocationIDInsert = new System.Windows.Forms.TextBox();
             this.lblLocationIDInsert = new System.Windows.Forms.Label();
             this.lblTimeIDInsert = new System.Windows.Forms.Label();
@@ -606,6 +608,7 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.chkIsTaken);
             this.tabPage5.Controls.Add(this.txtLocationID);
             this.tabPage5.Controls.Add(this.lblLocationID);
             this.tabPage5.Controls.Add(this.lblTimeID);
@@ -629,9 +632,20 @@
             this.tabPage5.Text = "Current Availabilities";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // chkIsTaken
+            // 
+            this.chkIsTaken.AutoSize = true;
+            this.chkIsTaken.Location = new System.Drawing.Point(530, 250);
+            this.chkIsTaken.Name = "chkIsTaken";
+            this.chkIsTaken.Size = new System.Drawing.Size(159, 24);
+            this.chkIsTaken.TabIndex = 52;
+            this.chkIsTaken.Text = "Availability is taken";
+            this.chkIsTaken.UseVisualStyleBackColor = true;
+            this.chkIsTaken.CheckedChanged += new System.EventHandler(this.chkIsTaken_CheckedChanged);
+            // 
             // txtLocationID
             // 
-            this.txtLocationID.Location = new System.Drawing.Point(530, 267);
+            this.txtLocationID.Location = new System.Drawing.Point(530, 210);
             this.txtLocationID.Name = "txtLocationID";
             this.txtLocationID.ReadOnly = true;
             this.txtLocationID.Size = new System.Drawing.Size(243, 26);
@@ -640,7 +654,7 @@
             // lblLocationID
             // 
             this.lblLocationID.AutoSize = true;
-            this.lblLocationID.Location = new System.Drawing.Point(424, 267);
+            this.lblLocationID.Location = new System.Drawing.Point(424, 210);
             this.lblLocationID.Name = "lblLocationID";
             this.lblLocationID.Size = new System.Drawing.Size(91, 20);
             this.lblLocationID.TabIndex = 49;
@@ -649,15 +663,15 @@
             // lblTimeID
             // 
             this.lblTimeID.AutoSize = true;
-            this.lblTimeID.Location = new System.Drawing.Point(424, 230);
+            this.lblTimeID.Location = new System.Drawing.Point(424, 173);
             this.lblTimeID.Name = "lblTimeID";
-            this.lblTimeID.Size = new System.Drawing.Size(47, 20);
+            this.lblTimeID.Size = new System.Drawing.Size(64, 20);
             this.lblTimeID.TabIndex = 48;
-            this.lblTimeID.Text = "Time:";
+            this.lblTimeID.Text = "TimeID:";
             // 
             // txtTimeID
             // 
-            this.txtTimeID.Location = new System.Drawing.Point(530, 229);
+            this.txtTimeID.Location = new System.Drawing.Point(530, 172);
             this.txtTimeID.Name = "txtTimeID";
             this.txtTimeID.ReadOnly = true;
             this.txtTimeID.Size = new System.Drawing.Size(243, 26);
@@ -666,7 +680,7 @@
             // lblTime
             // 
             this.lblTime.AutoSize = true;
-            this.lblTime.Location = new System.Drawing.Point(421, 229);
+            this.lblTime.Location = new System.Drawing.Point(421, 172);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(47, 20);
             this.lblTime.TabIndex = 46;
@@ -707,7 +721,7 @@
             // lblDate
             // 
             this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(421, 192);
+            this.lblDate.Location = new System.Drawing.Point(421, 135);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(48, 20);
             this.lblDate.TabIndex = 42;
@@ -715,7 +729,7 @@
             // 
             // txtDate
             // 
-            this.txtDate.Location = new System.Drawing.Point(530, 189);
+            this.txtDate.Location = new System.Drawing.Point(530, 132);
             this.txtDate.Name = "txtDate";
             this.txtDate.ReadOnly = true;
             this.txtDate.Size = new System.Drawing.Size(243, 26);
@@ -744,7 +758,7 @@
             // 
             // txtAvailAdvisorID
             // 
-            this.txtAvailAdvisorID.Location = new System.Drawing.Point(530, 153);
+            this.txtAvailAdvisorID.Location = new System.Drawing.Point(530, 96);
             this.txtAvailAdvisorID.Name = "txtAvailAdvisorID";
             this.txtAvailAdvisorID.ReadOnly = true;
             this.txtAvailAdvisorID.Size = new System.Drawing.Size(243, 26);
@@ -753,7 +767,7 @@
             // lblAvailAdvisorID
             // 
             this.lblAvailAdvisorID.AutoSize = true;
-            this.lblAvailAdvisorID.Location = new System.Drawing.Point(421, 156);
+            this.lblAvailAdvisorID.Location = new System.Drawing.Point(421, 99);
             this.lblAvailAdvisorID.Name = "lblAvailAdvisorID";
             this.lblAvailAdvisorID.Size = new System.Drawing.Size(82, 20);
             this.lblAvailAdvisorID.TabIndex = 38;
@@ -762,7 +776,7 @@
             // lblAvailID
             // 
             this.lblAvailID.AutoSize = true;
-            this.lblAvailID.Location = new System.Drawing.Point(421, 120);
+            this.lblAvailID.Location = new System.Drawing.Point(421, 63);
             this.lblAvailID.Name = "lblAvailID";
             this.lblAvailID.Size = new System.Drawing.Size(30, 20);
             this.lblAvailID.TabIndex = 37;
@@ -770,13 +784,14 @@
             // 
             // txtAvailabilityID
             // 
-            this.txtAvailabilityID.Location = new System.Drawing.Point(530, 117);
+            this.txtAvailabilityID.Location = new System.Drawing.Point(530, 60);
             this.txtAvailabilityID.Name = "txtAvailabilityID";
             this.txtAvailabilityID.Size = new System.Drawing.Size(243, 26);
             this.txtAvailabilityID.TabIndex = 36;
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.chkIsTakenInsert);
             this.tabPage6.Controls.Add(this.txtLocationIDInsert);
             this.tabPage6.Controls.Add(this.lblLocationIDInsert);
             this.tabPage6.Controls.Add(this.lblTimeIDInsert);
@@ -795,9 +810,19 @@
             this.tabPage6.Text = "Create Availability";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
+            // chkIsTakenInsert
+            // 
+            this.chkIsTakenInsert.AutoSize = true;
+            this.chkIsTakenInsert.Location = new System.Drawing.Point(419, 298);
+            this.chkIsTakenInsert.Name = "chkIsTakenInsert";
+            this.chkIsTakenInsert.Size = new System.Drawing.Size(159, 24);
+            this.chkIsTakenInsert.TabIndex = 57;
+            this.chkIsTakenInsert.Text = "Availability is taken";
+            this.chkIsTakenInsert.UseVisualStyleBackColor = true;
+            // 
             // txtLocationIDInsert
             // 
-            this.txtLocationIDInsert.Location = new System.Drawing.Point(408, 294);
+            this.txtLocationIDInsert.Location = new System.Drawing.Point(409, 251);
             this.txtLocationIDInsert.Name = "txtLocationIDInsert";
             this.txtLocationIDInsert.Size = new System.Drawing.Size(186, 26);
             this.txtLocationIDInsert.TabIndex = 56;
@@ -805,7 +830,7 @@
             // lblLocationIDInsert
             // 
             this.lblLocationIDInsert.AutoSize = true;
-            this.lblLocationIDInsert.Location = new System.Drawing.Point(295, 300);
+            this.lblLocationIDInsert.Location = new System.Drawing.Point(296, 257);
             this.lblLocationIDInsert.Name = "lblLocationIDInsert";
             this.lblLocationIDInsert.Size = new System.Drawing.Size(91, 20);
             this.lblLocationIDInsert.TabIndex = 55;
@@ -814,16 +839,16 @@
             // lblTimeIDInsert
             // 
             this.lblTimeIDInsert.AutoSize = true;
-            this.lblTimeIDInsert.Location = new System.Drawing.Point(316, 258);
+            this.lblTimeIDInsert.Location = new System.Drawing.Point(317, 215);
             this.lblTimeIDInsert.Name = "lblTimeIDInsert";
-            this.lblTimeIDInsert.Size = new System.Drawing.Size(47, 20);
+            this.lblTimeIDInsert.Size = new System.Drawing.Size(64, 20);
             this.lblTimeIDInsert.TabIndex = 54;
-            this.lblTimeIDInsert.Text = "Time:";
+            this.lblTimeIDInsert.Text = "TimeID:";
             // 
             // lblDateInsert
             // 
             this.lblDateInsert.AutoSize = true;
-            this.lblDateInsert.Location = new System.Drawing.Point(318, 214);
+            this.lblDateInsert.Location = new System.Drawing.Point(319, 171);
             this.lblDateInsert.Name = "lblDateInsert";
             this.lblDateInsert.Size = new System.Drawing.Size(48, 20);
             this.lblDateInsert.TabIndex = 52;
@@ -832,7 +857,7 @@
             // lblAvailAdvisorIDInsert
             // 
             this.lblAvailAdvisorIDInsert.AutoSize = true;
-            this.lblAvailAdvisorIDInsert.Location = new System.Drawing.Point(304, 166);
+            this.lblAvailAdvisorIDInsert.Location = new System.Drawing.Point(305, 123);
             this.lblAvailAdvisorIDInsert.Name = "lblAvailAdvisorIDInsert";
             this.lblAvailAdvisorIDInsert.Size = new System.Drawing.Size(82, 20);
             this.lblAvailAdvisorIDInsert.TabIndex = 51;
@@ -841,7 +866,7 @@
             // lblAvailIDInsert
             // 
             this.lblAvailIDInsert.AutoSize = true;
-            this.lblAvailIDInsert.Location = new System.Drawing.Point(316, 120);
+            this.lblAvailIDInsert.Location = new System.Drawing.Point(317, 77);
             this.lblAvailIDInsert.Name = "lblAvailIDInsert";
             this.lblAvailIDInsert.Size = new System.Drawing.Size(30, 20);
             this.lblAvailIDInsert.TabIndex = 50;
@@ -849,28 +874,28 @@
             // 
             // txtTimeIDInsert
             // 
-            this.txtTimeIDInsert.Location = new System.Drawing.Point(408, 252);
+            this.txtTimeIDInsert.Location = new System.Drawing.Point(409, 209);
             this.txtTimeIDInsert.Name = "txtTimeIDInsert";
             this.txtTimeIDInsert.Size = new System.Drawing.Size(186, 26);
             this.txtTimeIDInsert.TabIndex = 43;
             // 
             // txtAvailAdvisorIDInsert
             // 
-            this.txtAvailAdvisorIDInsert.Location = new System.Drawing.Point(408, 163);
+            this.txtAvailAdvisorIDInsert.Location = new System.Drawing.Point(409, 120);
             this.txtAvailAdvisorIDInsert.Name = "txtAvailAdvisorIDInsert";
             this.txtAvailAdvisorIDInsert.Size = new System.Drawing.Size(186, 26);
             this.txtAvailAdvisorIDInsert.TabIndex = 42;
             // 
             // txtDateInsert
             // 
-            this.txtDateInsert.Location = new System.Drawing.Point(408, 208);
+            this.txtDateInsert.Location = new System.Drawing.Point(409, 165);
             this.txtDateInsert.Name = "txtDateInsert";
             this.txtDateInsert.Size = new System.Drawing.Size(186, 26);
             this.txtDateInsert.TabIndex = 41;
             // 
             // txtAvailIDInsert
             // 
-            this.txtAvailIDInsert.Location = new System.Drawing.Point(408, 120);
+            this.txtAvailIDInsert.Location = new System.Drawing.Point(409, 77);
             this.txtAvailIDInsert.Name = "txtAvailIDInsert";
             this.txtAvailIDInsert.ReadOnly = true;
             this.txtAvailIDInsert.Size = new System.Drawing.Size(186, 26);
@@ -995,6 +1020,8 @@
         private System.Windows.Forms.Label lblAvailAdvisorIDInsert;
         private System.Windows.Forms.Label lblAvailIDInsert;
         private System.Windows.Forms.TextBox txtLocationIDInsert;
+        private System.Windows.Forms.CheckBox chkIsTaken;
+        private System.Windows.Forms.CheckBox chkIsTakenInsert;
     }
 }
 

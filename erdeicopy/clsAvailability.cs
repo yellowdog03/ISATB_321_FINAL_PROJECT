@@ -39,6 +39,14 @@ namespace WindowsFormsApp1
             set { mDate = value; }
         }
         */
+        /*
+        public DateTime Date
+        {
+            get { return mDate; }
+            set { mDate = value; }
+        }
+        */
+
 
         public DateTime Date
         {
