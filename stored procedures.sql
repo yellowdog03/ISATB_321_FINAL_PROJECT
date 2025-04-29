@@ -106,25 +106,6 @@ GO
 
 
 
-DROP FUNCTION IF EXISTS func_GetAdvisorID
-GO
-
-CREATE FUNCTION func_GetAdvisorID
-(
-	@AdvisorFName VARCHAR(25),
-	@AdvisorLName VARCHAR(40)
-)
-RETURNS INT
-AS
-	BEGIN
-		SELECT AdvisorID
-			FROM Advisors
-			WHERE AdvisorFName = @AdvisorFName
-				AND
-				  AdvisorLName = @AdvisorLName
-	END
-GO
-
 
 
 ----------------------------------------------------------------------------------

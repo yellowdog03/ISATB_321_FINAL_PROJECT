@@ -78,3 +78,21 @@ Go
 
 GRANT EXECUTE ON sp_GetAvailability to B321_S25_APP
 Go
+
+GRANT EXECUTE ON sp_GetAdvisorID to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_GetMeeting to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_InsertMeeting to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_UpdateMeeting to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_DeleteMeeting to B321_S25_APP
+Go
+
+GRANT EXECUTE ON fnGetAdvisorID to B321_S25_APP
+Go
