@@ -330,10 +330,10 @@ namespace ISATB_321_FINAL_PROJECT
             {
                 try
                 {
+
                     conn.Open();
                     SqlCommand cmd = new SqlCommand("sp_InsertAdvisor", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    //cmd.Parameters.AddWithValue("@AdvisorID", currentAdvisor.AdvisorID);
 
                     cmd.Parameters.AddWithValue("@AdvisorFName", currentAdvisor.AdvisorFName);
                     cmd.Parameters.AddWithValue("@AdvisorLName", currentAdvisor.AdvisorLName);
@@ -409,13 +409,30 @@ namespace ISATB_321_FINAL_PROJECT
                         clsAdvisors currentAdvisor = new clsAdvisors();
 
                         conn.Open();
-                        SqlCommand cmd = new SqlCommand("sp_GetAdvisor", conn);
-                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlCommand cmdGetAdvisor = new SqlCommand("sp_GetAdvisor", conn);
+                        cmdGetAdvisor.CommandType = CommandType.StoredProcedure;
 
-                        cmd.ExecuteNonQuery();
+                        cmdGetAdvisor.ExecuteNonQuery();
 
                         currentAdvisor.AdvisorFName = txtFNameNew.Text;
                         currentAdvisor.AdvisorLName = txtLNameNew.Text;
+
+
+                        // Getting AdvisorID back from DB
+                        SqlCommand cmdGetAdvisorID = new SqlCommand("sp_GetAdvisorID", conn);
+                        cmdGetAdvisorID.CommandType = CommandType.StoredProcedure;
+
+                        // Adding parameters to command
+                        cmdGetAdvisorID.Parameters.AddWithValue("@AdvisorFName", currentAdvisor.AdvisorFName);
+                        cmdGetAdvisorID.Parameters.AddWithValue("@AdvisorLName", currentAdvisor.AdvisorLName);
+
+                        // Storing result
+                        int currentAdvisorID = (int)cmdGetAdvisorID.ExecuteScalar();
+
+
+
+                        currentAdvisor.AdvisorID = currentAdvisorID;
+                        
                         currentAdvisor.AdvisorEmail = txtEmailNew.Text;
 
                         if (InsertAdvisor(currentAdvisor) == true)
