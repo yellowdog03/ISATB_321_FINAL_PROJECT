@@ -108,26 +108,25 @@ SET IDENTITY_INSERT Students OFF
 GO
 
 
-
 SET IDENTITY_INSERT Locations ON
 GO
 
-    INSERT INTO [Locations] (LocationID, Description)
-        VALUES 
-            (1,N'LIBR',N'241'),
-            (2,N'SCITECH',N'145'),
-            (3,N'201 Grayson House',N'0'),
-            (4,N'HARG',N'162A'),
-            (5,N'SCITECH',N'231'),
-            (6,N'LIBR',N'Academic Advising Office'),
-            (7,N'SCITECH',N'144'),
-            (8,N'SCITECH',N'143'),
-            (9,N'HARG',N'222'),
-            (10,N'110 Boundary St',N'104')
-        GO
+INSERT INTO [Locations] (LocationID, Description)
+VALUES 
+    (1, N'LIBR 241'),
+    (2, N'SCITECH 145'),
+    (3, N'201 Grayson House Room 0'),
+    (4, N'HARG 162A'),
+    (5, N'SCITECH 231'),
+    (6, N'LIBR Academic Advising Office'),
+    (7, N'SCITECH 144'),
+    (8, N'SCITECH 143'),
+    (9, N'HARG 222'),
+    (10, N'110 Boundary St Room 104')
+GO
 
 SET IDENTITY_INSERT Locations OFF
-GO 
+GO
 
 
 
@@ -185,39 +184,14 @@ GO
 SET IDENTITY_INSERT Times OFF
 
 
-
-SET IDENTITY_INSERT [Availability] ON
+SET IDENTITY_INSERT Availability ON
 GO
 
-        INSERT INTO [Availability] (AvailabilityID, AdvisorID, [Days], StartTimeID, EndTimeID, LocationID, SecondLocationID, IsTaken, IsOnline)
-            VALUES
-            (1,5,N'MWF',25,29,1,NULL,0,NULL),
-            (2,5,N'MW',31,36,1,2,0,NULL),
-            (3,5,N'TTh',31,36,3,NULL,0,NULL),
-            (4,4,N'MWF',5,9,4,NULL,0,NULL),
-            (5,4,N'MWF',12,13,5,NULL,0,NULL),
-            (6,4,N'MWF',17,19,5,NULL,0,NULL),
-            (7,1,N'MWF',9,16,6,NULL,0,NULL),
-            (8,1,N'TTh',21,32,6,NULL,0,NULL),
-            (9,2,N'MWF',9,16,6,NULL,0,NULL),
-            (10,2,N'TTh',21,32,6,NULL,0,NULL),
-            (11,3,N'MWF',9,16,6,NULL,0,NULL),
-            (12,3,N'TTh',21,32,6,NULL,0,NULL),
-            (13,6,N'MW',5,15,10,NULL,0,NULL),
-            (14,7,N'MWF',19,24,9,NULL,0,NULL),
-            (15,7,N'TTh',5,16,9,NULL,0,NULL),
-            (16,8,N'TTh',12,23,7,NULL,0,NULL),
-            (17,9,N'T',23,30,8,NULL,0,NULL),
-            (18,9,N'Th',4,12,8,NULL,0,NULL),
-            (19,10,N'MWF',19,24,9,NULL,0,NULL),
-            (20,10,N'TTh',5,16,9,NULL,0,NULL),
-            (21,11,N'MWF',19,24,9,NULL,0,NULL),
-            (22,11,N'TTh',5,16,9,NULL,0,NULL);
-
-SET IDENTITY_INSERT [Availability] OFF
+INSERT INTO [Availability] (AvailabilityID, AdvisorID, Date, TimeID, LocationID, IsTaken)
+VALUES
+    (1, 1, '2025-05-01 08:00:00', 1, 1, 0),
+    (2, 2, '2025-05-02 10:15:00', 10, 2, 0),
+    (3, 3, '2025-05-03 02:30:00', 27, 3, 1)
 GO
- 
 
-
-
- 
+SET IDENTITY_INSERT Availability OFF

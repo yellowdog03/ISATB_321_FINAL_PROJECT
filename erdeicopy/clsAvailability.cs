@@ -12,7 +12,7 @@ namespace WindowsFormsApp1
         private int mAdvisorID;
         //private DateTime mDate;
         private DateTime mDate;
-        private int mTime;
+        private int mTimeID;
         private int mLocationID;
         private bool mIsTaken;
 
@@ -48,8 +48,8 @@ namespace WindowsFormsApp1
 
         public int TimeID
         {
-            get { return mTime; }
-            set { mTime = value; }
+            get { return mTimeID; }
+            set { mTimeID = value; }
         }
 
         public int LocationID

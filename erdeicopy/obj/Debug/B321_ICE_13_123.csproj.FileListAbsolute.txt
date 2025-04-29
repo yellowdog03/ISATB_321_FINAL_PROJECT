@@ -58,3 +58,13 @@ C:\Users\jeplant\Desktop\ISATB_321_FINAL_PROJECT-main\erdeicopy\obj\Debug\B321_I
 C:\Users\jeplant\Desktop\ISATB_321_FINAL_PROJECT-main\erdeicopy\obj\Debug\B321_ICE_13_123.csproj.CoreCompileInputs.cache
 C:\Users\jeplant\Desktop\ISATB_321_FINAL_PROJECT-main\erdeicopy\obj\Debug\WindowsFormsApp1.exe
 C:\Users\jeplant\Desktop\ISATB_321_FINAL_PROJECT-main\erdeicopy\obj\Debug\WindowsFormsApp1.pdb
+C:\Users\james\Desktop\final project\ISATB_321_FINAL_PROJECT\erdeicopy\obj\Debug\B321_ICE_13_123.csproj.AssemblyReference.cache
+C:\Users\james\Desktop\final project\ISATB_321_FINAL_PROJECT\erdeicopy\obj\Debug\WindowsFormsApp1.frmMain.resources
+C:\Users\james\Desktop\final project\ISATB_321_FINAL_PROJECT\erdeicopy\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\james\Desktop\final project\ISATB_321_FINAL_PROJECT\erdeicopy\obj\Debug\B321_ICE_13_123.csproj.GenerateResource.cache
+C:\Users\james\Desktop\final project\ISATB_321_FINAL_PROJECT\erdeicopy\obj\Debug\B321_ICE_13_123.csproj.CoreCompileInputs.cache
+C:\Users\james\Desktop\final project\ISATB_321_FINAL_PROJECT\erdeicopy\obj\Debug\WindowsFormsApp1.exe
+C:\Users\james\Desktop\final project\ISATB_321_FINAL_PROJECT\erdeicopy\obj\Debug\WindowsFormsApp1.pdb
+C:\Users\james\Desktop\final project\ISATB_321_FINAL_PROJECT\erdeicopy\bin\Debug\WindowsFormsApp1.exe.config
+C:\Users\james\Desktop\final project\ISATB_321_FINAL_PROJECT\erdeicopy\bin\Debug\WindowsFormsApp1.exe
+C:\Users\james\Desktop\final project\ISATB_321_FINAL_PROJECT\erdeicopy\bin\Debug\WindowsFormsApp1.pdb

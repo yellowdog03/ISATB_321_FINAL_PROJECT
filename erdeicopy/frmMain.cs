@@ -1019,7 +1019,7 @@ namespace WindowsFormsApp1
             ;
         }
 
-    }
+    
 
 
 
@@ -1134,24 +1134,15 @@ namespace WindowsFormsApp1
 
 
 
+       
 
-        private void lvwAvailability_Update_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            ListView.SelectedListViewItemCollection itemIsSelected = lvwAvailability.SelectedItems;
-            foreach (ListViewItem item in itemIsSelected)
-            {
-                clsAvailability currentAvailability = (clsAvailability)item.Tag;
-                displayAvailabilityInformation_update(currentAvailability);
-            }
-        }
 
         private void displayAvailabilityInformation_update(clsAvailability currentAvailability)
         {
             txtAvailabilityID.Text = currentAvailability.AvailabilityID.ToString();
-            txtAdvisorID.Text = currentAvailability.AdvisorID.ToString();
+            txtAvailAdvisorID.Text = currentAvailability.AdvisorID.ToString();
             txtDate.Text = currentAvailability.Date.ToString();
-            txtTime.Text = currentAvailability.TimeID.ToString();
+            txtTimeID.Text = currentAvailability.TimeID.ToString();
             txtLocationID.Text = currentAvailability.LocationID.ToString();
             
 
@@ -1163,32 +1154,35 @@ namespace WindowsFormsApp1
             txtAvailabilityID.Clear();
             txtAvailabilityID.ReadOnly = true;
 
-            txtAdvisorID.Clear();
-            txtAdvisorID.ReadOnly = true;
+            txtAvailAdvisorID.Clear();
+            txtAvailAdvisorID.ReadOnly = true;
 
             txtDate.Clear();
             txtDate.ReadOnly = true;
 
-            txtTime.Clear();
-            txtTime.ReadOnly = true;
+            txtTimeID.Clear();
+            txtTimeID.ReadOnly = true;
 
             txtLocationID.Clear();
             txtLocationID.ReadOnly = true;
 
-        
 
 
 
-            txtStudentIDInsert.Clear();
+            txtAvailIDInsert.Clear();
 
 
-            txtStudentFNameInsert.Clear();
+            txtAvailAdvisorIDInsert.Clear();
 
 
-            txtStudentLNameInsert.Clear();
+            txtDateInsert.Clear();
 
 
-            txtYearInsert.Clear();
+            txtTimeIDInsert.Clear();
+
+
+            txtLocationIDInsert.Clear();
+
 
 
 
@@ -1199,68 +1193,269 @@ namespace WindowsFormsApp1
             txtWeight.ReadOnly = true;
             */
 
-            btnStudentEdit.Visible = true;
-            btnStudentUpdate.Visible = false;
-            btnStudentDelete.Visible = false;
+            btnEditAvailability.Visible = true;
+            btnUpdateAvailability.Visible = false;
+            btnDeleteAvailability.Visible = false;
             //btnInsertAdvisorInfo.Visible = true;
 
 
         }
 
 
-        private void btnStudentEdit_Click(object sender, EventArgs e)
+
+        
+
+
+
+        private bool deleteAvailability(clsAvailability currentAvailability)
         {
-            if (txtStudentID.Text == "")
+            string myConnectionString = clsDBUtil.getConnectionString();
+
+            using (SqlConnection conn = new SqlConnection(myConnectionString))
             {
-                return;
+                try
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("sp_DeleteAvailability", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@AvailabilityID", currentAvailability.AvailabilityID);
+                    
+                    cmd.ExecuteNonQuery();
+                    return true;
+
+                }
+                catch (Exception ex)
+                {
+                    messageBoxOK(ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    conn.Close();
+                }
             }
-
-            txtStudentFName.ReadOnly = false;
-            txtStudentLName.ReadOnly = false;
-            txtYear.ReadOnly = false;
-
-            btnStudentEdit.Visible = false;
-            btnStudentUpdate.Visible = true;
-            btnStudentDelete.Visible = true;
 
         }
 
-        private void btnStudentUpdate_Click(object sender, EventArgs e)
+
+
+
+
+
+
+
+
+        private bool InsertAvailability(clsAvailability currentAvailability)
         {
-            clsStudents currentAvailability = new clsStudents();
+            string myConnectionString = clsDBUtil.getConnectionString();
 
-            #region Validate user input & assigning to Advisor properties
-
-            if (int.TryParse(txtStudentID.Text, out int StudentID))
+            using (SqlConnection conn = new SqlConnection(myConnectionString))
             {
-                currentAvailability.StudentID = StudentID;
+                try
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("sp_InsertAvailability", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    //cmd.Parameters.AddWithValue("@AdvisorID", currentAdvisor.AdvisorID);
+
+                    cmd.Parameters.AddWithValue("@AdvisorID", currentAvailability.AdvisorID);
+                    cmd.Parameters.AddWithValue("@Date", currentAvailability.Date);
+                    cmd.Parameters.AddWithValue("@TimeID", currentAvailability.TimeID);
+                    cmd.Parameters.AddWithValue("@LocationID", currentAvailability.LocationID);
+
+
+
+                    cmd.ExecuteNonQuery();
+                    return true;
+
+                }
+                catch (Exception ex)
+                {
+                    messageBoxOK(ex.Message);
+                    return false;
+
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+        private void btnAvailabilityInsert_Click_1(object sender, EventArgs e)
+        {
+            clsAvailability currentAvailability = new clsAvailability();
+
+
+
+            if (int.TryParse(txtAvailAdvisorID.Text, out int AdvisorID))
+            {
+                currentAvailability.AdvisorID = AdvisorID;
             }
             else
             {
-                messageBoxOK("Invalid Student ID.");
-                txtAdvisorID.Focus();
+                messageBoxOK("Invalid AdvisorID.");
+                txtAvailAdvisorID.Focus();
+
             }
 
 
 
+            //currentAvailability.Date = txtDate.Text;
 
 
-            currentAvailability.StudentFName = txtStudentFName.Text;
-            currentAvailability.StudentLName = txtStudentLName.Text;
-
-
-
-
-            if (int.TryParse(txtYear.Text, out int Year))
+            if (DateTime.TryParse(txtDate.Text, out DateTime parsedDate))
             {
-                currentAvailability.Year = Year;
+                currentAvailability.Date = parsedDate;
             }
             else
             {
-                messageBoxOK("Invalid Year.");
-                txtYear.Focus();
+                MessageBox.Show("Invalid Date.");
+                txtDate.Focus();
+
+            }
+
+
+            if (int.TryParse(txtTimeID.Text, out int TimeID))
+            {
+                currentAvailability.TimeID = TimeID;
+            }
+            else
+            {
+                messageBoxOK("Invalid TimeID ID.");
+                txtTimeID.Focus();
+            }
+
+            if (int.TryParse(txtLocationID.Text, out int LocationID))
+            {
+                currentAvailability.LocationID = LocationID;
+            }
+            else
+            {
+                messageBoxOK("Invalid TimeID ID.");
+                txtLocationID.Focus();
+            }
+
+
+
+
+            if (InsertAvailability(currentAvailability) == true)
+            {
+
+                populateAvailabilityDictionary(ref dctAvailability);
+                refreshAvailabilityListview();
+
+
+
+                messageBoxOK("The Availability (ID: " + currentAvailability.AvailabilityID.ToString() + ") successfully updated.");
+                availabilityInformation_Update_ClearTextboxes();
+
+
+
+            }
+            else
+            {
+                messageBoxOK("Update Failed for Availability (ID: " + currentAvailability.AvailabilityID.ToString() + ").");
+            }
+            ;
+        }
+
+        private void btnEditAvailability_Click_1(object sender, EventArgs e)
+        {
+            if (txtAvailabilityID.Text == "")
+            {
                 return;
             }
+
+            txtAvailAdvisorID.ReadOnly = false;
+            txtDate.ReadOnly = false;
+            txtTimeID.ReadOnly = false;
+            txtLocationID.ReadOnly = false;
+
+
+            btnEditAvailability.Visible = false;
+            btnUpdateAvailability.Visible = true;
+            btnDeleteAvailability.Visible = true;
+        }
+
+        private void btnUpdateAvailability_Click_1(object sender, EventArgs e)
+        {
+            clsAvailability currentAvailability = new clsAvailability();
+
+            #region Validate user input & assigning to Availability properties
+
+            if (int.TryParse(txtAvailabilityID.Text, out int AvailabilityID))
+            {
+                currentAvailability.AvailabilityID = AvailabilityID;
+            }
+            else
+            {
+                messageBoxOK("Invalid Availability ID.");
+                txtAvailabilityID.Focus();
+            }
+
+
+
+
+
+            //  currentAvailability.StudentFName = txtStudentFName.Text;
+            // currentAvailability.StudentLName = txtStudentLName.Text;
+
+
+
+            if (int.TryParse(txtAvailAdvisorID.Text, out int AdvisorID))
+            {
+                currentAvailability.AdvisorID = AdvisorID;
+            }
+            else
+            {
+                messageBoxOK("Invalid AdvisorID.");
+                txtAvailAdvisorID.Focus();
+
+            }
+
+
+
+            //currentAvailability.Date = txtDate.Text;
+
+
+            if (DateTime.TryParse(txtDate.Text, out DateTime parsedDate))
+            {
+                currentAvailability.Date = parsedDate;
+            }
+            else
+            {
+                MessageBox.Show("Invalid Date.");
+                txtDate.Focus();
+
+            }
+
+
+            if (int.TryParse(txtTimeID.Text, out int TimeID))
+            {
+                currentAvailability.TimeID = TimeID;
+            }
+            else
+            {
+                messageBoxOK("Invalid TimeID ID.");
+                txtTimeID.Focus();
+            }
+
+            if (int.TryParse(txtLocationID.Text, out int LocationID))
+            {
+                currentAvailability.LocationID = LocationID;
+            }
+            else
+            {
+                messageBoxOK("Invalid TimeID ID.");
+                txtLocationID.Focus();
+            }
+
+
+
+
+
 
 
 
@@ -1272,194 +1467,77 @@ namespace WindowsFormsApp1
             if (updateAvailability(currentAvailability) == true)
             {
 
-                populateStudentDictionary(ref dctAvailability);
-                refreshStudentsListview();
+                populateAvailabilityDictionary(ref dctAvailability);
+                refreshAvailabilityListview();
 
 
 
-                messageBoxOK("The student (ID: " + currentAvailability.StudentID.ToString() + ") successfully updated.");
-                studentInformation_Update_ClearTextboxes();
+                messageBoxOK("The Availability (ID: " + currentAvailability.AvailabilityID.ToString() + ") successfully updated.");
+                availabilityInformation_Update_ClearTextboxes();
 
 
 
             }
             else
             {
-                messageBoxOK("Update Failed for student (ID: " + currentAvailability.StudentID.ToString() + ").");
+                messageBoxOK("Update Failed for Availability (ID: " + currentAvailability.AvailabilityID.ToString() + ").");
             }
             ;
-
         }
 
-
-
-        private bool deleteStudent(clsStudents currentAvailability)
+        private void btnDeleteAvailability_Click_1(object sender, EventArgs e)
         {
-            string myConnectionString = clsDBUtil.getConnectionString();
+            clsAvailability currentAvailability = new clsAvailability();
 
-            using (SqlConnection conn = new SqlConnection(myConnectionString))
+
+
+            if (int.TryParse(txtAvailAdvisorID.Text, out int AdvisorID))
             {
-                try
-                {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand("sp_DeleteStudent", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@StudentID", currentAvailability.StudentID);
-                    /*
-                    cmd.Parameters.AddWithValue("@AdvisorFName", currentAdvisor.AdvisorFName);
-                    cmd.Parameters.AddWithValue("@AdvisorLName", currentAdvisor.AdvisorLName);
-                    cmd.Parameters.AddWithValue("@AdvisorEmail", currentAdvisor.AdvisorEmail);
-                    */
-                    cmd.ExecuteNonQuery();
-                    return true;
-
-                }
-                catch (Exception ex)
-                {
-                    messageBoxOK(ex.Message);
-                    return false;
-                }
-                finally
-                {
-                    conn.Close();
-                }
-            }
-
-        }
-
-
-
-
-
-
-
-
-
-        private bool InsertStudent(clsStudents currentAvailability)
-        {
-            string myConnectionString = clsDBUtil.getConnectionString();
-
-            using (SqlConnection conn = new SqlConnection(myConnectionString))
-            {
-                try
-                {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand("sp_InsertStudent", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    //cmd.Parameters.AddWithValue("@AdvisorID", currentAdvisor.AdvisorID);
-
-                    cmd.Parameters.AddWithValue("@StudentFName", currentAvailability.StudentFName);
-                    cmd.Parameters.AddWithValue("@StudentLName", currentAvailability.StudentLName);
-                    cmd.Parameters.AddWithValue("@Year", currentAvailability.Year);
-
-
-                    cmd.ExecuteNonQuery();
-                    return true;
-
-                }
-                catch (Exception ex)
-                {
-                    messageBoxOK(ex.Message);
-                    return false;
-
-                }
-                finally
-                {
-                    conn.Close();
-                }
-            }
-
-        }
-
-
-
-
-        private void btnInsertStudentInfo_Click_1(object sender, EventArgs e)
-        {
-
-            clsStudents currentAvailability = new clsStudents();
-
-
-
-            currentAvailability.StudentFName = txtStudentFNameInsert.Text;
-            currentAvailability.StudentLName = txtStudentLNameInsert.Text;
-
-
-
-
-
-
-            if (int.TryParse(txtYearInsert.Text, out int year) && year >= 0 && year <= 4)
-            {
-                currentAvailability.Year = year;
+                currentAvailability.AdvisorID = AdvisorID;
             }
             else
             {
-                messageBoxOK("Invalid Year. Please enter a number between 0 and 4.");
-                txtYear.Focus();
-                return;
+                messageBoxOK("Invalid AdvisorID.");
+                txtAvailAdvisorID.Focus();
+
             }
 
 
 
+            //currentAvailability.Date = txtDate.Text;
 
-            if (InsertAvailability(currentAvailability) == true)
+
+            if (DateTime.TryParse(txtDate.Text, out DateTime parsedDate))
             {
-
-                populateStudentDictionary(ref dctAvailability);
-                refreshStudentsListview();
-
-
-
-                messageBoxOK("The student (ID: " + currentAvailability.StudentID.ToString() + ") successfully updated.");
-                studentInformation_Update_ClearTextboxes();
-
-
-
+                currentAvailability.Date = parsedDate;
             }
             else
             {
-                messageBoxOK("Update Failed for student (ID: " + currentAvailability.StudentID.ToString() + ").");
+                MessageBox.Show("Invalid Date.");
+                txtDate.Focus();
+
             }
-            ;
 
 
-        }
-
-        private void btnStudentDelete_Click(object sender, EventArgs e)
-        {
-
-            clsStudents currentAvailability = new clsStudents();
-
-
-
-            if (int.TryParse(txtStudentID.Text, out int StudentID))
+            if (int.TryParse(txtTimeID.Text, out int TimeID))
             {
-                currentAvailability.StudentID = StudentID;
+                currentAvailability.TimeID = TimeID;
             }
             else
             {
-                messageBoxOK("Invalid Student ID.");
-                txtStudentID.Focus();
+                messageBoxOK("Invalid TimeID ID.");
+                txtTimeID.Focus();
             }
 
-            currentAvailability.StudentFName = txtStudentFName.Text;
-            currentAvailability.StudentLName = txtStudentLName.Text;
-
-
-            if (int.TryParse(txtYear.Text, out int Year))
+            if (int.TryParse(txtLocationID.Text, out int LocationID))
             {
-                currentAvailability.Year = Year;
+                currentAvailability.LocationID = LocationID;
             }
             else
             {
-                messageBoxOK("Invalid Year.");
-                txtYear.Focus();
-                return;
+                messageBoxOK("Invalid TimeID ID.");
+                txtLocationID.Focus();
             }
-            //currentStudent.Year = txtYear.Text;
-
-            // currentStudent.AdvisorEmail = txtAdvisorEmail.Text;
 
 
 
@@ -1467,25 +1545,33 @@ namespace WindowsFormsApp1
             if (deleteAvailability(currentAvailability) == true)
             {
 
-                populateStudentDictionary(ref dctAvailability);
-                refreshStudentsListview();
+                populateAvailabilityDictionary(ref dctAvailability);
+                refreshAvailabilityListview();
 
 
 
-                messageBoxOK("The advisor (ID: " + currentAvailability.StudentID.ToString() + ") successfully deleted.");
-                studentInformation_Update_ClearTextboxes();
+                messageBoxOK("The Availability (ID: " + currentAvailability.AvailabilityID.ToString() + ") successfully deleted.");
+                availabilityInformation_Update_ClearTextboxes();
 
 
 
             }
             else
             {
-                messageBoxOK("delete Failed for student (ID: " + currentAvailability.StudentID.ToString() + ").");
+                messageBoxOK("delete Failed for Availability (ID: " + currentAvailability.AvailabilityID.ToString() + ").");
             }
             ;
         }
 
-
+        private void lvwAvailability_Update_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListView.SelectedListViewItemCollection itemIsSelected = lvwAvailability.SelectedItems;
+            foreach (ListViewItem item in itemIsSelected)
+            {
+                clsAvailability currentAvailability = (clsAvailability)item.Tag;
+                displayAvailabilityInformation_update(currentAvailability);
+            }
+        }
     }
 
 

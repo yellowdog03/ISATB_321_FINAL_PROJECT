@@ -80,8 +80,8 @@
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.txtLocationID = new System.Windows.Forms.TextBox();
             this.lblLocationID = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtTime = new System.Windows.Forms.TextBox();
+            this.lblTimeID = new System.Windows.Forms.Label();
+            this.txtTimeID = new System.Windows.Forms.TextBox();
             this.lblTime = new System.Windows.Forms.Label();
             this.btnDeleteAvailability = new System.Windows.Forms.Button();
             this.btnUpdateAvailability = new System.Windows.Forms.Button();
@@ -97,11 +97,11 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.txtLocationIDInsert = new System.Windows.Forms.TextBox();
             this.lblLocationIDInsert = new System.Windows.Forms.Label();
-            this.lblTimeInsert = new System.Windows.Forms.Label();
+            this.lblTimeIDInsert = new System.Windows.Forms.Label();
             this.lblDateInsert = new System.Windows.Forms.Label();
             this.lblAvailAdvisorIDInsert = new System.Windows.Forms.Label();
             this.lblAvailIDInsert = new System.Windows.Forms.Label();
-            this.txtTimeInsert = new System.Windows.Forms.TextBox();
+            this.txtTimeIDInsert = new System.Windows.Forms.TextBox();
             this.txtAvailAdvisorIDInsert = new System.Windows.Forms.TextBox();
             this.txtDateInsert = new System.Windows.Forms.TextBox();
             this.txtAvailIDInsert = new System.Windows.Forms.TextBox();
@@ -608,8 +608,8 @@
             // 
             this.tabPage5.Controls.Add(this.txtLocationID);
             this.tabPage5.Controls.Add(this.lblLocationID);
-            this.tabPage5.Controls.Add(this.label6);
-            this.tabPage5.Controls.Add(this.txtTime);
+            this.tabPage5.Controls.Add(this.lblTimeID);
+            this.tabPage5.Controls.Add(this.txtTimeID);
             this.tabPage5.Controls.Add(this.lblTime);
             this.tabPage5.Controls.Add(this.btnDeleteAvailability);
             this.tabPage5.Controls.Add(this.btnUpdateAvailability);
@@ -646,22 +646,22 @@
             this.lblLocationID.TabIndex = 49;
             this.lblLocationID.Text = "LocationID:";
             // 
-            // label6
+            // lblTimeID
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(424, 230);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 20);
-            this.label6.TabIndex = 48;
-            this.label6.Text = "Time:";
+            this.lblTimeID.AutoSize = true;
+            this.lblTimeID.Location = new System.Drawing.Point(424, 230);
+            this.lblTimeID.Name = "lblTimeID";
+            this.lblTimeID.Size = new System.Drawing.Size(47, 20);
+            this.lblTimeID.TabIndex = 48;
+            this.lblTimeID.Text = "Time:";
             // 
-            // txtTime
+            // txtTimeID
             // 
-            this.txtTime.Location = new System.Drawing.Point(530, 229);
-            this.txtTime.Name = "txtTime";
-            this.txtTime.ReadOnly = true;
-            this.txtTime.Size = new System.Drawing.Size(243, 26);
-            this.txtTime.TabIndex = 47;
+            this.txtTimeID.Location = new System.Drawing.Point(530, 229);
+            this.txtTimeID.Name = "txtTimeID";
+            this.txtTimeID.ReadOnly = true;
+            this.txtTimeID.Size = new System.Drawing.Size(243, 26);
+            this.txtTimeID.TabIndex = 47;
             // 
             // lblTime
             // 
@@ -681,6 +681,7 @@
             this.btnDeleteAvailability.Text = "Delete";
             this.btnDeleteAvailability.UseVisualStyleBackColor = true;
             this.btnDeleteAvailability.Visible = false;
+            this.btnDeleteAvailability.Click += new System.EventHandler(this.btnDeleteAvailability_Click_1);
             // 
             // btnUpdateAvailability
             // 
@@ -691,6 +692,7 @@
             this.btnUpdateAvailability.Text = "Update";
             this.btnUpdateAvailability.UseVisualStyleBackColor = true;
             this.btnUpdateAvailability.Visible = false;
+            this.btnUpdateAvailability.Click += new System.EventHandler(this.btnUpdateAvailability_Click_1);
             // 
             // btnEditAvailability
             // 
@@ -700,6 +702,7 @@
             this.btnEditAvailability.TabIndex = 43;
             this.btnEditAvailability.Text = "Edit";
             this.btnEditAvailability.UseVisualStyleBackColor = true;
+            this.btnEditAvailability.Click += new System.EventHandler(this.btnEditAvailability_Click_1);
             // 
             // lblDate
             // 
@@ -737,6 +740,7 @@
             this.lvwAvailability.TileSize = new System.Drawing.Size(268, 30);
             this.lvwAvailability.UseCompatibleStateImageBehavior = false;
             this.lvwAvailability.View = System.Windows.Forms.View.Tile;
+            this.lvwAvailability.SelectedIndexChanged += new System.EventHandler(this.lvwAvailability_Update_SelectedIndexChanged);
             // 
             // txtAvailAdvisorID
             // 
@@ -775,11 +779,11 @@
             // 
             this.tabPage6.Controls.Add(this.txtLocationIDInsert);
             this.tabPage6.Controls.Add(this.lblLocationIDInsert);
-            this.tabPage6.Controls.Add(this.lblTimeInsert);
+            this.tabPage6.Controls.Add(this.lblTimeIDInsert);
             this.tabPage6.Controls.Add(this.lblDateInsert);
             this.tabPage6.Controls.Add(this.lblAvailAdvisorIDInsert);
             this.tabPage6.Controls.Add(this.lblAvailIDInsert);
-            this.tabPage6.Controls.Add(this.txtTimeInsert);
+            this.tabPage6.Controls.Add(this.txtTimeIDInsert);
             this.tabPage6.Controls.Add(this.txtAvailAdvisorIDInsert);
             this.tabPage6.Controls.Add(this.txtDateInsert);
             this.tabPage6.Controls.Add(this.txtAvailIDInsert);
@@ -807,14 +811,14 @@
             this.lblLocationIDInsert.TabIndex = 55;
             this.lblLocationIDInsert.Text = "LocationID:";
             // 
-            // lblTimeInsert
+            // lblTimeIDInsert
             // 
-            this.lblTimeInsert.AutoSize = true;
-            this.lblTimeInsert.Location = new System.Drawing.Point(316, 258);
-            this.lblTimeInsert.Name = "lblTimeInsert";
-            this.lblTimeInsert.Size = new System.Drawing.Size(47, 20);
-            this.lblTimeInsert.TabIndex = 54;
-            this.lblTimeInsert.Text = "Time:";
+            this.lblTimeIDInsert.AutoSize = true;
+            this.lblTimeIDInsert.Location = new System.Drawing.Point(316, 258);
+            this.lblTimeIDInsert.Name = "lblTimeIDInsert";
+            this.lblTimeIDInsert.Size = new System.Drawing.Size(47, 20);
+            this.lblTimeIDInsert.TabIndex = 54;
+            this.lblTimeIDInsert.Text = "Time:";
             // 
             // lblDateInsert
             // 
@@ -843,12 +847,12 @@
             this.lblAvailIDInsert.TabIndex = 50;
             this.lblAvailIDInsert.Text = "ID:";
             // 
-            // txtTimeInsert
+            // txtTimeIDInsert
             // 
-            this.txtTimeInsert.Location = new System.Drawing.Point(408, 252);
-            this.txtTimeInsert.Name = "txtTimeInsert";
-            this.txtTimeInsert.Size = new System.Drawing.Size(186, 26);
-            this.txtTimeInsert.TabIndex = 43;
+            this.txtTimeIDInsert.Location = new System.Drawing.Point(408, 252);
+            this.txtTimeIDInsert.Name = "txtTimeIDInsert";
+            this.txtTimeIDInsert.Size = new System.Drawing.Size(186, 26);
+            this.txtTimeIDInsert.TabIndex = 43;
             // 
             // txtAvailAdvisorIDInsert
             // 
@@ -880,6 +884,7 @@
             this.btnAvailabilityInsert.TabIndex = 39;
             this.btnAvailabilityInsert.Text = "Insert";
             this.btnAvailabilityInsert.UseVisualStyleBackColor = true;
+            this.btnAvailabilityInsert.Click += new System.EventHandler(this.btnAvailabilityInsert_Click_1);
             // 
             // frmMain
             // 
@@ -963,7 +968,7 @@
         private System.Windows.Forms.Button btnInsertStudentInfo;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.TextBox txtTime;
+        private System.Windows.Forms.TextBox txtTimeID;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Button btnDeleteAvailability;
         private System.Windows.Forms.Button btnUpdateAvailability;
@@ -976,16 +981,16 @@
         private System.Windows.Forms.Label lblAvailAdvisorID;
         private System.Windows.Forms.Label lblAvailID;
         private System.Windows.Forms.TextBox txtAvailabilityID;
-        private System.Windows.Forms.TextBox txtTimeInsert;
+        private System.Windows.Forms.TextBox txtTimeIDInsert;
         private System.Windows.Forms.TextBox txtAvailAdvisorIDInsert;
         private System.Windows.Forms.TextBox txtDateInsert;
         private System.Windows.Forms.TextBox txtAvailIDInsert;
         private System.Windows.Forms.Button btnAvailabilityInsert;
         private System.Windows.Forms.TextBox txtLocationID;
         private System.Windows.Forms.Label lblLocationID;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblTimeID;
         private System.Windows.Forms.Label lblLocationIDInsert;
-        private System.Windows.Forms.Label lblTimeInsert;
+        private System.Windows.Forms.Label lblTimeIDInsert;
         private System.Windows.Forms.Label lblDateInsert;
         private System.Windows.Forms.Label lblAvailAdvisorIDInsert;
         private System.Windows.Forms.Label lblAvailIDInsert;
