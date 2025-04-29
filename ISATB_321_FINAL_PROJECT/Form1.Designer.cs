@@ -79,16 +79,16 @@
             radStudentNew = new RadioButton();
             lblStudentAdvisor = new Label();
             tabPage5 = new TabPage();
-            lsvChangePerson = new ListView();
+            txtNewEmail = new TextBox();
+            lblNewEmail = new Label();
             txtOldEmail = new TextBox();
             lblOldEmail = new Label();
+            lsvChangePerson = new ListView();
             txtOldYear = new TextBox();
             lblOldYear = new Label();
             label7 = new Label();
             txtOldID = new TextBox();
             lblOldID = new Label();
-            txtNewEmail = new TextBox();
-            lblNewEmail = new Label();
             btnChangePersonClearForm = new Button();
             btnSubmitChanges = new Button();
             txtNewYear = new TextBox();
@@ -166,7 +166,7 @@
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(764, 393);
+            tabPage1.Size = new Size(989, 393);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Schedule Appointment";
             tabPage1.UseVisualStyleBackColor = true;
@@ -307,7 +307,7 @@
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(984, 393);
+            tabPage2.Size = new Size(989, 393);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Change Appointment";
             tabPage2.UseVisualStyleBackColor = true;
@@ -463,11 +463,10 @@
             tabPage6.Controls.Add(lblStudentAdvisor);
             tabPage6.Location = new Point(4, 29);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(984, 393);
+            tabPage6.Size = new Size(989, 393);
             tabPage6.TabIndex = 5;
             tabPage6.Text = "Add Person";
             tabPage6.UseVisualStyleBackColor = true;
-            tabPage6.Click += tabPage6_Click;
             // 
             // lsvAddPerson
             // 
@@ -614,16 +613,16 @@
             // 
             // tabPage5
             // 
-            tabPage5.Controls.Add(lsvChangePerson);
+            tabPage5.Controls.Add(txtNewEmail);
+            tabPage5.Controls.Add(lblNewEmail);
             tabPage5.Controls.Add(txtOldEmail);
             tabPage5.Controls.Add(lblOldEmail);
+            tabPage5.Controls.Add(lsvChangePerson);
             tabPage5.Controls.Add(txtOldYear);
             tabPage5.Controls.Add(lblOldYear);
             tabPage5.Controls.Add(label7);
             tabPage5.Controls.Add(txtOldID);
             tabPage5.Controls.Add(lblOldID);
-            tabPage5.Controls.Add(txtNewEmail);
-            tabPage5.Controls.Add(lblNewEmail);
             tabPage5.Controls.Add(btnChangePersonClearForm);
             tabPage5.Controls.Add(btnSubmitChanges);
             tabPage5.Controls.Add(txtNewYear);
@@ -648,6 +647,38 @@
             tabPage5.Text = "Change Person";
             tabPage5.UseVisualStyleBackColor = true;
             // 
+            // txtNewEmail
+            // 
+            txtNewEmail.Location = new Point(366, 323);
+            txtNewEmail.Name = "txtNewEmail";
+            txtNewEmail.Size = new Size(125, 27);
+            txtNewEmail.TabIndex = 33;
+            // 
+            // lblNewEmail
+            // 
+            lblNewEmail.AutoSize = true;
+            lblNewEmail.Location = new Point(277, 330);
+            lblNewEmail.Name = "lblNewEmail";
+            lblNewEmail.Size = new Size(53, 20);
+            lblNewEmail.TabIndex = 32;
+            lblNewEmail.Text = "Email: ";
+            // 
+            // txtOldEmail
+            // 
+            txtOldEmail.Location = new Point(90, 323);
+            txtOldEmail.Name = "txtOldEmail";
+            txtOldEmail.Size = new Size(125, 27);
+            txtOldEmail.TabIndex = 31;
+            // 
+            // lblOldEmail
+            // 
+            lblOldEmail.AutoSize = true;
+            lblOldEmail.Location = new Point(3, 326);
+            lblOldEmail.Name = "lblOldEmail";
+            lblOldEmail.Size = new Size(49, 20);
+            lblOldEmail.TabIndex = 30;
+            lblOldEmail.Text = "Email:";
+            // 
             // lsvChangePerson
             // 
             lsvChangePerson.Location = new Point(519, 3);
@@ -656,26 +687,11 @@
             lsvChangePerson.TabIndex = 29;
             lsvChangePerson.UseCompatibleStateImageBehavior = false;
             lsvChangePerson.View = View.List;
-            // 
-            // txtOldEmail
-            // 
-            txtOldEmail.Location = new Point(90, 308);
-            txtOldEmail.Name = "txtOldEmail";
-            txtOldEmail.Size = new Size(125, 27);
-            txtOldEmail.TabIndex = 6;
-            // 
-            // lblOldEmail
-            // 
-            lblOldEmail.AutoSize = true;
-            lblOldEmail.Location = new Point(18, 310);
-            lblOldEmail.Name = "lblOldEmail";
-            lblOldEmail.Size = new Size(49, 20);
-            lblOldEmail.TabIndex = 28;
-            lblOldEmail.Text = "Email:";
+            lsvChangePerson.SelectedIndexChanged += lsvChangePerson_SelectedIndexChanged;
             // 
             // txtOldYear
             // 
-            txtOldYear.Location = new Point(90, 277);
+            txtOldYear.Location = new Point(90, 289);
             txtOldYear.Name = "txtOldYear";
             txtOldYear.Size = new Size(125, 27);
             txtOldYear.TabIndex = 5;
@@ -683,7 +699,7 @@
             // lblOldYear
             // 
             lblOldYear.AutoSize = true;
-            lblOldYear.Location = new Point(18, 279);
+            lblOldYear.Location = new Point(3, 296);
             lblOldYear.Name = "lblOldYear";
             lblOldYear.Size = new Size(44, 20);
             lblOldYear.TabIndex = 26;
@@ -700,7 +716,7 @@
             // 
             // txtOldID
             // 
-            txtOldID.Location = new Point(90, 183);
+            txtOldID.Location = new Point(90, 195);
             txtOldID.Margin = new Padding(2);
             txtOldID.Name = "txtOldID";
             txtOldID.Size = new Size(125, 27);
@@ -709,28 +725,12 @@
             // lblOldID
             // 
             lblOldID.AutoSize = true;
-            lblOldID.Location = new Point(3, 186);
+            lblOldID.Location = new Point(3, 198);
             lblOldID.Margin = new Padding(2, 0, 2, 0);
             lblOldID.Name = "lblOldID";
             lblOldID.Size = new Size(83, 20);
             lblOldID.TabIndex = 21;
             lblOldID.Text = "Person's ID:";
-            // 
-            // txtNewEmail
-            // 
-            txtNewEmail.Location = new Point(379, 315);
-            txtNewEmail.Name = "txtNewEmail";
-            txtNewEmail.Size = new Size(125, 27);
-            txtNewEmail.TabIndex = 10;
-            // 
-            // lblNewEmail
-            // 
-            lblNewEmail.AutoSize = true;
-            lblNewEmail.Location = new Point(306, 318);
-            lblNewEmail.Name = "lblNewEmail";
-            lblNewEmail.Size = new Size(49, 20);
-            lblNewEmail.TabIndex = 19;
-            lblNewEmail.Text = "Email:";
             // 
             // btnChangePersonClearForm
             // 
@@ -754,21 +754,21 @@
             // 
             // txtNewYear
             // 
-            txtNewYear.Location = new Point(379, 282);
+            txtNewYear.Location = new Point(366, 289);
             txtNewYear.Name = "txtNewYear";
             txtNewYear.Size = new Size(125, 27);
             txtNewYear.TabIndex = 9;
             // 
             // txtNewLName
             // 
-            txtNewLName.Location = new Point(379, 246);
+            txtNewLName.Location = new Point(366, 254);
             txtNewLName.Name = "txtNewLName";
             txtNewLName.Size = new Size(125, 27);
             txtNewLName.TabIndex = 8;
             // 
             // txtNewFName
             // 
-            txtNewFName.Location = new Point(379, 213);
+            txtNewFName.Location = new Point(366, 221);
             txtNewFName.Name = "txtNewFName";
             txtNewFName.Size = new Size(125, 27);
             txtNewFName.TabIndex = 7;
@@ -776,7 +776,7 @@
             // lblNewYear
             // 
             lblNewYear.AutoSize = true;
-            lblNewYear.Location = new Point(310, 282);
+            lblNewYear.Location = new Point(277, 296);
             lblNewYear.Name = "lblNewYear";
             lblNewYear.Size = new Size(44, 20);
             lblNewYear.TabIndex = 12;
@@ -785,7 +785,7 @@
             // lblNewLastName
             // 
             lblNewLastName.AutoSize = true;
-            lblNewLastName.Location = new Point(290, 249);
+            lblNewLastName.Location = new Point(274, 261);
             lblNewLastName.Name = "lblNewLastName";
             lblNewLastName.Size = new Size(86, 20);
             lblNewLastName.TabIndex = 11;
@@ -794,7 +794,7 @@
             // lblNewFirstName
             // 
             lblNewFirstName.AutoSize = true;
-            lblNewFirstName.Location = new Point(290, 216);
+            lblNewFirstName.Location = new Point(274, 228);
             lblNewFirstName.Name = "lblNewFirstName";
             lblNewFirstName.Size = new Size(83, 20);
             lblNewFirstName.TabIndex = 10;
@@ -811,7 +811,7 @@
             // 
             // txtOldLName
             // 
-            txtOldLName.Location = new Point(90, 246);
+            txtOldLName.Location = new Point(90, 258);
             txtOldLName.Name = "txtOldLName";
             txtOldLName.Size = new Size(125, 27);
             txtOldLName.TabIndex = 4;
@@ -819,7 +819,7 @@
             // lblOldLName
             // 
             lblOldLName.AutoSize = true;
-            lblOldLName.Location = new Point(3, 249);
+            lblOldLName.Location = new Point(3, 261);
             lblOldLName.Name = "lblOldLName";
             lblOldLName.Size = new Size(82, 20);
             lblOldLName.TabIndex = 7;
@@ -828,7 +828,7 @@
             // lblOldFName
             // 
             lblOldFName.AutoSize = true;
-            lblOldFName.Location = new Point(3, 216);
+            lblOldFName.Location = new Point(3, 228);
             lblOldFName.Name = "lblOldFName";
             lblOldFName.Size = new Size(83, 20);
             lblOldFName.TabIndex = 6;
@@ -836,7 +836,7 @@
             // 
             // txtOldFName
             // 
-            txtOldFName.Location = new Point(90, 214);
+            txtOldFName.Location = new Point(90, 226);
             txtOldFName.Name = "txtOldFName";
             txtOldFName.Size = new Size(125, 27);
             txtOldFName.TabIndex = 3;
@@ -905,7 +905,7 @@
             tabPage8.Location = new Point(4, 29);
             tabPage8.Margin = new Padding(2);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(984, 393);
+            tabPage8.Size = new Size(989, 393);
             tabPage8.TabIndex = 7;
             tabPage8.Text = "Delete Person";
             tabPage8.UseVisualStyleBackColor = true;
@@ -918,6 +918,7 @@
             lsvDeletePerson.TabIndex = 25;
             lsvDeletePerson.UseCompatibleStateImageBehavior = false;
             lsvDeletePerson.View = View.List;
+            lsvDeletePerson.SelectedIndexChanged += lsvDeletePerson_SelectedIndexChanged;
             // 
             // txtDeleteYear
             // 
@@ -1071,7 +1072,7 @@
             // 
             tabPage7.Location = new Point(4, 29);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(984, 393);
+            tabPage7.Size = new Size(989, 393);
             tabPage7.TabIndex = 6;
             tabPage7.Text = "Change Availability";
             tabPage7.UseVisualStyleBackColor = true;
@@ -1149,8 +1150,6 @@
         private TextBox txtNewLName;
         private TextBox txtNewFName;
         private Label lblNewYear;
-        private TextBox txtNewEmail;
-        private Label lblNewEmail;
         private TabPage tabPage6;
         private TextBox txtEmailNew;
         private Label lblEmailNew;
@@ -1189,13 +1188,15 @@
         private Label lblDeleteYear;
         private Label lblOldID;
         private TextBox txtOldID;
-        private TextBox txtOldEmail;
-        private Label lblOldEmail;
         private TextBox txtOldYear;
         private Label lblOldYear;
         private Label label7;
         private ListView lsvAddPerson;
         private ListView lsvChangePerson;
         private ListView lsvDeletePerson;
+        private TextBox txtOldEmail;
+        private Label lblOldEmail;
+        private TextBox txtNewEmail;
+        private Label lblNewEmail;
     }
 }

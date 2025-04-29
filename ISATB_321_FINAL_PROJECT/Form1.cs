@@ -14,16 +14,19 @@ using WindowsFormsApp1;
 
 /*
     TODO:
-        - Emrys: Resolve bug where inserting a new person does not display correct ID
         - James: Add Availability functionality
         - James: Availability time implementation
             - James: 15 minute intervals, Availability table lists each interval as it's own entry,
               Meetings table will have several entries with the same StudentID but diff AvailabilityID             
         - James: Add front-end to Manage Availability
 
+        - Emrys: Write trigger for if user tries to schedule a meeting with an advisor who is
+                 not available at that time
+
     DONE:
         - Emrys: Add ListView to Add Person, Change Person, and Delete Person
             - Emrys: Remove View Advisors and View Students once done
+        - Emrys: Resolve bug where inserting a new person does not display correct ID
  */
 
 namespace ISATB_321_FINAL_PROJECT
@@ -69,6 +72,104 @@ namespace ISATB_321_FINAL_PROJECT
 
         }
 
+
+
+
+        // Functions for populating the textboxes
+        private void displayAdvisorInformation_Update(clsAdvisors currentAdvisor)
+        {
+            txtOldID.Text = currentAdvisor.AdvisorID.ToString();
+            txtOldFName.Text = currentAdvisor.AdvisorFName;
+            txtOldLName.Text = currentAdvisor.AdvisorLName;
+            txtOldEmail.Text = currentAdvisor.AdvisorEmail;    //.ToString();
+
+        }
+
+        private void displayStudentInformation_Update(clsStudents currentStudent)
+        {
+
+            txtOldID.Text = currentStudent.StudentID.ToString();
+            txtOldFName.Text = currentStudent.StudentFName;
+            txtOldLName.Text = currentStudent.StudentLName;
+            txtOldYear.Text = currentStudent.Year.ToString();
+
+        }
+
+        private void displayAdvisorInformation_Delete(clsAdvisors currentAdvisor)
+        {
+            txtPersonID.Text = currentAdvisor.AdvisorID.ToString();
+            txtDeleteFName.Text = currentAdvisor.AdvisorFName;
+            txtDeleteLName.Text = currentAdvisor.AdvisorLName;
+            txtDeleteEmail.Text = currentAdvisor.AdvisorEmail;    //.ToString();
+        }
+
+        private void displayStudentInformation_Delete(clsStudents currentStudent)
+        {
+
+            txtPersonID.Text = currentStudent.StudentID.ToString();
+            txtDeleteFName.Text = currentStudent.StudentFName;
+            txtDeleteLName.Text = currentStudent.StudentLName;
+            txtDeleteYear.Text = currentStudent.Year.ToString();
+
+        }
+
+
+        // Event handlers for triggering text box population
+        private void lsvChangePerson_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (radChangeAdvisor.Checked)
+            {
+
+                ListView.SelectedListViewItemCollection itemIsSelected = lsvChangePerson.SelectedItems;
+                foreach (ListViewItem item in itemIsSelected)
+                {
+                    clsAdvisors currentAdvisor = (clsAdvisors)item.Tag;
+                    displayAdvisorInformation_Update(currentAdvisor);
+                }
+
+            }
+            if (radChangeStudent.Checked)
+            {
+
+                ListView.SelectedListViewItemCollection itemIsSelected = lsvChangePerson.SelectedItems;
+                foreach (ListViewItem item in itemIsSelected)
+                {
+                    clsStudents currentStudent = (clsStudents)item.Tag;
+                    displayStudentInformation_Update(currentStudent);
+                }
+
+            }
+
+        }
+
+        private void lsvDeletePerson_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (radDeleteAdvisor.Checked)
+            {
+
+                ListView.SelectedListViewItemCollection itemIsSelected = lsvDeletePerson.SelectedItems;
+                foreach (ListViewItem item in itemIsSelected)
+                {
+                    clsAdvisors currentAdvisor = (clsAdvisors)item.Tag;
+                    displayAdvisorInformation_Delete(currentAdvisor);
+                }
+
+            }
+            if (radDeleteStudent.Checked)
+            {
+
+                ListView.SelectedListViewItemCollection itemIsSelected = lsvDeletePerson.SelectedItems;
+                foreach (ListViewItem item in itemIsSelected)
+                {
+                    clsStudents currentStudent = (clsStudents)item.Tag;
+                    displayStudentInformation_Delete(currentStudent);
+                }
+
+            }
+
+        }
 
 
         // Functions for loading and refreshing the Advisors and Students dictionaries
@@ -270,6 +371,8 @@ namespace ISATB_321_FINAL_PROJECT
 
         }
 
+
+
         // Update Person
         private void radChangeStudent_CheckedChanged(object sender, EventArgs e)
         {
@@ -295,6 +398,8 @@ namespace ISATB_321_FINAL_PROJECT
 
         }
 
+
+
         // Delete Person
         private void radDeleteStudent_CheckedChanged(object sender, EventArgs e)
         {
@@ -319,6 +424,7 @@ namespace ISATB_321_FINAL_PROJECT
             }
 
         }
+
 
 
         // Functions for adding people
@@ -416,27 +522,25 @@ namespace ISATB_321_FINAL_PROJECT
 
                         currentAdvisor.AdvisorFName = txtFNameNew.Text;
                         currentAdvisor.AdvisorLName = txtLNameNew.Text;
-
-
-                        // Getting AdvisorID back from DB
-                        SqlCommand cmdGetAdvisorID = new SqlCommand("sp_GetAdvisorID", conn);
-                        cmdGetAdvisorID.CommandType = CommandType.StoredProcedure;
-
-                        // Adding parameters to command
-                        cmdGetAdvisorID.Parameters.AddWithValue("@AdvisorFName", currentAdvisor.AdvisorFName);
-                        cmdGetAdvisorID.Parameters.AddWithValue("@AdvisorLName", currentAdvisor.AdvisorLName);
-
-                        // Storing result
-                        int currentAdvisorID = (int)cmdGetAdvisorID.ExecuteScalar();
-
-
-
-                        currentAdvisor.AdvisorID = currentAdvisorID;
-                        
                         currentAdvisor.AdvisorEmail = txtEmailNew.Text;
+
+
 
                         if (InsertAdvisor(currentAdvisor) == true)
                         {
+
+                            SqlCommand cmdGetAdvisorID = new SqlCommand("SELECT dbo.fnGetAdvisorID(@AdvisorFName, @AdvisorLName)", conn);
+                            cmdGetAdvisorID.CommandType = CommandType.Text;
+
+                            // Adding parameters to the command
+                            cmdGetAdvisorID.Parameters.AddWithValue("@AdvisorFName", currentAdvisor.AdvisorFName ?? string.Empty);
+                            cmdGetAdvisorID.Parameters.AddWithValue("@AdvisorLName", currentAdvisor.AdvisorLName ?? string.Empty);
+
+                            // Execute the command and store the result
+                            int currentAdvisorID = (int)cmdGetAdvisorID.ExecuteScalar();
+
+                            // Setting dct-associated value to result
+                            currentAdvisor.AdvisorID = currentAdvisorID;
 
                             populateAdvisorDictionary(ref dctAdvisors);
                             refreshAdvisorsListview();
@@ -447,7 +551,22 @@ namespace ISATB_321_FINAL_PROJECT
                         }
                         else
                         {
+
+                            SqlCommand cmdGetAdvisorID = new SqlCommand("SELECT dbo.fnGetAdvisorID(@AdvisorFName, @AdvisorLName)", conn);
+                            cmdGetAdvisorID.CommandType = CommandType.Text;
+
+                            // Adding parameters to the command
+                            cmdGetAdvisorID.Parameters.AddWithValue("@AdvisorFName", currentAdvisor.AdvisorFName ?? string.Empty);
+                            cmdGetAdvisorID.Parameters.AddWithValue("@AdvisorLName", currentAdvisor.AdvisorLName ?? string.Empty);
+
+                            // Execute the command and store the result
+                            int currentAdvisorID = (int)cmdGetAdvisorID.ExecuteScalar();
+
+                            // Setting dct-associated value to result
+                            currentAdvisor.AdvisorID = currentAdvisorID;
+
                             messageBoxOK("Creation failed for advisor (ID: " + currentAdvisor.AdvisorID.ToString() + ").");
+
                         }
             ;
 
@@ -876,7 +995,6 @@ namespace ISATB_321_FINAL_PROJECT
 
 
 
-
         // Clear Form Functions
         private void personInformation_ClearTextboxes()
         {
@@ -956,8 +1074,6 @@ namespace ISATB_321_FINAL_PROJECT
 
 
 
-
-
         // DialogBoxes
         private void messageBoxOK(string msg)
         {
@@ -967,13 +1083,6 @@ namespace ISATB_321_FINAL_PROJECT
         private DialogResult messageBoxYesNo(string msg)
         {
             return MessageBox.Show(msg, Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-        }
-
-        private void tabPage6_Click(object sender, EventArgs e)
-        {
-
-            messageBoxOK("The current tab is " + tabMain.SelectedTab + ".");
-
         }
 
 
