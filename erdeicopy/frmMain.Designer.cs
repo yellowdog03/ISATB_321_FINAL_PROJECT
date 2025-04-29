@@ -108,6 +108,15 @@
             this.txtDateInsert = new System.Windows.Forms.TextBox();
             this.txtAvailIDInsert = new System.Windows.Forms.TextBox();
             this.btnAvailabilityInsert = new System.Windows.Forms.Button();
+            this.ScheduleMeeting = new System.Windows.Forms.TabPage();
+            this.txtMeetAvailabilityID = new System.Windows.Forms.TextBox();
+            this.txtMeetStudentID = new System.Windows.Forms.TextBox();
+            this.txtMeetingID = new System.Windows.Forms.TextBox();
+            this.btnDeleteMeeting = new System.Windows.Forms.Button();
+            this.btnCreateMeeting = new System.Windows.Forms.Button();
+            this.lvwMeetings = new System.Windows.Forms.ListView();
+            this.cboAvailabilityBrowse = new System.Windows.Forms.ComboBox();
+            this.cboStudentsBrowse = new System.Windows.Forms.ComboBox();
             this.tabAdvisors.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -115,6 +124,7 @@
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            this.ScheduleMeeting.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabAdvisors
@@ -125,6 +135,7 @@
             this.tabAdvisors.Controls.Add(this.tabPage4);
             this.tabAdvisors.Controls.Add(this.tabPage5);
             this.tabAdvisors.Controls.Add(this.tabPage6);
+            this.tabAdvisors.Controls.Add(this.ScheduleMeeting);
             this.tabAdvisors.Location = new System.Drawing.Point(21, 45);
             this.tabAdvisors.Name = "tabAdvisors";
             this.tabAdvisors.SelectedIndex = 0;
@@ -911,6 +922,94 @@
             this.btnAvailabilityInsert.UseVisualStyleBackColor = true;
             this.btnAvailabilityInsert.Click += new System.EventHandler(this.btnAvailabilityInsert_Click_1);
             // 
+            // ScheduleMeeting
+            // 
+            this.ScheduleMeeting.Controls.Add(this.txtMeetAvailabilityID);
+            this.ScheduleMeeting.Controls.Add(this.txtMeetStudentID);
+            this.ScheduleMeeting.Controls.Add(this.txtMeetingID);
+            this.ScheduleMeeting.Controls.Add(this.btnDeleteMeeting);
+            this.ScheduleMeeting.Controls.Add(this.btnCreateMeeting);
+            this.ScheduleMeeting.Controls.Add(this.lvwMeetings);
+            this.ScheduleMeeting.Controls.Add(this.cboAvailabilityBrowse);
+            this.ScheduleMeeting.Controls.Add(this.cboStudentsBrowse);
+            this.ScheduleMeeting.Location = new System.Drawing.Point(4, 29);
+            this.ScheduleMeeting.Name = "ScheduleMeeting";
+            this.ScheduleMeeting.Size = new System.Drawing.Size(895, 480);
+            this.ScheduleMeeting.TabIndex = 6;
+            this.ScheduleMeeting.Text = "Schedule Meeting";
+            this.ScheduleMeeting.UseVisualStyleBackColor = true;
+            // 
+            // txtMeetAvailabilityID
+            // 
+            this.txtMeetAvailabilityID.Location = new System.Drawing.Point(572, 226);
+            this.txtMeetAvailabilityID.Name = "txtMeetAvailabilityID";
+            this.txtMeetAvailabilityID.Size = new System.Drawing.Size(186, 26);
+            this.txtMeetAvailabilityID.TabIndex = 48;
+            // 
+            // txtMeetStudentID
+            // 
+            this.txtMeetStudentID.Location = new System.Drawing.Point(572, 188);
+            this.txtMeetStudentID.Name = "txtMeetStudentID";
+            this.txtMeetStudentID.Size = new System.Drawing.Size(186, 26);
+            this.txtMeetStudentID.TabIndex = 47;
+            // 
+            // txtMeetingID
+            // 
+            this.txtMeetingID.Location = new System.Drawing.Point(572, 142);
+            this.txtMeetingID.Name = "txtMeetingID";
+            this.txtMeetingID.Size = new System.Drawing.Size(186, 26);
+            this.txtMeetingID.TabIndex = 46;
+            // 
+            // btnDeleteMeeting
+            // 
+            this.btnDeleteMeeting.Location = new System.Drawing.Point(594, 327);
+            this.btnDeleteMeeting.Name = "btnDeleteMeeting";
+            this.btnDeleteMeeting.Size = new System.Drawing.Size(136, 44);
+            this.btnDeleteMeeting.TabIndex = 45;
+            this.btnDeleteMeeting.Text = "Delete";
+            this.btnDeleteMeeting.UseVisualStyleBackColor = true;
+            this.btnDeleteMeeting.Click += new System.EventHandler(this.btnDeleteMeeting_Click);
+            // 
+            // btnCreateMeeting
+            // 
+            this.btnCreateMeeting.Location = new System.Drawing.Point(71, 327);
+            this.btnCreateMeeting.Name = "btnCreateMeeting";
+            this.btnCreateMeeting.Size = new System.Drawing.Size(136, 44);
+            this.btnCreateMeeting.TabIndex = 43;
+            this.btnCreateMeeting.Text = "Create";
+            this.btnCreateMeeting.UseVisualStyleBackColor = true;
+            this.btnCreateMeeting.Click += new System.EventHandler(this.btnCreateMeeting_Click);
+            // 
+            // lvwMeetings
+            // 
+            this.lvwMeetings.HideSelection = false;
+            this.lvwMeetings.Location = new System.Drawing.Point(319, 73);
+            this.lvwMeetings.Name = "lvwMeetings";
+            this.lvwMeetings.Size = new System.Drawing.Size(170, 298);
+            this.lvwMeetings.TabIndex = 42;
+            this.lvwMeetings.TileSize = new System.Drawing.Size(268, 30);
+            this.lvwMeetings.UseCompatibleStateImageBehavior = false;
+            this.lvwMeetings.View = System.Windows.Forms.View.Tile;
+            this.lvwMeetings.SelectedIndexChanged += new System.EventHandler(this.lvwMeetings_SelectedIndexChanged);
+            // 
+            // cboAvailabilityBrowse
+            // 
+            this.cboAvailabilityBrowse.FormattingEnabled = true;
+            this.cboAvailabilityBrowse.Location = new System.Drawing.Point(40, 241);
+            this.cboAvailabilityBrowse.Name = "cboAvailabilityBrowse";
+            this.cboAvailabilityBrowse.Size = new System.Drawing.Size(201, 28);
+            this.cboAvailabilityBrowse.TabIndex = 41;
+            this.cboAvailabilityBrowse.SelectedIndexChanged += new System.EventHandler(this.cboAvailabilityBrowse_SelectedIndexChanged);
+            // 
+            // cboStudentsBrowse
+            // 
+            this.cboStudentsBrowse.FormattingEnabled = true;
+            this.cboStudentsBrowse.Location = new System.Drawing.Point(40, 188);
+            this.cboStudentsBrowse.Name = "cboStudentsBrowse";
+            this.cboStudentsBrowse.Size = new System.Drawing.Size(201, 28);
+            this.cboStudentsBrowse.TabIndex = 40;
+            this.cboStudentsBrowse.SelectedIndexChanged += new System.EventHandler(this.cboStudentsBrowse_SelectedIndexChanged);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -937,6 +1036,8 @@
             this.tabPage5.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
+            this.ScheduleMeeting.ResumeLayout(false);
+            this.ScheduleMeeting.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1022,6 +1123,15 @@
         private System.Windows.Forms.TextBox txtLocationIDInsert;
         private System.Windows.Forms.CheckBox chkIsTaken;
         private System.Windows.Forms.CheckBox chkIsTakenInsert;
+        private System.Windows.Forms.TabPage ScheduleMeeting;
+        private System.Windows.Forms.ComboBox cboAvailabilityBrowse;
+        private System.Windows.Forms.ComboBox cboStudentsBrowse;
+        private System.Windows.Forms.ListView lvwMeetings;
+        private System.Windows.Forms.Button btnCreateMeeting;
+        private System.Windows.Forms.Button btnDeleteMeeting;
+        private System.Windows.Forms.TextBox txtMeetAvailabilityID;
+        private System.Windows.Forms.TextBox txtMeetStudentID;
+        private System.Windows.Forms.TextBox txtMeetingID;
     }
 }
 
