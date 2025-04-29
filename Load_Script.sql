@@ -2,6 +2,14 @@
     Author: Quick, Emrys
 */
 
+
+
+
+
+
+
+
+
 SET IDENTITY_INSERT Advisors ON
 GO
 
@@ -22,6 +30,10 @@ GO
 
 SET IDENTITY_INSERT Advisors OFF
 GO
+
+
+
+
 
 SET IDENTITY_INSERT Students ON
 GO
@@ -108,6 +120,9 @@ SET IDENTITY_INSERT Students OFF
 GO
 
 
+
+
+
 SET IDENTITY_INSERT Locations ON
 GO
 
@@ -184,6 +199,7 @@ GO
 SET IDENTITY_INSERT Times OFF
 
 
+
 SET IDENTITY_INSERT Availability ON
 GO
 
@@ -197,8 +213,37 @@ GO
 SET IDENTITY_INSERT Availability OFF
 
 
+SET IDENTITY_INSERT Meetings ON
+GO
+
+INSERT INTO [Meetings] (MeetingID, StudentID, AvailabilityID)
+VALUES
+    (1, 3, 1),
+    (2, 2, 3),
+    (3, 3, 2)
+GO
+
+SET IDENTITY_INSERT Meetings OFF
+
+
 /*
 (1, 1, '2025-05-01 08:00:00', 1, 1, 0),
     (2, 2, '2025-05-02 10:15:00', 10, 2, 0),
     (3, 3, '2025-05-03 02:30:00', 27, 3, 1)
 	*/
+
+
+--test meetings
+/*
+SET IDENTITY_INSERT Meetings ON
+GO
+
+INSERT INTO [Meetings] (MeetingID, StudentID, AvailabilityID)
+VALUES
+    (1, 3, 5),
+    (2, 2, 4),
+    (3, 3, 2)
+GO
+
+SET IDENTITY_INSERT Meetings OFF
+*/
