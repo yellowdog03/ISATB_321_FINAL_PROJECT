@@ -309,6 +309,40 @@ BEGIN
 END
 GO
 
+-- Availability TRIGGER
+
+DROP TRIGGER IF EXISTS tgrCheckTaken
+GO
+
+CREATE TRIGGER tgrCheckTaken ON Availability INSTEAD OF INSERT
+AS
+	DECLARE @AvailabilityID INT,
+     		@AdvisorID INT,
+	    	@Date DATE,
+		    @TimeID INT,
+		    @LocationID INT,
+			@IsTaken BIT
+
+	SET @IsTaken =
+	(
+		SELECT IsTaken
+			FROM Availability
+			WHERE AvailabilityID = @AvailabilityID
+	)
+
+	IF @IsTaken = 0
+		BEGIN
+			UPDATE Availability
+				SET AdvisorID = @AdvisorID,
+				    Date = @Date,
+				    TimeID = @TimeID,
+					LocationID = @LocationID,
+					IsTaken = @IsTaken
+				WHERE AvailabilityID = @AvailabilityID
+		END
+	ELSE
+		THROW 50027, 'Availability already taken.', 1
+	GO
 
 
 ------------------------------------------------
