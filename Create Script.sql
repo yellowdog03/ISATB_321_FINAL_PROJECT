@@ -87,3 +87,9 @@ CREATE TABLE Meetings (
     FOREIGN KEY (AvailabilityID) REFERENCES Availability(AvailabilityID)
 )
 GO
+
+ALTER TABLE Availability
+ADD CONSTRAINT UQ_Availability UNIQUE (AdvisorID, Date, TimeID, LocationID);
+
+ALTER TABLE Meetings
+ADD CONSTRAINT UQ_Meetings UNIQUE (StudentID, AvailabilityID);
