@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsFormsApp1;
+
 
 /*
     TODO:
@@ -1202,6 +1202,385 @@ namespace ISATB_321_FINAL_PROJECT
         {
             return MessageBox.Show(msg, Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
         }
+
+
+
+
+
+        //MEETING CODE MESSY*****************************************************************************
+        //*************************************************************************************************
+        //***************************************************************************************************
+
+        public class ComboBoxItem
+        {
+            public string DisplayText { get; }
+            public object Value { get; }
+
+            public ComboBoxItem(string text, object value)
+            {
+                DisplayText = text;
+                Value = value;
+            }
+
+            public override string ToString()
+            {
+                return DisplayText;
+            }
+        }
+
+
+
+        //student combobox logic
+        private void populateStudentsComboBox()
+        {
+            cboStudentsBrowse.Items.Clear();
+            foreach (var currentStudent in dctStudents.Values)
+            {
+                cboStudentsBrowse.Items.Add(new ComboBoxItem(currentStudent.StudentID.ToString() + " " + currentStudent.StudentLName, currentStudent));
+            }
+        }
+
+
+        private void cboStudentsBrowse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboStudentsBrowse.SelectedItem is ComboBoxItem selectedItem)
+            {
+                clsStudents currentstudent = (clsStudents)selectedItem.Value;
+                txtStudentLName.Text = currentstudent.StudentLName;
+            }
+        }
+
+
+        //Availability combobox logic
+
+
+        private void populateAvailabilityComboBox()
+        {
+            cboAvailabilityBrowse.Items.Clear();
+            foreach (var currentAvailability in dctAvailability.Values)
+            {
+                cboAvailabilityBrowse.Items.Add(new ComboBoxItem("AvailabilityID:" + currentAvailability.AvailabilityID + ", " + currentAvailability.Date.ToString("MM/dd/yyyy"), currentAvailability));
+            }
+        }
+
+        //availability combobox
+
+        private void cboAvailabilityBrowse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+
+            if (cboAvailabilityBrowse.SelectedItem is ComboBoxItem selectedItem)
+            {
+                clsAvailability currentAvailability = (clsAvailability)selectedItem.Value;
+                txtAvailabilityID.Text = currentAvailability.AvailabilityID.ToString();
+            }
+
+        }
+
+        
+
+        //creates the meeting dictionary
+        private void populateMeetingDictionary(ref Dictionary<int, clsMeetings> dctMeetings)
+        {
+
+            string myConnectionString = clsDBUtil.getConnectionString();
+
+            using (SqlConnection conn = new SqlConnection(myConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("sp_GetMeeting", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataReader rdr = cmd.ExecuteReader())
+                    {
+                        dctMeetings.Clear();
+
+                        while (rdr.Read() == true)
+                        {
+                            clsMeetings currentMeeting = new clsMeetings();
+                            currentMeeting.MeetingID = (int)rdr["MeetingID"];
+                            currentMeeting.StudentID = (int)rdr["StudentID"];
+                            currentMeeting.AvailabilityID = (int)rdr["AvailabilityID"];
+
+
+
+                            dctMeetings.Add(currentMeeting.MeetingID, currentMeeting);
+                        }
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    messageBoxOK(ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+        //refresh the listview for meetings
+        private void refreshMeetingsListview()
+        {
+            // REMEMBER: the View property of the listview must be set to 'List'
+            lvwMeetings.Clear();
+            clsMeetings currentMeeting = new clsMeetings();
+            foreach (KeyValuePair<int, clsMeetings> kvp in dctMeetings)
+            {
+                currentMeeting = kvp.Value;
+                ListViewItem item = new ListViewItem(currentMeeting.MeetingID.ToString());
+                item.Tag = currentMeeting;
+                lvwMeetings.Items.Add(item);
+            }
+        }
+
+        //pull sql info to font end
+        private void displayMeetingInformation_update(clsMeetings currentMeeting)
+        {
+            txtMeetingID.Text = currentMeeting.MeetingID.ToString();
+            txtMeetStudentID.Text = currentMeeting.StudentID.ToString();
+            txtMeetAvailabilityID.Text = currentMeeting.AvailabilityID.ToString();
+
+        }
+
+
+
+        //clear meeting textboxes
+        private void meetingInformation_Update_ClearTextboxes()
+        {
+            txtMeetingID.Clear();
+            txtMeetingID.ReadOnly = true;
+
+            txtMeetStudentID.Clear();
+            txtMeetStudentID.ReadOnly = true;
+
+            txtMeetAvailabilityID.Clear();
+            txtMeetAvailabilityID.ReadOnly = true;
+
+            //txtStartTime.Visible = true;
+            //txtEndTime.Visible = true;
+
+
+            cboStudentsBrowse.SelectedIndex = -1;
+            cboAvailabilityBrowse.SelectedIndex = -1;
+
+
+
+
+        }
+        //change selected index
+        private void lvwMeetings_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListView.SelectedListViewItemCollection itemIsSelected = lvwMeetings.SelectedItems;
+            foreach (ListViewItem item in itemIsSelected)
+            {
+                clsMeetings currentMeeting = (clsMeetings)item.Tag;
+                displayMeetingInformation_update(currentMeeting);
+            }
+        }
+
+
+
+        //delete method for meetings
+        private bool deleteMeeting(clsMeetings currentMeeting)
+        {
+            string myConnectionString = clsDBUtil.getConnectionString();
+
+            using (SqlConnection conn = new SqlConnection(myConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("sp_DeleteMeeting", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@MeetingID", currentMeeting.MeetingID);
+
+
+                    cmd.ExecuteNonQuery();
+                    return true;
+
+                }
+                catch (Exception ex)
+                {
+                    messageBoxOK(ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+        //insert method for meetings
+        private bool InsertMeeting(clsMeetings currentMeeting)
+        {
+            string myConnectionString = clsDBUtil.getConnectionString();
+
+            using (SqlConnection conn = new SqlConnection(myConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("sp_InsertMeeting", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+
+                    cmd.Parameters.AddWithValue("@StudentID", currentMeeting.StudentID);
+                    cmd.Parameters.AddWithValue("@AvailabilityID", currentMeeting.AvailabilityID);
+
+
+
+                    cmd.ExecuteNonQuery();
+                    return true;
+
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 2627 || ex.Number == 2601)
+                    {
+                        messageBoxOK("A meeting already exists for this student and time. Please choose a different slot.");
+                    }
+                    else
+                    {
+                        messageBoxOK("An error occurred while scheduling the meeting: " + ex.Message);
+                    }
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    messageBoxOK("Unexpected error: " + ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+
+
+        //delete button for meetings
+        private void btnDeleteMeeting_Click(object sender, EventArgs e)
+        {
+            clsMeetings currentMeeting = new clsMeetings();
+
+
+
+            if (int.TryParse(txtMeetingID.Text, out int MeetingID))
+            {
+                currentMeeting.MeetingID = MeetingID;
+            }
+            else
+            {
+                messageBoxOK("Invalid meeting ID.");
+                txtMeetingID.Focus();
+                return;
+            }
+
+
+            if (int.TryParse(txtMeetAvailabilityID.Text, out int AvailabilityID))
+            {
+                currentMeeting.AvailabilityID = AvailabilityID;
+            }
+            else
+            {
+                messageBoxOK("Invalid availability ID.");
+                txtMeetAvailabilityID.Focus();
+                return;
+            }
+
+
+
+
+
+            if (deleteMeeting(currentMeeting) == true)
+            {
+
+                populateMeetingDictionary(ref dctMeetings);
+                refreshMeetingsListview();
+
+
+
+                messageBoxOK("The meeting (ID: " + currentMeeting.MeetingID.ToString() + ") successfully deleted.");
+                meetingInformation_Update_ClearTextboxes();
+
+
+
+            }
+            else
+            {
+                messageBoxOK("delete Failed for meeting (ID: " + currentMeeting.MeetingID.ToString() + ").");
+            }
+            ;
+        }
+
+        //create meeting button
+        private void btnCreateMeeting_Click(object sender, EventArgs e)
+        {
+            clsMeetings currentMeeting = new clsMeetings();
+
+
+
+
+            if (cboStudentsBrowse.SelectedItem is ComboBoxItem selectedItem &&
+            selectedItem.Value is clsStudents selectedStudent)
+            {
+                currentMeeting.StudentID = selectedStudent.StudentID;
+            }
+            else
+            {
+                messageBoxOK("Invalid student selection.");
+                cboStudentsBrowse.Focus();
+                return;
+            }
+
+
+            if (cboAvailabilityBrowse.SelectedItem is ComboBoxItem selectedAvailabilityItem &&
+            selectedAvailabilityItem.Value is clsAvailability selectedAvailability)
+            {
+                currentMeeting.AvailabilityID = selectedAvailability.AvailabilityID;
+            }
+            else
+            {
+                messageBoxOK("Invalid availability selection.");
+                cboAvailabilityBrowse.Focus();
+                return;
+            }
+
+
+
+
+
+            if (InsertMeeting(currentMeeting) == true)
+            {
+
+                populateMeetingDictionary(ref dctMeetings);
+                refreshMeetingsListview();
+
+
+
+                messageBoxOK("The meeting (ID: " + currentMeeting.MeetingID.ToString() + ") successfully updated.");
+                meetingInformation_Update_ClearTextboxes();
+
+
+
+            }
+
+            else
+            {
+                messageBoxOK("Create Failed for meeting (ID: " + currentMeeting.MeetingID.ToString() + ").");
+            }
+           ;
+        }
+
 
 
     }

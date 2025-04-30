@@ -1756,7 +1756,7 @@ namespace WindowsFormsApp1
             cboStudentsBrowse.Items.Clear();
             foreach (var currentStudent in dctStudents.Values)
             {
-                cboStudentsBrowse.Items.Add(new ComboBoxItem(currentStudent.StudentID.ToString() , currentStudent));
+                cboStudentsBrowse.Items.Add(new ComboBoxItem(currentStudent.StudentID.ToString() + " " + currentStudent.StudentLName, currentStudent));
             }
         }
 
@@ -1772,16 +1772,7 @@ namespace WindowsFormsApp1
 
 
         //Availability combobox logic
-        /*
-        private void populateAvailabilityComboBox()
-        {
-            cboAvailabilityBrowse.Items.Clear();
-            foreach (var currentAvailability in dctAvailability.Values)
-            {
-                cboAvailabilityBrowse.Items.Add(new ComboBoxItem(currentAvailability.AvailabilityID + ", " + currentAvailability.Date.ToString("MM/dd/yyyy"), currentAvailability));
-            }
-        }
-        */
+       
 
         private void populateAvailabilityComboBox()
         {
