@@ -587,3 +587,10 @@ Go
 
 GRANT EXECUTE ON sp_DeleteTime to B321_S25_APP
 Go
+
+GRANT EXECUTE ON fnGetAvailabilityID to B321_S25_APP
+Go
+
+
+
+
