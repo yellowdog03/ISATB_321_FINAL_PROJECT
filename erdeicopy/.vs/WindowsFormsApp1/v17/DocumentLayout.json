@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|c:\\users\\james\\desktop\\final project\\isatb_321_final_project\\erdeicopy\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|solutionrelative:frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|solutionrelative:frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsadvisors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|solutionrelative:clsadvisors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|c:\\users\\james\\desktop\\final project\\isatb_321_final_project\\erdeicopy\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|solutionrelative:frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsavailability.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -54,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
@@ -71,7 +71,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "frmMain.cs [Design]",
               "DocumentMoniker": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmMain.cs",
               "RelativeDocumentMoniker": "frmMain.cs",
@@ -83,13 +83,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "frmMain.cs",
               "DocumentMoniker": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmMain.cs",
               "RelativeDocumentMoniker": "frmMain.cs",
               "ToolTip": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmMain.cs",
               "RelativeToolTip": "frmMain.cs",
-              "ViewState": "AgIAALkEAAAAAAAAAAAqwMwEAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAMkHAAAAAAAAAAAiwNUHAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-29T02:52:47.393Z",
               "EditorCaption": ""
@@ -104,8 +104,7 @@
               "RelativeToolTip": "clsAvailability.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T02:51:37.341Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-29T02:51:37.341Z"
             },
             {
               "$type": "Document",
@@ -129,8 +128,7 @@
               "RelativeToolTip": "clsTimes.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T02:51:41.942Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-29T02:51:41.942Z"
             },
             {
               "$type": "Document",
@@ -170,7 +168,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "clsAdvisors.cs",
               "DocumentMoniker": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsAdvisors.cs",
               "RelativeDocumentMoniker": "clsAdvisors.cs",
@@ -178,8 +176,7 @@
               "RelativeToolTip": "clsAdvisors.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T02:51:36.784Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-29T02:51:36.784Z"
             },
             {
               "$type": "Document",

@@ -2017,9 +2017,21 @@ namespace WindowsFormsApp1
                     return true;
 
                 }
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 2627 || ex.Number == 2601)
+                    {
+                        messageBoxOK("A meeting already exists for this student and time. Please choose a different slot.");
+                    }
+                    else
+                    {
+                        messageBoxOK("An error occurred while scheduling the meeting: " + ex.Message);
+                    }
+                    return false;
+                }
                 catch (Exception ex)
                 {
-                    messageBoxOK(ex.Message);
+                    messageBoxOK("Unexpected error: " + ex.Message);
                     return false;
                 }
                 finally
