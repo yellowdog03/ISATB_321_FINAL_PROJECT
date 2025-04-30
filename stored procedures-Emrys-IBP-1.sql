@@ -105,7 +105,27 @@ GO
 
 
 
+DROP FUNCTION IF EXISTS fnGetAdvisorID
+GO
 
+CREATE FUNCTION fnGetAdvisorID
+(
+	AdvisorFName VARCHAR(25),
+	AdvisorLName VARCHAR(40)
+)
+RETURNS INT
+AS
+	BEGIN
+		RETURN
+		(
+			SELECT AdvisorID
+				FROM Advisors
+				WHERE AdvisorFName = @AdvisorFName
+					AND
+					  AdvisorLName = @AdvisorLName
+		)
+	END
+GO
 
 
 ----------------------------------------------------------------------------------
@@ -344,6 +364,34 @@ AS
 		THROW 50027, 'Availability already taken.', 1
 	GO
 
+-- FUNCTION: fnGetAvailabilityID
+DROP FUNCTION IF EXISTS fnGetAvailabilityID
+GO
+
+CREATE FUNCTION fnGetAvailabilityID
+(
+	@AdvisorID INT,
+	@Date DATE,
+	@TimeID INT,
+	@LocationID INT
+)
+RETURNS INT
+AS
+	BEGIN
+		RETURN
+		(
+			SELECT AvailabilityID
+				FROM Availability
+				WHERE AdvisorID = @AdvisorID
+					AND
+					  Date = @Date
+					AND
+					  TimeID = @TimeID
+					AND
+					  LocationID = @LocationID
+		)
+	END
+GO
 
 ------------------------------------------------
 
@@ -470,3 +518,72 @@ GO
 
 
 ---------------------------------
+
+GRANT EXECUTE ON sp_GetVendors to B321_S25_APP
+GO
+
+GRANT EXECUTE ON sp_GetAdvisor to B321_S25_APP
+GO
+
+GRANT EXECUTE ON sp_InsertAdvisor to B321_S25_APP
+GO
+
+GRANT EXECUTE ON sp_UpdateAdvisor to B321_S25_APP
+GO
+
+GRANT EXECUTE ON sp_DeleteAdvisor to B321_S25_APP
+GO
+
+GRANT EXECUTE ON sp_GetStudent to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_InsertStudent to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_UpdateStudent to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_DeleteStudent to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_InsertAvailability to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_UpdateAvailability to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_DeleteAvailability to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_GetAvailability to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_GetAdvisorID to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_GetMeeting to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_InsertMeeting to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_UpdateMeeting to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_DeleteMeeting to B321_S25_APP
+Go
+
+GRANT EXECUTE ON fnGetAdvisorID to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_GetTime to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_InsertTime to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_UpdateTime to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_DeleteTime to B321_S25_APP
+Go
