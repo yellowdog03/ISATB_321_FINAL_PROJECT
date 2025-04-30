@@ -144,16 +144,16 @@
             tabPage7 = new TabPage();
             chkIsTakenUpdate = new CheckBox();
             btnRefreshAvailChange = new Button();
-            textBox5 = new TextBox();
+            txtNewTime = new TextBox();
             label8 = new Label();
-            textBox6 = new TextBox();
+            txtNewDate = new TextBox();
             label13 = new Label();
-            textBox7 = new TextBox();
+            txtNewLocation = new TextBox();
             label14 = new Label();
-            textBox8 = new TextBox();
+            txtNewAdvisorID = new TextBox();
             label15 = new Label();
             label16 = new Label();
-            txtOldAdvisorIDChange = new TextBox();
+            txtNewAvailability = new TextBox();
             label19 = new Label();
             btnClearChange = new Button();
             btnChangeAvailability = new Button();
@@ -1398,16 +1398,16 @@
             // 
             tabPage7.Controls.Add(chkIsTakenUpdate);
             tabPage7.Controls.Add(btnRefreshAvailChange);
-            tabPage7.Controls.Add(textBox5);
+            tabPage7.Controls.Add(txtNewTime);
             tabPage7.Controls.Add(label8);
-            tabPage7.Controls.Add(textBox6);
+            tabPage7.Controls.Add(txtNewDate);
             tabPage7.Controls.Add(label13);
-            tabPage7.Controls.Add(textBox7);
+            tabPage7.Controls.Add(txtNewLocation);
             tabPage7.Controls.Add(label14);
-            tabPage7.Controls.Add(textBox8);
+            tabPage7.Controls.Add(txtNewAdvisorID);
             tabPage7.Controls.Add(label15);
             tabPage7.Controls.Add(label16);
-            tabPage7.Controls.Add(txtOldAdvisorIDChange);
+            tabPage7.Controls.Add(txtNewAvailability);
             tabPage7.Controls.Add(label19);
             tabPage7.Controls.Add(btnClearChange);
             tabPage7.Controls.Add(btnChangeAvailability);
@@ -1450,13 +1450,13 @@
             btnRefreshAvailChange.Text = "button1";
             btnRefreshAvailChange.UseVisualStyleBackColor = true;
             // 
-            // textBox5
+            // txtNewTime
             // 
-            textBox5.Location = new Point(499, 187);
-            textBox5.Margin = new Padding(1, 2, 1, 2);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(155, 31);
-            textBox5.TabIndex = 61;
+            txtNewTime.Location = new Point(499, 187);
+            txtNewTime.Margin = new Padding(1, 2, 1, 2);
+            txtNewTime.Name = "txtNewTime";
+            txtNewTime.Size = new Size(155, 31);
+            txtNewTime.TabIndex = 61;
             // 
             // label8
             // 
@@ -1468,13 +1468,13 @@
             label8.TabIndex = 68;
             label8.Text = "Time:";
             // 
-            // textBox6
+            // txtNewDate
             // 
-            textBox6.Location = new Point(499, 147);
-            textBox6.Margin = new Padding(1, 2, 1, 2);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(155, 31);
-            textBox6.TabIndex = 60;
+            txtNewDate.Location = new Point(499, 147);
+            txtNewDate.Margin = new Padding(1, 2, 1, 2);
+            txtNewDate.Name = "txtNewDate";
+            txtNewDate.Size = new Size(155, 31);
+            txtNewDate.TabIndex = 60;
             // 
             // label13
             // 
@@ -1486,13 +1486,13 @@
             label13.TabIndex = 67;
             label13.Text = "Date:";
             // 
-            // textBox7
+            // txtNewLocation
             // 
-            textBox7.Location = new Point(499, 225);
-            textBox7.Margin = new Padding(1, 2, 1, 2);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(155, 31);
-            textBox7.TabIndex = 62;
+            txtNewLocation.Location = new Point(499, 225);
+            txtNewLocation.Margin = new Padding(1, 2, 1, 2);
+            txtNewLocation.Name = "txtNewLocation";
+            txtNewLocation.Size = new Size(155, 31);
+            txtNewLocation.TabIndex = 62;
             // 
             // label14
             // 
@@ -1504,13 +1504,13 @@
             label14.TabIndex = 66;
             label14.Text = "Location:";
             // 
-            // textBox8
+            // txtNewAdvisorID
             // 
-            textBox8.Location = new Point(499, 105);
-            textBox8.Margin = new Padding(4, 3, 4, 3);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(155, 31);
-            textBox8.TabIndex = 59;
+            txtNewAdvisorID.Location = new Point(499, 105);
+            txtNewAdvisorID.Margin = new Padding(4, 3, 4, 3);
+            txtNewAdvisorID.Name = "txtNewAdvisorID";
+            txtNewAdvisorID.Size = new Size(155, 31);
+            txtNewAdvisorID.TabIndex = 59;
             // 
             // label15
             // 
@@ -1532,13 +1532,13 @@
             label16.TabIndex = 64;
             label16.Text = "AvailabilityID:";
             // 
-            // txtOldAdvisorIDChange
+            // txtNewAvailability
             // 
-            txtOldAdvisorIDChange.Location = new Point(499, 62);
-            txtOldAdvisorIDChange.Margin = new Padding(4, 3, 4, 3);
-            txtOldAdvisorIDChange.Name = "txtOldAdvisorIDChange";
-            txtOldAdvisorIDChange.Size = new Size(155, 31);
-            txtOldAdvisorIDChange.TabIndex = 58;
+            txtNewAvailability.Location = new Point(499, 62);
+            txtNewAvailability.Margin = new Padding(4, 3, 4, 3);
+            txtNewAvailability.Name = "txtNewAvailability";
+            txtNewAvailability.Size = new Size(155, 31);
+            txtNewAvailability.TabIndex = 58;
             // 
             // label19
             // 
@@ -2013,16 +2013,16 @@
         private Label lblCurrentMeeting;
         private Label lblMeetingAvailability;
         private Button btnRefreshCreateAvail;
-        private TextBox textBox5;
+        private TextBox txtNewTime;
         private Label label8;
-        private TextBox textBox6;
+        private TextBox txtNewDate;
         private Label label13;
-        private TextBox textBox7;
+        private TextBox txtNewLocation;
         private Label label14;
-        private TextBox textBox8;
+        private TextBox txtNewAdvisorID;
         private Label label15;
         private Label label16;
-        private TextBox txtOldAdvisorIDChange;
+        private TextBox txtNewAvailability;
         private Label label19;
         private Button btnRefreshAvailChange;
         private ComboBox comboBox1;

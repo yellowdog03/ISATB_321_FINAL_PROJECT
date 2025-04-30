@@ -125,7 +125,7 @@ namespace ISATB_321_FINAL_PROJECT
         {
 
             txtAvailabilityIDChange.Text = currentAvailability.AvailabilityID.ToString();
-            txtOldAdvisorIDChange.Text = currentAvailability.AdvisorID.ToString();
+            txtNewAvailability.Text = currentAvailability.AdvisorID.ToString();
             txtOldDateChange.Text = currentAvailability.Date.ToString();
             txtOldTimeChange.Text = currentAvailability.TimeID.ToString();
             txtOldLocationChange.Text = currentAvailability.LocationID.ToString();
@@ -885,7 +885,7 @@ namespace ISATB_321_FINAL_PROJECT
                 return;
             }
 
-            if (cboTimeBrowse.SelectedItem is ComboBoxItemNew selectedItem &&
+            /*if (cboTimeBrowse.SelectedItem is ComboBoxItemNew selectedItem &&
             selectedItem.Value is clsTimes selectedTime)
             {
                 currentAvailability.TimeID = selectedTime.TimeID;
@@ -895,7 +895,7 @@ namespace ISATB_321_FINAL_PROJECT
                 messageBoxOK("Please select a valid time slot.");
                 cboTimeBrowse.Focus();
                 return;
-            }
+            }*/
 
 
 
@@ -1400,8 +1400,8 @@ namespace ISATB_321_FINAL_PROJECT
                     txtPersonID.Focus();
                 }
 
-                currentStudent.StudentFName = txtStudentFName.Text;
-                currentStudent.StudentLName = txtStudentLName.Text;
+                currentStudent.StudentFName = txtDeleteFName.Text;
+                currentStudent.StudentLName = txtDeleteLName.Text;
 
 
                 if (int.TryParse(txtDeleteYear.Text, out int Year))
@@ -1569,13 +1569,11 @@ namespace ISATB_321_FINAL_PROJECT
             {
 
                 populateAvailabilityDictionary(ref dctAvailability);
-                refreshAvailabilityListview();
+                refreshAvailabilityListView();
 
 
 
                 messageBoxOK("The Availability (ID: " + currentAvailability.AvailabilityID.ToString() + ") successfully deleted.");
-                availabilityInformation_Update_ClearTextboxes();
-
 
 
             }
@@ -1682,7 +1680,7 @@ namespace ISATB_321_FINAL_PROJECT
 
             txtAvailabilityIDChange.Clear();
 
-            txtOldAdvisorIDChange.Clear();
+            txtNewAvailability.Clear();
 
             txtOldDateChange.Clear();
 
@@ -1718,6 +1716,8 @@ namespace ISATB_321_FINAL_PROJECT
 
         }
 
+
+
         //MEETING CODE MESSY*****************************************************************************
         //*************************************************************************************************
         //***************************************************************************************************
@@ -1752,14 +1752,14 @@ namespace ISATB_321_FINAL_PROJECT
         }
 
 
-        private void cboStudentsBrowse_SelectedIndexChanged(object sender, EventArgs e)
+/*        private void cboStudentsBrowse_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboStudentsBrowse.SelectedItem is ComboBoxItem selectedItem)
             {
                 clsStudents currentstudent = (clsStudents)selectedItem.Value;
                 txtStudentLName.Text = currentstudent.StudentLName;
             }
-        }
+        }*/
 
 
         //Availability combobox logic
@@ -2106,6 +2106,16 @@ namespace ISATB_321_FINAL_PROJECT
             }
         }
 
-        
+        // DialogBoxes
+        private void messageBoxOK(string msg)
+        {
+            MessageBox.Show(msg, Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private DialogResult messageBoxYesNo(string msg)
+        {
+            return MessageBox.Show(msg, Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        }
+
     }
 }
