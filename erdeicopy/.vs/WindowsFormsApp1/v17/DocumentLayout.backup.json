@@ -62,8 +62,8 @@
               "Title": "frmMain.Designer.cs",
               "DocumentMoniker": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmMain.Designer.cs",
               "RelativeDocumentMoniker": "frmMain.Designer.cs",
-              "ToolTip": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmMain.Designer.cs*",
-              "RelativeToolTip": "frmMain.Designer.cs*",
+              "ToolTip": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmMain.Designer.cs",
+              "RelativeToolTip": "frmMain.Designer.cs",
               "ViewState": "AgIAAOkAAAAAAAAAAAASwPkAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-29T02:53:01.087Z",
@@ -75,8 +75,8 @@
               "Title": "frmMain.cs [Design]",
               "DocumentMoniker": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmMain.cs",
               "RelativeDocumentMoniker": "frmMain.cs",
-              "ToolTip": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmMain.cs [Design]*",
-              "RelativeToolTip": "frmMain.cs [Design]*",
+              "ToolTip": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmMain.cs [Design]",
+              "RelativeToolTip": "frmMain.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-29T02:51:44.439Z",
               "EditorCaption": " [Design]"
@@ -87,9 +87,9 @@
               "Title": "frmMain.cs",
               "DocumentMoniker": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmMain.cs",
               "RelativeDocumentMoniker": "frmMain.cs",
-              "ToolTip": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmMain.cs*",
-              "RelativeToolTip": "frmMain.cs*",
-              "ViewState": "AgIAAMcEAAAAAAAAAAAgwJoIAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmMain.cs",
+              "RelativeToolTip": "frmMain.cs",
+              "ViewState": "AgIAAHkIAAAAAAAAAAAUwJUIAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-29T02:52:47.393Z",
               "EditorCaption": ""
@@ -104,8 +104,7 @@
               "RelativeToolTip": "clsTimes.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T02:51:41.942Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-29T02:51:41.942Z"
             },
             {
               "$type": "Document",

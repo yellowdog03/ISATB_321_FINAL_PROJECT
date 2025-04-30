@@ -96,3 +96,15 @@ Go
 
 GRANT EXECUTE ON fnGetAdvisorID to B321_S25_APP
 Go
+
+GRANT EXECUTE ON sp_GetTime to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_InsertTime to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_UpdateTime to B321_S25_APP
+Go
+
+GRANT EXECUTE ON sp_DeleteTime to B321_S25_APP
+Go

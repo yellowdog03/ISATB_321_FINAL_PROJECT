@@ -71,6 +71,7 @@ namespace WindowsFormsApp1
 
             populateAvailabilityComboBox();
 
+            populateTimeComboBox();
 
         }
 
@@ -1356,7 +1357,7 @@ namespace WindowsFormsApp1
                 return;
             }
 
-
+            /*
             if (int.TryParse(txtTimeIDInsert.Text, out int TimeID))
             {
                 currentAvailability.TimeID = TimeID;
@@ -1367,7 +1368,24 @@ namespace WindowsFormsApp1
                 txtTimeID.Focus();
                 return;
             }
+            */
 
+
+            
+            if (cboTimeBrowse.SelectedItem is ComboBoxItem selectedItem &&
+            selectedItem.Value is clsTimes selectedTime)
+            {
+                currentAvailability.TimeID = selectedTime.TimeID;
+            }
+            else
+            {
+                messageBoxOK("Please select a valid time slot.");
+                cboTimeBrowse.Focus();
+                return;
+            }
+
+
+            
             if (int.TryParse(txtLocationIDInsert.Text, out int LocationID))
             {
                 currentAvailability.LocationID = LocationID;
@@ -1416,6 +1434,7 @@ namespace WindowsFormsApp1
             }
             ;
         }
+
 
         //edit button for availability
         private void btnEditAvailability_Click_1(object sender, EventArgs e)
@@ -1867,23 +1886,6 @@ namespace WindowsFormsApp1
 
 
 
-            /*
-            txtAdvisorIDInsert.Clear();
-
-            txtAdvisorFNameInsert.Clear();
-
-            txtAdvisorLNameInsert.Clear();
-
-            txtAdvisorEmailInsert.Clear();
-            */
-
-
-            /*
-            btnEditAdvisorInfo.Visible = true;
-            btnUpdateAdvisorInfo.Visible = false;
-            btnDeleteAdvisorInfo.Visible = false;
-            btnInsertAdvisorInfo.Visible = true;
-            */
 
         }
         //change selected index
@@ -2124,8 +2126,9 @@ namespace WindowsFormsApp1
                         while (rdr.Read() == true)
                         {
                             clsTimes currentTime = new clsTimes();
-                            currentTime.StartTime = (TimeSpan)rdr["MeetingID"];
-                            currentTime.EndTime = (TimeSpan)rdr["StudentID"];
+                            currentTime.TimeID = (int)rdr["TimeID"];
+                            currentTime.StartTime = (TimeSpan)rdr["StartTime"];
+                            currentTime.EndTime = (TimeSpan)rdr["EndTime"];
                             
 
 
@@ -2152,7 +2155,7 @@ namespace WindowsFormsApp1
         private void refreshTimesListview()
         {
             // REMEMBER: the View property of the listview must be set to 'List'
-            lvwMeetings.Clear();
+            lvwTimes.Clear();
             clsTimes currentTime = new clsTimes();
             foreach (KeyValuePair<int, clsTimes> kvp in dctTimes)
             {
@@ -2187,41 +2190,46 @@ namespace WindowsFormsApp1
             txtEndTime.Clear();
             txtEndTime.ReadOnly = true;
 
+            txtTimeID2.Visible = false;
+            txtEndTime.Visible = false;
+            txtStartTime.Visible = false;
 
+            lvwTimes.Visible = false;
 
-
-            //cboStudentsBrowse.SelectedIndex = -1;
-            //cboAvailabilityBrowse.SelectedIndex = -1;
-
-
-
-            /*
-            txtAdvisorIDInsert.Clear();
-
-            txtAdvisorFNameInsert.Clear();
-
-            txtAdvisorLNameInsert.Clear();
-
-            txtAdvisorEmailInsert.Clear();
-            */
-
-
-            /*
-            btnEditAdvisorInfo.Visible = true;
-            btnUpdateAdvisorInfo.Visible = false;
-            btnDeleteAdvisorInfo.Visible = false;
-            btnInsertAdvisorInfo.Visible = true;
-            */
 
         }
 
-    
+        private void lvwTimes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListView.SelectedListViewItemCollection itemIsSelected = lvwTimes.SelectedItems;
+            foreach (ListViewItem item in itemIsSelected)
+            {
+                clsTimes currentTime = (clsTimes)item.Tag;
+                displayTimeInformation_update(currentTime);
+            }
+        }
 
 
 
+        
+        private void populateTimeComboBox()
+        {
+            cboTimeBrowse.Items.Clear();
+            foreach (var currentTime in dctTimes.Values)
+            {
+                cboTimeBrowse.Items.Add(new ComboBoxItem(currentTime.StartTime + " - " + currentTime.EndTime, currentTime));
+            }
+        }
 
+        //time combobox
 
-
-
+        private void cboTimeBrowse_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (cboTimeBrowse.SelectedItem is ComboBoxItem selectedItem)
+            {
+                clsTimes currentTime = (clsTimes)selectedItem.Value;
+                txtTimeIDInsert.Text = currentTime.TimeID.ToString();
+            }
+        }
     }
 }
