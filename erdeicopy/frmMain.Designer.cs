@@ -164,7 +164,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Current Advisors";
             this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // btnDeleteAdvisorInfo
             // 
@@ -304,7 +303,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Insert New Advisor";
             this.tabPage2.UseVisualStyleBackColor = true;
-            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // label10
             // 
@@ -362,7 +360,6 @@
             this.txtAdvisorLNameInsert.Name = "txtAdvisorLNameInsert";
             this.txtAdvisorLNameInsert.Size = new System.Drawing.Size(186, 26);
             this.txtAdvisorLNameInsert.TabIndex = 23;
-            this.txtAdvisorLNameInsert.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // txtAdvisorIDInsert
             // 
