@@ -30,6 +30,7 @@
         {
             tabMain = new TabControl();
             tabPage1 = new TabPage();
+            btnRefreshSchedule = new Button();
             lblMeetAvailabilityID = new Label();
             lblMeetStudentID = new Label();
             lblMeetingID = new Label();
@@ -220,6 +221,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(btnRefreshSchedule);
             tabPage1.Controls.Add(lblMeetAvailabilityID);
             tabPage1.Controls.Add(lblMeetStudentID);
             tabPage1.Controls.Add(lblMeetingID);
@@ -242,6 +244,15 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Schedule Appointment";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnRefreshSchedule
+            // 
+            btnRefreshSchedule.Location = new Point(570, 97);
+            btnRefreshSchedule.Name = "btnRefreshSchedule";
+            btnRefreshSchedule.Size = new Size(111, 74);
+            btnRefreshSchedule.TabIndex = 27;
+            btnRefreshSchedule.Text = "Refresh List";
+            btnRefreshSchedule.UseVisualStyleBackColor = true;
             // 
             // lblMeetAvailabilityID
             // 
@@ -273,11 +284,11 @@
             // lblCurrentMeeting
             // 
             lblCurrentMeeting.AutoSize = true;
-            lblCurrentMeeting.Location = new Point(226, 18);
+            lblCurrentMeeting.Location = new Point(214, 18);
             lblCurrentMeeting.Name = "lblCurrentMeeting";
-            lblCurrentMeeting.Size = new Size(121, 20);
+            lblCurrentMeeting.Size = new Size(125, 20);
             lblCurrentMeeting.TabIndex = 23;
-            lblCurrentMeeting.Text = "CurrentMeetings:";
+            lblCurrentMeeting.Text = "Current Meetings:";
             // 
             // lblMeetingAvailability
             // 
@@ -329,6 +340,7 @@
             lvwMeetings.Size = new Size(167, 338);
             lvwMeetings.TabIndex = 17;
             lvwMeetings.UseCompatibleStateImageBehavior = false;
+            lvwMeetings.View = View.List;
             // 
             // cboAvailabilityBrowse
             // 
@@ -350,7 +362,7 @@
             // 
             // btnClearAppt
             // 
-            btnClearAppt.Location = new Point(431, 282);
+            btnClearAppt.Location = new Point(570, 176);
             btnClearAppt.Margin = new Padding(3, 2, 3, 2);
             btnClearAppt.Name = "btnClearAppt";
             btnClearAppt.Size = new Size(111, 74);
@@ -360,7 +372,7 @@
             // 
             // btnCreateMeeting
             // 
-            btnCreateMeeting.Location = new Point(39, 210);
+            btnCreateMeeting.Location = new Point(570, 18);
             btnCreateMeeting.Margin = new Padding(3, 2, 3, 2);
             btnCreateMeeting.Name = "btnCreateMeeting";
             btnCreateMeeting.Size = new Size(111, 74);
@@ -2061,5 +2073,6 @@
         private Button btnRefreshAddPerson;
         private Button btnRefreshChangePerson;
         private Button btnRefreshDeletePerson;
+        private Button btnRefreshSchedule;
     }
 }

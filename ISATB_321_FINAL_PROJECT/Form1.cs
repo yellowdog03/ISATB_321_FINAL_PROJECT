@@ -66,6 +66,12 @@ namespace ISATB_321_FINAL_PROJECT
             populateAvailabilityDictionary(ref dctAvailability);
             refreshAvailabilityListView();
 
+            populateStudentsComboBox();
+            populateAvailabilityComboBox();
+
+            populateMeetingDictionary(ref dctMeetings);
+            refreshMeetingsListview();
+            
         }
 
 
@@ -1780,14 +1786,14 @@ namespace ISATB_321_FINAL_PROJECT
         }
 
 
-        /*        private void cboStudentsBrowse_SelectedIndexChanged(object sender, EventArgs e)
-                {
-                    if (cboStudentsBrowse.SelectedItem is ComboBoxItem selectedItem)
-                    {
-                        clsStudents currentstudent = (clsStudents)selectedItem.Value;
-                        txtStudentLName.Text = currentstudent.StudentLName;
-                    }
-                }*/
+        private void cboStudentsBrowse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboStudentsBrowse.SelectedItem is ComboBoxItem selectedItem)
+            {
+                clsStudents currentstudent = (clsStudents)selectedItem.Value;
+                txtOldLName.Text = currentstudent.StudentLName;
+            }
+        }
 
 
         //Availability combobox logic
@@ -1806,7 +1812,6 @@ namespace ISATB_321_FINAL_PROJECT
 
         private void cboAvailabilityBrowse_SelectedIndexChanged(object sender, EventArgs e)
         {
-
 
             if (cboAvailabilityBrowse.SelectedItem is ComboBoxItem selectedItem)
             {
@@ -1877,6 +1882,7 @@ namespace ISATB_321_FINAL_PROJECT
         //pull sql info to font end
         private void displayMeetingInformation_update(clsMeetings currentMeeting)
         {
+
             txtMeetingID.Text = currentMeeting.MeetingID.ToString();
             txtMeetStudentID.Text = currentMeeting.StudentID.ToString();
             txtMeetAvailabilityID.Text = currentMeeting.AvailabilityID.ToString();
@@ -1888,6 +1894,7 @@ namespace ISATB_321_FINAL_PROJECT
         //clear meeting textboxes
         private void meetingInformation_Update_ClearTextboxes()
         {
+
             txtMeetingID.Clear();
             txtMeetingID.ReadOnly = true;
 
@@ -1897,15 +1904,9 @@ namespace ISATB_321_FINAL_PROJECT
             txtMeetAvailabilityID.Clear();
             txtMeetAvailabilityID.ReadOnly = true;
 
-            //txtStartTime.Visible = true;
-            //txtEndTime.Visible = true;
-
 
             cboStudentsBrowse.SelectedIndex = -1;
             cboAvailabilityBrowse.SelectedIndex = -1;
-
-
-
 
         }
         //change selected index
