@@ -38,6 +38,10 @@ namespace ISATB_321_FINAL_PROJECT
 
         private Dictionary<int, clsStudents> dctStudents = new Dictionary<int, clsStudents>();
 
+        private Dictionary<int, clsAvailability> dctAvailability = new Dictionary<int, clsAvailability>();
+
+        private Dictionary<int, clsMeetings> dctMeetings = new Dictionary<int, clsMeetings>();
+
         private DateTimePicker timePicker;
 
 
@@ -46,8 +50,6 @@ namespace ISATB_321_FINAL_PROJECT
         public frmMain()
         {
             InitializeComponent();
-
-            // tabMain.SelectedIndexChanged += new EventHandler(tabMain_SelectedIndexChanged);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -259,6 +261,71 @@ namespace ISATB_321_FINAL_PROJECT
 
         }
 
+        private void populateAvailabilityDictionary(ref Dictionary<int, clsAvailability> dctAvailability)
+        {
+
+            string myConnectionString = clsDBUtil.getConnectionString();
+
+            using (SqlConnection conn = new SqlConnection(myConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("sp_GetAvailability", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataReader rdr = cmd.ExecuteReader())
+                    {
+                        dctAvailability.Clear();
+
+                        while (rdr.Read() == true)
+                        {
+                            clsAvailability currentAvailability = new clsAvailability();
+                            currentAvailability.AvailabilityID = (int)rdr["AvailabilityID"];
+                            currentAvailability.AdvisorID = (int)rdr["AdvisorID"];
+                            //currentAvailability.Date = clsDBUtil.convertFromDBType_DateTimeToString(rdr["Date"]);
+                            //Date in the SQL database has been changed into DateTime from DATE and probably should not saty this way.
+                            //It was only changed so this would possibly work
+                            currentAvailability.Date = (DateTime)rdr["Date"];
+                            currentAvailability.TimeID = (int)rdr["TimeID"];
+                            currentAvailability.LocationID = (int)rdr["LocationID"];
+                            currentAvailability.IsTaken = (bool)rdr["IsTaken"];
+
+
+
+
+                            //took this away and things started working lmfao
+                            /*
+                            if (currentAvailability.IsTaken = (bool)rdr["IsTaken"])
+                            {
+                                chkIsTaken.Checked = rdr.GetBoolean(0);
+
+                            }
+                            else
+                            {
+                                chkIsTaken.Checked = false;
+                            }
+                            */
+
+
+
+                            dctAvailability.Add(currentAvailability.AvailabilityID, currentAvailability);
+                        }
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    messageBoxOK(ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
         private void refreshAdvisorsListview()
         {
 
@@ -344,9 +411,50 @@ namespace ISATB_321_FINAL_PROJECT
 
         }
 
+        private void refreshAvailabilityListView()
+        {
+
+            switch (tabMain.SelectedTab.Name)
+            {
+                case "tabPage3":
+                    lsvCreateAvailability.Clear();
+                    clsAvailability newAvailability = new clsAvailability();
+                    foreach (KeyValuePair<int, clsAvailability> kvp in dctAvailability)
+                    {
+                        newAvailability = kvp.Value;
+                        ListViewItem item = new ListViewItem(Convert.ToString(newAvailability.AvailabilityID));
+                        item.Tag = newAvailability;
+                        lsvCreateAvailability.Items.Add(item);
+                    }
+                    break;
+                case "tabPage7":
+                    lsvChangeAvailability.Clear();
+                    clsAvailability changeCurrentAvailability = new clsAvailability();
+                    foreach (KeyValuePair<int, clsAvailability> kvp in dctAvailability)
+                    {
+                        changeCurrentAvailability = kvp.Value;
+                        ListViewItem item = new ListViewItem(Convert.ToString(changeCurrentAvailability.AvailabilityID));
+                        item.Tag = changeCurrentAvailability;
+                        lsvChangeAvailability.Items.Add(item);
+                    }
+                    break;
+                case "tabPage4":
+                    lsvDeleteAvailability.Clear();
+                    clsAvailability deleteAvailability = new clsAvailability();
+                    foreach (KeyValuePair<int, clsAvailability> kvp in dctAvailability)
+                    {
+                        deleteAvailability = kvp.Value;
+                        ListViewItem item = new ListViewItem(Convert.ToString(deleteAvailability.AvailabilityID));
+                        item.Tag = deleteAvailability;
+                        lsvDeleteAvailability.Items.Add(item);
+                    }
+                    break;
+            }
+
+        }
 
 
-        // Updating the ListViews for Advisors and Students on Add Person, Change Person, and Delete Person
+        // Updating the ListViews
         // Insert Person
         private void radStudentNew_CheckedChanged(object sender, EventArgs e)
         {
@@ -424,6 +532,16 @@ namespace ISATB_321_FINAL_PROJECT
             }
 
         }
+
+        // Insert Availability
+
+
+
+        // Update Availability
+
+
+
+        // Delete Availability
 
 
 

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ISATB_321_FINAL_PROJECT")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f568732f895da1bc4cb3ef751e0d6699907afe6b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e89f1e244561a845740e0428c3bf303d9bc83fd8")]
 [assembly: System.Reflection.AssemblyProductAttribute("ISATB_321_FINAL_PROJECT")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ISATB_321_FINAL_PROJECT")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

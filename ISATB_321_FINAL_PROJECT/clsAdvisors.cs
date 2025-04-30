@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WindowsFormsApp1
+namespace ISATB_321_FINAL_PROJECT
 {
     internal class clsAdvisors
     {

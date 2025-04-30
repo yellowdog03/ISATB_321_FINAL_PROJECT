@@ -533,20 +533,7 @@ namespace WindowsFormsApp1
         }
         */
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnInsertAdvisorInfo_Click_1(object sender, EventArgs e)
         {
