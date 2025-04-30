@@ -18,19 +18,7 @@ using ISATB_321_FINAL_PROJECT;
 
 /*
     TODO:
-        - James: Add Availability functionality
-        - James: Availability time implementation
-            - James: 15 minute intervals, Availability table lists each interval as it's own entry,
-              Meetings table will have several entries with the same StudentID but diff AvailabilityID             
-        - James: Add front-end to Manage Availability
-
-        - Emrys: Write trigger for if user tries to schedule a meeting with an advisor who is
-                 not available at that time
-
-    DONE:
-        - Emrys: Add ListView to Add Person, Change Person, and Delete Person
-            - Emrys: Remove View Advisors and View Students once done
-        - Emrys: Resolve bug where inserting a new person does not display correct ID
+        - 
  */
 
 namespace ISATB_321_FINAL_PROJECT
@@ -125,7 +113,7 @@ namespace ISATB_321_FINAL_PROJECT
         {
 
             txtAvailabilityIDChange.Text = currentAvailability.AvailabilityID.ToString();
-            txtNewAvailability.Text = currentAvailability.AdvisorID.ToString();
+            txtAdvisorIDChange.Text = currentAvailability.AdvisorID.ToString();
             txtOldDateChange.Text = currentAvailability.Date.ToString();
             txtOldTimeChange.Text = currentAvailability.TimeID.ToString();
             txtOldLocationChange.Text = currentAvailability.LocationID.ToString();
@@ -497,8 +485,15 @@ namespace ISATB_321_FINAL_PROJECT
 
         // Updating the ListViews
         // Insert Person
-        private void radStudentNew_CheckedChanged(object sender, EventArgs e)
+        private void btnRefreshAddPerson_Click(object sender, EventArgs e)
         {
+
+            if (radAdvisorNew.Checked == true)
+            {
+
+                refreshAdvisorsListview();
+
+            }
             if (radStudentNew.Checked == true)
             {
 
@@ -508,23 +503,10 @@ namespace ISATB_321_FINAL_PROJECT
 
         }
 
-        private void radAdvisorNew_CheckedChanged(object sender, EventArgs e)
-        {
-
-            if (radAdvisorNew.Checked == true)
-            {
-
-                refreshAdvisorsListview();
-
-            }
-
-        }
-
-
-
         // Update Person
-        private void radChangeStudent_CheckedChanged(object sender, EventArgs e)
+        private void btnRefreshChangePerson_Click(object sender, EventArgs e)
         {
+
 
             if (radChangeStudent.Checked == true)
             {
@@ -532,12 +514,6 @@ namespace ISATB_321_FINAL_PROJECT
                 refreshStudentsListview();
 
             }
-
-        }
-
-        private void radChangeAdvisor_CheckedChanged(object sender, EventArgs e)
-        {
-
             if (radChangeAdvisor.Checked == true)
             {
 
@@ -547,10 +523,8 @@ namespace ISATB_321_FINAL_PROJECT
 
         }
 
-
-
         // Delete Person
-        private void radDeleteStudent_CheckedChanged(object sender, EventArgs e)
+        private void btnRefreshDeletePerson_Click(object sender, EventArgs e)
         {
 
             if (radDeleteStudent.Checked == true)
@@ -559,12 +533,6 @@ namespace ISATB_321_FINAL_PROJECT
                 refreshStudentsListview();
 
             }
-
-        }
-
-        private void radDeleteAdvisor_CheckedChanged(object sender, EventArgs e)
-        {
-
             if (radDeleteAdvisor.Checked == true)
             {
 
@@ -577,13 +545,12 @@ namespace ISATB_321_FINAL_PROJECT
 
 
         // Insert Availability
-        private void btnNewAvailRefresh_Click(object sender, EventArgs e)
+        private void btnRefreshCreateAvail_Click(object sender, EventArgs e)
         {
 
             refreshAvailabilityListView();
 
         }
-
 
 
         // Update Availability
@@ -595,7 +562,6 @@ namespace ISATB_321_FINAL_PROJECT
         }
 
 
-
         // Delete Availability
         private void btnRefreshDeleteAvail_Click(object sender, EventArgs e)
         {
@@ -603,6 +569,7 @@ namespace ISATB_321_FINAL_PROJECT
             refreshAvailabilityListView();
 
         }
+
 
 
 
@@ -755,6 +722,9 @@ namespace ISATB_321_FINAL_PROJECT
 
                         clsStudents currentStudent = new clsStudents();
 
+                        conn.Open();
+                        SqlCommand cmdGetStudent = new SqlCommand("sp_GetStudent", conn);
+                        cmdGetStudent.CommandType = CommandType.StoredProcedure;
 
                         currentStudent.StudentFName = txtFNameNew.Text;
                         currentStudent.StudentLName = txtLNameNew.Text;
@@ -774,6 +744,19 @@ namespace ISATB_321_FINAL_PROJECT
                         if (InsertStudent(currentStudent) == true)
                         {
 
+                            SqlCommand cmdGetStudentID = new SqlCommand("SELECT dbo.fnGetStudentID(@StudentFName, @StudentLName)", conn);
+                            cmdGetStudentID.CommandType = CommandType.Text;
+
+                            // Adding parameters to the command
+                            cmdGetStudentID.Parameters.AddWithValue("@StudentFName", currentStudent.StudentFName ?? string.Empty);
+                            cmdGetStudentID.Parameters.AddWithValue("@StudentLName", currentStudent.StudentLName ?? string.Empty);
+
+                            // Execute the command and store the result
+                            int currentStudentID = (int)cmdGetStudentID.ExecuteScalar();
+
+                            // Setting dct-associated value to result
+                            currentStudent.StudentID = currentStudentID;
+
                             populateStudentDictionary(ref dctStudents);
                             refreshStudentsListview();
 
@@ -783,6 +766,19 @@ namespace ISATB_321_FINAL_PROJECT
                         }
                         else
                         {
+
+                            SqlCommand cmdGetStudentID = new SqlCommand("SELECT dbo.fnGetStudentID(@StudentFName, @StudentLName)", conn);
+                            cmdGetStudentID.CommandType = CommandType.Text;
+
+                            // Adding parameters to the command
+                            cmdGetStudentID.Parameters.AddWithValue("@AdvisorFName", currentStudent.StudentFName ?? string.Empty);
+                            cmdGetStudentID.Parameters.AddWithValue("@AdvisorLName", currentStudent.StudentLName ?? string.Empty);
+
+                            // Execute the command and store the result
+                            int currentStudentID = (int)cmdGetStudentID.ExecuteScalar();
+
+                            // Setting dct-associated value to result
+                            currentStudent.StudentID = currentStudentID;
 
                             messageBoxOK("Creation failed for student (ID: " + currentStudent.StudentID.ToString() + ").");
 
@@ -1227,7 +1223,7 @@ namespace ISATB_321_FINAL_PROJECT
 
             //checkbox
 
-            if (chkIsTakenUpdate.Checked)
+            if (chkIsTakenUpdateOld.Checked)
             {
                 currentAvailability.IsTaken = true;
             }
@@ -1585,6 +1581,22 @@ namespace ISATB_321_FINAL_PROJECT
         }
 
         // Clear Form Functions
+        private void btnClearFormAdd_Click(object sender, EventArgs e)
+        {
+
+            radAdvisorNew.Checked = false;
+            radStudentNew.Checked = false;
+
+            txtFNameNew.Clear();
+
+            txtLNameNew.Clear();
+
+            txtYearNew.Clear();
+
+            txtEmailNew.Clear();
+
+        }
+
         private void personInformation_ClearTextboxes()
         {
 
@@ -1618,10 +1630,15 @@ namespace ISATB_321_FINAL_PROJECT
         private void btnChangePersonClearForm_Click(object sender, EventArgs e)
         {
 
+            txtOldID.Clear();
+
             txtOldFName.Clear();
 
             txtOldLName.Clear();
 
+            txtOldYear.Clear();
+
+            txtOldEmail.Clear();
 
 
             txtNewFName.Clear();
@@ -1652,13 +1669,15 @@ namespace ISATB_321_FINAL_PROJECT
 
         private void btnDeletePersonClearForm_Click(object sender, EventArgs e)
         {
+            txtPersonID.Clear();
+
             txtDeleteFName.Clear();
 
             txtDeleteLName.Clear();
 
             txtDeleteEmail.Clear();
 
-            txtPersonID.Clear();
+            txtDeleteYear.Clear();
         }
 
         private void btnClearCreateAvail_Click(object sender, EventArgs e)
@@ -1670,8 +1689,10 @@ namespace ISATB_321_FINAL_PROJECT
 
             txtDateInsert.Clear();
 
-
             txtLocationIDInsert.Clear();
+
+
+            chkIsTakenInsert.Checked = false;
 
         }
 
@@ -1680,7 +1701,7 @@ namespace ISATB_321_FINAL_PROJECT
 
             txtAvailabilityIDChange.Clear();
 
-            txtNewAvailability.Clear();
+            txtAdvisorIDChange.Clear();
 
             txtOldDateChange.Clear();
 
@@ -1699,6 +1720,10 @@ namespace ISATB_321_FINAL_PROJECT
 
             txtNewLocation.Clear();
 
+
+            chkIsTakenUpdateOld.Checked = false;
+            chkIsTakenUpdateNew.Checked = false;
+
         }
 
         private void btnClearDelete_Click(object sender, EventArgs e)
@@ -1713,6 +1738,9 @@ namespace ISATB_321_FINAL_PROJECT
             txtTimeDelete.Clear();
 
             txtLocationDelete.Clear();
+
+
+            chkIsTakenDelete.Checked = false;
 
         }
 
@@ -1752,14 +1780,14 @@ namespace ISATB_321_FINAL_PROJECT
         }
 
 
-/*        private void cboStudentsBrowse_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cboStudentsBrowse.SelectedItem is ComboBoxItem selectedItem)
-            {
-                clsStudents currentstudent = (clsStudents)selectedItem.Value;
-                txtStudentLName.Text = currentstudent.StudentLName;
-            }
-        }*/
+        /*        private void cboStudentsBrowse_SelectedIndexChanged(object sender, EventArgs e)
+                {
+                    if (cboStudentsBrowse.SelectedItem is ComboBoxItem selectedItem)
+                    {
+                        clsStudents currentstudent = (clsStudents)selectedItem.Value;
+                        txtStudentLName.Text = currentstudent.StudentLName;
+                    }
+                }*/
 
 
         //Availability combobox logic
