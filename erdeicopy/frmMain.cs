@@ -1276,53 +1276,7 @@ namespace WindowsFormsApp1
 
 
         //insert method for availability
-        private bool InsertAvailability(clsAvailability currentAvailability)
-        {
-            string myConnectionString = clsDBUtil.getConnectionString();
-
-            using (SqlConnection conn = new SqlConnection(myConnectionString))
-            {
-                try
-                {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand("sp_InsertAvailability", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    cmd.Parameters.AddWithValue("@AdvisorID", currentAvailability.AdvisorID);
-                    cmd.Parameters.AddWithValue("@Date", currentAvailability.Date);
-                    cmd.Parameters.AddWithValue("@TimeID", currentAvailability.TimeID);
-                    cmd.Parameters.AddWithValue("@LocationID", currentAvailability.LocationID);
-                    cmd.Parameters.AddWithValue("@IsTaken", currentAvailability.IsTaken);
-
-                    cmd.ExecuteNonQuery();
-                    return true;
-                }
-                catch (SqlException ex)
-                {
-                    // 2627 = primary key
-                    // 2601 = duplicate
-                    if (ex.Number == 2627 || ex.Number == 2601)
-                    {
-                        messageBoxOK("This availability slot already exists. Please choose a different date, time, or location.");
-                    }
-                    else
-                    {
-                        messageBoxOK("Database error: " + ex.Message);
-                    }
-
-                    return false;
-                }
-                catch (Exception ex)
-                {
-                    messageBoxOK("Unexpected error: " + ex.Message);
-                    return false;
-                }
-                finally
-                {
-                    conn.Close();
-                }
-            }
-        }
+        
 
 
         //insert availability button

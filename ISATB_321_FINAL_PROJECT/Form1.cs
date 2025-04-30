@@ -12,6 +12,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
+
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+using ISATB_321_FINAL_PROJECT;
+
 /*
     TODO:
         - James: Add Availability functionality
@@ -71,6 +75,8 @@ namespace ISATB_321_FINAL_PROJECT
             refreshStudentsListview();
             personInformation_ClearTextboxes();
 
+            populateAvailabilityDictionary(ref dctAvailability);
+            refreshAvailabilityListView();
 
         }
 
@@ -137,6 +143,13 @@ namespace ISATB_321_FINAL_PROJECT
 
         }
 
+
+
+
+
+
+
+
         // Event handlers for triggering text box population
         private void lsvChangePerson_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -194,8 +207,33 @@ namespace ISATB_321_FINAL_PROJECT
 
         }
 
+        private void lsvChangeAvailability_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
-        // Functions for loading and refreshing the Advisors and Students dictionaries
+            ListView.SelectedListViewItemCollection itemIsSelected = lsvChangeAvailability.SelectedItems;
+            foreach (ListViewItem item in itemIsSelected)
+            {
+                clsAvailability currentChangeAvailability = (clsAvailability)item.Tag;
+                displayAvailabilityInformation_Update(currentChangeAvailability);
+            }
+
+        }
+
+        private void lsvDeleteAvailability_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            ListView.SelectedListViewItemCollection itemIsSelected = lsvDeleteAvailability.SelectedItems;
+            foreach (ListViewItem item in itemIsSelected)
+            {
+                clsAvailability currentDeleteAvailability = (clsAvailability)item.Tag;
+                displayAvailabilityInformation_Delete(currentDeleteAvailability);
+            }
+
+        }
+
+
+
+        // Functions for loading and refreshing the dictionaries and ListViews
         private void populateAdvisorDictionary(ref Dictionary<int, clsAdvisors> dctAdvisors)
         {
 
@@ -310,24 +348,6 @@ namespace ISATB_321_FINAL_PROJECT
                             currentAvailability.TimeID = (int)rdr["TimeID"];
                             currentAvailability.LocationID = (int)rdr["LocationID"];
                             currentAvailability.IsTaken = (bool)rdr["IsTaken"];
-
-
-
-
-                            //took this away and things started working lmfao
-                            /*
-                            if (currentAvailability.IsTaken = (bool)rdr["IsTaken"])
-                            {
-                                chkIsTaken.Checked = rdr.GetBoolean(0);
-
-                            }
-                            else
-                            {
-                                chkIsTaken.Checked = false;
-                            }
-                            */
-
-
 
                             dctAvailability.Add(currentAvailability.AvailabilityID, currentAvailability);
                         }
@@ -554,19 +574,39 @@ namespace ISATB_321_FINAL_PROJECT
 
         }
 
+
+
         // Insert Availability
+        private void btnNewAvailRefresh_Click(object sender, EventArgs e)
+        {
+
+            refreshAvailabilityListView();
+
+        }
 
 
 
         // Update Availability
+        private void btnRefreshAvailChange_Click(object sender, EventArgs e)
+        {
+
+            refreshAvailabilityListView();
+
+        }
 
 
 
         // Delete Availability
+        private void btnRefreshDeleteAvail_Click(object sender, EventArgs e)
+        {
+
+            refreshAvailabilityListView();
+
+        }
 
 
 
-        // Functions for adding people
+        // Functions for adding
         private bool InsertAdvisor(clsAdvisors currentAdvisor)
         {
             string myConnectionString = clsDBUtil.getConnectionString();
@@ -764,9 +804,150 @@ namespace ISATB_321_FINAL_PROJECT
 
         }
 
+        private bool InsertAvailability(clsAvailability currentAvailability)
+        {
+            string myConnectionString = clsDBUtil.getConnectionString();
+
+            using (SqlConnection conn = new SqlConnection(myConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("sp_InsertAvailability", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@AdvisorID", currentAvailability.AdvisorID);
+                    cmd.Parameters.AddWithValue("@Date", currentAvailability.Date);
+                    cmd.Parameters.AddWithValue("@TimeID", currentAvailability.TimeID);
+                    cmd.Parameters.AddWithValue("@LocationID", currentAvailability.LocationID);
+                    cmd.Parameters.AddWithValue("@IsTaken", currentAvailability.IsTaken);
+
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                catch (SqlException ex)
+                {
+                    // 2627 = primary key
+                    // 2601 = duplicate
+                    if (ex.Number == 2627 || ex.Number == 2601)
+                    {
+                        messageBoxOK("This availability slot already exists. Please choose a different date, time, or location.");
+                    }
+                    else
+                    {
+                        messageBoxOK("Database error: " + ex.Message);
+                    }
+
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    messageBoxOK("Unexpected error: " + ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        private void btnNewAvailability_Click(object sender, EventArgs e)
+        {
 
 
-        // Functions for updating people
+            clsAvailability currentAvailability = new clsAvailability();
+
+
+
+            if (int.TryParse(txtAvailAdvisorIDInsert.Text, out int AdvisorID))
+            {
+                currentAvailability.AdvisorID = AdvisorID;
+            }
+            else
+            {
+                messageBoxOK("Invalid AdvisorID.");
+                txtAvailAdvisorIDInsert.Focus();
+                return;
+            }
+
+            //currentAvailability.Date = txtDate.Text;
+
+
+            if (DateTime.TryParse(txtDateInsert.Text, out DateTime parsedDate))
+            {
+                currentAvailability.Date = parsedDate;
+            }
+            else
+            {
+                messageBoxOK("Invalid Date.");
+                txtDateInsert.Focus();
+                return;
+            }
+
+            if (cboTimeBrowse.SelectedItem is ComboBoxItemNew selectedItem &&
+            selectedItem.Value is clsTimes selectedTime)
+            {
+                currentAvailability.TimeID = selectedTime.TimeID;
+            }
+            else
+            {
+                messageBoxOK("Please select a valid time slot.");
+                cboTimeBrowse.Focus();
+                return;
+            }
+
+
+
+            if (int.TryParse(txtLocationIDInsert.Text, out int LocationID))
+            {
+                currentAvailability.LocationID = LocationID;
+            }
+            else
+            {
+                messageBoxOK("Invalid locationID .");
+                txtLocationIDInsert.Focus();
+                return;
+            }
+
+
+            if (chkIsTakenInsert.Checked)
+            {
+
+                currentAvailability.IsTaken = chkIsTakenInsert.Checked;
+
+            }
+            else
+            {
+                //messageBoxOK("ISTAKEN ERROR REFER BACK TO INSERT CLICK EVENT.");
+                chkIsTakenInsert.Focus();
+            }
+
+
+
+            if (InsertAvailability(currentAvailability) == true)
+            {
+
+                populateAvailabilityDictionary(ref dctAvailability);
+                refreshAvailabilityListView();
+
+
+
+                messageBoxOK("The Availability (ID: " + currentAvailability.AvailabilityID.ToString() + ") successfully updated.");
+
+
+
+            }
+            else
+            {
+                messageBoxOK("Update Failed for Availability (ID: " + currentAvailability.AvailabilityID.ToString() + ").");
+            }
+            ;
+        }
+
+
+
+        // Functions for updating
         private bool updateStudent(clsStudents currentStudent)
         {
             string myConnectionString = clsDBUtil.getConnectionString();
@@ -939,9 +1120,149 @@ namespace ISATB_321_FINAL_PROJECT
             }
         }
 
+        private bool updateAvailability(clsAvailability currentAvailability)
+        {
+            string myConnectionString = clsDBUtil.getConnectionString();
+
+            using (SqlConnection conn = new SqlConnection(myConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("sp_UpdateAvailability", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@AvailabilityID", currentAvailability.AvailabilityID);
+                    cmd.Parameters.AddWithValue("@AdvisorID", currentAvailability.AdvisorID);
+                    cmd.Parameters.AddWithValue("@Date", currentAvailability.Date);
+                    cmd.Parameters.AddWithValue("@TimeID", currentAvailability.TimeID);
+                    cmd.Parameters.AddWithValue("@LocationID", currentAvailability.LocationID);
+                    cmd.Parameters.AddWithValue("@IsTaken", currentAvailability.IsTaken);
 
 
-        // Functions used for deletion
+                    cmd.ExecuteNonQuery();
+                    return true;
+
+                }
+                catch (Exception ex)
+                {
+                    messageBoxOK(ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+        private void btnChangeAvailability_Click(object sender, EventArgs e)
+        {
+
+            clsAvailability currentAvailability = new clsAvailability();
+
+            #region Validate user input & assigning to Availability properties
+
+            if (int.TryParse(txtAvailabilityID.Text, out int AvailabilityID))
+            {
+                currentAvailability.AvailabilityID = AvailabilityID;
+            }
+            else
+            {
+                messageBoxOK("Invalid Availability ID.");
+                txtAvailabilityID.Focus();
+                return;
+            }
+
+            //  currentAvailability.StudentFName = txtStudentFName.Text;
+            // currentAvailability.StudentLName = txtStudentLName.Text;
+
+            if (int.TryParse(txtNewAvailability.Text, out int AdvisorID))
+            {
+                currentAvailability.AdvisorID = AdvisorID;
+            }
+            else
+            {
+                messageBoxOK("Invalid AdvisorID.");
+                txtNewAvailability.Focus();
+                return;
+            }
+
+            //currentAvailability.Date = txtDate.Text;
+
+
+            if (DateTime.TryParse(txtNewDate.Text, out DateTime parsedDate))
+            {
+                currentAvailability.Date = parsedDate;
+            }
+            else
+            {
+                messageBoxOK("Invalid Date.");
+                txtNewDate.Focus();
+                return;
+            }
+
+
+            if (int.TryParse(txtNewTime.Text, out int TimeID))
+            {
+                currentAvailability.TimeID = TimeID;
+            }
+            else
+            {
+                messageBoxOK("Invalid TimeID ID.");
+                txtNewTime.Focus();
+                return;
+            }
+
+            if (int.TryParse(txtNewLocation.Text, out int LocationID))
+            {
+                currentAvailability.LocationID = LocationID;
+            }
+            else
+            {
+                messageBoxOK("Invalid TimeID ID.");
+                txtNewLocation.Focus();
+                return;
+            }
+
+            //checkbox
+
+            if (chkIsTakenUpdate.Checked)
+            {
+                currentAvailability.IsTaken = true;
+            }
+            else
+            {
+                currentAvailability.IsTaken = false;
+
+            }
+
+
+            #endregion
+
+            if (updateAvailability(currentAvailability) == true)
+            {
+
+                populateAvailabilityDictionary(ref dctAvailability);
+                refreshAvailabilityListView();
+
+
+
+                messageBoxOK("The Availability (ID: " + currentAvailability.AvailabilityID.ToString() + ") successfully updated.");
+
+
+
+            }
+            else
+            {
+                messageBoxOK("Update Failed for Availability (ID: " + currentAvailability.AvailabilityID.ToString() + ").");
+            }
+            ;
+
+        }
+
+
+        // Functions for deleting
         private bool deleteAdvisor(clsAdvisors delCurrentAdvisor)
         {
             string myConnectionString = clsDBUtil.getConnectionString();
@@ -1132,7 +1453,138 @@ namespace ISATB_321_FINAL_PROJECT
 
         }
 
+        private bool deleteAvailability(clsAvailability currentAvailability)
+        {
+            string myConnectionString = clsDBUtil.getConnectionString();
 
+            using (SqlConnection conn = new SqlConnection(myConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("sp_DeleteAvailability", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@AvailabilityID", currentAvailability.AvailabilityID);
+
+                    cmd.ExecuteNonQuery();
+                    return true;
+
+                }
+                catch (Exception ex)
+                {
+                    messageBoxOK(ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+        private void btnDeleteAvailability_Click(object sender, EventArgs e)
+        {
+            clsAvailability currentAvailability = new clsAvailability();
+
+
+
+
+            if (int.TryParse(txtAvailabilityIDDelete.Text, out int AvailabilityID))
+            {
+                currentAvailability.AvailabilityID = AvailabilityID;
+            }
+            else
+            {
+                messageBoxOK("Invalid AvailabilityID.");
+                txtAvailabilityIDDelete.Focus();
+                return;
+            }
+
+
+            if (int.TryParse(txtAdvisorIDDelete.Text, out int AdvisorID))
+            {
+                currentAvailability.AdvisorID = AdvisorID;
+            }
+            else
+            {
+                messageBoxOK("Invalid AdvisorID.");
+                txtAdvisorIDDelete.Focus();
+                return;
+            }
+
+            //currentAvailability.Date = txtDate.Text;
+
+
+            if (DateTime.TryParse(txtDateDelete.Text, out DateTime parsedDate))
+            {
+                currentAvailability.Date = parsedDate;
+            }
+            else
+            {
+                messageBoxOK("Invalid Date.");
+                txtDateDelete.Focus();
+                return;
+            }
+
+
+            if (int.TryParse(txtTimeDelete.Text, out int TimeID))
+            {
+                currentAvailability.TimeID = TimeID;
+            }
+            else
+            {
+                messageBoxOK("Invalid TimeID ID.");
+                txtTimeDelete.Focus();
+                return;
+            }
+
+            if (int.TryParse(txtLocationDelete.Text, out int LocationID))
+            {
+                currentAvailability.LocationID = LocationID;
+            }
+            else
+            {
+                messageBoxOK("Invalid LocationID ID.");
+                txtLocationDelete.Focus();
+                return;
+            }
+
+
+            //checkbox
+            if (chkIsTakenDelete.Checked)
+            {
+                currentAvailability.IsTaken = true;
+            }
+            else
+            {
+                currentAvailability.IsTaken = false;
+
+            }
+
+            currentAvailability.AvailabilityID = currentAvailability.AvailabilityID;
+
+
+            if (deleteAvailability(currentAvailability) == true)
+            {
+
+                populateAvailabilityDictionary(ref dctAvailability);
+                refreshAvailabilityListview();
+
+
+
+                messageBoxOK("The Availability (ID: " + currentAvailability.AvailabilityID.ToString() + ") successfully deleted.");
+                availabilityInformation_Update_ClearTextboxes();
+
+
+
+            }
+            else
+            {
+                messageBoxOK("delete Failed for Availability (ID: " + currentAvailability.AvailabilityID.ToString() + ").");
+            }
+            ;
+        }
 
         // Clear Form Functions
         private void personInformation_ClearTextboxes()
@@ -1211,22 +1663,60 @@ namespace ISATB_321_FINAL_PROJECT
             txtPersonID.Clear();
         }
 
-
-
-        // DialogBoxes
-        private void messageBoxOK(string msg)
+        private void btnClearCreateAvail_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(msg, Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            txtAvailabilityID.Clear();
+
+            txtAvailAdvisorIDInsert.Clear();
+
+            txtDateInsert.Clear();
+
+
+            txtLocationIDInsert.Clear();
+
         }
 
-        private DialogResult messageBoxYesNo(string msg)
+        private void btnClearChange_Click(object sender, EventArgs e)
         {
-            return MessageBox.Show(msg, Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            txtAvailabilityIDChange.Clear();
+
+            txtOldAdvisorIDChange.Clear();
+
+            txtOldDateChange.Clear();
+
+            txtOldTimeChange.Clear();
+
+            txtOldLocationChange.Clear();
+
+
+            txtNewAvailability.Clear();
+
+            txtNewAdvisorID.Clear();
+
+            txtNewDate.Clear();
+
+            txtNewTime.Clear();
+
+            txtNewLocation.Clear();
+
         }
 
+        private void btnClearDelete_Click(object sender, EventArgs e)
+        {
 
+            txtAvailabilityIDDelete.Clear();
 
+            txtAdvisorIDDelete.Clear();
 
+            txtDateDelete.Clear();
+
+            txtTimeDelete.Clear();
+
+            txtLocationDelete.Clear();
+
+        }
 
         //MEETING CODE MESSY*****************************************************************************
         //*************************************************************************************************
@@ -1297,9 +1787,6 @@ namespace ISATB_321_FINAL_PROJECT
             }
 
         }
-
-        
-
         //creates the meeting dictionary
         private void populateMeetingDictionary(ref Dictionary<int, clsMeetings> dctMeetings)
         {
@@ -1551,7 +2038,7 @@ namespace ISATB_321_FINAL_PROJECT
 
 
 
-            if (cboStudentsBrowse.SelectedItem is ComboBoxItem selectedItem &&
+            if (cboStudentsBrowse.SelectedItem is ComboBoxItemNew selectedItem &&
             selectedItem.Value is clsStudents selectedStudent)
             {
                 currentMeeting.StudentID = selectedStudent.StudentID;
@@ -1564,7 +2051,7 @@ namespace ISATB_321_FINAL_PROJECT
             }
 
 
-            if (cboAvailabilityBrowse.SelectedItem is ComboBoxItem selectedAvailabilityItem &&
+            if (cboAvailabilityBrowse.SelectedItem is ComboBoxItemNew selectedAvailabilityItem &&
             selectedAvailabilityItem.Value is clsAvailability selectedAvailability)
             {
                 currentMeeting.AvailabilityID = selectedAvailability.AvailabilityID;
@@ -1602,7 +2089,23 @@ namespace ISATB_321_FINAL_PROJECT
            ;
         }
 
+        public class ComboBoxItemNew
+        {
+            public string DisplayText { get; }
+            public object Value { get; }
 
+            public ComboBoxItemNew(string text, object value)
+            {
+                DisplayText = text;
+                Value = value;
+            }
 
+            public override string ToString()
+            {
+                return DisplayText;
+            }
+        }
+
+        
     }
 }
