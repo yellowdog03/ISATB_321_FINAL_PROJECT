@@ -13,7 +13,8 @@ create and run user in b320
 */
 
 
-
+DROP USER B321_S25_APP 
+GO
 
 
 USE MASTER
@@ -30,15 +31,7 @@ FOR LOGIN B321_S25_APP
 GO
 
 
-DROP Procedure IF EXISTS sp_GetVendors
-GO
 
-
-CREATE PROCEDURE sp_GetVendors
-as
-SELECT *
-FROM Vendors
-GO
 
 GRANT EXECUTE ON sp_GetVendors to B321_S25_APP
 GO
