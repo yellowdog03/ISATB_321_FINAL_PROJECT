@@ -874,6 +874,7 @@
             this.lvwTimes.TileSize = new System.Drawing.Size(268, 30);
             this.lvwTimes.UseCompatibleStateImageBehavior = false;
             this.lvwTimes.View = System.Windows.Forms.View.Tile;
+            this.lvwTimes.Visible = false;
             this.lvwTimes.SelectedIndexChanged += new System.EventHandler(this.lvwTimes_SelectedIndexChanged);
             // 
             // chkIsTakenInsert
