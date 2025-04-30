@@ -115,6 +115,27 @@ namespace ISATB_321_FINAL_PROJECT
 
         }
 
+        private void displayAvailabilityInformation_Update(clsAvailability currentAvailability)
+        {
+
+            txtAvailabilityIDChange.Text = currentAvailability.AvailabilityID.ToString();
+            txtOldAdvisorIDChange.Text = currentAvailability.AdvisorID.ToString();
+            txtOldDateChange.Text = currentAvailability.Date.ToString();
+            txtOldTimeChange.Text = currentAvailability.TimeID.ToString();
+            txtOldLocationChange.Text = currentAvailability.LocationID.ToString();
+
+        }
+
+        private void displayAvailabilityInformation_Delete(clsAvailability currentAvailability)
+        {
+
+            txtAvailabilityIDDelete.Text = currentAvailability.AvailabilityID.ToString();
+            txtAdvisorIDDelete.Text = currentAvailability.AdvisorID.ToString();
+            txtDateDelete.Text = currentAvailability.Date.ToString();
+            txtTimeDelete.Text = currentAvailability.TimeID.ToString();
+            txtLocationDelete.Text = currentAvailability.LocationID.ToString();
+
+        }
 
         // Event handlers for triggering text box population
         private void lsvChangePerson_SelectedIndexChanged(object sender, EventArgs e)
