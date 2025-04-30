@@ -19,11 +19,7 @@ namespace WindowsFormsApp1
             builder.Password = "Password!";
             builder.Encrypt = false;
 
-            /*            builder.DataSource = "isat-320-quick-emrys.database.windows.net";
-                        builder.InitialCatalog = "ISATB_321_FINAL_PROJECT";
-                        builder.UserID = "B321_S25_APP";
-                        builder.Password = "B33pB00p!";
-                        builder.Encrypt = false;*/
+
 
             return builder.ConnectionString.ToString();
         }
