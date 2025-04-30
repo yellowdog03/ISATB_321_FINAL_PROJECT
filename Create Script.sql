@@ -93,3 +93,6 @@ ADD CONSTRAINT UQ_Availability UNIQUE (AdvisorID, Date, TimeID, LocationID);
 
 ALTER TABLE Meetings
 ADD CONSTRAINT UQ_Meetings UNIQUE (StudentID, AvailabilityID);
+
+ALTER TABLE Meetings
+ADD CONSTRAINT UQ_Meetings_AvailabilityID UNIQUE (AvailabilityID);

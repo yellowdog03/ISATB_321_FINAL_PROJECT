@@ -1772,7 +1772,7 @@ namespace WindowsFormsApp1
 
 
         //Availability combobox logic
-
+        /*
         private void populateAvailabilityComboBox()
         {
             cboAvailabilityBrowse.Items.Clear();
@@ -1781,8 +1781,19 @@ namespace WindowsFormsApp1
                 cboAvailabilityBrowse.Items.Add(new ComboBoxItem(currentAvailability.AvailabilityID + ", " + currentAvailability.Date.ToString("MM/dd/yyyy"), currentAvailability));
             }
         }
+        */
+
+        private void populateAvailabilityComboBox()
+        {
+            cboAvailabilityBrowse.Items.Clear();
+            foreach (var currentAvailability in dctAvailability.Values)
+            {
+                cboAvailabilityBrowse.Items.Add(new ComboBoxItem("AvailabilityID:" + currentAvailability.AvailabilityID + ", " + currentAvailability.Date.ToString("MM/dd/yyyy"), currentAvailability));
+            }
+        }
 
         //availability combobox
+        
         private void cboAvailabilityBrowse_SelectedIndexChanged(object sender, EventArgs e)
         {
            
@@ -1794,7 +1805,30 @@ namespace WindowsFormsApp1
             }
         
         }
+        
+        /*
+        private void cboAvailabilityBrowse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboAvailabilityBrowse.SelectedItem is ComboBoxItem selectedItem)
+            {
+                clsAvailability currentAvailability = (clsAvailability)selectedItem.Value;
+                txtAvailabilityID.Text = currentAvailability.AvailabilityID.ToString();
 
+                // Populate time fields
+                if (dctTimes.TryGetValue(currentAvailability.TimeID, out clsTimes selectedTime))
+                {
+                    txtStartTime.Text = selectedTime.StartTime.ToString(@"hh\:mm");
+                    txtEndTime.Text = selectedTime.EndTime.ToString(@"hh\:mm");
+                }
+                else
+                {
+                    txtStartTime.Text = "N/A";
+                    txtEndTime.Text = "N/A";
+                }
+            }
+        }
+
+        */
 
         //creates the meeting dictionary
         private void populateMeetingDictionary(ref Dictionary<int, clsMeetings> dctMeetings)
@@ -1878,7 +1912,8 @@ namespace WindowsFormsApp1
             txtMeetAvailabilityID.Clear();
             txtMeetAvailabilityID.ReadOnly = true;
 
-
+            txtStartTime.Visible = true;
+            txtEndTime.Visible = true;
 
 
             cboStudentsBrowse.SelectedIndex = -1;  
@@ -2171,8 +2206,8 @@ namespace WindowsFormsApp1
         private void displayTimeInformation_update(clsTimes currentTime)
         {
             txtTimeID2.Text = currentTime.TimeID.ToString();
-            txtStartTime.Text = currentTime.StartTime.ToString();
-            txtEndTime.Text = currentTime.EndTime.ToString();
+            txtStartTimeOG.Text = currentTime.StartTime.ToString();
+            txtEndTimeOG.Text = currentTime.EndTime.ToString();
 
         }
         
@@ -2184,15 +2219,15 @@ namespace WindowsFormsApp1
             txtTimeID.Clear();
             txtTimeID.ReadOnly = true;
 
-            txtStartTime.Clear();
-            txtStartTime.ReadOnly = true;
+            txtStartTimeOG.Clear();
+            txtStartTimeOG.ReadOnly = true;
 
-            txtEndTime.Clear();
-            txtEndTime.ReadOnly = true;
+            txtEndTimeOG.Clear();
+            txtEndTimeOG.ReadOnly = true;
 
             txtTimeID2.Visible = false;
-            txtEndTime.Visible = false;
-            txtStartTime.Visible = false;
+            txtEndTimeOG.Visible = false;
+            txtStartTimeOG.Visible = false;
 
             lvwTimes.Visible = false;
 

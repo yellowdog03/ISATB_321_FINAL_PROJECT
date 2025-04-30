@@ -97,8 +97,8 @@
             this.txtAvailabilityID = new System.Windows.Forms.TextBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.cboTimeBrowse = new System.Windows.Forms.ComboBox();
-            this.txtEndTime = new System.Windows.Forms.TextBox();
-            this.txtStartTime = new System.Windows.Forms.TextBox();
+            this.txtEndTimeOG = new System.Windows.Forms.TextBox();
+            this.txtStartTimeOG = new System.Windows.Forms.TextBox();
             this.txtTimeID2 = new System.Windows.Forms.TextBox();
             this.lvwTimes = new System.Windows.Forms.ListView();
             this.chkIsTakenInsert = new System.Windows.Forms.CheckBox();
@@ -128,6 +128,8 @@
             this.lvwMeetings = new System.Windows.Forms.ListView();
             this.cboAvailabilityBrowse = new System.Windows.Forms.ComboBox();
             this.cboStudentsBrowse = new System.Windows.Forms.ComboBox();
+            this.txtStartTime = new System.Windows.Forms.TextBox();
+            this.txtEndTime = new System.Windows.Forms.TextBox();
             this.tabAdvisors.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -811,8 +813,8 @@
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.cboTimeBrowse);
-            this.tabPage6.Controls.Add(this.txtEndTime);
-            this.tabPage6.Controls.Add(this.txtStartTime);
+            this.tabPage6.Controls.Add(this.txtEndTimeOG);
+            this.tabPage6.Controls.Add(this.txtStartTimeOG);
             this.tabPage6.Controls.Add(this.txtTimeID2);
             this.tabPage6.Controls.Add(this.lvwTimes);
             this.tabPage6.Controls.Add(this.chkIsTakenInsert);
@@ -843,19 +845,19 @@
             this.cboTimeBrowse.TabIndex = 62;
             this.cboTimeBrowse.SelectedIndexChanged += new System.EventHandler(this.cboTimeBrowse_SelectedIndexChanged_1);
             // 
-            // txtEndTime
+            // txtEndTimeOG
             // 
-            this.txtEndTime.Location = new System.Drawing.Point(143, 129);
-            this.txtEndTime.Name = "txtEndTime";
-            this.txtEndTime.Size = new System.Drawing.Size(131, 26);
-            this.txtEndTime.TabIndex = 61;
+            this.txtEndTimeOG.Location = new System.Drawing.Point(143, 129);
+            this.txtEndTimeOG.Name = "txtEndTimeOG";
+            this.txtEndTimeOG.Size = new System.Drawing.Size(131, 26);
+            this.txtEndTimeOG.TabIndex = 61;
             // 
-            // txtStartTime
+            // txtStartTimeOG
             // 
-            this.txtStartTime.Location = new System.Drawing.Point(143, 97);
-            this.txtStartTime.Name = "txtStartTime";
-            this.txtStartTime.Size = new System.Drawing.Size(131, 26);
-            this.txtStartTime.TabIndex = 60;
+            this.txtStartTimeOG.Location = new System.Drawing.Point(143, 97);
+            this.txtStartTimeOG.Name = "txtStartTimeOG";
+            this.txtStartTimeOG.Size = new System.Drawing.Size(131, 26);
+            this.txtStartTimeOG.TabIndex = 60;
             // 
             // txtTimeID2
             // 
@@ -980,6 +982,8 @@
             // 
             // ScheduleMeeting
             // 
+            this.ScheduleMeeting.Controls.Add(this.txtEndTime);
+            this.ScheduleMeeting.Controls.Add(this.txtStartTime);
             this.ScheduleMeeting.Controls.Add(this.lblMeetings);
             this.ScheduleMeeting.Controls.Add(this.lblMeetAvailabilityID);
             this.ScheduleMeeting.Controls.Add(this.lblMeetStudentID2);
@@ -1126,6 +1130,20 @@
             this.cboStudentsBrowse.TabIndex = 40;
             this.cboStudentsBrowse.SelectedIndexChanged += new System.EventHandler(this.cboStudentsBrowse_SelectedIndexChanged);
             // 
+            // txtStartTime
+            // 
+            this.txtStartTime.Location = new System.Drawing.Point(40, 286);
+            this.txtStartTime.Name = "txtStartTime";
+            this.txtStartTime.Size = new System.Drawing.Size(93, 26);
+            this.txtStartTime.TabIndex = 61;
+            // 
+            // txtEndTime
+            // 
+            this.txtEndTime.Location = new System.Drawing.Point(148, 286);
+            this.txtEndTime.Name = "txtEndTime";
+            this.txtEndTime.Size = new System.Drawing.Size(93, 26);
+            this.txtEndTime.TabIndex = 62;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -1256,9 +1274,11 @@
         private System.Windows.Forms.Label lblMeetings;
         private System.Windows.Forms.ListView lvwTimes;
         private System.Windows.Forms.TextBox txtTimeID2;
-        private System.Windows.Forms.TextBox txtEndTime;
-        private System.Windows.Forms.TextBox txtStartTime;
+        private System.Windows.Forms.TextBox txtEndTimeOG;
+        private System.Windows.Forms.TextBox txtStartTimeOG;
         private System.Windows.Forms.ComboBox cboTimeBrowse;
+        private System.Windows.Forms.TextBox txtStartTime;
+        private System.Windows.Forms.TextBox txtEndTime;
     }
 }
 
