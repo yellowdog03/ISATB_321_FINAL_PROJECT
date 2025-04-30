@@ -1,49 +1,49 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\",
+  "WorkspaceRootPath": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|solutionrelative:frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmmain.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|solutionrelative:frmmain.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|c:\\users\\keepi\\onedrive\\desktop\\db app dev\\final project\\isatb_321_final_project\\erdeicopy\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|c:\\users\\james\\desktop\\final project\\isatb_321_final_project\\erdeicopy\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|solutionrelative:frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsavailability.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|solutionrelative:clsavailability.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|solutionrelative:frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsmeetings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|solutionrelative:clsmeetings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clslocations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|solutionrelative:clslocations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsadvisors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsadvisors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|solutionrelative:clsadvisors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsdbutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|solutionrelative:clsdbutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsavailability.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|solutionrelative:clsavailability.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsstudents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|solutionrelative:clsstudents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clstimes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clstimes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|solutionrelative:clstimes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsdbutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|solutionrelative:clsdbutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmmain.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|solutionrelative:frmmain.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsmeetings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|solutionrelative:clsmeetings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clslocations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|solutionrelative:clslocations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsstudents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|solutionrelative:clsstudents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FA97890A-8388-4D20-9E32-7024928D0335}|B321_ICE_13_123.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -54,28 +54,28 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "frmMain.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmMain.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmMain.Designer.cs",
               "RelativeDocumentMoniker": "frmMain.Designer.cs",
-              "ToolTip": "C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmMain.Designer.cs",
+              "ToolTip": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmMain.Designer.cs",
               "RelativeToolTip": "frmMain.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAOkAAAAAAAAAAAASwPkAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-29T02:53:01.087Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "frmMain.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmMain.cs",
+              "DocumentMoniker": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmMain.cs",
               "RelativeDocumentMoniker": "frmMain.cs",
-              "ToolTip": "C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmMain.cs [Design]",
+              "ToolTip": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmMain.cs [Design]",
               "RelativeToolTip": "frmMain.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-29T02:51:44.439Z",
@@ -83,13 +83,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "frmMain.cs",
-              "DocumentMoniker": "C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmMain.cs",
+              "DocumentMoniker": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmMain.cs",
               "RelativeDocumentMoniker": "frmMain.cs",
-              "ToolTip": "C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmMain.cs",
+              "ToolTip": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\frmMain.cs",
               "RelativeToolTip": "frmMain.cs",
-              "ViewState": "AgIAAPcGAAAAAAAAAAAUwB4HAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAMkHAAAAAAAAAAAiwNUHAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-29T02:52:47.393Z",
               "EditorCaption": ""
@@ -98,11 +98,11 @@
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "clsAvailability.cs",
-              "DocumentMoniker": "C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsAvailability.cs",
+              "DocumentMoniker": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsAvailability.cs",
               "RelativeDocumentMoniker": "clsAvailability.cs",
-              "ToolTip": "C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsAvailability.cs",
+              "ToolTip": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsAvailability.cs",
               "RelativeToolTip": "clsAvailability.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAhwC8AAAAKAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-29T02:51:37.341Z"
             },
@@ -110,9 +110,9 @@
               "$type": "Document",
               "DocumentIndex": 10,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\Program.cs",
+              "ToolTip": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\Program.cs",
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -120,11 +120,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 4,
               "Title": "clsTimes.cs",
-              "DocumentMoniker": "C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsTimes.cs",
+              "DocumentMoniker": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsTimes.cs",
               "RelativeDocumentMoniker": "clsTimes.cs",
-              "ToolTip": "C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsTimes.cs",
+              "ToolTip": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsTimes.cs",
               "RelativeToolTip": "clsTimes.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -132,23 +132,23 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "clsStudents.cs",
-              "DocumentMoniker": "C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsStudents.cs",
+              "DocumentMoniker": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsStudents.cs",
               "RelativeDocumentMoniker": "clsStudents.cs",
-              "ToolTip": "C:\\Users\\jeplant\\Desktop\\ISATB_321_FINAL_PROJECT-main\\erdeicopy\\clsStudents.cs*",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\..\\jeplant\\Desktop\\ISATB_321_FINAL_PROJECT-main\\erdeicopy\\clsStudents.cs*",
+              "ToolTip": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsStudents.cs",
+              "RelativeToolTip": "clsStudents.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-29T02:51:41.207Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "clsMeetings.cs",
-              "DocumentMoniker": "C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsMeetings.cs",
+              "DocumentMoniker": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsMeetings.cs",
               "RelativeDocumentMoniker": "clsMeetings.cs",
-              "ToolTip": "C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsMeetings.cs",
+              "ToolTip": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsMeetings.cs",
               "RelativeToolTip": "clsMeetings.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -156,11 +156,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "clsLocations.cs",
-              "DocumentMoniker": "C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsLocations.cs",
+              "DocumentMoniker": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsLocations.cs",
               "RelativeDocumentMoniker": "clsLocations.cs",
-              "ToolTip": "C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsLocations.cs",
+              "ToolTip": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsLocations.cs",
               "RelativeToolTip": "clsLocations.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -168,11 +168,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "clsAdvisors.cs",
-              "DocumentMoniker": "C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsAdvisors.cs",
+              "DocumentMoniker": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsAdvisors.cs",
               "RelativeDocumentMoniker": "clsAdvisors.cs",
-              "ToolTip": "C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsAdvisors.cs",
+              "ToolTip": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsAdvisors.cs",
               "RelativeToolTip": "clsAdvisors.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -180,11 +180,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "clsDBUtil.cs",
-              "DocumentMoniker": "C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsDBUtil.cs",
+              "DocumentMoniker": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsDBUtil.cs",
               "RelativeDocumentMoniker": "clsDBUtil.cs",
-              "ToolTip": "C:\\Users\\keepi\\OneDrive\\Desktop\\DB App Dev\\Final Project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsDBUtil.cs",
+              "ToolTip": "C:\\Users\\james\\Desktop\\final project\\ISATB_321_FINAL_PROJECT\\erdeicopy\\clsDBUtil.cs",
               "RelativeToolTip": "clsDBUtil.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

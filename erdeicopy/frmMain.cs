@@ -1163,7 +1163,7 @@ namespace WindowsFormsApp1
         {
             txtAvailabilityID.Text = currentAvailability.AvailabilityID.ToString();
             txtAvailAdvisorID.Text = currentAvailability.AdvisorID.ToString();
-            txtDate.Text = currentAvailability.Date.ToString();
+            txtDate.Text = currentAvailability.Date.ToString("MM/dd/yyyy");
             txtTimeID.Text = currentAvailability.TimeID.ToString();
             txtLocationID.Text = currentAvailability.LocationID.ToString();
 
@@ -1214,6 +1214,7 @@ namespace WindowsFormsApp1
             txtLocationIDInsert.Clear();
 
             //checkbox
+            chkIsTakenInsert.Visible = false;
             chkIsTakenInsert.Checked = false;
 
 
@@ -1270,7 +1271,7 @@ namespace WindowsFormsApp1
 
 
 
-
+        /*
         private bool InsertAvailability(clsAvailability currentAvailability)
         {
             string myConnectionString = clsDBUtil.getConnectionString();
@@ -1314,6 +1315,58 @@ namespace WindowsFormsApp1
             }
 
         }
+        */
+
+
+        private bool InsertAvailability(clsAvailability currentAvailability)
+        {
+            string myConnectionString = clsDBUtil.getConnectionString();
+
+            using (SqlConnection conn = new SqlConnection(myConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("sp_InsertAvailability", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@AdvisorID", currentAvailability.AdvisorID);
+                    cmd.Parameters.AddWithValue("@Date", currentAvailability.Date);
+                    cmd.Parameters.AddWithValue("@TimeID", currentAvailability.TimeID);
+                    cmd.Parameters.AddWithValue("@LocationID", currentAvailability.LocationID);
+                    cmd.Parameters.AddWithValue("@IsTaken", currentAvailability.IsTaken);
+
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                catch (SqlException ex)
+                {
+                    // 2627 = primary key
+                    // 2601 = duplicate
+                    if (ex.Number == 2627 || ex.Number == 2601)
+                    {
+                        messageBoxOK("This availability slot already exists. Please choose a different date, time, or location.");
+                    }
+                    else
+                    {
+                        messageBoxOK("Database error: " + ex.Message);
+                    }
+
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    messageBoxOK("Unexpected error: " + ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+
 
         private void btnAvailabilityInsert_Click_1(object sender, EventArgs e)
         {
@@ -1420,7 +1473,8 @@ namespace WindowsFormsApp1
             txtDate.ReadOnly = false;
             txtTimeID.ReadOnly = false;
             txtLocationID.ReadOnly = false;
-            chkIsTaken.Visible = true;
+            //turn off is taken
+            chkIsTaken.Visible = false;
 
             btnEditAvailability.Visible = false;
             btnUpdateAvailability.Visible = true;
@@ -1728,41 +1782,6 @@ namespace WindowsFormsApp1
 
 
 
-        //advisor combobox logic
-        /*
-        private void populateAdvisorsComboBox()
-        {
-            cboAdvisorsBrowse.Items.Clear();
-            foreach (var currentAdvisor in dctAdvisors.Values)
-            {
-                cboAdvisorsBrowse.Items.Add(new ComboBoxItem(currentAdvisor.AdvisorFName + " " + currentAdvisor.AdvisorLName, currentAdvisor));
-            }
-        }
-
-        
-        private void cboAdvisorsBrowse_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            if (cboAdvisorsBrowse.SelectedItem is ComboBoxItem selectedItem)
-            {
-                clsAdvisors currentAdvisor = (clsAdvisors)selectedItem.Value;
-                txtAdvisorEmail.Text = currentAdvisor.AdvisorEmail;
-            }
-        }
-        */
-
-
-
-        //student combobox logic
-        /*
-        private void populateStudentsComboBox()
-        {
-            cboStudentsBrowse.Items.Clear();
-            foreach (var currentStudent in dctStudents.Values)
-            {
-                cboStudentsBrowse.Items.Add(new ComboBoxItem(currentStudent.StudentFName + " " + currentStudent.StudentLName, currentStudent));
-            }
-        }
-        */
 
         private void populateStudentsComboBox()
         {
@@ -1791,7 +1810,7 @@ namespace WindowsFormsApp1
             cboAvailabilityBrowse.Items.Clear();
             foreach (var currentAvailability in dctAvailability.Values)
             {
-                cboAvailabilityBrowse.Items.Add(new ComboBoxItem(currentAvailability.AvailabilityID + " " + currentAvailability.Date, currentAvailability));
+                cboAvailabilityBrowse.Items.Add(new ComboBoxItem(currentAvailability.AvailabilityID + ", " + currentAvailability.Date.ToString("MM/dd/yyyy"), currentAvailability));
             }
         }
 
@@ -1985,9 +2004,21 @@ namespace WindowsFormsApp1
                     return true;
 
                 }
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 2627 || ex.Number == 2601)
+                    {
+                        messageBoxOK("A meeting already exists for this student and time. Please choose a different slot.");
+                    }
+                    else
+                    {
+                        messageBoxOK("An error occurred while scheduling the meeting: " + ex.Message);
+                    }
+                    return false;
+                }
                 catch (Exception ex)
                 {
-                    messageBoxOK(ex.Message);
+                    messageBoxOK("Unexpected error: " + ex.Message);
                     return false;
                 }
                 finally
