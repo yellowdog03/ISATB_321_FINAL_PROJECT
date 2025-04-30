@@ -27,6 +27,8 @@ namespace WindowsFormsApp1
 
         private Dictionary<int, clsMeetings> dctMeetings = new Dictionary<int, clsMeetings>();
 
+        private Dictionary<int, clsTimes> dctTimes = new Dictionary<int, clsTimes>();
+
 
         public frmMain()
         {
@@ -50,9 +52,11 @@ namespace WindowsFormsApp1
             populateMeetingDictionary(ref dctMeetings);
             refreshMeetingsListview();
             meetingInformation_Update_ClearTextboxes();
-
-
-
+            
+            populateTimesDictionary(ref dctTimes);
+            refreshTimesListview();
+            timeInformation_Update_ClearTextboxes();
+            
             //meetings V
 
             /*
@@ -61,8 +65,8 @@ namespace WindowsFormsApp1
             refreshAvailabilityBrowseListview();
             */
 
-           // populateAdvisorsComboBox();
-            
+            // populateAdvisorsComboBox();
+
             populateStudentsComboBox();
 
             populateAvailabilityComboBox();
@@ -596,7 +600,7 @@ namespace WindowsFormsApp1
 
 
 
-
+        //create student dictionary
         private void populateStudentDictionary(ref Dictionary<int, clsStudents> dctStudents)
         {
 
@@ -641,7 +645,7 @@ namespace WindowsFormsApp1
         }
 
 
-
+        //update student method
         private bool updateStudent(clsStudents currentStudent)
         {
             string myConnectionString = clsDBUtil.getConnectionString();
@@ -677,7 +681,7 @@ namespace WindowsFormsApp1
         }
 
 
-
+        //refresh student listview
         private void refreshStudentsListview()
         {
             // REMEMBER: the View property of the listview must be set to 'List'
@@ -694,7 +698,7 @@ namespace WindowsFormsApp1
 
 
 
-
+        //update student listview
         private void lvwStudents_Update_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -705,7 +709,7 @@ namespace WindowsFormsApp1
                 displayStudentInformation_update(currentStudent);
             }
         }
-
+        // text info reflects database
         private void displayStudentInformation_update(clsStudents currentStudent)
         {
             txtStudentID.Text = currentStudent.StudentID.ToString();
@@ -714,7 +718,7 @@ namespace WindowsFormsApp1
             txtYear.Text = currentStudent.Year.ToString();
 
         }
-
+        //clears student textboxes
         private void studentInformation_Update_ClearTextboxes()
         {
             txtStudentID.Clear();
@@ -758,7 +762,7 @@ namespace WindowsFormsApp1
         }
 
 
-
+        //edit students button
         private void btnStudentEdit_Click(object sender, EventArgs e)
         {
             if (txtStudentID.Text == "")
@@ -775,7 +779,7 @@ namespace WindowsFormsApp1
             btnStudentDelete.Visible = true;
 
         }
-
+        //update students button
         private void btnStudentUpdate_Click(object sender, EventArgs e)
         {
             clsStudents currentStudent = new clsStudents();
@@ -844,7 +848,7 @@ namespace WindowsFormsApp1
         }
 
 
-
+        //delete student method
         private bool deleteStudent(clsStudents currentStudent)
         {
             string myConnectionString = clsDBUtil.getConnectionString();
@@ -887,7 +891,7 @@ namespace WindowsFormsApp1
 
 
 
-
+        // insert student
         private bool InsertStudent(clsStudents currentStudent)
         {
             string myConnectionString = clsDBUtil.getConnectionString();
@@ -926,7 +930,7 @@ namespace WindowsFormsApp1
 
 
 
-
+        //insert student button
         private void btnInsertStudentInfo_Click_1(object sender, EventArgs e)
         {
 
@@ -978,7 +982,7 @@ namespace WindowsFormsApp1
 
 
         }
-
+        //delete student button
         private void btnStudentDelete_Click(object sender, EventArgs e)
         {
 
@@ -1049,7 +1053,7 @@ namespace WindowsFormsApp1
 
 
 
-
+        // create availability dictionary
         private void populateAvailabilityDictionary(ref Dictionary<int, clsAvailability> dctAvailability)
         {
 
@@ -1116,7 +1120,7 @@ namespace WindowsFormsApp1
         }
 
 
-
+        //updateAvailability method
         private bool updateAvailability(clsAvailability currentAvailability)
         {
             string myConnectionString = clsDBUtil.getConnectionString();
@@ -1154,7 +1158,7 @@ namespace WindowsFormsApp1
         }
 
 
-
+        //refresh the listview for availability
         private void refreshAvailabilityListview()
         {
             // REMEMBER: the View property of the listview must be set to 'List'
@@ -1171,7 +1175,7 @@ namespace WindowsFormsApp1
 
 
 
-
+        //bring sql data to front end
         private void displayAvailabilityInformation_update(clsAvailability currentAvailability)
         {
             txtAvailabilityID.Text = currentAvailability.AvailabilityID.ToString();
@@ -1186,7 +1190,7 @@ namespace WindowsFormsApp1
             chkIsTaken.Checked = currentAvailability.IsTaken;
 
         }
-
+        //clear textboxes for availability
         private void availabilityInformation_Update_ClearTextboxes()
         {
             txtAvailabilityID.Clear();
@@ -1250,7 +1254,7 @@ namespace WindowsFormsApp1
 
 
 
-
+        //delete method for availability
         private bool deleteAvailability(clsAvailability currentAvailability)
         {
             string myConnectionString = clsDBUtil.getConnectionString();
@@ -1283,54 +1287,7 @@ namespace WindowsFormsApp1
 
 
 
-
-        /*
-        private bool InsertAvailability(clsAvailability currentAvailability)
-        {
-            string myConnectionString = clsDBUtil.getConnectionString();
-
-            using (SqlConnection conn = new SqlConnection(myConnectionString))
-            {
-                try
-                {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand("sp_InsertAvailability", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    //cmd.Parameters.AddWithValue("@AdvisorID", currentAdvisor.AdvisorID);
-
-                    cmd.Parameters.AddWithValue("@AdvisorID", currentAvailability.AdvisorID);
-                    cmd.Parameters.AddWithValue("@Date", currentAvailability.Date);
-                    cmd.Parameters.AddWithValue("@TimeID", currentAvailability.TimeID);
-                    cmd.Parameters.AddWithValue("@LocationID", currentAvailability.LocationID);
-
-                    //checkbox
-
-                    cmd.Parameters.AddWithValue("@IsTaken", currentAvailability.IsTaken);
-
-
-
-
-
-                    cmd.ExecuteNonQuery();
-                    return true;
-
-                }
-                catch (Exception ex)
-                {
-                    messageBoxOK(ex.Message);
-                    return false;
-
-                }
-                finally
-                {
-                    conn.Close();
-                }
-            }
-
-        }
-        */
-
-
+        //insert method for availability
         private bool InsertAvailability(clsAvailability currentAvailability)
         {
             string myConnectionString = clsDBUtil.getConnectionString();
@@ -1380,7 +1337,7 @@ namespace WindowsFormsApp1
         }
 
 
-
+        //insert availability button
         private void btnAvailabilityInsert_Click_1(object sender, EventArgs e)
         {
             clsAvailability currentAvailability = new clsAvailability();
@@ -1397,8 +1354,6 @@ namespace WindowsFormsApp1
                 txtAvailAdvisorID.Focus();
                 return;
             }
-
-
 
             //currentAvailability.Date = txtDate.Text;
 
@@ -1475,6 +1430,7 @@ namespace WindowsFormsApp1
             ;
         }
 
+        //edit button for availability
         private void btnEditAvailability_Click_1(object sender, EventArgs e)
         {
             if (txtAvailabilityID.Text == "")
@@ -1493,7 +1449,7 @@ namespace WindowsFormsApp1
             btnUpdateAvailability.Visible = true;
             btnDeleteAvailability.Visible = true;
         }
-
+        //update button for availability
         private void btnUpdateAvailability_Click_1(object sender, EventArgs e)
         {
             clsAvailability currentAvailability = new clsAvailability();
@@ -1514,8 +1470,6 @@ namespace WindowsFormsApp1
             //  currentAvailability.StudentFName = txtStudentFName.Text;
             // currentAvailability.StudentLName = txtStudentLName.Text;
 
-
-
             if (int.TryParse(txtAvailAdvisorID.Text, out int AdvisorID))
             {
                 currentAvailability.AdvisorID = AdvisorID;
@@ -1526,8 +1480,6 @@ namespace WindowsFormsApp1
                 txtAvailAdvisorID.Focus();
                 return;
             }
-
-
 
             //currentAvailability.Date = txtDate.Text;
 
@@ -1579,12 +1531,7 @@ namespace WindowsFormsApp1
             }
 
 
-
-
-
             #endregion
-
-
 
             if (updateAvailability(currentAvailability) == true)
             {
@@ -1606,7 +1553,7 @@ namespace WindowsFormsApp1
             }
             ;
         }
-
+        //delete availability button
         private void btnDeleteAvailability_Click_1(object sender, EventArgs e)
         {
             clsAvailability currentAvailability = new clsAvailability();
@@ -1710,6 +1657,7 @@ namespace WindowsFormsApp1
             ;
         }
 
+        //update availability listview
         private void lvwAvailability_Update_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListView.SelectedListViewItemCollection itemIsSelected = lvwAvailability.SelectedItems;
@@ -1720,6 +1668,7 @@ namespace WindowsFormsApp1
             }
         }
 
+        //checkbox
         private void chkIsTaken_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -1795,7 +1744,7 @@ namespace WindowsFormsApp1
 
 
 
-
+        //student combobox logic
         private void populateStudentsComboBox()
         {
             cboStudentsBrowse.Items.Clear();
@@ -1816,7 +1765,7 @@ namespace WindowsFormsApp1
         }
 
 
-        //Availability Combobox logic
+        //Availability combobox logic
 
         private void populateAvailabilityComboBox()
         {
@@ -1827,6 +1776,7 @@ namespace WindowsFormsApp1
             }
         }
 
+        //availability combobox
         private void cboAvailabilityBrowse_SelectedIndexChanged(object sender, EventArgs e)
         {
            
@@ -1840,7 +1790,7 @@ namespace WindowsFormsApp1
         }
 
 
-
+        //creates the meeting dictionary
         private void populateMeetingDictionary(ref Dictionary<int, clsMeetings> dctMeetings)
         {
 
@@ -1884,7 +1834,7 @@ namespace WindowsFormsApp1
 
         }
 
-
+        //refresh the listview for meetings
         private void refreshMeetingsListview()
         {
             // REMEMBER: the View property of the listview must be set to 'List'
@@ -1899,7 +1849,7 @@ namespace WindowsFormsApp1
             }
         }
         
-
+        //pull sql info to font end
         private void displayMeetingInformation_update(clsMeetings currentMeeting)
         {
             txtMeetingID.Text = currentMeeting.MeetingID.ToString();
@@ -1910,7 +1860,7 @@ namespace WindowsFormsApp1
 
 
 
-
+        //clear meeting textboxes
         private void meetingInformation_Update_ClearTextboxes()
         {
             txtMeetingID.Clear();
@@ -1949,7 +1899,7 @@ namespace WindowsFormsApp1
             */
 
         }
-
+        //change selected index
         private void lvwMeetings_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListView.SelectedListViewItemCollection itemIsSelected = lvwMeetings.SelectedItems;
@@ -1962,7 +1912,7 @@ namespace WindowsFormsApp1
 
 
 
-
+        //delete method for meetings
         private bool deleteMeeting(clsMeetings currentMeeting)
         {
             string myConnectionString = clsDBUtil.getConnectionString();
@@ -1994,7 +1944,7 @@ namespace WindowsFormsApp1
 
         }
 
-
+        //insert method for meetings
         private bool InsertMeeting(clsMeetings currentMeeting)
         {
             string myConnectionString = clsDBUtil.getConnectionString();
@@ -2044,7 +1994,7 @@ namespace WindowsFormsApp1
 
 
 
-
+        //delete button for meetings
         private void btnDeleteMeeting_Click(object sender, EventArgs e)
         {
             clsMeetings currentMeeting = new clsMeetings();
@@ -2099,6 +2049,7 @@ namespace WindowsFormsApp1
             ;
         }
 
+        //create meeting button
         private void btnCreateMeeting_Click(object sender, EventArgs e)
         {
             clsMeetings currentMeeting = new clsMeetings();
@@ -2156,5 +2107,134 @@ namespace WindowsFormsApp1
             }
            ;
         }
+
+
+        //TIMES***********************************************************************************************************************
+
+
+
+
+
+
+
+        
+        private void populateTimesDictionary(ref Dictionary<int, clsTimes> dctTimes)
+        {
+
+            string myConnectionString = clsDBUtil.getConnectionString();
+
+            using (SqlConnection conn = new SqlConnection(myConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("sp_GetTime", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataReader rdr = cmd.ExecuteReader())
+                    {
+                        dctTimes.Clear();
+
+                        while (rdr.Read() == true)
+                        {
+                            clsTimes currentTime = new clsTimes();
+                            currentTime.StartTime = (TimeSpan)rdr["MeetingID"];
+                            currentTime.EndTime = (TimeSpan)rdr["StudentID"];
+                            
+
+
+
+                            dctTimes.Add(currentTime.TimeID, currentTime);
+                        }
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    messageBoxOK(ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+        //refresh the listview for Times
+        private void refreshTimesListview()
+        {
+            // REMEMBER: the View property of the listview must be set to 'List'
+            lvwMeetings.Clear();
+            clsTimes currentTime = new clsTimes();
+            foreach (KeyValuePair<int, clsTimes> kvp in dctTimes)
+            {
+                currentTime = kvp.Value;
+                ListViewItem item = new ListViewItem(currentTime.TimeID.ToString());
+                item.Tag = currentTime;
+                lvwTimes.Items.Add(item);
+            }
+        }
+
+        //pull sql info to font end
+        
+        private void displayTimeInformation_update(clsTimes currentTime)
+        {
+            txtTimeID2.Text = currentTime.TimeID.ToString();
+            txtStartTime.Text = currentTime.StartTime.ToString();
+            txtEndTime.Text = currentTime.EndTime.ToString();
+
+        }
+        
+
+
+        //clear meeting textboxes
+        private void timeInformation_Update_ClearTextboxes()
+        {
+            txtTimeID.Clear();
+            txtTimeID.ReadOnly = true;
+
+            txtStartTime.Clear();
+            txtStartTime.ReadOnly = true;
+
+            txtEndTime.Clear();
+            txtEndTime.ReadOnly = true;
+
+
+
+
+            //cboStudentsBrowse.SelectedIndex = -1;
+            //cboAvailabilityBrowse.SelectedIndex = -1;
+
+
+
+            /*
+            txtAdvisorIDInsert.Clear();
+
+            txtAdvisorFNameInsert.Clear();
+
+            txtAdvisorLNameInsert.Clear();
+
+            txtAdvisorEmailInsert.Clear();
+            */
+
+
+            /*
+            btnEditAdvisorInfo.Visible = true;
+            btnUpdateAdvisorInfo.Visible = false;
+            btnDeleteAdvisorInfo.Visible = false;
+            btnInsertAdvisorInfo.Visible = true;
+            */
+
+        }
+
+    
+
+
+
+
+
+
+
     }
 }

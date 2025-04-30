@@ -109,6 +109,12 @@
             this.txtAvailIDInsert = new System.Windows.Forms.TextBox();
             this.btnAvailabilityInsert = new System.Windows.Forms.Button();
             this.ScheduleMeeting = new System.Windows.Forms.TabPage();
+            this.lblMeetings = new System.Windows.Forms.Label();
+            this.lblMeetAvailabilityID = new System.Windows.Forms.Label();
+            this.lblMeetStudentID2 = new System.Windows.Forms.Label();
+            this.lblMeetingID = new System.Windows.Forms.Label();
+            this.lblMeetAvailability = new System.Windows.Forms.Label();
+            this.lblMeetStudentID = new System.Windows.Forms.Label();
             this.txtMeetAvailabilityID = new System.Windows.Forms.TextBox();
             this.txtMeetStudentID = new System.Windows.Forms.TextBox();
             this.txtMeetingID = new System.Windows.Forms.TextBox();
@@ -117,12 +123,10 @@
             this.lvwMeetings = new System.Windows.Forms.ListView();
             this.cboAvailabilityBrowse = new System.Windows.Forms.ComboBox();
             this.cboStudentsBrowse = new System.Windows.Forms.ComboBox();
-            this.lblMeetStudentID = new System.Windows.Forms.Label();
-            this.lblMeetAvailability = new System.Windows.Forms.Label();
-            this.lblMeetingID = new System.Windows.Forms.Label();
-            this.lblMeetStudentID2 = new System.Windows.Forms.Label();
-            this.lblMeetAvailabilityID = new System.Windows.Forms.Label();
-            this.lblMeetings = new System.Windows.Forms.Label();
+            this.lvwTimes = new System.Windows.Forms.ListView();
+            this.txtTimeID2 = new System.Windows.Forms.TextBox();
+            this.txtStartTime = new System.Windows.Forms.TextBox();
+            this.txtEndTime = new System.Windows.Forms.TextBox();
             this.tabAdvisors.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -808,6 +812,10 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.txtEndTime);
+            this.tabPage6.Controls.Add(this.txtStartTime);
+            this.tabPage6.Controls.Add(this.txtTimeID2);
+            this.tabPage6.Controls.Add(this.lvwTimes);
             this.tabPage6.Controls.Add(this.chkIsTakenInsert);
             this.tabPage6.Controls.Add(this.txtLocationIDInsert);
             this.tabPage6.Controls.Add(this.lblLocationIDInsert);
@@ -951,6 +959,60 @@
             this.ScheduleMeeting.Text = "Schedule Meeting";
             this.ScheduleMeeting.UseVisualStyleBackColor = true;
             // 
+            // lblMeetings
+            // 
+            this.lblMeetings.AutoSize = true;
+            this.lblMeetings.Location = new System.Drawing.Point(363, 35);
+            this.lblMeetings.Name = "lblMeetings";
+            this.lblMeetings.Size = new System.Drawing.Size(74, 20);
+            this.lblMeetings.TabIndex = 56;
+            this.lblMeetings.Text = "Meetings";
+            // 
+            // lblMeetAvailabilityID
+            // 
+            this.lblMeetAvailabilityID.AutoSize = true;
+            this.lblMeetAvailabilityID.Location = new System.Drawing.Point(617, 241);
+            this.lblMeetAvailabilityID.Name = "lblMeetAvailabilityID";
+            this.lblMeetAvailabilityID.Size = new System.Drawing.Size(106, 20);
+            this.lblMeetAvailabilityID.TabIndex = 55;
+            this.lblMeetAvailabilityID.Text = "Availability ID:";
+            // 
+            // lblMeetStudentID2
+            // 
+            this.lblMeetStudentID2.AutoSize = true;
+            this.lblMeetStudentID2.Location = new System.Drawing.Point(617, 181);
+            this.lblMeetStudentID2.Name = "lblMeetStudentID2";
+            this.lblMeetStudentID2.Size = new System.Drawing.Size(91, 20);
+            this.lblMeetStudentID2.TabIndex = 54;
+            this.lblMeetStudentID2.Text = "Student ID:";
+            // 
+            // lblMeetingID
+            // 
+            this.lblMeetingID.AutoSize = true;
+            this.lblMeetingID.Location = new System.Drawing.Point(617, 119);
+            this.lblMeetingID.Name = "lblMeetingID";
+            this.lblMeetingID.Size = new System.Drawing.Size(91, 20);
+            this.lblMeetingID.TabIndex = 53;
+            this.lblMeetingID.Text = "Meeting ID:";
+            // 
+            // lblMeetAvailability
+            // 
+            this.lblMeetAvailability.AutoSize = true;
+            this.lblMeetAvailability.Location = new System.Drawing.Point(93, 219);
+            this.lblMeetAvailability.Name = "lblMeetAvailability";
+            this.lblMeetAvailability.Size = new System.Drawing.Size(85, 20);
+            this.lblMeetAvailability.TabIndex = 52;
+            this.lblMeetAvailability.Text = "Availability:";
+            // 
+            // lblMeetStudentID
+            // 
+            this.lblMeetStudentID.AutoSize = true;
+            this.lblMeetStudentID.Location = new System.Drawing.Point(93, 165);
+            this.lblMeetStudentID.Name = "lblMeetStudentID";
+            this.lblMeetStudentID.Size = new System.Drawing.Size(91, 20);
+            this.lblMeetStudentID.TabIndex = 51;
+            this.lblMeetStudentID.Text = "Student ID:";
+            // 
             // txtMeetAvailabilityID
             // 
             this.txtMeetAvailabilityID.Location = new System.Drawing.Point(572, 264);
@@ -1022,59 +1084,37 @@
             this.cboStudentsBrowse.TabIndex = 40;
             this.cboStudentsBrowse.SelectedIndexChanged += new System.EventHandler(this.cboStudentsBrowse_SelectedIndexChanged);
             // 
-            // lblMeetStudentID
+            // lvwTimes
             // 
-            this.lblMeetStudentID.AutoSize = true;
-            this.lblMeetStudentID.Location = new System.Drawing.Point(93, 165);
-            this.lblMeetStudentID.Name = "lblMeetStudentID";
-            this.lblMeetStudentID.Size = new System.Drawing.Size(91, 20);
-            this.lblMeetStudentID.TabIndex = 51;
-            this.lblMeetStudentID.Text = "Student ID:";
+            this.lvwTimes.HideSelection = false;
+            this.lvwTimes.Location = new System.Drawing.Point(0, 52);
+            this.lvwTimes.Name = "lvwTimes";
+            this.lvwTimes.Size = new System.Drawing.Size(137, 377);
+            this.lvwTimes.TabIndex = 58;
+            this.lvwTimes.TileSize = new System.Drawing.Size(268, 30);
+            this.lvwTimes.UseCompatibleStateImageBehavior = false;
+            this.lvwTimes.View = System.Windows.Forms.View.Tile;
             // 
-            // lblMeetAvailability
+            // txtTimeID2
             // 
-            this.lblMeetAvailability.AutoSize = true;
-            this.lblMeetAvailability.Location = new System.Drawing.Point(93, 219);
-            this.lblMeetAvailability.Name = "lblMeetAvailability";
-            this.lblMeetAvailability.Size = new System.Drawing.Size(85, 20);
-            this.lblMeetAvailability.TabIndex = 52;
-            this.lblMeetAvailability.Text = "Availability:";
+            this.txtTimeID2.Location = new System.Drawing.Point(143, 65);
+            this.txtTimeID2.Name = "txtTimeID2";
+            this.txtTimeID2.Size = new System.Drawing.Size(131, 26);
+            this.txtTimeID2.TabIndex = 59;
             // 
-            // lblMeetingID
+            // txtStartTime
             // 
-            this.lblMeetingID.AutoSize = true;
-            this.lblMeetingID.Location = new System.Drawing.Point(617, 119);
-            this.lblMeetingID.Name = "lblMeetingID";
-            this.lblMeetingID.Size = new System.Drawing.Size(91, 20);
-            this.lblMeetingID.TabIndex = 53;
-            this.lblMeetingID.Text = "Meeting ID:";
+            this.txtStartTime.Location = new System.Drawing.Point(143, 97);
+            this.txtStartTime.Name = "txtStartTime";
+            this.txtStartTime.Size = new System.Drawing.Size(131, 26);
+            this.txtStartTime.TabIndex = 60;
             // 
-            // lblMeetStudentID2
+            // txtEndTime
             // 
-            this.lblMeetStudentID2.AutoSize = true;
-            this.lblMeetStudentID2.Location = new System.Drawing.Point(617, 181);
-            this.lblMeetStudentID2.Name = "lblMeetStudentID2";
-            this.lblMeetStudentID2.Size = new System.Drawing.Size(91, 20);
-            this.lblMeetStudentID2.TabIndex = 54;
-            this.lblMeetStudentID2.Text = "Student ID:";
-            // 
-            // lblMeetAvailabilityID
-            // 
-            this.lblMeetAvailabilityID.AutoSize = true;
-            this.lblMeetAvailabilityID.Location = new System.Drawing.Point(617, 241);
-            this.lblMeetAvailabilityID.Name = "lblMeetAvailabilityID";
-            this.lblMeetAvailabilityID.Size = new System.Drawing.Size(106, 20);
-            this.lblMeetAvailabilityID.TabIndex = 55;
-            this.lblMeetAvailabilityID.Text = "Availability ID:";
-            // 
-            // lblMeetings
-            // 
-            this.lblMeetings.AutoSize = true;
-            this.lblMeetings.Location = new System.Drawing.Point(363, 35);
-            this.lblMeetings.Name = "lblMeetings";
-            this.lblMeetings.Size = new System.Drawing.Size(74, 20);
-            this.lblMeetings.TabIndex = 56;
-            this.lblMeetings.Text = "Meetings";
+            this.txtEndTime.Location = new System.Drawing.Point(143, 129);
+            this.txtEndTime.Name = "txtEndTime";
+            this.txtEndTime.Size = new System.Drawing.Size(131, 26);
+            this.txtEndTime.TabIndex = 61;
             // 
             // frmMain
             // 
@@ -1204,6 +1244,10 @@
         private System.Windows.Forms.Label lblMeetAvailability;
         private System.Windows.Forms.Label lblMeetStudentID;
         private System.Windows.Forms.Label lblMeetings;
+        private System.Windows.Forms.ListView lvwTimes;
+        private System.Windows.Forms.TextBox txtTimeID2;
+        private System.Windows.Forms.TextBox txtEndTime;
+        private System.Windows.Forms.TextBox txtStartTime;
     }
 }
 
