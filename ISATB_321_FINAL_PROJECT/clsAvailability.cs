@@ -32,21 +32,6 @@ namespace ISATB_321_FINAL_PROJECT
             get { return mAdvisorID; }
             set { mAdvisorID = value; }
         }
-        /*
-        public DateTime Date
-        {
-            get { return mDate; }
-            set { mDate = value; }
-        }
-        */
-        /*
-        public DateTime Date
-        {
-            get { return mDate; }
-            set { mDate = value; }
-        }
-        */
-
 
         public DateTime Date
         {
