@@ -3,7 +3,8 @@
 
 
 
-
+USE b320
+GO
 
 
 
@@ -49,7 +50,7 @@ GO
 DROP PROCEDURE IF EXISTS sp_UpdateAdvisor;
 GO
 
-CREATE PROCEDURE sp_UpdateAdvisor
+CREATE PROCEDURE sp_UpdatePet
 	@AdvisorID INT,
 	@AdvisorFName VARCHAR(25),
 	@AdvisorLName VARCHAR(40) = NULL,
@@ -69,7 +70,7 @@ GO
 DROP PROCEDURE IF EXISTS sp_DeleteAdvisor;
 GO
 
-CREATE PROCEDURE sp_DeleteAdvisor
+CREATE PROCEDURE sp_DeletePet
 	@AdvisorID INT
 AS
 BEGIN
@@ -102,29 +103,27 @@ AS
 	END
 GO
 
+
+
 DROP FUNCTION IF EXISTS fnGetAdvisorID
 GO
 
 CREATE FUNCTION fnGetAdvisorID
 (
-	@AdvisorFName VARCHAR(25),
-	@AdvisorLName VARCHAR(40)
+??????@AdvisorFName VARCHAR(25),
+??????@AdvisorLName VARCHAR(40)
 )
 RETURNS INT
 AS
-	BEGIN
-		RETURN
-		(
-			SELECT AdvisorID
-				FROM Advisors
-				WHERE AdvisorFName = @AdvisorFName
-					AND
-					  AdvisorLName = @AdvisorLName
-		)
-	END
+??????BEGIN????????????
+????????????RETURN
+??????????????????(SELECT AdvisorID
+????????????????????????FROM Advisors
+??????????????????????????????WHERE AdvisorFName = @AdvisorFName
+????????????????????????????????????AND
+????????????????????????????????????  AdvisorLName = @AdvisorLName)
+??????END
 GO
-
-
 
 
 ----------------------------------------------------------------------------------
@@ -195,27 +194,7 @@ BEGIN
 END
 GO
 
-DROP FUNCTION IF EXISTS fnGetStudentID
-GO
 
-CREATE FUNCTION fnGetStudentID
-(
-	@StudentFName VARCHAR(25),
-	@StudentLName VARCHAR(40)
-)
-RETURNS INT
-AS
-	BEGIN
-		RETURN
-		(
-			SELECT StudentID
-				FROM Student
-				WHERE StudentFName = @StudentFName
-					AND
-					  StudentLName = @StudentLName
-		)
-	END
-GO
 
 ----------------------------------------------------
 
@@ -278,28 +257,6 @@ END
 GO
 
 
-
-DROP FUNCTION IF EXISTS fnGetMeetingID
-GO
-
-CREATE FUNCTION fnGetMeetingID
-(
-	@StudentID INT,
-	@AvailabilityID INT
-)
-RETURNS INT
-AS
-	BEGIN
-		RETURN
-		(
-			SELECT MeetingID
-				FROM Meetings
-				WHERE StudentID = @StudentID
-					AND
-					  AvailabilityID = @AvailabilityID
-		)
-	END
-GO
 
 ------------------------------------------
 
@@ -372,89 +329,8 @@ GO
 
 
 
-DROP FUNCTION IF EXISTS fnGetTimeOfAvailability
-GO
-
-CREATE FUNCTION fnGetTimeOfAvailability
-(
-	@AvailabilityID INT
-)
-RETURNS TIME
-AS
-	BEGIN
-		RETURN
-		(
-			SELECT StartTime
-				FROM Times
-				INNER JOIN Availability
-					ON Availability.TimeID = Times.TimeID
-				WHERE AvailabilityID = @AvailabilityID
-		)
-	END
-GO
 
 
-DROP FUNCTION IF EXISTS fnGetAdvisorOfAvailability
-GO
-
-CREATE FUNCTION fnGetAdvisorOfAvailability
-(
-	@AvailabilityID INT
-)
-RETURNS VARCHAR(100)
-AS
-	BEGIN
-		RETURN
-		(
-			SELECT AdvisorFName + ' ' + AdvisorLName AS AdvisorName
-				FROM Advisors
-				INNER JOIN Availability
-					ON Availability.AdvisorID = Advisors.AdvisorID
-				WHERE AvailabilityID = @AvailabilityID
-		)
-	END
-GO
-
-DROP TRIGGER IF EXISTS tgrLastModAvailability
-GO
-
-CREATE TRIGGER tgrLastModAvailability ON Availability AFTER UPDATE
-AS
-	BEGIN
-		UPDATE Availability
-			SET LastUpdated = CURRENT_TIMESTAMP
-			WHERE AvailabilityID = IDENT_CURRENT('Availability')
-	END
-GO			
-
----------------------------------------------------------------------------
-DROP FUNCTION IF EXISTS fnGetAvailabilityID
-GO
-
-CREATE FUNCTION fnGetAvailabilityID
-(
-	@AdvisorID INT,
-	@Date DATE,
-	@TimeID INT,
-	@LocationID INT
-)
-RETURNS INT
-AS
-	BEGIN
-		RETURN
-		(
-			SELECT AvailabilityID
-				FROM Availability
-				WHERE AdvisorID = @AdvisorID
-					AND
-					  Date = @Date
-					AND
-					  TimeID = @TimeID
-					AND
-					  LocationID = @LocationID
-		)
-	END
-GO
 
 
 ------------------------------------------------

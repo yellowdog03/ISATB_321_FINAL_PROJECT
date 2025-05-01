@@ -41,7 +41,7 @@ CREATE TABLE Students (
     StudentID INT IDENTITY(1,1) PRIMARY KEY,
     StudentFName VARCHAR(25),
     StudentLName VARCHAR(50),
-    Year INT
+    [Year] INT
 
 )
 GO
@@ -72,6 +72,7 @@ CREATE TABLE Availability (
     TimeID INT,
     LocationID INT,
     IsTaken BIT,
+	LastUpdated DATETIME DEFAULT CURRENT_TIMESTAMP,
 	--Date was DATE and not DATETIME but was changed bc of C#
 
     FOREIGN KEY (AdvisorID) REFERENCES Advisors(AdvisorID),
@@ -85,7 +86,7 @@ GO
 CREATE TABLE Meetings (
     MeetingID INT IDENTITY(1,1) PRIMARY KEY,
     StudentID INT,
-    AvailabilityID INT,
+    AvailabilityID INT
 
     FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
     FOREIGN KEY (AvailabilityID) REFERENCES Availability(AvailabilityID)
@@ -326,42 +327,7 @@ GO
 SET IDENTITY_INSERT Meetings OFF
 
 
-/*
-(1, 1, '2025-05-01 08:00:00', 1, 1, 0),
-    (2, 2, '2025-05-02 10:15:00', 10, 2, 0),
-    (3, 3, '2025-05-03 02:30:00', 27, 3, 1)
-	*/
 
-
---test meetings
-/*
-SET IDENTITY_INSERT Meetings ON
-GO
-
-INSERT INTO [Meetings] (MeetingID, StudentID, AvailabilityID)
-VALUES
-    (1, 3, 5),
-    (2, 2, 4),
-    (3, 3, 2)
-GO
-
-SET IDENTITY_INSERT Meetings OFF
-*/
-
-
-/*
-James Plant
-B321
-ICE_13_1
-*/
-
-
-
-/*
-Create login in master
-
-create and run user in b320
-*/
 
 
 DROP USER B321_S25_APP 
@@ -384,8 +350,6 @@ GO
 
 
 
-GRANT EXECUTE ON sp_GetVendors to B321_S25_APP
-GO
 
 GRANT EXECUTE ON sp_GetAdvisor to B321_S25_APP
 GO
@@ -441,6 +405,18 @@ Go
 GRANT EXECUTE ON fnGetAdvisorID to B321_S25_APP
 Go
 
+GRANT EXECUTE ON fnGetAvailabilityID to B321_S25_APP
+Go
+
+GRANT EXECUTE ON fnGetTimeOfAvailability to B321_S25_APP
+Go
+
+GRANT EXECUTE ON fnGetAdvisorOfAvailability to B321_S25_APP
+Go
+
+GRANT EXECUTE ON fnGetMeetingID to B321_S25_APP
+Go
+
 GRANT EXECUTE ON sp_GetTime to B321_S25_APP
 Go
 
@@ -451,4 +427,5 @@ GRANT EXECUTE ON sp_UpdateTime to B321_S25_APP
 Go
 
 GRANT EXECUTE ON sp_DeleteTime to B321_S25_APP
+Go
 Go

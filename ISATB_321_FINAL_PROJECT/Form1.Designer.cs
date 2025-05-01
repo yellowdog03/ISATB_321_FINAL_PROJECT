@@ -30,38 +30,54 @@
         {
             tabMain = new TabControl();
             tabPage1 = new TabPage();
+            txtAdvisorAppt = new TextBox();
+            lblAdvisorAppt = new Label();
+            btnRefreshSchedule = new Button();
             lblMeetAvailabilityID = new Label();
             lblMeetStudentID = new Label();
-            lblMeetingID = new Label();
             lblCurrentMeeting = new Label();
             lblMeetingAvailability = new Label();
             lblStudentMeeting = new Label();
             txtMeetStudentID = new TextBox();
             txtMeetAvailabilityID = new TextBox();
-            txtMeetingID = new TextBox();
             lvwMeetings = new ListView();
             cboAvailabilityBrowse = new ComboBox();
             cboStudentsBrowse = new ComboBox();
             btnClearAppt = new Button();
             btnCreateMeeting = new Button();
             tabPage2 = new TabPage();
-            btnDelete = new Button();
-            btnUpdate = new Button();
-            txtAppointmentID = new TextBox();
-            lblAppointmentID = new Label();
-            lblAppointment = new Label();
-            monthCalendar2 = new MonthCalendar();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            txtNewChangeApptAvailabilityID = new TextBox();
             label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            textBox3 = new TextBox();
-            label4 = new Label();
-            label5 = new Label();
-            textBox4 = new TextBox();
-            label6 = new Label();
+            txtChangeApptOldAvailabilityID = new TextBox();
+            lblChangeApptOldAvailabilityID = new Label();
+            lblChangeApptOldStudentID = new Label();
+            btnRefreshChangeAppt = new Button();
+            btnChangeApptClear = new Button();
+            btnChangeApptSubmit = new Button();
+            txtNewChangeApptStudentID = new TextBox();
+            lblChangeApptNewInfo = new Label();
+            txtNewChangeApptAppt = new TextBox();
+            lblNewChangeApptAppt = new Label();
+            lblNewChangeApptStudentID = new Label();
+            txtChangeApptStudentID = new TextBox();
+            lblOldInfo = new Label();
+            lsvChangeAppt = new ListView();
+            txtChangeApptApptID = new TextBox();
+            lblApptOldAppointmentID = new Label();
+            tabPage9 = new TabPage();
+            btnDeleteApptRefresh = new Button();
+            btnDeleteApptClear = new Button();
+            btnDeleteMeeting = new Button();
+            txtDeleteApptAvailabilityID = new TextBox();
+            txtDeleteApptStudentID = new TextBox();
+            txtDeleteAppointmentID = new TextBox();
+            lblDeleteApptAvailabilityID = new Label();
+            lblDeleteApptStudentID = new Label();
+            lblDeleteAppointmentID = new Label();
+            lblDeleteApptInfo = new Label();
+            lsvDeleteAppt = new ListView();
             tabPage6 = new TabPage();
+            btnRefreshAddPerson = new Button();
             lsvAddPerson = new ListView();
             btnClearFormAdd = new Button();
             btnSubmitNew = new Button();
@@ -79,6 +95,7 @@
             radStudentNew = new RadioButton();
             lblStudentAdvisor = new Label();
             tabPage5 = new TabPage();
+            btnRefreshChangePerson = new Button();
             txtNewEmail = new TextBox();
             lblNewEmail = new Label();
             txtOldEmail = new TextBox();
@@ -107,6 +124,7 @@
             radChangeStudent = new RadioButton();
             btnStudentAdvisorSelect = new Label();
             tabPage8 = new TabPage();
+            btnRefreshDeletePerson = new Button();
             lsvDeletePerson = new ListView();
             txtDeleteYear = new TextBox();
             lblDeleteYear = new Label();
@@ -124,11 +142,11 @@
             radDeleteAdvisor = new RadioButton();
             radDeleteStudent = new RadioButton();
             label12 = new Label();
-            cboTimeBrowse = new TabPage();
+            tabPage3 = new TabPage();
             chkIsTakenInsert = new CheckBox();
-            comboBox1 = new ComboBox();
+            cboTimeBrowse = new ComboBox();
             btnRefreshCreateAvail = new Button();
-            btnClear = new Button();
+            btnClearCreateAvail = new Button();
             btnNewAvailability = new Button();
             lblTime = new Label();
             txtDateInsert = new TextBox();
@@ -137,12 +155,11 @@
             lblLocation = new Label();
             txtAvailAdvisorIDInsert = new TextBox();
             lblAdvisorID = new Label();
-            lblAvailabilityID = new Label();
-            txtAvailabilityID = new TextBox();
             label17 = new Label();
             lsvCreateAvailability = new ListView();
             tabPage7 = new TabPage();
-            chkIsTakenUpdate = new CheckBox();
+            chkIsTakenUpdateNew = new CheckBox();
+            chkIsTakenUpdateOld = new CheckBox();
             btnRefreshAvailChange = new Button();
             txtNewTime = new TextBox();
             label8 = new Label();
@@ -170,7 +187,9 @@
             lblCurrentInformation = new Label();
             lsvChangeAvailability = new ListView();
             tabPage4 = new TabPage();
-            chkIsTakenDelete = new CheckBox();
+            lblDelAvailWarningCONT = new Label();
+            lblDelAvailWarning = new Label();
+            btnRefreshDeleteAvail = new Button();
             btnClearDelete = new Button();
             btnDeleteAvailability = new Button();
             txtTimeDelete = new TextBox();
@@ -188,10 +207,11 @@
             tabMain.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
+            tabPage9.SuspendLayout();
             tabPage6.SuspendLayout();
             tabPage5.SuspendLayout();
             tabPage8.SuspendLayout();
-            cboTimeBrowse.SuspendLayout();
+            tabPage3.SuspendLayout();
             tabPage7.SuspendLayout();
             tabPage4.SuspendLayout();
             SuspendLayout();
@@ -200,14 +220,15 @@
             // 
             tabMain.Controls.Add(tabPage1);
             tabMain.Controls.Add(tabPage2);
+            tabMain.Controls.Add(tabPage9);
             tabMain.Controls.Add(tabPage6);
             tabMain.Controls.Add(tabPage5);
             tabMain.Controls.Add(tabPage8);
-            tabMain.Controls.Add(cboTimeBrowse);
+            tabMain.Controls.Add(tabPage3);
             tabMain.Controls.Add(tabPage7);
             tabMain.Controls.Add(tabPage4);
             tabMain.Location = new Point(14, 15);
-            tabMain.Margin = new Padding(4, 3, 4, 3);
+            tabMain.Margin = new Padding(4, 2, 4, 2);
             tabMain.Name = "tabMain";
             tabMain.SelectedIndex = 0;
             tabMain.Size = new Size(1246, 532);
@@ -215,33 +236,61 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(txtAdvisorAppt);
+            tabPage1.Controls.Add(lblAdvisorAppt);
+            tabPage1.Controls.Add(btnRefreshSchedule);
             tabPage1.Controls.Add(lblMeetAvailabilityID);
             tabPage1.Controls.Add(lblMeetStudentID);
-            tabPage1.Controls.Add(lblMeetingID);
             tabPage1.Controls.Add(lblCurrentMeeting);
             tabPage1.Controls.Add(lblMeetingAvailability);
             tabPage1.Controls.Add(lblStudentMeeting);
             tabPage1.Controls.Add(txtMeetStudentID);
             tabPage1.Controls.Add(txtMeetAvailabilityID);
-            tabPage1.Controls.Add(txtMeetingID);
             tabPage1.Controls.Add(lvwMeetings);
             tabPage1.Controls.Add(cboAvailabilityBrowse);
             tabPage1.Controls.Add(cboStudentsBrowse);
             tabPage1.Controls.Add(btnClearAppt);
             tabPage1.Controls.Add(btnCreateMeeting);
             tabPage1.Location = new Point(4, 34);
-            tabPage1.Margin = new Padding(4, 3, 4, 3);
+            tabPage1.Margin = new Padding(4, 2, 4, 2);
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(4, 3, 4, 3);
+            tabPage1.Padding = new Padding(4, 2, 4, 2);
             tabPage1.Size = new Size(1238, 494);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Schedule Appointment";
             tabPage1.UseVisualStyleBackColor = true;
             // 
+            // txtAdvisorAppt
+            // 
+            txtAdvisorAppt.Location = new Point(32, 283);
+            txtAdvisorAppt.Name = "txtAdvisorAppt";
+            txtAdvisorAppt.ReadOnly = true;
+            txtAdvisorAppt.Size = new Size(323, 31);
+            txtAdvisorAppt.TabIndex = 29;
+            // 
+            // lblAdvisorAppt
+            // 
+            lblAdvisorAppt.AutoSize = true;
+            lblAdvisorAppt.Location = new Point(31, 255);
+            lblAdvisorAppt.Name = "lblAdvisorAppt";
+            lblAdvisorAppt.Size = new Size(77, 25);
+            lblAdvisorAppt.TabIndex = 28;
+            lblAdvisorAppt.Text = "Advisor:";
+            // 
+            // btnRefreshSchedule
+            // 
+            btnRefreshSchedule.Location = new Point(934, 122);
+            btnRefreshSchedule.Margin = new Padding(4);
+            btnRefreshSchedule.Name = "btnRefreshSchedule";
+            btnRefreshSchedule.Size = new Size(139, 92);
+            btnRefreshSchedule.TabIndex = 27;
+            btnRefreshSchedule.Text = "Refresh List";
+            btnRefreshSchedule.UseVisualStyleBackColor = true;
+            // 
             // lblMeetAvailabilityID
             // 
             lblMeetAvailabilityID.AutoSize = true;
-            lblMeetAvailabilityID.Location = new Point(513, 235);
+            lblMeetAvailabilityID.Location = new Point(725, 168);
             lblMeetAvailabilityID.Margin = new Padding(4, 0, 4, 0);
             lblMeetAvailabilityID.Name = "lblMeetAvailabilityID";
             lblMeetAvailabilityID.Size = new Size(119, 25);
@@ -251,37 +300,27 @@
             // lblMeetStudentID
             // 
             lblMeetStudentID.AutoSize = true;
-            lblMeetStudentID.Location = new Point(513, 130);
+            lblMeetStudentID.Location = new Point(725, 84);
             lblMeetStudentID.Margin = new Padding(4, 0, 4, 0);
             lblMeetStudentID.Name = "lblMeetStudentID";
             lblMeetStudentID.Size = new Size(95, 25);
             lblMeetStudentID.TabIndex = 25;
             lblMeetStudentID.Text = "StudentID:";
             // 
-            // lblMeetingID
-            // 
-            lblMeetingID.AutoSize = true;
-            lblMeetingID.Location = new Point(513, 37);
-            lblMeetingID.Margin = new Padding(4, 0, 4, 0);
-            lblMeetingID.Name = "lblMeetingID";
-            lblMeetingID.Size = new Size(99, 25);
-            lblMeetingID.TabIndex = 24;
-            lblMeetingID.Text = "MeetingID:";
-            // 
             // lblCurrentMeeting
             // 
             lblCurrentMeeting.AutoSize = true;
-            lblCurrentMeeting.Location = new Point(283, 22);
+            lblCurrentMeeting.Location = new Point(490, 23);
             lblCurrentMeeting.Margin = new Padding(4, 0, 4, 0);
             lblCurrentMeeting.Name = "lblCurrentMeeting";
-            lblCurrentMeeting.Size = new Size(147, 25);
+            lblCurrentMeeting.Size = new Size(152, 25);
             lblCurrentMeeting.TabIndex = 23;
-            lblCurrentMeeting.Text = "CurrentMeetings:";
+            lblCurrentMeeting.Text = "Current Meetings:";
             // 
             // lblMeetingAvailability
             // 
             lblMeetingAvailability.AutoSize = true;
-            lblMeetingAvailability.Location = new Point(74, 163);
+            lblMeetingAvailability.Location = new Point(31, 162);
             lblMeetingAvailability.Margin = new Padding(4, 0, 4, 0);
             lblMeetingAvailability.Name = "lblMeetingAvailability";
             lblMeetingAvailability.Size = new Size(101, 25);
@@ -291,7 +330,7 @@
             // lblStudentMeeting
             // 
             lblStudentMeeting.AutoSize = true;
-            lblStudentMeeting.Location = new Point(74, 78);
+            lblStudentMeeting.Location = new Point(31, 78);
             lblStudentMeeting.Margin = new Padding(4, 0, 4, 0);
             lblStudentMeeting.Name = "lblStudentMeeting";
             lblStudentMeeting.Size = new Size(77, 25);
@@ -300,45 +339,39 @@
             // 
             // txtMeetStudentID
             // 
-            txtMeetStudentID.Location = new Point(513, 158);
-            txtMeetStudentID.Margin = new Padding(4, 3, 4, 3);
+            txtMeetStudentID.Location = new Point(725, 111);
+            txtMeetStudentID.Margin = new Padding(4, 2, 4, 2);
             txtMeetStudentID.Name = "txtMeetStudentID";
             txtMeetStudentID.Size = new Size(163, 31);
             txtMeetStudentID.TabIndex = 20;
             // 
             // txtMeetAvailabilityID
             // 
-            txtMeetAvailabilityID.Location = new Point(513, 263);
-            txtMeetAvailabilityID.Margin = new Padding(4, 3, 4, 3);
+            txtMeetAvailabilityID.Location = new Point(725, 195);
+            txtMeetAvailabilityID.Margin = new Padding(4, 2, 4, 2);
             txtMeetAvailabilityID.Name = "txtMeetAvailabilityID";
             txtMeetAvailabilityID.Size = new Size(163, 31);
             txtMeetAvailabilityID.TabIndex = 19;
             // 
-            // txtMeetingID
-            // 
-            txtMeetingID.Location = new Point(513, 65);
-            txtMeetingID.Margin = new Padding(4, 3, 4, 3);
-            txtMeetingID.Name = "txtMeetingID";
-            txtMeetingID.Size = new Size(163, 31);
-            txtMeetingID.TabIndex = 18;
-            // 
             // lvwMeetings
             // 
-            lvwMeetings.Location = new Point(243, 52);
+            lvwMeetings.Location = new Point(464, 53);
             lvwMeetings.Margin = new Padding(4, 5, 4, 5);
             lvwMeetings.Name = "lvwMeetings";
             lvwMeetings.Size = new Size(208, 422);
             lvwMeetings.TabIndex = 17;
             lvwMeetings.UseCompatibleStateImageBehavior = false;
+            lvwMeetings.View = View.List;
             // 
             // cboAvailabilityBrowse
             // 
             cboAvailabilityBrowse.FormattingEnabled = true;
-            cboAvailabilityBrowse.Location = new Point(31, 193);
+            cboAvailabilityBrowse.Location = new Point(31, 192);
             cboAvailabilityBrowse.Margin = new Padding(4, 5, 4, 5);
             cboAvailabilityBrowse.Name = "cboAvailabilityBrowse";
-            cboAvailabilityBrowse.Size = new Size(171, 33);
+            cboAvailabilityBrowse.Size = new Size(324, 33);
             cboAvailabilityBrowse.TabIndex = 16;
+            cboAvailabilityBrowse.SelectedIndexChanged += cboAvailabilityBrowse_SelectedIndexChanged;
             // 
             // cboStudentsBrowse
             // 
@@ -346,13 +379,13 @@
             cboStudentsBrowse.Location = new Point(31, 108);
             cboStudentsBrowse.Margin = new Padding(4, 5, 4, 5);
             cboStudentsBrowse.Name = "cboStudentsBrowse";
-            cboStudentsBrowse.Size = new Size(171, 33);
+            cboStudentsBrowse.Size = new Size(324, 33);
             cboStudentsBrowse.TabIndex = 15;
             // 
             // btnClearAppt
             // 
-            btnClearAppt.Location = new Point(539, 352);
-            btnClearAppt.Margin = new Padding(4, 3, 4, 3);
+            btnClearAppt.Location = new Point(934, 221);
+            btnClearAppt.Margin = new Padding(4, 2, 4, 2);
             btnClearAppt.Name = "btnClearAppt";
             btnClearAppt.Size = new Size(139, 92);
             btnClearAppt.TabIndex = 12;
@@ -361,190 +394,330 @@
             // 
             // btnCreateMeeting
             // 
-            btnCreateMeeting.Location = new Point(49, 263);
-            btnCreateMeeting.Margin = new Padding(4, 3, 4, 3);
+            btnCreateMeeting.Location = new Point(934, 23);
+            btnCreateMeeting.Margin = new Padding(4, 2, 4, 2);
             btnCreateMeeting.Name = "btnCreateMeeting";
             btnCreateMeeting.Size = new Size(139, 92);
             btnCreateMeeting.TabIndex = 11;
             btnCreateMeeting.Text = "Make Appointment";
             btnCreateMeeting.UseVisualStyleBackColor = true;
+            btnCreateMeeting.Click += btnCreateMeeting_Click;
             // 
             // tabPage2
             // 
-            tabPage2.Controls.Add(btnDelete);
-            tabPage2.Controls.Add(btnUpdate);
-            tabPage2.Controls.Add(txtAppointmentID);
-            tabPage2.Controls.Add(lblAppointmentID);
-            tabPage2.Controls.Add(lblAppointment);
-            tabPage2.Controls.Add(monthCalendar2);
-            tabPage2.Controls.Add(textBox1);
-            tabPage2.Controls.Add(textBox2);
+            tabPage2.BackColor = Color.PeachPuff;
+            tabPage2.Controls.Add(txtNewChangeApptAvailabilityID);
             tabPage2.Controls.Add(label1);
-            tabPage2.Controls.Add(label2);
-            tabPage2.Controls.Add(label3);
-            tabPage2.Controls.Add(textBox3);
-            tabPage2.Controls.Add(label4);
-            tabPage2.Controls.Add(label5);
-            tabPage2.Controls.Add(textBox4);
-            tabPage2.Controls.Add(label6);
+            tabPage2.Controls.Add(txtChangeApptOldAvailabilityID);
+            tabPage2.Controls.Add(lblChangeApptOldAvailabilityID);
+            tabPage2.Controls.Add(lblChangeApptOldStudentID);
+            tabPage2.Controls.Add(btnRefreshChangeAppt);
+            tabPage2.Controls.Add(btnChangeApptClear);
+            tabPage2.Controls.Add(btnChangeApptSubmit);
+            tabPage2.Controls.Add(txtNewChangeApptStudentID);
+            tabPage2.Controls.Add(lblChangeApptNewInfo);
+            tabPage2.Controls.Add(txtNewChangeApptAppt);
+            tabPage2.Controls.Add(lblNewChangeApptAppt);
+            tabPage2.Controls.Add(lblNewChangeApptStudentID);
+            tabPage2.Controls.Add(txtChangeApptStudentID);
+            tabPage2.Controls.Add(lblOldInfo);
+            tabPage2.Controls.Add(lsvChangeAppt);
+            tabPage2.Controls.Add(txtChangeApptApptID);
+            tabPage2.Controls.Add(lblApptOldAppointmentID);
             tabPage2.Location = new Point(4, 34);
-            tabPage2.Margin = new Padding(4, 3, 4, 3);
+            tabPage2.Margin = new Padding(4, 2, 4, 2);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(4, 3, 4, 3);
+            tabPage2.Padding = new Padding(4, 2, 4, 2);
             tabPage2.Size = new Size(1238, 494);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Change Appointment";
-            tabPage2.UseVisualStyleBackColor = true;
             // 
-            // btnDelete
+            // txtNewChangeApptAvailabilityID
             // 
-            btnDelete.Location = new Point(820, 343);
-            btnDelete.Margin = new Padding(4, 3, 4, 3);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(126, 43);
-            btnDelete.TabIndex = 26;
-            btnDelete.Text = "Delete";
-            btnDelete.UseVisualStyleBackColor = true;
-            // 
-            // btnUpdate
-            // 
-            btnUpdate.Location = new Point(619, 343);
-            btnUpdate.Margin = new Padding(4, 3, 4, 3);
-            btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(126, 43);
-            btnUpdate.TabIndex = 25;
-            btnUpdate.Text = "Update";
-            btnUpdate.UseVisualStyleBackColor = true;
-            // 
-            // txtAppointmentID
-            // 
-            txtAppointmentID.Location = new Point(221, 390);
-            txtAppointmentID.Margin = new Padding(4, 3, 4, 3);
-            txtAppointmentID.Name = "txtAppointmentID";
-            txtAppointmentID.Size = new Size(155, 31);
-            txtAppointmentID.TabIndex = 24;
-            // 
-            // lblAppointmentID
-            // 
-            lblAppointmentID.AutoSize = true;
-            lblAppointmentID.Location = new Point(66, 393);
-            lblAppointmentID.Margin = new Padding(4, 0, 4, 0);
-            lblAppointmentID.Name = "lblAppointmentID";
-            lblAppointmentID.Size = new Size(145, 25);
-            lblAppointmentID.TabIndex = 23;
-            lblAppointmentID.Text = "Appointment ID:";
-            // 
-            // lblAppointment
-            // 
-            lblAppointment.AutoSize = true;
-            lblAppointment.Location = new Point(39, 355);
-            lblAppointment.Margin = new Padding(4, 0, 4, 0);
-            lblAppointment.Name = "lblAppointment";
-            lblAppointment.Size = new Size(118, 25);
-            lblAppointment.TabIndex = 22;
-            lblAppointment.Text = "Appointment";
-            // 
-            // monthCalendar2
-            // 
-            monthCalendar2.Location = new Point(496, 48);
-            monthCalendar2.Margin = new Padding(11, 12, 11, 12);
-            monthCalendar2.Name = "monthCalendar2";
-            monthCalendar2.TabIndex = 21;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(176, 268);
-            textBox1.Margin = new Padding(4, 3, 4, 3);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(155, 31);
-            textBox1.TabIndex = 20;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(176, 222);
-            textBox2.Margin = new Padding(4, 3, 4, 3);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(155, 31);
-            textBox2.TabIndex = 19;
+            txtNewChangeApptAvailabilityID.Location = new Point(183, 335);
+            txtNewChangeApptAvailabilityID.Name = "txtNewChangeApptAvailabilityID";
+            txtNewChangeApptAvailabilityID.Size = new Size(155, 31);
+            txtNewChangeApptAvailabilityID.TabIndex = 51;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(66, 272);
-            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Location = new Point(28, 338);
             label1.Name = "label1";
-            label1.Size = new Size(99, 25);
-            label1.TabIndex = 18;
-            label1.Text = "Last Name:";
+            label1.Size = new Size(129, 25);
+            label1.TabIndex = 50;
+            label1.Text = "Availability ID: ";
             // 
-            // label2
+            // txtChangeApptOldAvailabilityID
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(66, 222);
-            label2.Margin = new Padding(4, 0, 4, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(101, 25);
-            label2.TabIndex = 17;
-            label2.Text = "First Name:";
+            txtChangeApptOldAvailabilityID.Location = new Point(176, 101);
+            txtChangeApptOldAvailabilityID.Name = "txtChangeApptOldAvailabilityID";
+            txtChangeApptOldAvailabilityID.Size = new Size(155, 31);
+            txtChangeApptOldAvailabilityID.TabIndex = 49;
             // 
-            // label3
+            // lblChangeApptOldAvailabilityID
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(39, 183);
-            label3.Margin = new Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(87, 25);
-            label3.TabIndex = 16;
-            label3.Text = "Professor";
+            lblChangeApptOldAvailabilityID.AutoSize = true;
+            lblChangeApptOldAvailabilityID.Location = new Point(21, 104);
+            lblChangeApptOldAvailabilityID.Name = "lblChangeApptOldAvailabilityID";
+            lblChangeApptOldAvailabilityID.Size = new Size(129, 25);
+            lblChangeApptOldAvailabilityID.TabIndex = 48;
+            lblChangeApptOldAvailabilityID.Text = "Availability ID: ";
             // 
-            // textBox3
+            // lblChangeApptOldStudentID
             // 
-            textBox3.Location = new Point(176, 100);
-            textBox3.Margin = new Padding(4, 3, 4, 3);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(163, 31);
-            textBox3.TabIndex = 15;
+            lblChangeApptOldStudentID.AutoSize = true;
+            lblChangeApptOldStudentID.Location = new Point(21, 67);
+            lblChangeApptOldStudentID.Name = "lblChangeApptOldStudentID";
+            lblChangeApptOldStudentID.Size = new Size(100, 25);
+            lblChangeApptOldStudentID.TabIndex = 47;
+            lblChangeApptOldStudentID.Text = "Student ID:";
             // 
-            // label4
+            // btnRefreshChangeAppt
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(66, 103);
-            label4.Margin = new Padding(4, 0, 4, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(99, 25);
-            label4.TabIndex = 14;
-            label4.Text = "Last Name:";
+            btnRefreshChangeAppt.Location = new Point(533, 120);
+            btnRefreshChangeAppt.Margin = new Padding(4);
+            btnRefreshChangeAppt.Name = "btnRefreshChangeAppt";
+            btnRefreshChangeAppt.Size = new Size(146, 72);
+            btnRefreshChangeAppt.TabIndex = 46;
+            btnRefreshChangeAppt.Text = "Refresh List";
+            btnRefreshChangeAppt.UseVisualStyleBackColor = true;
+            btnRefreshChangeAppt.Click += btnRefreshChangeAppt_Click;
             // 
-            // label5
+            // btnChangeApptClear
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(39, 15);
-            label5.Margin = new Padding(4, 0, 4, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(73, 25);
-            label5.TabIndex = 13;
-            label5.Text = "Student";
+            btnChangeApptClear.Location = new Point(533, 198);
+            btnChangeApptClear.Margin = new Padding(4, 2, 4, 2);
+            btnChangeApptClear.Name = "btnChangeApptClear";
+            btnChangeApptClear.Size = new Size(146, 72);
+            btnChangeApptClear.TabIndex = 45;
+            btnChangeApptClear.Text = "Clear Form";
+            btnChangeApptClear.UseVisualStyleBackColor = true;
+            btnChangeApptClear.Click += btnChangeApptClear_Click;
             // 
-            // textBox4
+            // btnChangeApptSubmit
             // 
-            textBox4.Location = new Point(179, 48);
-            textBox4.Margin = new Padding(4, 3, 4, 3);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(163, 31);
-            textBox4.TabIndex = 12;
+            btnChangeApptSubmit.Location = new Point(533, 42);
+            btnChangeApptSubmit.Margin = new Padding(4, 2, 4, 2);
+            btnChangeApptSubmit.Name = "btnChangeApptSubmit";
+            btnChangeApptSubmit.Size = new Size(146, 72);
+            btnChangeApptSubmit.TabIndex = 44;
+            btnChangeApptSubmit.Text = "Submit Changes";
+            btnChangeApptSubmit.UseVisualStyleBackColor = true;
+            btnChangeApptSubmit.Click += btnChangeApptSubmit_Click;
             // 
-            // label6
+            // txtNewChangeApptStudentID
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(66, 52);
-            label6.Margin = new Padding(4, 0, 4, 0);
-            label6.Name = "label6";
-            label6.Size = new Size(101, 25);
-            label6.TabIndex = 11;
-            label6.Text = "First Name:";
+            txtNewChangeApptStudentID.Location = new Point(183, 298);
+            txtNewChangeApptStudentID.Name = "txtNewChangeApptStudentID";
+            txtNewChangeApptStudentID.Size = new Size(155, 31);
+            txtNewChangeApptStudentID.TabIndex = 38;
+            // 
+            // lblChangeApptNewInfo
+            // 
+            lblChangeApptNewInfo.AutoSize = true;
+            lblChangeApptNewInfo.Location = new Point(7, 239);
+            lblChangeApptNewInfo.Name = "lblChangeApptNewInfo";
+            lblChangeApptNewInfo.Size = new Size(146, 25);
+            lblChangeApptNewInfo.TabIndex = 37;
+            lblChangeApptNewInfo.Text = "New Information";
+            // 
+            // txtNewChangeApptAppt
+            // 
+            txtNewChangeApptAppt.Location = new Point(183, 262);
+            txtNewChangeApptAppt.Margin = new Padding(4, 2, 4, 2);
+            txtNewChangeApptAppt.Name = "txtNewChangeApptAppt";
+            txtNewChangeApptAppt.Size = new Size(155, 31);
+            txtNewChangeApptAppt.TabIndex = 36;
+            // 
+            // lblNewChangeApptAppt
+            // 
+            lblNewChangeApptAppt.AutoSize = true;
+            lblNewChangeApptAppt.Location = new Point(28, 264);
+            lblNewChangeApptAppt.Margin = new Padding(4, 0, 4, 0);
+            lblNewChangeApptAppt.Name = "lblNewChangeApptAppt";
+            lblNewChangeApptAppt.Size = new Size(145, 25);
+            lblNewChangeApptAppt.TabIndex = 35;
+            lblNewChangeApptAppt.Text = "Appointment ID:";
+            // 
+            // lblNewChangeApptStudentID
+            // 
+            lblNewChangeApptStudentID.AutoSize = true;
+            lblNewChangeApptStudentID.Location = new Point(28, 301);
+            lblNewChangeApptStudentID.Margin = new Padding(4, 0, 4, 0);
+            lblNewChangeApptStudentID.Name = "lblNewChangeApptStudentID";
+            lblNewChangeApptStudentID.Size = new Size(100, 25);
+            lblNewChangeApptStudentID.TabIndex = 33;
+            lblNewChangeApptStudentID.Text = "Student ID:";
+            // 
+            // txtChangeApptStudentID
+            // 
+            txtChangeApptStudentID.Location = new Point(176, 64);
+            txtChangeApptStudentID.Name = "txtChangeApptStudentID";
+            txtChangeApptStudentID.Size = new Size(155, 31);
+            txtChangeApptStudentID.TabIndex = 27;
+            // 
+            // lblOldInfo
+            // 
+            lblOldInfo.AutoSize = true;
+            lblOldInfo.Location = new Point(0, 5);
+            lblOldInfo.Name = "lblOldInfo";
+            lblOldInfo.Size = new Size(140, 25);
+            lblOldInfo.TabIndex = 26;
+            lblOldInfo.Text = "Old Information";
+            // 
+            // lsvChangeAppt
+            // 
+            lsvChangeAppt.Location = new Point(686, 5);
+            lsvChangeAppt.Name = "lsvChangeAppt";
+            lsvChangeAppt.Size = new Size(545, 486);
+            lsvChangeAppt.TabIndex = 25;
+            lsvChangeAppt.UseCompatibleStateImageBehavior = false;
+            lsvChangeAppt.View = View.List;
+            lsvChangeAppt.SelectedIndexChanged += lsvChangeAppt_SelectedIndexChanged;
+            // 
+            // txtChangeApptApptID
+            // 
+            txtChangeApptApptID.Location = new Point(176, 28);
+            txtChangeApptApptID.Margin = new Padding(4, 2, 4, 2);
+            txtChangeApptApptID.Name = "txtChangeApptApptID";
+            txtChangeApptApptID.Size = new Size(155, 31);
+            txtChangeApptApptID.TabIndex = 24;
+            // 
+            // lblApptOldAppointmentID
+            // 
+            lblApptOldAppointmentID.AutoSize = true;
+            lblApptOldAppointmentID.Location = new Point(21, 30);
+            lblApptOldAppointmentID.Margin = new Padding(4, 0, 4, 0);
+            lblApptOldAppointmentID.Name = "lblApptOldAppointmentID";
+            lblApptOldAppointmentID.Size = new Size(145, 25);
+            lblApptOldAppointmentID.TabIndex = 23;
+            lblApptOldAppointmentID.Text = "Appointment ID:";
+            // 
+            // tabPage9
+            // 
+            tabPage9.BackColor = Color.PeachPuff;
+            tabPage9.Controls.Add(btnDeleteApptRefresh);
+            tabPage9.Controls.Add(btnDeleteApptClear);
+            tabPage9.Controls.Add(btnDeleteMeeting);
+            tabPage9.Controls.Add(txtDeleteApptAvailabilityID);
+            tabPage9.Controls.Add(txtDeleteApptStudentID);
+            tabPage9.Controls.Add(txtDeleteAppointmentID);
+            tabPage9.Controls.Add(lblDeleteApptAvailabilityID);
+            tabPage9.Controls.Add(lblDeleteApptStudentID);
+            tabPage9.Controls.Add(lblDeleteAppointmentID);
+            tabPage9.Controls.Add(lblDeleteApptInfo);
+            tabPage9.Controls.Add(lsvDeleteAppt);
+            tabPage9.Location = new Point(4, 34);
+            tabPage9.Name = "tabPage9";
+            tabPage9.Size = new Size(1238, 494);
+            tabPage9.TabIndex = 10;
+            tabPage9.Text = "Delete Appointment";
+            // 
+            // btnDeleteApptRefresh
+            // 
+            btnDeleteApptRefresh.Location = new Point(158, 418);
+            btnDeleteApptRefresh.Margin = new Padding(4);
+            btnDeleteApptRefresh.Name = "btnDeleteApptRefresh";
+            btnDeleteApptRefresh.Size = new Size(146, 72);
+            btnDeleteApptRefresh.TabIndex = 29;
+            btnDeleteApptRefresh.Text = "Refresh List";
+            btnDeleteApptRefresh.UseVisualStyleBackColor = true;
+            btnDeleteApptRefresh.Click += btnDeleteApptRefresh_Click;
+            // 
+            // btnDeleteApptClear
+            // 
+            btnDeleteApptClear.Location = new Point(312, 418);
+            btnDeleteApptClear.Margin = new Padding(4, 2, 4, 2);
+            btnDeleteApptClear.Name = "btnDeleteApptClear";
+            btnDeleteApptClear.Size = new Size(146, 72);
+            btnDeleteApptClear.TabIndex = 28;
+            btnDeleteApptClear.Text = "Clear Form";
+            btnDeleteApptClear.UseVisualStyleBackColor = true;
+            btnDeleteApptClear.Click += btnDeleteApptClear_Click;
+            // 
+            // btnDeleteMeeting
+            // 
+            btnDeleteMeeting.Location = new Point(4, 419);
+            btnDeleteMeeting.Margin = new Padding(4, 2, 4, 2);
+            btnDeleteMeeting.Name = "btnDeleteMeeting";
+            btnDeleteMeeting.Size = new Size(146, 72);
+            btnDeleteMeeting.TabIndex = 27;
+            btnDeleteMeeting.Text = "Delete Appointment";
+            btnDeleteMeeting.UseVisualStyleBackColor = true;
+            btnDeleteMeeting.Click += btnDeleteMeeting_Click;
+            // 
+            // txtDeleteApptAvailabilityID
+            // 
+            txtDeleteApptAvailabilityID.Location = new Point(173, 130);
+            txtDeleteApptAvailabilityID.Name = "txtDeleteApptAvailabilityID";
+            txtDeleteApptAvailabilityID.Size = new Size(155, 31);
+            txtDeleteApptAvailabilityID.TabIndex = 7;
+            // 
+            // txtDeleteApptStudentID
+            // 
+            txtDeleteApptStudentID.Location = new Point(173, 78);
+            txtDeleteApptStudentID.Name = "txtDeleteApptStudentID";
+            txtDeleteApptStudentID.Size = new Size(155, 31);
+            txtDeleteApptStudentID.TabIndex = 6;
+            // 
+            // txtDeleteAppointmentID
+            // 
+            txtDeleteAppointmentID.Location = new Point(173, 28);
+            txtDeleteAppointmentID.Name = "txtDeleteAppointmentID";
+            txtDeleteAppointmentID.Size = new Size(155, 31);
+            txtDeleteAppointmentID.TabIndex = 5;
+            // 
+            // lblDeleteApptAvailabilityID
+            // 
+            lblDeleteApptAvailabilityID.AutoSize = true;
+            lblDeleteApptAvailabilityID.Location = new Point(22, 130);
+            lblDeleteApptAvailabilityID.Name = "lblDeleteApptAvailabilityID";
+            lblDeleteApptAvailabilityID.Size = new Size(124, 25);
+            lblDeleteApptAvailabilityID.TabIndex = 4;
+            lblDeleteApptAvailabilityID.Text = "Availability ID:";
+            // 
+            // lblDeleteApptStudentID
+            // 
+            lblDeleteApptStudentID.AutoSize = true;
+            lblDeleteApptStudentID.Location = new Point(22, 78);
+            lblDeleteApptStudentID.Name = "lblDeleteApptStudentID";
+            lblDeleteApptStudentID.Size = new Size(105, 25);
+            lblDeleteApptStudentID.TabIndex = 3;
+            lblDeleteApptStudentID.Text = "Student ID: ";
+            // 
+            // lblDeleteAppointmentID
+            // 
+            lblDeleteAppointmentID.AutoSize = true;
+            lblDeleteAppointmentID.Location = new Point(22, 28);
+            lblDeleteAppointmentID.Name = "lblDeleteAppointmentID";
+            lblDeleteAppointmentID.Size = new Size(145, 25);
+            lblDeleteAppointmentID.TabIndex = 2;
+            lblDeleteAppointmentID.Text = "Appointment ID:";
+            // 
+            // lblDeleteApptInfo
+            // 
+            lblDeleteApptInfo.AutoSize = true;
+            lblDeleteApptInfo.Location = new Point(3, 3);
+            lblDeleteApptInfo.Name = "lblDeleteApptInfo";
+            lblDeleteApptInfo.Size = new Size(110, 25);
+            lblDeleteApptInfo.TabIndex = 1;
+            lblDeleteApptInfo.Text = "Information:";
+            // 
+            // lsvDeleteAppt
+            // 
+            lsvDeleteAppt.Location = new Point(686, 3);
+            lsvDeleteAppt.Name = "lsvDeleteAppt";
+            lsvDeleteAppt.Size = new Size(549, 488);
+            lsvDeleteAppt.TabIndex = 0;
+            lsvDeleteAppt.UseCompatibleStateImageBehavior = false;
+            lsvDeleteAppt.View = View.List;
+            lsvDeleteAppt.SelectedIndexChanged += lsvDeleteAppt_SelectedIndexChanged;
             // 
             // tabPage6
             // 
+            tabPage6.BackColor = Color.PeachPuff;
+            tabPage6.Controls.Add(btnRefreshAddPerson);
             tabPage6.Controls.Add(lsvAddPerson);
             tabPage6.Controls.Add(btnClearFormAdd);
             tabPage6.Controls.Add(btnSubmitNew);
@@ -562,17 +735,27 @@
             tabPage6.Controls.Add(radStudentNew);
             tabPage6.Controls.Add(lblStudentAdvisor);
             tabPage6.Location = new Point(4, 34);
-            tabPage6.Margin = new Padding(4, 3, 4, 3);
+            tabPage6.Margin = new Padding(4, 2, 4, 2);
             tabPage6.Name = "tabPage6";
             tabPage6.Size = new Size(1238, 494);
             tabPage6.TabIndex = 5;
             tabPage6.Text = "Add Person";
-            tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // btnRefreshAddPerson
+            // 
+            btnRefreshAddPerson.Location = new Point(210, 438);
+            btnRefreshAddPerson.Margin = new Padding(4);
+            btnRefreshAddPerson.Name = "btnRefreshAddPerson";
+            btnRefreshAddPerson.Size = new Size(199, 51);
+            btnRefreshAddPerson.TabIndex = 44;
+            btnRefreshAddPerson.Text = "Refresh Person";
+            btnRefreshAddPerson.UseVisualStyleBackColor = true;
+            btnRefreshAddPerson.Click += btnRefreshAddPerson_Click;
             // 
             // lsvAddPerson
             // 
-            lsvAddPerson.Location = new Point(630, 3);
-            lsvAddPerson.Margin = new Padding(4, 3, 4, 3);
+            lsvAddPerson.Location = new Point(630, 2);
+            lsvAddPerson.Margin = new Padding(4, 2, 4, 2);
             lsvAddPerson.Name = "lsvAddPerson";
             lsvAddPerson.Size = new Size(595, 482);
             lsvAddPerson.TabIndex = 43;
@@ -581,18 +764,19 @@
             // 
             // btnClearFormAdd
             // 
-            btnClearFormAdd.Location = new Point(259, 412);
-            btnClearFormAdd.Margin = new Padding(4, 3, 4, 3);
+            btnClearFormAdd.Location = new Point(416, 436);
+            btnClearFormAdd.Margin = new Padding(4, 2, 4, 2);
             btnClearFormAdd.Name = "btnClearFormAdd";
             btnClearFormAdd.Size = new Size(176, 52);
             btnClearFormAdd.TabIndex = 42;
             btnClearFormAdd.Text = "Clear Form";
             btnClearFormAdd.UseVisualStyleBackColor = true;
+            btnClearFormAdd.Click += btnClearFormAdd_Click;
             // 
             // btnSubmitNew
             // 
-            btnSubmitNew.Location = new Point(26, 412);
-            btnSubmitNew.Margin = new Padding(4, 3, 4, 3);
+            btnSubmitNew.Location = new Point(4, 436);
+            btnSubmitNew.Margin = new Padding(4, 2, 4, 2);
             btnSubmitNew.Name = "btnSubmitNew";
             btnSubmitNew.Size = new Size(199, 52);
             btnSubmitNew.TabIndex = 41;
@@ -603,7 +787,7 @@
             // txtEmailNew
             // 
             txtEmailNew.Location = new Point(140, 262);
-            txtEmailNew.Margin = new Padding(4, 3, 4, 3);
+            txtEmailNew.Margin = new Padding(4, 2, 4, 2);
             txtEmailNew.Name = "txtEmailNew";
             txtEmailNew.Size = new Size(155, 31);
             txtEmailNew.TabIndex = 40;
@@ -621,7 +805,7 @@
             // txtYearNew
             // 
             txtYearNew.Location = new Point(140, 220);
-            txtYearNew.Margin = new Padding(4, 3, 4, 3);
+            txtYearNew.Margin = new Padding(4, 2, 4, 2);
             txtYearNew.Name = "txtYearNew";
             txtYearNew.Size = new Size(155, 31);
             txtYearNew.TabIndex = 38;
@@ -629,7 +813,7 @@
             // lblYearNew
             // 
             lblYearNew.AutoSize = true;
-            lblYearNew.Location = new Point(59, 223);
+            lblYearNew.Location = new Point(59, 222);
             lblYearNew.Margin = new Padding(4, 0, 4, 0);
             lblYearNew.Name = "lblYearNew";
             lblYearNew.Size = new Size(53, 25);
@@ -649,7 +833,7 @@
             // txtLNameNew
             // 
             txtLNameNew.Location = new Point(140, 178);
-            txtLNameNew.Margin = new Padding(4, 3, 4, 3);
+            txtLNameNew.Margin = new Padding(4, 2, 4, 2);
             txtLNameNew.Name = "txtLNameNew";
             txtLNameNew.Size = new Size(155, 31);
             txtLNameNew.TabIndex = 28;
@@ -677,7 +861,7 @@
             // txtFNameNew
             // 
             txtFNameNew.Location = new Point(140, 138);
-            txtFNameNew.Margin = new Padding(4, 3, 4, 3);
+            txtFNameNew.Margin = new Padding(4, 2, 4, 2);
             txtFNameNew.Name = "txtFNameNew";
             txtFNameNew.Size = new Size(155, 31);
             txtFNameNew.TabIndex = 25;
@@ -696,27 +880,25 @@
             // 
             radAdvisorNew.AutoSize = true;
             radAdvisorNew.Location = new Point(139, 28);
-            radAdvisorNew.Margin = new Padding(4, 3, 4, 3);
+            radAdvisorNew.Margin = new Padding(4, 2, 4, 2);
             radAdvisorNew.Name = "radAdvisorNew";
             radAdvisorNew.Size = new Size(91, 29);
             radAdvisorNew.TabIndex = 23;
             radAdvisorNew.Text = "Advisor";
             radAdvisorNew.UseVisualStyleBackColor = true;
-            radAdvisorNew.CheckedChanged += radAdvisorNew_CheckedChanged;
             // 
             // radStudentNew
             // 
             radStudentNew.AutoSize = true;
             radStudentNew.Checked = true;
             radStudentNew.Location = new Point(29, 28);
-            radStudentNew.Margin = new Padding(4, 3, 4, 3);
+            radStudentNew.Margin = new Padding(4, 2, 4, 2);
             radStudentNew.Name = "radStudentNew";
             radStudentNew.Size = new Size(91, 29);
             radStudentNew.TabIndex = 22;
             radStudentNew.TabStop = true;
             radStudentNew.Text = "Student";
             radStudentNew.UseVisualStyleBackColor = true;
-            radStudentNew.CheckedChanged += radStudentNew_CheckedChanged;
             // 
             // lblStudentAdvisor
             // 
@@ -730,6 +912,8 @@
             // 
             // tabPage5
             // 
+            tabPage5.BackColor = Color.PeachPuff;
+            tabPage5.Controls.Add(btnRefreshChangePerson);
             tabPage5.Controls.Add(txtNewEmail);
             tabPage5.Controls.Add(lblNewEmail);
             tabPage5.Controls.Add(txtOldEmail);
@@ -758,17 +942,27 @@
             tabPage5.Controls.Add(radChangeStudent);
             tabPage5.Controls.Add(btnStudentAdvisorSelect);
             tabPage5.Location = new Point(4, 34);
-            tabPage5.Margin = new Padding(4, 3, 4, 3);
+            tabPage5.Margin = new Padding(4, 2, 4, 2);
             tabPage5.Name = "tabPage5";
             tabPage5.Size = new Size(1238, 494);
             tabPage5.TabIndex = 4;
             tabPage5.Text = "Change Person";
-            tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // btnRefreshChangePerson
+            // 
+            btnRefreshChangePerson.Location = new Point(469, 6);
+            btnRefreshChangePerson.Margin = new Padding(4);
+            btnRefreshChangePerson.Name = "btnRefreshChangePerson";
+            btnRefreshChangePerson.Size = new Size(146, 72);
+            btnRefreshChangePerson.TabIndex = 34;
+            btnRefreshChangePerson.Text = "Refresh List";
+            btnRefreshChangePerson.UseVisualStyleBackColor = true;
+            btnRefreshChangePerson.Click += btnRefreshChangePerson_Click;
             // 
             // txtNewEmail
             // 
-            txtNewEmail.Location = new Point(459, 403);
-            txtNewEmail.Margin = new Padding(4, 3, 4, 3);
+            txtNewEmail.Location = new Point(459, 402);
+            txtNewEmail.Margin = new Padding(4, 2, 4, 2);
             txtNewEmail.Name = "txtNewEmail";
             txtNewEmail.Size = new Size(155, 31);
             txtNewEmail.TabIndex = 33;
@@ -785,8 +979,8 @@
             // 
             // txtOldEmail
             // 
-            txtOldEmail.Location = new Point(111, 403);
-            txtOldEmail.Margin = new Padding(4, 3, 4, 3);
+            txtOldEmail.Location = new Point(111, 402);
+            txtOldEmail.Margin = new Padding(4, 2, 4, 2);
             txtOldEmail.Name = "txtOldEmail";
             txtOldEmail.Size = new Size(155, 31);
             txtOldEmail.TabIndex = 31;
@@ -803,8 +997,8 @@
             // 
             // lsvChangePerson
             // 
-            lsvChangePerson.Location = new Point(649, 3);
-            lsvChangePerson.Margin = new Padding(4, 3, 4, 3);
+            lsvChangePerson.Location = new Point(649, 2);
+            lsvChangePerson.Margin = new Padding(4, 2, 4, 2);
             lsvChangePerson.Name = "lsvChangePerson";
             lsvChangePerson.Size = new Size(575, 482);
             lsvChangePerson.TabIndex = 29;
@@ -815,7 +1009,7 @@
             // txtOldYear
             // 
             txtOldYear.Location = new Point(111, 362);
-            txtOldYear.Margin = new Padding(4, 3, 4, 3);
+            txtOldYear.Margin = new Padding(4, 2, 4, 2);
             txtOldYear.Name = "txtOldYear";
             txtOldYear.Size = new Size(155, 31);
             txtOldYear.TabIndex = 5;
@@ -842,7 +1036,7 @@
             // 
             // txtOldID
             // 
-            txtOldID.Location = new Point(111, 243);
+            txtOldID.Location = new Point(111, 242);
             txtOldID.Margin = new Padding(1, 2, 1, 2);
             txtOldID.Name = "txtOldID";
             txtOldID.Size = new Size(155, 31);
@@ -860,8 +1054,8 @@
             // 
             // btnChangePersonClearForm
             // 
-            btnChangePersonClearForm.Location = new Point(479, 3);
-            btnChangePersonClearForm.Margin = new Padding(4, 3, 4, 3);
+            btnChangePersonClearForm.Location = new Point(469, 101);
+            btnChangePersonClearForm.Margin = new Padding(4, 2, 4, 2);
             btnChangePersonClearForm.Name = "btnChangePersonClearForm";
             btnChangePersonClearForm.Size = new Size(146, 72);
             btnChangePersonClearForm.TabIndex = 12;
@@ -871,8 +1065,8 @@
             // 
             // btnSubmitChanges
             // 
-            btnSubmitChanges.Location = new Point(326, 3);
-            btnSubmitChanges.Margin = new Padding(4, 3, 4, 3);
+            btnSubmitChanges.Location = new Point(304, 6);
+            btnSubmitChanges.Margin = new Padding(4, 2, 4, 2);
             btnSubmitChanges.Name = "btnSubmitChanges";
             btnSubmitChanges.Size = new Size(146, 72);
             btnSubmitChanges.TabIndex = 11;
@@ -883,7 +1077,7 @@
             // txtNewYear
             // 
             txtNewYear.Location = new Point(459, 362);
-            txtNewYear.Margin = new Padding(4, 3, 4, 3);
+            txtNewYear.Margin = new Padding(4, 2, 4, 2);
             txtNewYear.Name = "txtNewYear";
             txtNewYear.Size = new Size(155, 31);
             txtNewYear.TabIndex = 9;
@@ -891,15 +1085,15 @@
             // txtNewLName
             // 
             txtNewLName.Location = new Point(459, 318);
-            txtNewLName.Margin = new Padding(4, 3, 4, 3);
+            txtNewLName.Margin = new Padding(4, 2, 4, 2);
             txtNewLName.Name = "txtNewLName";
             txtNewLName.Size = new Size(155, 31);
             txtNewLName.TabIndex = 8;
             // 
             // txtNewFName
             // 
-            txtNewFName.Location = new Point(459, 277);
-            txtNewFName.Margin = new Padding(4, 3, 4, 3);
+            txtNewFName.Location = new Point(459, 278);
+            txtNewFName.Margin = new Padding(4, 2, 4, 2);
             txtNewFName.Name = "txtNewFName";
             txtNewFName.Size = new Size(155, 31);
             txtNewFName.TabIndex = 7;
@@ -917,7 +1111,7 @@
             // lblNewLastName
             // 
             lblNewLastName.AutoSize = true;
-            lblNewLastName.Location = new Point(341, 327);
+            lblNewLastName.Location = new Point(341, 328);
             lblNewLastName.Margin = new Padding(4, 0, 4, 0);
             lblNewLastName.Name = "lblNewLastName";
             lblNewLastName.Size = new Size(104, 25);
@@ -937,7 +1131,7 @@
             // lblNewInfo
             // 
             lblNewInfo.AutoSize = true;
-            lblNewInfo.Location = new Point(339, 203);
+            lblNewInfo.Location = new Point(339, 202);
             lblNewInfo.Margin = new Padding(4, 0, 4, 0);
             lblNewInfo.Name = "lblNewInfo";
             lblNewInfo.Size = new Size(146, 25);
@@ -947,7 +1141,7 @@
             // txtOldLName
             // 
             txtOldLName.Location = new Point(111, 322);
-            txtOldLName.Margin = new Padding(4, 3, 4, 3);
+            txtOldLName.Margin = new Padding(4, 2, 4, 2);
             txtOldLName.Name = "txtOldLName";
             txtOldLName.Size = new Size(155, 31);
             txtOldLName.TabIndex = 4;
@@ -955,7 +1149,7 @@
             // lblOldLName
             // 
             lblOldLName.AutoSize = true;
-            lblOldLName.Location = new Point(4, 327);
+            lblOldLName.Location = new Point(4, 328);
             lblOldLName.Margin = new Padding(4, 0, 4, 0);
             lblOldLName.Name = "lblOldLName";
             lblOldLName.Size = new Size(99, 25);
@@ -975,7 +1169,7 @@
             // txtOldFName
             // 
             txtOldFName.Location = new Point(111, 282);
-            txtOldFName.Margin = new Padding(4, 3, 4, 3);
+            txtOldFName.Margin = new Padding(4, 2, 4, 2);
             txtOldFName.Name = "txtOldFName";
             txtOldFName.Size = new Size(155, 31);
             txtOldFName.TabIndex = 3;
@@ -983,7 +1177,7 @@
             // lblCurrentInfo
             // 
             lblCurrentInfo.AutoSize = true;
-            lblCurrentInfo.Location = new Point(-6, 203);
+            lblCurrentInfo.Location = new Point(-6, 202);
             lblCurrentInfo.Margin = new Padding(4, 0, 4, 0);
             lblCurrentInfo.Name = "lblCurrentInfo";
             lblCurrentInfo.Size = new Size(169, 25);
@@ -994,27 +1188,25 @@
             // 
             radChangeAdvisor.AutoSize = true;
             radChangeAdvisor.Location = new Point(139, 28);
-            radChangeAdvisor.Margin = new Padding(4, 3, 4, 3);
+            radChangeAdvisor.Margin = new Padding(4, 2, 4, 2);
             radChangeAdvisor.Name = "radChangeAdvisor";
             radChangeAdvisor.Size = new Size(91, 29);
             radChangeAdvisor.TabIndex = 3;
             radChangeAdvisor.Text = "Advisor";
             radChangeAdvisor.UseVisualStyleBackColor = true;
-            radChangeAdvisor.CheckedChanged += radChangeAdvisor_CheckedChanged;
             // 
             // radChangeStudent
             // 
             radChangeStudent.AutoSize = true;
             radChangeStudent.Checked = true;
             radChangeStudent.Location = new Point(29, 28);
-            radChangeStudent.Margin = new Padding(4, 3, 4, 3);
+            radChangeStudent.Margin = new Padding(4, 2, 4, 2);
             radChangeStudent.Name = "radChangeStudent";
             radChangeStudent.Size = new Size(91, 29);
             radChangeStudent.TabIndex = 1;
             radChangeStudent.TabStop = true;
             radChangeStudent.Text = "Student";
             radChangeStudent.UseVisualStyleBackColor = true;
-            radChangeStudent.CheckedChanged += radChangeStudent_CheckedChanged;
             // 
             // btnStudentAdvisorSelect
             // 
@@ -1028,6 +1220,8 @@
             // 
             // tabPage8
             // 
+            tabPage8.BackColor = Color.PeachPuff;
+            tabPage8.Controls.Add(btnRefreshDeletePerson);
             tabPage8.Controls.Add(lsvDeletePerson);
             tabPage8.Controls.Add(txtDeleteYear);
             tabPage8.Controls.Add(lblDeleteYear);
@@ -1051,14 +1245,24 @@
             tabPage8.Size = new Size(1238, 494);
             tabPage8.TabIndex = 7;
             tabPage8.Text = "Delete Person";
-            tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // btnRefreshDeletePerson
+            // 
+            btnRefreshDeletePerson.Location = new Point(466, 95);
+            btnRefreshDeletePerson.Margin = new Padding(4);
+            btnRefreshDeletePerson.Name = "btnRefreshDeletePerson";
+            btnRefreshDeletePerson.Size = new Size(146, 72);
+            btnRefreshDeletePerson.TabIndex = 26;
+            btnRefreshDeletePerson.Text = "Refresh List";
+            btnRefreshDeletePerson.UseVisualStyleBackColor = true;
+            btnRefreshDeletePerson.Click += btnRefreshDeletePerson_Click;
             // 
             // lsvDeletePerson
             // 
             lsvDeletePerson.Location = new Point(620, 8);
-            lsvDeletePerson.Margin = new Padding(4, 3, 4, 3);
+            lsvDeletePerson.Margin = new Padding(4, 2, 4, 2);
             lsvDeletePerson.Name = "lsvDeletePerson";
-            lsvDeletePerson.Size = new Size(605, 477);
+            lsvDeletePerson.Size = new Size(605, 476);
             lsvDeletePerson.TabIndex = 25;
             lsvDeletePerson.UseCompatibleStateImageBehavior = false;
             lsvDeletePerson.View = View.List;
@@ -1075,7 +1279,7 @@
             // lblDeleteYear
             // 
             lblDeleteYear.AutoSize = true;
-            lblDeleteYear.Location = new Point(31, 257);
+            lblDeleteYear.Location = new Point(31, 254);
             lblDeleteYear.Margin = new Padding(1, 0, 1, 0);
             lblDeleteYear.Name = "lblDeleteYear";
             lblDeleteYear.Size = new Size(48, 25);
@@ -1102,7 +1306,7 @@
             // 
             // txtPersonID
             // 
-            txtPersonID.Location = new Point(141, 288);
+            txtPersonID.Location = new Point(144, 292);
             txtPersonID.Margin = new Padding(1, 2, 1, 2);
             txtPersonID.Name = "txtPersonID";
             txtPersonID.Size = new Size(155, 31);
@@ -1111,7 +1315,7 @@
             // lblPersonID
             // 
             lblPersonID.AutoSize = true;
-            lblPersonID.Location = new Point(29, 288);
+            lblPersonID.Location = new Point(29, 296);
             lblPersonID.Margin = new Padding(1, 0, 1, 0);
             lblPersonID.Name = "lblPersonID";
             lblPersonID.Size = new Size(104, 25);
@@ -1120,8 +1324,8 @@
             // 
             // btnDeletePersonClearForm
             // 
-            btnDeletePersonClearForm.Location = new Point(469, 107);
-            btnDeletePersonClearForm.Margin = new Padding(4, 3, 4, 3);
+            btnDeletePersonClearForm.Location = new Point(466, 174);
+            btnDeletePersonClearForm.Margin = new Padding(4, 2, 4, 2);
             btnDeletePersonClearForm.Name = "btnDeletePersonClearForm";
             btnDeletePersonClearForm.Size = new Size(146, 72);
             btnDeletePersonClearForm.TabIndex = 9;
@@ -1131,8 +1335,8 @@
             // 
             // btnDeletePerson
             // 
-            btnDeletePerson.Location = new Point(469, 18);
-            btnDeletePerson.Margin = new Padding(4, 3, 4, 3);
+            btnDeletePerson.Location = new Point(466, 16);
+            btnDeletePerson.Margin = new Padding(4, 2, 4, 2);
             btnDeletePerson.Name = "btnDeletePerson";
             btnDeletePerson.Size = new Size(146, 72);
             btnDeletePerson.TabIndex = 8;
@@ -1143,7 +1347,7 @@
             // txtDeleteLName
             // 
             txtDeleteLName.Location = new Point(144, 168);
-            txtDeleteLName.Margin = new Padding(4, 3, 4, 3);
+            txtDeleteLName.Margin = new Padding(4, 2, 4, 2);
             txtDeleteLName.Name = "txtDeleteLName";
             txtDeleteLName.Size = new Size(155, 31);
             txtDeleteLName.TabIndex = 4;
@@ -1171,7 +1375,7 @@
             // txtDeleteFName
             // 
             txtDeleteFName.Location = new Point(144, 125);
-            txtDeleteFName.Margin = new Padding(4, 3, 4, 3);
+            txtDeleteFName.Margin = new Padding(4, 2, 4, 2);
             txtDeleteFName.Name = "txtDeleteFName";
             txtDeleteFName.Size = new Size(155, 31);
             txtDeleteFName.TabIndex = 3;
@@ -1179,7 +1383,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(9, 83);
+            label11.Location = new Point(9, 82);
             label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
             label11.Size = new Size(169, 25);
@@ -1190,27 +1394,25 @@
             // 
             radDeleteAdvisor.AutoSize = true;
             radDeleteAdvisor.Location = new Point(141, 38);
-            radDeleteAdvisor.Margin = new Padding(4, 3, 4, 3);
+            radDeleteAdvisor.Margin = new Padding(4, 2, 4, 2);
             radDeleteAdvisor.Name = "radDeleteAdvisor";
             radDeleteAdvisor.Size = new Size(91, 29);
             radDeleteAdvisor.TabIndex = 2;
             radDeleteAdvisor.Text = "Advisor";
             radDeleteAdvisor.UseVisualStyleBackColor = true;
-            radDeleteAdvisor.CheckedChanged += radDeleteAdvisor_CheckedChanged;
             // 
             // radDeleteStudent
             // 
             radDeleteStudent.AutoSize = true;
             radDeleteStudent.Checked = true;
             radDeleteStudent.Location = new Point(31, 38);
-            radDeleteStudent.Margin = new Padding(4, 3, 4, 3);
+            radDeleteStudent.Margin = new Padding(4, 2, 4, 2);
             radDeleteStudent.Name = "radDeleteStudent";
             radDeleteStudent.Size = new Size(91, 29);
             radDeleteStudent.TabIndex = 1;
             radDeleteStudent.TabStop = true;
             radDeleteStudent.Text = "Student";
             radDeleteStudent.UseVisualStyleBackColor = true;
-            radDeleteStudent.CheckedChanged += radDeleteStudent_CheckedChanged;
             // 
             // label12
             // 
@@ -1222,82 +1424,88 @@
             label12.TabIndex = 9;
             label12.Text = "Student or Advisor?";
             // 
-            // cboTimeBrowse
+            // tabPage3
             // 
-            cboTimeBrowse.Controls.Add(chkIsTakenInsert);
-            cboTimeBrowse.Controls.Add(comboBox1);
-            cboTimeBrowse.Controls.Add(btnRefreshCreateAvail);
-            cboTimeBrowse.Controls.Add(btnClear);
-            cboTimeBrowse.Controls.Add(btnNewAvailability);
-            cboTimeBrowse.Controls.Add(lblTime);
-            cboTimeBrowse.Controls.Add(txtDateInsert);
-            cboTimeBrowse.Controls.Add(lblDate);
-            cboTimeBrowse.Controls.Add(txtLocationIDInsert);
-            cboTimeBrowse.Controls.Add(lblLocation);
-            cboTimeBrowse.Controls.Add(txtAvailAdvisorIDInsert);
-            cboTimeBrowse.Controls.Add(lblAdvisorID);
-            cboTimeBrowse.Controls.Add(lblAvailabilityID);
-            cboTimeBrowse.Controls.Add(txtAvailabilityID);
-            cboTimeBrowse.Controls.Add(label17);
-            cboTimeBrowse.Controls.Add(lsvCreateAvailability);
-            cboTimeBrowse.Location = new Point(4, 34);
-            cboTimeBrowse.Name = "cboTimeBrowse";
-            cboTimeBrowse.Size = new Size(1238, 494);
-            cboTimeBrowse.TabIndex = 8;
-            cboTimeBrowse.Text = "Create Availability";
-            cboTimeBrowse.UseVisualStyleBackColor = true;
+            tabPage3.BackColor = Color.PeachPuff;
+            tabPage3.Controls.Add(chkIsTakenInsert);
+            tabPage3.Controls.Add(cboTimeBrowse);
+            tabPage3.Controls.Add(btnRefreshCreateAvail);
+            tabPage3.Controls.Add(btnClearCreateAvail);
+            tabPage3.Controls.Add(btnNewAvailability);
+            tabPage3.Controls.Add(lblTime);
+            tabPage3.Controls.Add(txtDateInsert);
+            tabPage3.Controls.Add(lblDate);
+            tabPage3.Controls.Add(txtLocationIDInsert);
+            tabPage3.Controls.Add(lblLocation);
+            tabPage3.Controls.Add(txtAvailAdvisorIDInsert);
+            tabPage3.Controls.Add(lblAdvisorID);
+            tabPage3.Controls.Add(label17);
+            tabPage3.Controls.Add(lsvCreateAvailability);
+            tabPage3.Location = new Point(4, 34);
+            tabPage3.Margin = new Padding(2);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Size = new Size(1238, 494);
+            tabPage3.TabIndex = 8;
+            tabPage3.Text = "Create Availability";
             // 
             // chkIsTakenInsert
             // 
             chkIsTakenInsert.AutoSize = true;
-            chkIsTakenInsert.Location = new Point(21, 283);
+            chkIsTakenInsert.Location = new Point(21, 208);
+            chkIsTakenInsert.Margin = new Padding(2);
             chkIsTakenInsert.Name = "chkIsTakenInsert";
             chkIsTakenInsert.Size = new Size(101, 29);
             chkIsTakenInsert.TabIndex = 47;
             chkIsTakenInsert.Text = "Is Taken?";
             chkIsTakenInsert.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // cboTimeBrowse
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(157, 167);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(155, 33);
-            comboBox1.TabIndex = 46;
+            cboTimeBrowse.FormattingEnabled = true;
+            cboTimeBrowse.Location = new Point(151, 116);
+            cboTimeBrowse.Margin = new Padding(2);
+            cboTimeBrowse.Name = "cboTimeBrowse";
+            cboTimeBrowse.Size = new Size(155, 33);
+            cboTimeBrowse.TabIndex = 46;
+            cboTimeBrowse.SelectedIndexChanged += cboTimeBrowse_SelectedIndexChanged;
             // 
             // btnRefreshCreateAvail
             // 
-            btnRefreshCreateAvail.Location = new Point(210, 408);
+            btnRefreshCreateAvail.Location = new Point(210, 406);
+            btnRefreshCreateAvail.Margin = new Padding(2);
             btnRefreshCreateAvail.Name = "btnRefreshCreateAvail";
             btnRefreshCreateAvail.Size = new Size(199, 82);
             btnRefreshCreateAvail.TabIndex = 45;
-            btnRefreshCreateAvail.Text = "Refresh";
+            btnRefreshCreateAvail.Text = "Refresh List";
             btnRefreshCreateAvail.UseVisualStyleBackColor = true;
+            btnRefreshCreateAvail.Click += btnRefreshCreateAvail_Click;
             // 
-            // btnClear
+            // btnClearCreateAvail
             // 
-            btnClear.Location = new Point(416, 412);
-            btnClear.Margin = new Padding(4, 3, 4, 3);
-            btnClear.Name = "btnClear";
-            btnClear.Size = new Size(176, 82);
-            btnClear.TabIndex = 44;
-            btnClear.Text = "Clear Form";
-            btnClear.UseVisualStyleBackColor = true;
+            btnClearCreateAvail.Location = new Point(415, 405);
+            btnClearCreateAvail.Margin = new Padding(4, 2, 4, 2);
+            btnClearCreateAvail.Name = "btnClearCreateAvail";
+            btnClearCreateAvail.Size = new Size(176, 82);
+            btnClearCreateAvail.TabIndex = 44;
+            btnClearCreateAvail.Text = "Clear Form";
+            btnClearCreateAvail.UseVisualStyleBackColor = true;
+            btnClearCreateAvail.Click += btnClearCreateAvail_Click;
             // 
             // btnNewAvailability
             // 
-            btnNewAvailability.Location = new Point(4, 408);
-            btnNewAvailability.Margin = new Padding(4, 3, 4, 3);
+            btnNewAvailability.Location = new Point(4, 406);
+            btnNewAvailability.Margin = new Padding(4, 2, 4, 2);
             btnNewAvailability.Name = "btnNewAvailability";
             btnNewAvailability.Size = new Size(199, 82);
             btnNewAvailability.TabIndex = 43;
             btnNewAvailability.Text = "Submit New Availability";
             btnNewAvailability.UseVisualStyleBackColor = true;
+            btnNewAvailability.Click += btnNewAvailability_Click;
             // 
             // lblTime
             // 
             lblTime.AutoSize = true;
-            lblTime.Location = new Point(27, 175);
+            lblTime.Location = new Point(21, 122);
             lblTime.Margin = new Padding(1, 0, 1, 0);
             lblTime.Name = "lblTime";
             lblTime.Size = new Size(54, 25);
@@ -1306,7 +1514,7 @@
             // 
             // txtDateInsert
             // 
-            txtDateInsert.Location = new Point(157, 130);
+            txtDateInsert.Location = new Point(151, 77);
             txtDateInsert.Margin = new Padding(1, 2, 1, 2);
             txtDateInsert.Name = "txtDateInsert";
             txtDateInsert.Size = new Size(155, 31);
@@ -1315,7 +1523,7 @@
             // lblDate
             // 
             lblDate.AutoSize = true;
-            lblDate.Location = new Point(27, 131);
+            lblDate.Location = new Point(21, 78);
             lblDate.Margin = new Padding(1, 0, 1, 0);
             lblDate.Name = "lblDate";
             lblDate.Size = new Size(53, 25);
@@ -1324,7 +1532,7 @@
             // 
             // txtLocationIDInsert
             // 
-            txtLocationIDInsert.Location = new Point(157, 208);
+            txtLocationIDInsert.Location = new Point(151, 155);
             txtLocationIDInsert.Margin = new Padding(1, 2, 1, 2);
             txtLocationIDInsert.Name = "txtLocationIDInsert";
             txtLocationIDInsert.Size = new Size(155, 31);
@@ -1333,7 +1541,7 @@
             // lblLocation
             // 
             lblLocation.AutoSize = true;
-            lblLocation.Location = new Point(27, 213);
+            lblLocation.Location = new Point(21, 159);
             lblLocation.Margin = new Padding(1, 0, 1, 0);
             lblLocation.Name = "lblLocation";
             lblLocation.Size = new Size(83, 25);
@@ -1342,8 +1550,8 @@
             // 
             // txtAvailAdvisorIDInsert
             // 
-            txtAvailAdvisorIDInsert.Location = new Point(157, 88);
-            txtAvailAdvisorIDInsert.Margin = new Padding(4, 3, 4, 3);
+            txtAvailAdvisorIDInsert.Location = new Point(151, 35);
+            txtAvailAdvisorIDInsert.Margin = new Padding(4, 2, 4, 2);
             txtAvailAdvisorIDInsert.Name = "txtAvailAdvisorIDInsert";
             txtAvailAdvisorIDInsert.Size = new Size(155, 31);
             txtAvailAdvisorIDInsert.TabIndex = 26;
@@ -1351,52 +1559,38 @@
             // lblAdvisorID
             // 
             lblAdvisorID.AutoSize = true;
-            lblAdvisorID.Location = new Point(27, 90);
+            lblAdvisorID.Location = new Point(21, 37);
             lblAdvisorID.Margin = new Padding(4, 0, 4, 0);
             lblAdvisorID.Name = "lblAdvisorID";
             lblAdvisorID.Size = new Size(95, 25);
             lblAdvisorID.TabIndex = 32;
             lblAdvisorID.Text = "AdvisorID:";
             // 
-            // lblAvailabilityID
-            // 
-            lblAvailabilityID.AutoSize = true;
-            lblAvailabilityID.Location = new Point(27, 48);
-            lblAvailabilityID.Margin = new Padding(4, 0, 4, 0);
-            lblAvailabilityID.Name = "lblAvailabilityID";
-            lblAvailabilityID.Size = new Size(119, 25);
-            lblAvailabilityID.TabIndex = 31;
-            lblAvailabilityID.Text = "AvailabilityID:";
-            // 
-            // txtAvailabilityID
-            // 
-            txtAvailabilityID.Location = new Point(157, 45);
-            txtAvailabilityID.Margin = new Padding(4, 3, 4, 3);
-            txtAvailabilityID.Name = "txtAvailabilityID";
-            txtAvailabilityID.Size = new Size(155, 31);
-            txtAvailabilityID.TabIndex = 25;
-            // 
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(4, 3);
+            label17.Location = new Point(4, 2);
             label17.Margin = new Padding(4, 0, 4, 0);
             label17.Name = "label17";
-            label17.Size = new Size(169, 25);
+            label17.Size = new Size(106, 25);
             label17.TabIndex = 30;
-            label17.Text = "Current Information";
+            label17.Text = "Information";
             // 
             // lsvCreateAvailability
             // 
-            lsvCreateAvailability.Location = new Point(667, 3);
+            lsvCreateAvailability.Location = new Point(668, 2);
+            lsvCreateAvailability.Margin = new Padding(2);
             lsvCreateAvailability.Name = "lsvCreateAvailability";
-            lsvCreateAvailability.Size = new Size(568, 487);
+            lsvCreateAvailability.Size = new Size(568, 486);
             lsvCreateAvailability.TabIndex = 1;
             lsvCreateAvailability.UseCompatibleStateImageBehavior = false;
+            lsvCreateAvailability.View = View.List;
             // 
             // tabPage7
             // 
-            tabPage7.Controls.Add(chkIsTakenUpdate);
+            tabPage7.BackColor = Color.PeachPuff;
+            tabPage7.Controls.Add(chkIsTakenUpdateNew);
+            tabPage7.Controls.Add(chkIsTakenUpdateOld);
             tabPage7.Controls.Add(btnRefreshAvailChange);
             tabPage7.Controls.Add(txtNewTime);
             tabPage7.Controls.Add(label8);
@@ -1424,35 +1618,48 @@
             tabPage7.Controls.Add(lblCurrentInformation);
             tabPage7.Controls.Add(lsvChangeAvailability);
             tabPage7.Location = new Point(4, 34);
-            tabPage7.Margin = new Padding(4, 3, 4, 3);
+            tabPage7.Margin = new Padding(4, 2, 4, 2);
             tabPage7.Name = "tabPage7";
             tabPage7.Size = new Size(1238, 494);
             tabPage7.TabIndex = 6;
             tabPage7.Text = "Change Availability";
-            tabPage7.UseVisualStyleBackColor = true;
             // 
-            // chkIsTakenUpdate
+            // chkIsTakenUpdateNew
             // 
-            chkIsTakenUpdate.AutoSize = true;
-            chkIsTakenUpdate.Location = new Point(14, 312);
-            chkIsTakenUpdate.Name = "chkIsTakenUpdate";
-            chkIsTakenUpdate.Size = new Size(101, 29);
-            chkIsTakenUpdate.TabIndex = 70;
-            chkIsTakenUpdate.Text = "Is Taken?";
-            chkIsTakenUpdate.UseVisualStyleBackColor = true;
+            chkIsTakenUpdateNew.AutoSize = true;
+            chkIsTakenUpdateNew.Location = new Point(358, 271);
+            chkIsTakenUpdateNew.Margin = new Padding(4);
+            chkIsTakenUpdateNew.Name = "chkIsTakenUpdateNew";
+            chkIsTakenUpdateNew.Size = new Size(101, 29);
+            chkIsTakenUpdateNew.TabIndex = 71;
+            chkIsTakenUpdateNew.Text = "Is Taken?";
+            chkIsTakenUpdateNew.UseVisualStyleBackColor = true;
+            // 
+            // chkIsTakenUpdateOld
+            // 
+            chkIsTakenUpdateOld.AutoSize = true;
+            chkIsTakenUpdateOld.Location = new Point(26, 271);
+            chkIsTakenUpdateOld.Margin = new Padding(2);
+            chkIsTakenUpdateOld.Name = "chkIsTakenUpdateOld";
+            chkIsTakenUpdateOld.Size = new Size(101, 29);
+            chkIsTakenUpdateOld.TabIndex = 70;
+            chkIsTakenUpdateOld.Text = "Is Taken?";
+            chkIsTakenUpdateOld.UseVisualStyleBackColor = true;
             // 
             // btnRefreshAvailChange
             // 
-            btnRefreshAvailChange.Location = new Point(220, 408);
+            btnRefreshAvailChange.Location = new Point(210, 406);
+            btnRefreshAvailChange.Margin = new Padding(2);
             btnRefreshAvailChange.Name = "btnRefreshAvailChange";
-            btnRefreshAvailChange.Size = new Size(197, 82);
+            btnRefreshAvailChange.Size = new Size(198, 82);
             btnRefreshAvailChange.TabIndex = 69;
-            btnRefreshAvailChange.Text = "button1";
+            btnRefreshAvailChange.Text = "Refresh List";
             btnRefreshAvailChange.UseVisualStyleBackColor = true;
+            btnRefreshAvailChange.Click += btnRefreshAvailChange_Click;
             // 
             // txtNewTime
             // 
-            txtNewTime.Location = new Point(499, 187);
+            txtNewTime.Location = new Point(488, 170);
             txtNewTime.Margin = new Padding(1, 2, 1, 2);
             txtNewTime.Name = "txtNewTime";
             txtNewTime.Size = new Size(155, 31);
@@ -1461,7 +1668,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(369, 192);
+            label8.Location = new Point(358, 175);
             label8.Margin = new Padding(1, 0, 1, 0);
             label8.Name = "label8";
             label8.Size = new Size(54, 25);
@@ -1470,7 +1677,7 @@
             // 
             // txtNewDate
             // 
-            txtNewDate.Location = new Point(499, 147);
+            txtNewDate.Location = new Point(488, 130);
             txtNewDate.Margin = new Padding(1, 2, 1, 2);
             txtNewDate.Name = "txtNewDate";
             txtNewDate.Size = new Size(155, 31);
@@ -1479,7 +1686,7 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(369, 148);
+            label13.Location = new Point(359, 133);
             label13.Margin = new Padding(1, 0, 1, 0);
             label13.Name = "label13";
             label13.Size = new Size(53, 25);
@@ -1488,7 +1695,7 @@
             // 
             // txtNewLocation
             // 
-            txtNewLocation.Location = new Point(499, 225);
+            txtNewLocation.Location = new Point(488, 208);
             txtNewLocation.Margin = new Padding(1, 2, 1, 2);
             txtNewLocation.Name = "txtNewLocation";
             txtNewLocation.Size = new Size(155, 31);
@@ -1497,7 +1704,7 @@
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(369, 230);
+            label14.Location = new Point(358, 212);
             label14.Margin = new Padding(1, 0, 1, 0);
             label14.Name = "label14";
             label14.Size = new Size(83, 25);
@@ -1506,8 +1713,8 @@
             // 
             // txtNewAdvisorID
             // 
-            txtNewAdvisorID.Location = new Point(499, 105);
-            txtNewAdvisorID.Margin = new Padding(4, 3, 4, 3);
+            txtNewAdvisorID.Location = new Point(488, 88);
+            txtNewAdvisorID.Margin = new Padding(4, 2, 4, 2);
             txtNewAdvisorID.Name = "txtNewAdvisorID";
             txtNewAdvisorID.Size = new Size(155, 31);
             txtNewAdvisorID.TabIndex = 59;
@@ -1515,7 +1722,7 @@
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new Point(369, 107);
+            label15.Location = new Point(358, 90);
             label15.Margin = new Padding(4, 0, 4, 0);
             label15.Name = "label15";
             label15.Size = new Size(95, 25);
@@ -1525,7 +1732,7 @@
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(369, 65);
+            label16.Location = new Point(358, 48);
             label16.Margin = new Padding(4, 0, 4, 0);
             label16.Name = "label16";
             label16.Size = new Size(119, 25);
@@ -1534,8 +1741,8 @@
             // 
             // txtNewAvailability
             // 
-            txtNewAvailability.Location = new Point(499, 62);
-            txtNewAvailability.Margin = new Padding(4, 3, 4, 3);
+            txtNewAvailability.Location = new Point(488, 45);
+            txtNewAvailability.Margin = new Padding(4, 2, 4, 2);
             txtNewAvailability.Name = "txtNewAvailability";
             txtNewAvailability.Size = new Size(155, 31);
             txtNewAvailability.TabIndex = 58;
@@ -1543,7 +1750,7 @@
             // label19
             // 
             label19.AutoSize = true;
-            label19.Location = new Point(346, 20);
+            label19.Location = new Point(335, 2);
             label19.Margin = new Padding(4, 0, 4, 0);
             label19.Name = "label19";
             label19.Size = new Size(146, 25);
@@ -1552,27 +1759,29 @@
             // 
             // btnClearChange
             // 
-            btnClearChange.Location = new Point(424, 409);
-            btnClearChange.Margin = new Padding(4, 3, 4, 3);
+            btnClearChange.Location = new Point(414, 405);
+            btnClearChange.Margin = new Padding(4, 2, 4, 2);
             btnClearChange.Name = "btnClearChange";
-            btnClearChange.Size = new Size(176, 82);
+            btnClearChange.Size = new Size(176, 85);
             btnClearChange.TabIndex = 57;
             btnClearChange.Text = "Clear Form";
             btnClearChange.UseVisualStyleBackColor = true;
+            btnClearChange.Click += btnClearChange_Click;
             // 
             // btnChangeAvailability
             // 
-            btnChangeAvailability.Location = new Point(14, 408);
-            btnChangeAvailability.Margin = new Padding(4, 3, 4, 3);
+            btnChangeAvailability.Location = new Point(4, 406);
+            btnChangeAvailability.Margin = new Padding(4, 2, 4, 2);
             btnChangeAvailability.Name = "btnChangeAvailability";
             btnChangeAvailability.Size = new Size(199, 82);
             btnChangeAvailability.TabIndex = 56;
             btnChangeAvailability.Text = "Submit Changed Availability";
             btnChangeAvailability.UseVisualStyleBackColor = true;
+            btnChangeAvailability.Click += btnChangeAvailability_Click;
             // 
             // txtOldTimeChange
             // 
-            txtOldTimeChange.Location = new Point(167, 187);
+            txtOldTimeChange.Location = new Point(156, 170);
             txtOldTimeChange.Margin = new Padding(1, 2, 1, 2);
             txtOldTimeChange.Name = "txtOldTimeChange";
             txtOldTimeChange.Size = new Size(155, 31);
@@ -1581,7 +1790,7 @@
             // lblTimeChange
             // 
             lblTimeChange.AutoSize = true;
-            lblTimeChange.Location = new Point(37, 192);
+            lblTimeChange.Location = new Point(26, 175);
             lblTimeChange.Margin = new Padding(1, 0, 1, 0);
             lblTimeChange.Name = "lblTimeChange";
             lblTimeChange.Size = new Size(54, 25);
@@ -1590,7 +1799,7 @@
             // 
             // txtOldDateChange
             // 
-            txtOldDateChange.Location = new Point(167, 147);
+            txtOldDateChange.Location = new Point(156, 130);
             txtOldDateChange.Margin = new Padding(1, 2, 1, 2);
             txtOldDateChange.Name = "txtOldDateChange";
             txtOldDateChange.Size = new Size(155, 31);
@@ -1599,7 +1808,7 @@
             // lblDateChange
             // 
             lblDateChange.AutoSize = true;
-            lblDateChange.Location = new Point(37, 148);
+            lblDateChange.Location = new Point(26, 133);
             lblDateChange.Margin = new Padding(1, 0, 1, 0);
             lblDateChange.Name = "lblDateChange";
             lblDateChange.Size = new Size(53, 25);
@@ -1608,7 +1817,7 @@
             // 
             // txtOldLocationChange
             // 
-            txtOldLocationChange.Location = new Point(167, 225);
+            txtOldLocationChange.Location = new Point(156, 208);
             txtOldLocationChange.Margin = new Padding(1, 2, 1, 2);
             txtOldLocationChange.Name = "txtOldLocationChange";
             txtOldLocationChange.Size = new Size(155, 31);
@@ -1617,7 +1826,7 @@
             // lblLocationChange
             // 
             lblLocationChange.AutoSize = true;
-            lblLocationChange.Location = new Point(37, 230);
+            lblLocationChange.Location = new Point(26, 212);
             lblLocationChange.Margin = new Padding(1, 0, 1, 0);
             lblLocationChange.Name = "lblLocationChange";
             lblLocationChange.Size = new Size(83, 25);
@@ -1626,8 +1835,8 @@
             // 
             // txtAdvisorIDChange
             // 
-            txtAdvisorIDChange.Location = new Point(167, 105);
-            txtAdvisorIDChange.Margin = new Padding(4, 3, 4, 3);
+            txtAdvisorIDChange.Location = new Point(156, 88);
+            txtAdvisorIDChange.Margin = new Padding(4, 2, 4, 2);
             txtAdvisorIDChange.Name = "txtAdvisorIDChange";
             txtAdvisorIDChange.Size = new Size(155, 31);
             txtAdvisorIDChange.TabIndex = 46;
@@ -1635,7 +1844,7 @@
             // lblAdvisorIDChange
             // 
             lblAdvisorIDChange.AutoSize = true;
-            lblAdvisorIDChange.Location = new Point(37, 107);
+            lblAdvisorIDChange.Location = new Point(26, 90);
             lblAdvisorIDChange.Margin = new Padding(4, 0, 4, 0);
             lblAdvisorIDChange.Name = "lblAdvisorIDChange";
             lblAdvisorIDChange.Size = new Size(95, 25);
@@ -1645,7 +1854,7 @@
             // lblAvailabilityIDChange
             // 
             lblAvailabilityIDChange.AutoSize = true;
-            lblAvailabilityIDChange.Location = new Point(37, 65);
+            lblAvailabilityIDChange.Location = new Point(26, 48);
             lblAvailabilityIDChange.Margin = new Padding(4, 0, 4, 0);
             lblAvailabilityIDChange.Name = "lblAvailabilityIDChange";
             lblAvailabilityIDChange.Size = new Size(119, 25);
@@ -1654,8 +1863,8 @@
             // 
             // txtAvailabilityIDChange
             // 
-            txtAvailabilityIDChange.Location = new Point(167, 62);
-            txtAvailabilityIDChange.Margin = new Padding(4, 3, 4, 3);
+            txtAvailabilityIDChange.Location = new Point(156, 45);
+            txtAvailabilityIDChange.Margin = new Padding(4, 2, 4, 2);
             txtAvailabilityIDChange.Name = "txtAvailabilityIDChange";
             txtAvailabilityIDChange.Size = new Size(155, 31);
             txtAvailabilityIDChange.TabIndex = 45;
@@ -1663,7 +1872,7 @@
             // lblCurrentInformation
             // 
             lblCurrentInformation.AutoSize = true;
-            lblCurrentInformation.Location = new Point(14, 20);
+            lblCurrentInformation.Location = new Point(2, 2);
             lblCurrentInformation.Margin = new Padding(4, 0, 4, 0);
             lblCurrentInformation.Name = "lblCurrentInformation";
             lblCurrentInformation.Size = new Size(169, 25);
@@ -1672,15 +1881,21 @@
             // 
             // lsvChangeAvailability
             // 
-            lsvChangeAvailability.Location = new Point(667, 3);
+            lsvChangeAvailability.Location = new Point(668, 2);
+            lsvChangeAvailability.Margin = new Padding(2);
             lsvChangeAvailability.Name = "lsvChangeAvailability";
-            lsvChangeAvailability.Size = new Size(568, 487);
+            lsvChangeAvailability.Size = new Size(568, 486);
             lsvChangeAvailability.TabIndex = 0;
             lsvChangeAvailability.UseCompatibleStateImageBehavior = false;
+            lsvChangeAvailability.View = View.List;
+            lsvChangeAvailability.SelectedIndexChanged += lsvChangeAvailability_SelectedIndexChanged;
             // 
             // tabPage4
             // 
-            tabPage4.Controls.Add(chkIsTakenDelete);
+            tabPage4.BackColor = Color.PeachPuff;
+            tabPage4.Controls.Add(lblDelAvailWarningCONT);
+            tabPage4.Controls.Add(lblDelAvailWarning);
+            tabPage4.Controls.Add(btnRefreshDeleteAvail);
             tabPage4.Controls.Add(btnClearDelete);
             tabPage4.Controls.Add(btnDeleteAvailability);
             tabPage4.Controls.Add(txtTimeDelete);
@@ -1696,46 +1911,67 @@
             tabPage4.Controls.Add(label18);
             tabPage4.Controls.Add(lsvDeleteAvailability);
             tabPage4.Location = new Point(4, 34);
+            tabPage4.Margin = new Padding(2);
             tabPage4.Name = "tabPage4";
             tabPage4.Size = new Size(1238, 494);
             tabPage4.TabIndex = 9;
             tabPage4.Text = "Delete Availability";
-            tabPage4.UseVisualStyleBackColor = true;
             // 
-            // chkIsTakenDelete
+            // lblDelAvailWarningCONT
             // 
-            chkIsTakenDelete.AutoSize = true;
-            chkIsTakenDelete.Location = new Point(135, 347);
-            chkIsTakenDelete.Name = "chkIsTakenDelete";
-            chkIsTakenDelete.Size = new Size(114, 29);
-            chkIsTakenDelete.TabIndex = 71;
-            chkIsTakenDelete.Text = "checkBox1";
-            chkIsTakenDelete.UseVisualStyleBackColor = true;
+            lblDelAvailWarningCONT.AutoSize = true;
+            lblDelAvailWarningCONT.Location = new Point(26, 69);
+            lblDelAvailWarningCONT.Name = "lblDelAvailWarningCONT";
+            lblDelAvailWarningCONT.Size = new Size(411, 25);
+            lblDelAvailWarningCONT.TabIndex = 74;
+            lblDelAvailWarningCONT.Text = " if you have NO MEETINGS scheduled for that slot.";
+            // 
+            // lblDelAvailWarning
+            // 
+            lblDelAvailWarning.AutoSize = true;
+            lblDelAvailWarning.Location = new Point(26, 44);
+            lblDelAvailWarning.Name = "lblDelAvailWarning";
+            lblDelAvailWarning.Size = new Size(363, 25);
+            lblDelAvailWarning.TabIndex = 73;
+            lblDelAvailWarning.Text = "NOTE: You can only delete an availability slot";
+            lblDelAvailWarning.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // btnRefreshDeleteAvail
+            // 
+            btnRefreshDeleteAvail.Location = new Point(210, 406);
+            btnRefreshDeleteAvail.Margin = new Padding(4);
+            btnRefreshDeleteAvail.Name = "btnRefreshDeleteAvail";
+            btnRefreshDeleteAvail.Size = new Size(198, 81);
+            btnRefreshDeleteAvail.TabIndex = 72;
+            btnRefreshDeleteAvail.Text = "Refresh List";
+            btnRefreshDeleteAvail.UseVisualStyleBackColor = true;
+            btnRefreshDeleteAvail.Click += btnRefreshDeleteAvail_Click;
             // 
             // btnClearDelete
             // 
-            btnClearDelete.Location = new Point(444, 168);
-            btnClearDelete.Margin = new Padding(4, 3, 4, 3);
+            btnClearDelete.Location = new Point(415, 405);
+            btnClearDelete.Margin = new Padding(4, 2, 4, 2);
             btnClearDelete.Name = "btnClearDelete";
             btnClearDelete.Size = new Size(176, 82);
             btnClearDelete.TabIndex = 70;
             btnClearDelete.Text = "Clear Form";
             btnClearDelete.UseVisualStyleBackColor = true;
+            btnClearDelete.Click += btnClearDelete_Click;
             // 
             // btnDeleteAvailability
             // 
-            btnDeleteAvailability.Location = new Point(444, 55);
-            btnDeleteAvailability.Margin = new Padding(4, 3, 4, 3);
+            btnDeleteAvailability.Location = new Point(4, 406);
+            btnDeleteAvailability.Margin = new Padding(4, 2, 4, 2);
             btnDeleteAvailability.Name = "btnDeleteAvailability";
             btnDeleteAvailability.Size = new Size(199, 82);
             btnDeleteAvailability.TabIndex = 69;
-            btnDeleteAvailability.Text = "Submit Deleted Availability";
+            btnDeleteAvailability.Text = "Delete Availability";
             btnDeleteAvailability.UseVisualStyleBackColor = true;
             btnDeleteAvailability.Click += btnDeleteAvailability_Click;
             // 
             // txtTimeDelete
             // 
-            txtTimeDelete.Location = new Point(173, 192);
+            txtTimeDelete.Location = new Point(156, 226);
             txtTimeDelete.Margin = new Padding(1, 2, 1, 2);
             txtTimeDelete.Name = "txtTimeDelete";
             txtTimeDelete.Size = new Size(155, 31);
@@ -1744,7 +1980,7 @@
             // lblTimeDelete
             // 
             lblTimeDelete.AutoSize = true;
-            lblTimeDelete.Location = new Point(43, 197);
+            lblTimeDelete.Location = new Point(26, 231);
             lblTimeDelete.Margin = new Padding(1, 0, 1, 0);
             lblTimeDelete.Name = "lblTimeDelete";
             lblTimeDelete.Size = new Size(54, 25);
@@ -1753,7 +1989,7 @@
             // 
             // txtDateDelete
             // 
-            txtDateDelete.Location = new Point(173, 152);
+            txtDateDelete.Location = new Point(156, 186);
             txtDateDelete.Margin = new Padding(1, 2, 1, 2);
             txtDateDelete.Name = "txtDateDelete";
             txtDateDelete.Size = new Size(155, 31);
@@ -1762,7 +1998,7 @@
             // lblDateDelete
             // 
             lblDateDelete.AutoSize = true;
-            lblDateDelete.Location = new Point(43, 153);
+            lblDateDelete.Location = new Point(26, 186);
             lblDateDelete.Margin = new Padding(1, 0, 1, 0);
             lblDateDelete.Name = "lblDateDelete";
             lblDateDelete.Size = new Size(53, 25);
@@ -1771,7 +2007,7 @@
             // 
             // txtLocationDelete
             // 
-            txtLocationDelete.Location = new Point(173, 230);
+            txtLocationDelete.Location = new Point(156, 264);
             txtLocationDelete.Margin = new Padding(1, 2, 1, 2);
             txtLocationDelete.Name = "txtLocationDelete";
             txtLocationDelete.Size = new Size(155, 31);
@@ -1780,7 +2016,7 @@
             // lblLocationDelete
             // 
             lblLocationDelete.AutoSize = true;
-            lblLocationDelete.Location = new Point(43, 235);
+            lblLocationDelete.Location = new Point(26, 268);
             lblLocationDelete.Margin = new Padding(1, 0, 1, 0);
             lblLocationDelete.Name = "lblLocationDelete";
             lblLocationDelete.Size = new Size(83, 25);
@@ -1789,8 +2025,8 @@
             // 
             // txtAdvisorIDDelete
             // 
-            txtAdvisorIDDelete.Location = new Point(173, 110);
-            txtAdvisorIDDelete.Margin = new Padding(4, 3, 4, 3);
+            txtAdvisorIDDelete.Location = new Point(156, 144);
+            txtAdvisorIDDelete.Margin = new Padding(4, 2, 4, 2);
             txtAdvisorIDDelete.Name = "txtAdvisorIDDelete";
             txtAdvisorIDDelete.Size = new Size(155, 31);
             txtAdvisorIDDelete.TabIndex = 59;
@@ -1798,7 +2034,7 @@
             // lblAdvisorIDDelete
             // 
             lblAdvisorIDDelete.AutoSize = true;
-            lblAdvisorIDDelete.Location = new Point(43, 112);
+            lblAdvisorIDDelete.Location = new Point(26, 146);
             lblAdvisorIDDelete.Margin = new Padding(4, 0, 4, 0);
             lblAdvisorIDDelete.Name = "lblAdvisorIDDelete";
             lblAdvisorIDDelete.Size = new Size(95, 25);
@@ -1808,7 +2044,7 @@
             // lblAvailabilityIDDelete
             // 
             lblAvailabilityIDDelete.AutoSize = true;
-            lblAvailabilityIDDelete.Location = new Point(43, 70);
+            lblAvailabilityIDDelete.Location = new Point(26, 104);
             lblAvailabilityIDDelete.Margin = new Padding(4, 0, 4, 0);
             lblAvailabilityIDDelete.Name = "lblAvailabilityIDDelete";
             lblAvailabilityIDDelete.Size = new Size(119, 25);
@@ -1817,8 +2053,8 @@
             // 
             // txtAvailabilityIDDelete
             // 
-            txtAvailabilityIDDelete.Location = new Point(173, 67);
-            txtAvailabilityIDDelete.Margin = new Padding(4, 3, 4, 3);
+            txtAvailabilityIDDelete.Location = new Point(156, 101);
+            txtAvailabilityIDDelete.Margin = new Padding(4, 2, 4, 2);
             txtAvailabilityIDDelete.Name = "txtAvailabilityIDDelete";
             txtAvailabilityIDDelete.Size = new Size(155, 31);
             txtAvailabilityIDDelete.TabIndex = 58;
@@ -1826,7 +2062,7 @@
             // label18
             // 
             label18.AutoSize = true;
-            label18.Location = new Point(20, 25);
+            label18.Location = new Point(4, 2);
             label18.Margin = new Padding(4, 0, 4, 0);
             label18.Name = "label18";
             label18.Size = new Size(169, 25);
@@ -1835,19 +2071,23 @@
             // 
             // lsvDeleteAvailability
             // 
-            lsvDeleteAvailability.Location = new Point(667, 3);
+            lsvDeleteAvailability.Location = new Point(668, 2);
+            lsvDeleteAvailability.Margin = new Padding(2);
             lsvDeleteAvailability.Name = "lsvDeleteAvailability";
-            lsvDeleteAvailability.Size = new Size(568, 487);
+            lsvDeleteAvailability.Size = new Size(568, 486);
             lsvDeleteAvailability.TabIndex = 1;
             lsvDeleteAvailability.UseCompatibleStateImageBehavior = false;
+            lsvDeleteAvailability.View = View.List;
+            lsvDeleteAvailability.SelectedIndexChanged += lsvDeleteAvailability_SelectedIndexChanged;
             // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1551, 562);
+            BackColor = Color.CornflowerBlue;
+            ClientSize = new Size(1268, 562);
             Controls.Add(tabMain);
-            Margin = new Padding(4, 3, 4, 3);
+            Margin = new Padding(4, 2, 4, 2);
             Name = "frmMain";
             Text = "Appointments";
             Load += Form1_Load;
@@ -1856,14 +2096,16 @@
             tabPage1.PerformLayout();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
+            tabPage9.ResumeLayout(false);
+            tabPage9.PerformLayout();
             tabPage6.ResumeLayout(false);
             tabPage6.PerformLayout();
             tabPage5.ResumeLayout(false);
             tabPage5.PerformLayout();
             tabPage8.ResumeLayout(false);
             tabPage8.PerformLayout();
-            cboTimeBrowse.ResumeLayout(false);
-            cboTimeBrowse.PerformLayout();
+            tabPage3.ResumeLayout(false);
+            tabPage3.PerformLayout();
             tabPage7.ResumeLayout(false);
             tabPage7.PerformLayout();
             tabPage4.ResumeLayout(false);
@@ -1876,19 +2118,10 @@
         private TabPage tabPage1;
         private TabPage tabPage2;
         private MonthCalendar monthCalendar2;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private Label label1;
-        private Label label2;
         private Label label3;
-        private TextBox textBox3;
-        private Label label4;
-        private Label label5;
-        private TextBox textBox4;
-        private Label label6;
         private Button btnUpdate;
-        private TextBox txtAppointmentID;
-        private Label lblAppointmentID;
+        private TextBox txtChangeApptApptID;
+        private Label lblApptOldAppointmentID;
         private Label lblAppointment;
         private Button btnDelete;
         private TabPage tabPage5;
@@ -1957,7 +2190,7 @@
         private Label lblOldEmail;
         private TextBox txtNewEmail;
         private Label lblNewEmail;
-        private TabPage cboTimeBrowse;
+        private TabPage tabPage3;
         private ListView lsvChangeAvailability;
         private TabPage tabPage4;
         private ListView lsvCreateAvailability;
@@ -1969,10 +2202,8 @@
         private Label lblLocation;
         private TextBox txtAvailAdvisorIDInsert;
         private Label lblAdvisorID;
-        private Label lblAvailabilityID;
-        private TextBox txtAvailabilityID;
         private Label label17;
-        private Button btnClear;
+        private Button btnClearCreateAvail;
         private Button btnNewAvailability;
         private Button btnClearChange;
         private Button btnChangeAvailability;
@@ -2005,11 +2236,9 @@
         private ListView lvwMeetings;
         private TextBox txtMeetStudentID;
         private TextBox txtMeetAvailabilityID;
-        private TextBox txtMeetingID;
         private Label lblStudentMeeting;
         private Label lblMeetAvailabilityID;
         private Label lblMeetStudentID;
-        private Label lblMeetingID;
         private Label lblCurrentMeeting;
         private Label lblMeetingAvailability;
         private Button btnRefreshCreateAvail;
@@ -2025,9 +2254,47 @@
         private TextBox txtNewAvailability;
         private Label label19;
         private Button btnRefreshAvailChange;
-        private ComboBox comboBox1;
+        private ComboBox cboTimeBrowse;
         private CheckBox chkIsTakenInsert;
-        private CheckBox chkIsTakenUpdate;
-        private CheckBox chkIsTakenDelete;
+        private CheckBox chkIsTakenUpdateOld;
+        private CheckBox chkIsTakenUpdateNew;
+        private Button btnRefreshDeleteAvail;
+        private Button btnRefreshAddPerson;
+        private Button btnRefreshChangePerson;
+        private Button btnRefreshDeletePerson;
+        private Button btnRefreshSchedule;
+        private Label lblOldInfo;
+        private ListView lsvChangeAppt;
+        private TextBox lblOldChangeApptAdvisorID;
+        private TextBox txtChangeApptStudentID;
+        private TextBox txtNewChangeApptStudentID;
+        private Label lblChangeApptNewInfo;
+        private TextBox txtNewChangeApptAppt;
+        private Label lblNewChangeApptAppt;
+        private Label lblNewChangeApptStudentID;
+        private Button btnRefreshChangeAppt;
+        private Button btnChangeApptClear;
+        private Button btnChangeApptSubmit;
+        private Label lblChangeApptOldStudentID;
+        private TabPage tabPage9;
+        private TextBox txtNewChangeApptAvailabilityID;
+        private Label label1;
+        private TextBox txtChangeApptOldAvailabilityID;
+        private Label lblChangeApptOldAvailabilityID;
+        private ListView lsvDeleteAppt;
+        private Label lblDeleteApptStudentID;
+        private Label lblDeleteAppointmentID;
+        private Label lblDeleteApptInfo;
+        private Button btnDeleteApptRefresh;
+        private Button btnDeleteApptClear;
+        private Button btnDeleteMeeting;
+        private TextBox txtDeleteApptAvailabilityID;
+        private TextBox txtDeleteApptStudentID;
+        private TextBox txtDeleteAppointmentID;
+        private Label lblDeleteApptAvailabilityID;
+        private TextBox txtAdvisorAppt;
+        private Label lblAdvisorAppt;
+        private Label lblDelAvailWarningCONT;
+        private Label lblDelAvailWarning;
     }
 }

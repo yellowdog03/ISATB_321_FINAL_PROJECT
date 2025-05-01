@@ -13,11 +13,18 @@ namespace ISATB_321_FINAL_PROJECT
         public static string getConnectionString()
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            builder.DataSource = "uscb-plant.database.windows.net";
-            builder.InitialCatalog = "b320";
+            /*            builder.DataSource = "uscb-plant.database.windows.net";
+                        builder.InitialCatalog = "b320";
+                        builder.UserID = "B321_S25_APP";
+                        builder.Password = "Password!";
+                        builder.Encrypt = false;*/
+
+            builder.DataSource = "isat-320-quick-emrys.database.windows.net";
+            builder.InitialCatalog = "ISATB_321_FINAL_PROJECT";
             builder.UserID = "B321_S25_APP";
             builder.Password = "Password!";
             builder.Encrypt = false;
+
 
 
 
